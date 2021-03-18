@@ -1,0 +1,54 @@
+{
+  "quizzs": [
+    {
+      "id": 1,
+      "name": "Les 7 mers du monde",
+      "difficulty": "easy",
+      "questions": [
+        {
+          "id": 1,
+          "question_name": "Qui est Robert ?",
+          "type": "text",
+          "answers": [
+            {
+              "is_correct": true,
+              "data": "Je suis la reponse A"
+            },
+            {
+              "is_correct": false,
+              "data": "Je suis la reponse B"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "surname": null,
+      "name": null,
+      "handicap": "aveugle",
+      "font_size": 100
+    }
+  ],
+
+
+  "quizz_user_questions": [
+    {
+      "id_quizz": 1,
+      "id_user": 1,
+
+      "questions": [
+        {
+          "id": 11,
+          "answer_user": 1,
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+
+}
+
+
