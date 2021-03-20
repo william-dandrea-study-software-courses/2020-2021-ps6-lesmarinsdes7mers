@@ -1,8 +1,12 @@
 import { Question } from './question.model';
 
+enum Difficulty {
+    EASY, MEDIUM, HARD, EXPERT
+}
+
 export interface Quiz {
-    id: string;
+    id: number;
     name: string;
-    theme?: string;
+    difficulty: Difficulty;
     questions: Question[];
 }

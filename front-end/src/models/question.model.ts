@@ -1,11 +1,15 @@
+enum QuestionType {
+    TEXT, IMAGE
+}
+
 export interface Answer {
-    type?: string;
-    value: string;
-    isCorrect: boolean;
+    is_correct: boolean;
+    data: string;
 }
 
 export interface Question {
     id: string;
-    label: string;
+    question_name: string;
+    type: QuestionType;
     answers: Answer[];
 }

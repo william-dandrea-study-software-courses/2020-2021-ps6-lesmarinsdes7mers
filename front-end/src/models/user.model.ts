@@ -1,5 +1,7 @@
 export interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
+    id: number;
+    surname: string;
+    name: string;
+    handicap: string;
+    font_size: number;
 }
