@@ -18,6 +18,8 @@ import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { HomePageComponent } from './homePage/home-page/home-page.component';
 import {AppRoutingModule} from './app.routing.module';
+import { DifficultyBarComponent } from './homePage/difficulty-bar/difficulty-bar.component';
+import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar/question-presenter-bar.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import {AppRoutingModule} from './app.routing.module';
     UserFormComponent,
     UserListComponent,
     HomePageComponent,
+    DifficultyBarComponent,
+    QuestionPresenterBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+* {
+  font-family: Montserrat, serif;
+  background-color: white;
+}
+
+.difficulty-bar-elements {
+
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+
+.difficulty-bar-elements-button {
+
+
+  width: 350px;
+  height: 80px;
+
+  font-weight: bold;
+  background-color: #f4f4f4;
+  font-size: 30px;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: grey;
+
+
+
+}
