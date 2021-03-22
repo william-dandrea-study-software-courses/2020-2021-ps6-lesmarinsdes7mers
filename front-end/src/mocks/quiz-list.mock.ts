@@ -1,31 +1,24 @@
 import { Quiz } from '../models/quiz.model';
-import { Question } from '../models/question.model';
+import {Answer, Question} from '../models/question.model';
 
 export const QUESTION_ACTOR: Question = {
     id: '1',
-    label: 'Jean Gabin a joué dans...',
-    answers: [
-        {
-            value: 'Les tuches II',
-            isCorrect: false,
-        },
-        {
-            value: 'La grande illusion',
-            isCorrect: true,
-        }
-    ]
+    question_name: 'C\'est la question',
+    type: 0,
+    answers: []
 };
 
 export const QUIZ_LIST: Quiz[] = [
     {
-        id: '1',
+        id: 1,
         name: 'Les Acteurs', // What's happening if I change this value..?
-        theme: 'Actor',
+        difficulty: 0,
         questions: [],
     },
     {
-        id: '2',
+        id: 2,
         name: 'Les technos WEB',
+        difficulty: 0,
         questions: [],
     }
 ];
