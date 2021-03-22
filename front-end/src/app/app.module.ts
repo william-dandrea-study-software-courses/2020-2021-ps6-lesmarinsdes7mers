@@ -20,6 +20,9 @@ import { HomePageComponent } from './homePage/home-page/home-page.component';
 import {AppRoutingModule} from './app.routing.module';
 import { DifficultyBarComponent } from './homePage/difficulty-bar/difficulty-bar.component';
 import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar/question-presenter-bar.component';
+import GuestConfigPageComponent from './users/guest/guest-config/guest-config-page/guest-config-page.component';
+import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component'
+import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component'
 
 
 @NgModule({
@@ -39,6 +42,10 @@ import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar
     HomePageComponent,
     DifficultyBarComponent,
     QuestionPresenterBarComponent,
+
+    GuestConfigPageComponent,
+    GuestConfigFontsizeComponent,
+    GuestConfigHandicapComponent
   ],
   imports: [
     BrowserModule,

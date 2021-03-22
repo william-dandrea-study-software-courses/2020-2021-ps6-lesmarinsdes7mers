@@ -1,0 +1,13 @@
+<app-guest-config-page>
+    <h1>Souffrez-vous de l’un des syndromes suivant : </h1>
+    
+    <div class="handicap-radio" (click)="setProtanopie()" [ngClass]="{ 'handicap-radio-selected': isProtanopie() }">PROTANOPIE / PROTANOMALIE</div>
+    <div class="handicap-radio" (click)="setDeuteranopie()" [ngClass]="{ 'handicap-radio-selected': isDeuteranopie() }">DEUTERANOPIE / DEUTERANOMALIE</div>
+    <div class="handicap-radio" (click)="setTritanopie()" [ngClass]="{ 'handicap-radio-selected': isTritanopie() }">TRITANOPIE / TRITANOMALIE</div>
+    <div class="handicap-radio" (click)="setLowContrastSensi()" [ngClass]="{ 'handicap-radio-selected': isLowContrastSensi() }">SENSIBILITE AU CONTRASTE</div>
+    <div class="handicap-radio" (click)="setNone()" [ngClass]="{ 'handicap-radio-selected': isNone() }">AUCUN</div>
+
+
+    <button (click)="save()">Valider</button>
+</app-guest-config-page>
+

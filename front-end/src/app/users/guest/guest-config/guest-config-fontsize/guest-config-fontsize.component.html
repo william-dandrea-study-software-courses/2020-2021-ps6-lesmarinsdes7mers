@@ -1,0 +1,17 @@
+<app-guest-config-page>
+    <h1>Choisissez votre taille d'écriture</h1>
+    <p>Cliquez sur les flèches pour agrandir / rétrécir la taille de l’écriture</p>
+    <div class="interactives">
+        <div class="controls">
+            <button (click)="decreaseSize()"><</button>
+            <span>{{ fontsize }}</span>
+            <button (click)="increaseSize()">></button>
+        </div>
+        <div class="preview">
+            <span [ngStyle]="{ 'font-size.px': fontsize }">Aperçu</span>
+        </div>
+    </div>
+    
+    <button (click)="save()">Valider</button>
+</app-guest-config-page>
+
