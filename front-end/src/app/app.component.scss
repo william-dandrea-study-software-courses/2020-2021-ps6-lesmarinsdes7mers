@@ -1,4 +1,7 @@
 .main-content {
-    background-color: white;
-    padding: 0 1em 0 1em;
+    display: flex;
+    flex-direction: column;
+    //padding: 0 1em 0 1em;
+
+    min-height: 100vh;
 }
