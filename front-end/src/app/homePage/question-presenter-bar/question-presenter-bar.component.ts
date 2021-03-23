@@ -13,11 +13,12 @@ export class QuestionPresenterBarComponent implements OnInit {
   @Input() titleQuiz: string;
   @Input() isMade: boolean;
   @Input() numberOfGoodQuestions: number;
+  @Input() idQuiz: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-  
+
 
 }

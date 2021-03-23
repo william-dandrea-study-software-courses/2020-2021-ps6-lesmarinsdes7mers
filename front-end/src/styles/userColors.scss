@@ -3,9 +3,13 @@ $background-button-color: #F4F4F4;
 $principal-application-color: #7EBCA8;
 
 $easy-color: #9EBF44;
+$easy-font-color: white;
 $medium-color: #ECE76E;
+$medium-font-color: white;
 $hard-color: #ECA751;
+$hard-font-color: white;
 $expert-color: #D84127;
+$expert-font-color: white;
 
 $validate-color: #96BF47;
 
@@ -16,26 +20,26 @@ $validate-color: #96BF47;
     background-color: $easy-color !important;
 }
 .easy-fontcolor {
-    color: $easy-color !important;
+    color: $easy-font-color !important;
 }
 
 .medium-background {
-    background-color: $medium-color;
+    background-color: $medium-color !important;
 }
 .medium-fontcolor {
-    color: $medium-color;
+    color: $medium-font-color !important;
 }
 
 .hard-background {
-    background-color: $hard-color;
+    background-color: $hard-color !important;
 }
 .hard-fontcolor {
-    color: $hard-color;
+    color: $hard-font-color !important;
 }
 
 .expert-background {
-    background-color: $expert-color;
+    background-color: $expert-color !important;
 }
 .expert-fontcolor {
-    color: $expert-color;
+    color: $expert-font-color !important;
 }

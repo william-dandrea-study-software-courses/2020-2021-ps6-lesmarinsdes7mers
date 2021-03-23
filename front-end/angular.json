@@ -30,6 +30,7 @@
             "extractCss": true,
             "styles": [
               "src/styles.scss",
+              "src/styles/userColors.scss",
               {
                 "input": "src/styles/pathologie-styles/none.scss",
                 "bundleName": "pathologie-0",
