@@ -4,17 +4,20 @@
 
     <div id="app-question-presenter-bar-description-quiz">
         <div id="app-question-presenter-bar-title-of-question">
-            Les mers des 5 mondes
+            {{titleQuiz}}
         </div>
 
         <div id="app-question-presenter-bar-description-quiz-advanced-description">
 
             <div id="app-question-presenter-number-of-questions-in-quiz" class="app-question-presenter-bar-inside-writting">
-                30 questions
+                {{numberOfQuestions}} questions
             </div>
 
-            <div id="app-question-presenter-difficulty-of-quiz" class="app-question-presenter-bar-inside-writting">
-                DIFFICILE
+            <div class="app-question-presenter-difficulty-of-quiz">
+                <div *ngIf="difficulty==0" class="app-question-presenter-difficulty-of-quiz easy" >FACILE</div>
+                <div *ngIf="difficulty==1" class="app-question-presenter-difficulty-of-quiz medium">MOYEN</div>
+                <div *ngIf="difficulty==2" class="app-question-presenter-difficulty-of-quiz hard">DIFFICILE</div>
+                <div *ngIf="difficulty==3" class="app-question-presenter-difficulty-of-quiz expert">EXPERT</div>
             </div>
 
         </div>
@@ -28,7 +31,7 @@
             <i class="fas fa-check-square"></i>
         </div>
         <div id="app-question-presenter-quiz-is-validate-number-of-good-questions">
-            15/30
+            {{numberOfGoodQuestions}} / {{numberOfQuestions}}
         </div>
     </div>
 

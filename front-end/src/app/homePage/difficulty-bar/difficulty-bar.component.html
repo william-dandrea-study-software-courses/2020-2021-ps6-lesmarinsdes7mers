@@ -1,6 +1,26 @@
 <div class="difficulty-bar-elements">
-    <button name="easy" class="difficulty-bar-elements-button easy-background">Facile</button>
-    <button name="medium" class="difficulty-bar-elements-button easy-fontcolor" >Moyen</button>
-    <button name="hard" class="difficulty-bar-elements-button" >Difficile</button>
-    <button name="expert" class="difficulty-bar-elements-button" >Expert</button>
+    <button
+            name="easy"
+            (click)="choiseTheDifficulty($event, 0)"
+            [className]="numberOfClickOnEasy === 1 ? 'difficulty-bar-elements-button easy-background easy-fontcolor' : 'difficulty-bar-elements-button'"
+
+    >Facile</button>
+
+    <button
+            name="medium"
+            (click)="choiseTheDifficulty($event, 1)"
+            [className]="numberOfClickOnMedium === 1 ? 'difficulty-bar-elements-button medium-background medium-fontcolor' : 'difficulty-bar-elements-button'"
+    >Moyen</button>
+
+    <button
+            name="hard"
+            (click)="choiseTheDifficulty($event, 2)"
+            [className]="numberOfClickOnHard === 1 ? 'difficulty-bar-elements-button hard-background hard-fontcolor' : 'difficulty-bar-elements-button'"
+    >Difficile</button>
+
+    <button
+            name="expert"
+            (click)="choiseTheDifficulty($event, 3)"
+            [className]="numberOfClickOnExpert === 1 ? 'difficulty-bar-elements-button expert-background expert-fontcolor' : 'difficulty-bar-elements-button'"
+    >Expert</button>
 </div>

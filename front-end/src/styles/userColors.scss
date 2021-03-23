@@ -13,10 +13,10 @@ $validate-color: #96BF47;
 
 
 .easy-background {
-    background-color: $easy-color;
+    background-color: $easy-color !important;
 }
 .easy-fontcolor {
-    color: $easy-color;
+    color: $easy-color !important;
 }
 
 .medium-background {
