@@ -6,15 +6,17 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import {HomePageComponent} from './homePage/home-page/home-page.component';
 import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component';
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component';
+import LoginPageComponent from './users/login-page/login-page.component';
 
 const routes: Routes = [
+    {path: 'login', component: LoginPageComponent},
     {path:'guest/config/fontsize', component: GuestConfigFontsizeComponent},
     {path:'guest/config/handicap', component: GuestConfigHandicapComponent},
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'homepage', component: HomePageComponent},
-    {path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
+    {path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
