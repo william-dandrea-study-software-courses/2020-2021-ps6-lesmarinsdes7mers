@@ -1,33 +1,56 @@
-$easy-color: #9EBF44;
-$medium-color: #ECE76E;
-$hard-color: #ECA751;
-$expert-color: #D84127;
+$green: #9EBF44;
+$yellow: #ECE76E;
+$orange: #ECA751;
+$red: #D84127;
 
-.easy-background {
-    background-color: $easy-color !important;
-}
-.easy-fontcolor {
-    color: $easy-color !important;
+.quizz-done-check {
+    background-color: $green !important;
+    color: black !important;
 }
 
-.medium-background {
-    background-color: $medium-color !important;
-}
-.medium-fontcolor {
-    color: $medium-color !important;
+.active-panel {
+    background-color: black !important;
+    color: white !important;
 }
 
-.hard-background {
-    background-color: $hard-color !important;
-}
-.hard-fontcolor {
-    color: $hard-color !important;
+.panel {
+    background-color: white !important;
+    color: black !important;
 }
 
-.expert-background {
-    background-color: $expert-color !important;
-}
-.expert-fontcolor {
-    color: $expert-color !important;
+.right-answer {
+    color: black !important;
+    background-color: $green !important;
 }
 
+.wrong-answer {
+    color: white !important;
+    background-color: $red !important;
+}
+
+.right-image-answer {
+    border-color: $green !important;
+}
+
+.wrong-image-answer {
+    border-color: $red !important;
+}
+
+
+$difficulty-fontcolor: black;
+.easy {
+    background-color: $green !important;
+    color: $difficulty-fontcolor !important;
+}
+.medium {
+    background-color: $yellow !important;
+    color: $difficulty-fontcolor !important;
+}
+.hard {
+    background-color: $orange !important;
+    color: $difficulty-fontcolor !important;
+}
+.expert {
+    background-color: $red !important;
+    color: $difficulty-fontcolor !important;
+}

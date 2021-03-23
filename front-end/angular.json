@@ -27,8 +27,30 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "extractCss": true,
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/styles/pathologie-styles/none.scss",
+                "bundleName": "pathologie-0",
+                "inject": false
+              }, {
+                "input": "src/styles/pathologie-styles/protanopie.scss",
+                "bundleName": "pathologie-1",
+                "inject": false
+              }, {
+                "input": "src/styles/pathologie-styles/deuteranopie.scss",
+                "bundleName": "pathologie-2",
+                "inject": false
+              }, {
+                "input": "src/styles/pathologie-styles/tritanopie.scss",
+                "bundleName": "pathologie-3",
+                "inject": false
+              }, {
+                "input": "src/styles/pathologie-styles/contrast.scss",
+                "bundleName": "pathologie-4",
+                "inject": false
+              }
             ],
             "scripts": []
           },
