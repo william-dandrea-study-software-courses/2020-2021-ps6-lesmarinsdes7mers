@@ -2,3 +2,31 @@ $easy-color: #9EBF44;
 $medium-color: #ECE76E;
 $hard-color: #ECA751;
 $expert-color: #D84127;
+
+.easy-background {
+    background-color: $easy-color !important;
+}
+.easy-fontcolor {
+    color: $easy-color !important;
+}
+
+.medium-background {
+    background-color: $medium-color !important;
+}
+.medium-fontcolor {
+    color: $medium-color !important;
+}
+
+.hard-background {
+    background-color: $hard-color !important;
+}
+.hard-fontcolor {
+    color: $hard-color !important;
+}
+
+.expert-background {
+    background-color: $expert-color !important;
+}
+.expert-fontcolor {
+    color: $expert-color !important;
+}
