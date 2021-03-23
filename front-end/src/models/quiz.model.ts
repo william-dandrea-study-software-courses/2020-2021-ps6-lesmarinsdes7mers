@@ -1,7 +1,7 @@
 import { Question } from './question.model';
 
 enum Difficulty {
-    EASY, MEDIUM, HARD, EXPERT
+    EASY = "Facile", MEDIUM = "Moyen", HARD = "Difficile", EXPERT = "Expert"
 }
 
 export interface Quiz {
