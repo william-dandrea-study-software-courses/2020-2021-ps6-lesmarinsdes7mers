@@ -1,6 +1,6 @@
 import { Question } from './question.model';
 
-enum Difficulty {
+export enum Difficulty {
     EASY = "Facile", MEDIUM = "Moyen", HARD = "Difficile", EXPERT = "Expert"
 }
 
