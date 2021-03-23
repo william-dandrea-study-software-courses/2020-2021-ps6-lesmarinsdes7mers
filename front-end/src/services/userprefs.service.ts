@@ -7,8 +7,8 @@ import { Handicap } from "src/models/handicap.enum";
 })
 export default class UserPrefsService {
 
-    private fontSize: number = 60
-    private handicap: Handicap = Handicap.NONE
+    private fontSize: number = 60;
+    private handicap: Handicap = Handicap.NONE;
 
     public $fontSize: Subject<number> = new Subject<number>()
     public $handicap: Subject<Handicap> = new Subject<Handicap>()
@@ -18,20 +18,20 @@ export default class UserPrefsService {
     }
 
     setFontSize(size: number) {
-        this.fontSize = size
-        this.$fontSize.next(this.fontSize)
+        this.fontSize = size;
+        this.$fontSize.next(this.fontSize);
     }
 
     setHandicap(handicap: Handicap) {
-        this.handicap = handicap
-        this.$handicap.next(this.handicap)
+        this.handicap = handicap;
+        this.$handicap.next(this.handicap);
     }
 
     getFontSize() {
-        return this.fontSize
+        return this.fontSize;
     }
 
     getHandicap() {
-        return this.handicap
+        return this.handicap;
     }
 }

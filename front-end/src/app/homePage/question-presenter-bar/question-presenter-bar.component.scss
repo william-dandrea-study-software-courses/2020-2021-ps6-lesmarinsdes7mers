@@ -1,0 +1,67 @@
+// Le tout
+#app-question-presenter-bar-main-divider {
+
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Montserrat, sans-serif;
+  height: 180px;
+}
+
+// Partie de gauche
+#app-question-presenter-bar-description-quiz {
+  border: 1px black solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#app-question-presenter-bar-description-quiz:nth-child(1) {
+  flex: 1;
+}
+
+// Les mers des 5 mondes
+#app-question-presenter-bar-title-of-question {
+  border: 1px black solid;
+  font-size: 50px;
+  font-weight: bold;
+  height: 80px;
+}
+
+// Sous parties ou on a le nombre de questions et la difficulté de la question
+#app-question-presenter-bar-description-quiz-advanced-description {
+  border: 1px black solid;
+  display: flex;
+  flex-direction: row;
+}
+
+// 30 questions
+#app-question-presenter-number-of-questions-in-quiz {
+  border: 1px black solid;
+  width:750px;
+  height:50px;
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+// Difficile
+#app-question-presenter-difficulty-of-quiz {
+  border: 1px black solid;
+  width:420px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+
+}
+
+// Validation du questionnaire => quand les gens ont fait le questionnaire
+#app-question-presenter-quiz-is-validate {
+  border: 1px black solid;
+  width:415px;
+  height: 130px;
+}
