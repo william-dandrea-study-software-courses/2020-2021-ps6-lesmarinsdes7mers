@@ -4,29 +4,29 @@ $hard-color: #ECA751;
 $expert-color: #D84127;
 
 .easy-background {
-    background-color: $easy-color;
+    background-color: $easy-color !important;
 }
 .easy-fontcolor {
-    color: $easy-color;
+    color: $easy-color !important;
 }
 
 .medium-background {
-    background-color: $medium-color;
+    background-color: $medium-color !important;
 }
 .medium-fontcolor {
-    color: $medium-color;
+    color: $medium-color !important;
 }
 
 .hard-background {
-    background-color: $hard-color;
+    background-color: $hard-color !important;
 }
 .hard-fontcolor {
-    color: $hard-color;
+    color: $hard-color !important;
 }
 
 .expert-background {
-    background-color: $expert-color;
+    background-color: $expert-color !important;
 }
 .expert-fontcolor {
-    color: $expert-color;
+    color: $expert-color !important;
 }
