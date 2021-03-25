@@ -23,6 +23,7 @@ import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar
 import GuestConfigPageComponent from './users/guest/guest-config/guest-config-page/guest-config-page.component';
 import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component'
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component'
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 
 
 @NgModule({
@@ -45,7 +46,9 @@ import GuestConfigHandicapComponent from './users/guest/guest-config/guest-confi
 
     GuestConfigPageComponent,
     GuestConfigFontsizeComponent,
-    GuestConfigHandicapComponent
+    GuestConfigHandicapComponent,
+
+    PlayQuizComponent
   ],
   imports: [
     BrowserModule,

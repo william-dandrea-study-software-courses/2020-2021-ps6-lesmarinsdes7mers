@@ -7,6 +7,7 @@ import {HomePageComponent} from './homePage/home-page/home-page.component';
 import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component';
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component';
 import LoginPageComponent from './users/login-page/login-page.component';
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'quiz-list', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'homepage', component: HomePageComponent},
+    {path: 'play-quiz/:id-quiz/question/:id-question', component: PlayQuizComponent},
     {path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

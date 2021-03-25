@@ -1,0 +1,39 @@
+<div class="global-container">
+    <div id="header" class="layout">
+        <h2 [ngStyle]="{ 'font-size.px': fontsize }">1 / 25</h2>
+    </div>
+
+    <div id="question-display" class="layout">
+        <h2 [ngStyle]="{ 'font-size.px': fontsize }">Quel est le comble pour une cigogne ?</h2>
+
+        <!-- Answer 1 -->
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans l'aile</h2>
+        </div>
+
+        <!-- Answer 2 -->
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans les dents</h2>
+        </div>
+
+        <!-- Answer 3 -->
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans le ventre</h2>
+        </div>
+
+        <!-- Answer 4 -->
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans les bras</h2>
+        </div>
+    </div>
+
+    <button id="validate-btn" [ngStyle]="{ 'font-size.px': fontsize }">VALIDER</button>
+
+    <div class="pref-updater layout">
+        <button class="button-card" (click)="decreaseFontsize()"><i class="fas fa-chevron-left"></i></button>
+        <span>{{fontsize}}</span>
+        <button class="button-card" (click)="increaseFontsize()"><i class="fas fa-chevron-right"></i></button>
+
+        <h2 [ngStyle]="{ 'font-size.px': fontsize }">Taille d'écriture</h2>
+    </div>
+</div>
