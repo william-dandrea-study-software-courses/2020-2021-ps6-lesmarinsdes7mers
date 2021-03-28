@@ -1,33 +1,43 @@
 <div class="global-container">
     <div id="header" class="layout">
-        <h2 [ngStyle]="{ 'font-size.px': fontsize }">1 / 25</h2>
+        <h2 [ngStyle]="{ 'font-size.px': fontsize }">
+            {{nbQuestion}} / <div style="display: inline;" *ngIf="quiz !== undefined">{{quiz.questions.length}}</div><div style="display: inline;" *ngIf="quiz === undefined">25</div>
+        </h2>
     </div>
 
     <div id="question-display" class="layout">
-        <h2 [ngStyle]="{ 'font-size.px': fontsize }">Quel est le comble pour une cigogne ?</h2>
+        <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.question_name}}</h2>
 
         <!-- Answer 1 -->
-        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
-            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans l'aile</h2>
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(1)"
+            [className]="answerChoosen == 1 ? 'answer-card easy-background easy-fontcolor' : 'answer-card'"
+            *ngIf='question.answers[0] !== undefined'>
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[0].data}}</h2>
         </div>
 
         <!-- Answer 2 -->
-        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
-            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans les dents</h2>
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(2)"
+            [className]="answerChoosen == 2 ? 'answer-card easy-background easy-fontcolor' : 'answer-card'"
+            *ngIf='question.answers[1] !== undefined'>
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[1].data}}</h2>
         </div>
 
         <!-- Answer 3 -->
-        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
-            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans le ventre</h2>
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(3)"
+            [className]="answerChoosen == 3 ? 'answer-card easy-background easy-fontcolor' : 'answer-card'"
+            *ngIf='question.answers[2] !== undefined'>
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[2].data}}</h2>
         </div>
 
         <!-- Answer 4 -->
-        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }">
-            <h2 [ngStyle]="{ 'font-size.px': fontsize }">D'avoir un coup dans les bras</h2>
+        <div class="answer-card" [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(4)"
+            [className]="answerChoosen == 4 ? 'answer-card easy-background easy-fontcolor' : 'answer-card'"
+            *ngIf='question.answers[3] !== undefined'>
+            <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[3].data}}</h2>
         </div>
     </div>
 
-    <button id="validate-btn" [ngStyle]="{ 'font-size.px': fontsize }">VALIDER</button>
+    <button id="validate-btn" [ngStyle]="{ 'font-size.px': fontsize }" (click)="validate()">VALIDER</button>
 
     <div class="pref-updater layout">
         <button class="button-card" (click)="decreaseFontsize()"><i class="fas fa-chevron-left"></i></button>

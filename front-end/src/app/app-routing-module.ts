@@ -21,7 +21,7 @@ const routes: Routes = [
     {path: 'quiz-intro/:id', component: QuizIntroComponent},
     {path: 'quiz-result', component: QuizResultComponent},
     {path: 'quiz-correction', component: QuizCorrectionComponent},
-    {path: 'play-quiz/:id-quiz/question/:id-question', component: PlayQuizComponent},
+    {path: 'play-quiz/:id-quiz', component: PlayQuizComponent},
     {path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

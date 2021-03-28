@@ -63,7 +63,7 @@ export class QuizIntroComponent implements OnInit {
     }
 
     startQuiz(): void {
-        this.router.navigate(['/play-quiz', this.quiz.id, 'question', 0]);
+        this.router.navigate(['/play-quiz', this.quiz.id]);
     }
 
     homepage(): void {
