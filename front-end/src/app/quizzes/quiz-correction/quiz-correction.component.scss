@@ -1,0 +1,35 @@
+button {
+  font-size: inherit;
+}
+
+.result {
+  border: solid black 2px;
+  margin: 15px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu div {
+  flex: 1;
+}
+
+.menu :first-child {
+  text-align: right;
+}
+
+.result_menu {
+  margin-right: 50px;
+}
+
+.back_main_menu {
+  margin-left: 50px;
+}
+
+.menu_change_font_size {
+  text-align: center;
+
+  background-color: red;
+}
