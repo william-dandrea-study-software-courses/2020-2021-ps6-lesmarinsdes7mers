@@ -10,6 +10,7 @@ import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-confi
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component';
 import LoginPageComponent from './users/login-page/login-page.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import {QuizCorrectionAnswerComponent} from "./quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component";
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'quiz-intro/:id', component: QuizIntroComponent},
     {path: 'quiz-result', component: QuizResultComponent},
     {path: 'quiz-correction', component: QuizCorrectionComponent},
+    {path: 'quiz-correction-answer/:id-question', component: QuizCorrectionAnswerComponent},
     {path: 'play-quiz/:id-quiz', component: PlayQuizComponent},
     {path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

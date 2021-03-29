@@ -1,11 +1,11 @@
 <div [style.font-size.px]="sizeFont">
     <div class="result">
-
+        <app-quiz-result-list></app-quiz-result-list>
     </div>
 
     <div class="menu">
-        <div><button class="result_menu" routerLink="'/quiz-result'">Résultat</button></div>
-        <div><button class="back_main_menu" routerLink="'/homepage'">Retour au menu des quiz</button></div>
+        <div><button class="result_menu" (click)="navigateToResult()">Résultat</button></div>
+        <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
     </div>
 
     <div class="menu_change_font_size">

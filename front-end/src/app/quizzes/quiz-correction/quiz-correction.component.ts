@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import UserPrefsService from "../../../services/userprefs.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-quiz-correction',
@@ -11,7 +12,7 @@ export class QuizCorrectionComponent implements OnInit {
   sizeFont: number;
   preSizeFont: number;
 
-  constructor(private userPref: UserPrefsService) { }
+  constructor(private userPref: UserPrefsService, private router: Router) { }
 
   ngOnInit(): void {
     this.sizeFont = this.userPref.getFontSize();
@@ -30,6 +31,14 @@ export class QuizCorrectionComponent implements OnInit {
   decreaseSizeFont(): void {
     if (this.preSizeFont > 1)
       this.preSizeFont--;
+  }
+
+  navigateToResult() {
+    this.router.navigate(['/quiz-result']);
+  }
+
+  navigateToHomepage() {
+    this.router.navigate(['homepage']);
   }
 
 }

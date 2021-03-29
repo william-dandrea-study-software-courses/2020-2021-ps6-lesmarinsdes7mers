@@ -24,6 +24,10 @@ import GuestConfigPageComponent from './users/guest/guest-config/guest-config-pa
 import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component'
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component'
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import {QuizCorrectionComponent} from "./quizzes/quiz-correction/quiz-correction.component";
+import {QuizCorrectionListComponent} from "./quizzes/quiz-correction/quiz-correction-list/quiz-correction-list.component";
+import {QuizCorrectionItemComponent} from "./quizzes/quiz-correction/quiz-correction-item/quiz-correction-item.component";
+import { QuizCorrectionAnswerComponent } from './quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component';
 
 
 @NgModule({
@@ -43,12 +47,17 @@ import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
     HomePageComponent,
     DifficultyBarComponent,
     QuestionPresenterBarComponent,
+    QuizCorrectionComponent,
+    QuizCorrectionListComponent,
+    QuizCorrectionItemComponent,
 
     GuestConfigPageComponent,
     GuestConfigFontsizeComponent,
     GuestConfigHandicapComponent,
 
-    PlayQuizComponent
+    PlayQuizComponent,
+
+    QuizCorrectionAnswerComponent
   ],
   imports: [
     BrowserModule,

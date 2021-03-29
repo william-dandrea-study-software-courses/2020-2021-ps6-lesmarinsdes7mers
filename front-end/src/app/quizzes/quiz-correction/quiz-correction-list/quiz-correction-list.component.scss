@@ -1,0 +1,10 @@
+.answers {
+  display: flex;
+  flex-flow: row wrap;
+  width: max-content;
+}
+
+.answer {
+  text-align: center;
+  margin: 10px;
+}

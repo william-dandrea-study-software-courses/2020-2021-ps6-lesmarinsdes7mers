@@ -3,21 +3,20 @@
         <p class="theme">Les mers du monde</p>
         <div class="stat">
             <div class="point">
-                <p>Bonnes réponses: 22</p>
-                <p>Mauvaises réponses: 3</p>
-                <p>Réponses totales: 25</p>
+                <p>Bonnes réponses: {{getRightAnswerCount()}}</p>
+                <p>Mauvaises réponses: {{getFalseAnswerCount()}}</p>
+                <p>Réponses totales: {{answers.length}}</p>
             </div>
             <div class="percent">
                 <p>RESULTAT:</p>
-                <p>88%</p>
+                <p>{{getResultInPercent()}}%</p>
             </div>
         </div>
-        <div style="clear:both;"></div>
     </div>
 
     <div class="menu">
-        <div><button class="correction" routerLink="'/quiz-correction'">CORRECTION</button></div>
-        <div><button class="back_main_menu" routerLink="'/homepage'">Retour au menu des quiz</button></div>
+        <div><button class="correction" (click)="navigateToCorrection()">CORRECTION</button></div>
+        <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
     </div>
 
     <div class="menu_change_font_size">

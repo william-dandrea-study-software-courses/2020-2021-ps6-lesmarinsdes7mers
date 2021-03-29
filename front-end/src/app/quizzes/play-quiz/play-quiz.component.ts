@@ -94,7 +94,7 @@ export class PlayQuizComponent implements OnInit {
 
         if (this.nbQuestion >= this.quiz.questions.length) {
             // go to next
-            this.router.navigate(['/quiz-correction']);
+            this.router.navigate(['/quiz-result']);
         }
         else {
             if (this.answerChoosen < 1 || this.answerChoosen > this.question.answers.length)

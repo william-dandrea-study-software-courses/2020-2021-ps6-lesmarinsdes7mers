@@ -10,10 +10,7 @@ button {
 .menu {
   display: flex;
   flex-direction: row;
-}
-
-.menu div {
-  flex: 1;
+  justify-content: space-evenly;
 }
 
 .menu :first-child {
@@ -30,6 +27,5 @@ button {
 
 .menu_change_font_size {
   text-align: center;
-
   background-color: red;
 }
