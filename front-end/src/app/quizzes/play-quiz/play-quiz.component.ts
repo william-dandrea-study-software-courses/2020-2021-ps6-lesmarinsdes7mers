@@ -15,7 +15,7 @@ import UserPrefsService from "src/services/userprefs.service";
 export class PlayQuizComponent implements OnInit {
 
     private static OFFSET: number = 5;
-    private static MAX_FONTSIZE: number = 40;
+    private static MAX_FONTSIZE: number = 70;
     private static MIN_FONTSIZE: number = 10;
 
     question: Question;
