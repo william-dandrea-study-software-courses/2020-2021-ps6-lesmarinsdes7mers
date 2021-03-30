@@ -73,13 +73,16 @@ export class QuizIntroComponent implements OnInit {
     getDifficultyColorClass(): string {
         switch (this.quiz.difficulty) {
             case Difficulty.EASY:
-                return "easy-background easy-fontcolor difficulty";
+                return "easy difficulty";
             case Difficulty.MEDIUM:
-                return "medium-background medium-fontcolor difficulty";
+                return "medium difficulty";
             case Difficulty.HARD:
-                return "hard-background hard-fontcolor difficulty";
+                return "hard difficulty";
             case Difficulty.EXPERT:
-                return "expert-background expert-fontcolor difficulty";
+                return "expert difficulty";
+
+            // Old value
+            // return "easy-background easy-fontcolor difficulty";
         }
     }
 
