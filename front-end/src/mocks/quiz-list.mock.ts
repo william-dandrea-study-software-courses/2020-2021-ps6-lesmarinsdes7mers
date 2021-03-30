@@ -1,4 +1,4 @@
-import { Quiz } from '../models/quiz.model';
+import { Difficulty, Quiz } from '../models/quiz.model';
 import {Answer, Question} from '../models/question.model';
 
 export const QUESTION_ACTOR: Question = {
@@ -12,13 +12,13 @@ export const QUIZ_LIST: Quiz[] = [
     {
         id: 1,
         name: 'Les Acteurs', // What's happening if I change this value..?
-        difficulty: 0,
+        difficulty: Difficulty.EASY,
         questions: [],
     },
     {
         id: 2,
         name: 'Les technos WEB',
-        difficulty: 0,
+        difficulty: Difficulty.EXPERT,
         questions: [],
     }
 ];
