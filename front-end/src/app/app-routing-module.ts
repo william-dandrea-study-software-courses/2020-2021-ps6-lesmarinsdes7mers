@@ -14,6 +14,7 @@ import {QuizCorrectionAnswerComponent} from "./quizzes/quiz-correction/quiz-corr
 import {AnimQuizzHomepageComponent} from "./animateur/anim-quizz-page/anim-quizz-homepage/anim-quizz-homepage.component";
 import {AnimUserHomepageComponent} from "./animateur/anim-user-page/anim-user-homepage/anim-user-homepage.component";
 import {AnimSettingsHomepageComponent} from "./animateur/anim-settings/anim-settings-homepage/anim-settings-homepage.component";
+import {AnimCreateQuizzHomepageComponent} from "./animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-homepage/anim-create-quizz-homepage.component";
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
     {path: 'animateur/quizz-home-page', component: AnimQuizzHomepageComponent},
     {path: 'animateur/user-home-page', component: AnimUserHomepageComponent},
     {path: 'animateur/settings-home-page', component: AnimSettingsHomepageComponent},
+    {path: 'animateur/quizz-home-page/create-quizz', component: AnimCreateQuizzHomepageComponent},
 ];
 
 @NgModule({

@@ -34,6 +34,9 @@ import {QuizResultComponent} from "./quizzes/quiz-result/quiz-result.component";
 import { AnimQuizzHomepageComponent } from './animateur/anim-quizz-page/anim-quizz-homepage/anim-quizz-homepage.component';
 import { AnimUserHomepageComponent } from './animateur/anim-user-page/anim-user-homepage/anim-user-homepage.component';
 import { AnimSettingsHomepageComponent } from './animateur/anim-settings/anim-settings-homepage/anim-settings-homepage.component';
+import { AnimCreateQuizzHomepageComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-homepage/anim-create-quizz-homepage.component';
+import { AnimCreateQuizzElementHeaderComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-header/anim-create-quizz-element-header.component';
+import { AnimCreateQuizzElementGeneralQuizInfosComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-general-quiz-infos/anim-create-quizz-element-general-quiz-infos.component';
 
 
 @NgModule({
@@ -74,7 +77,13 @@ import { AnimSettingsHomepageComponent } from './animateur/anim-settings/anim-se
 
     AnimUserHomepageComponent,
 
-    AnimSettingsHomepageComponent
+    AnimSettingsHomepageComponent,
+
+    AnimCreateQuizzHomepageComponent,
+
+    AnimCreateQuizzElementHeaderComponent,
+
+    AnimCreateQuizzElementGeneralQuizInfosComponent
   ],
   imports: [
     BrowserModule,

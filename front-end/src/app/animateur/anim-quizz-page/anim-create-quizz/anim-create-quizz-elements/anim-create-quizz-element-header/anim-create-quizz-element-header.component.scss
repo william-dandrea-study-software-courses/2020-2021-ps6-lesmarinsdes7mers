@@ -1,0 +1,30 @@
+#anim-create-quiz-element-header-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+button {
+  margin: 14px 20px;
+  padding: 5px 50px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px #aaa;
+
+}
+
+#delete-quiz {
+  background-color: #B77373;
+}
+
+#quit-creation-quiz {
+  background-color: #B77373;
+}
+
+#save-and-quit-creation-quiz {
+  background-color: #7EBCA8;
+}
