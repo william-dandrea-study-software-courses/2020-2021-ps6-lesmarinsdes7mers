@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Handicap, HandicapToString } from 'src/models/handicap.enum';
 import UserPrefsService from 'src/services/userprefs.service';
 
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userprefsService.$handicap.subscribe((h) => {
-      this.loadStyle('pathologie-2.css')
+      this.loadStyle(HandicapToString(h).toLowerCase() + '.css')
     })
   }
 

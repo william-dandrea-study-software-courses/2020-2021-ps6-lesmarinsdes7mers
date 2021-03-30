@@ -32,23 +32,23 @@
               "src/styles/userColors.scss",
               {
                 "input": "src/styles/pathologie-styles/none.scss",
-                "bundleName": "pathologie-0",
+                "bundleName": "aucun",
                 "inject": false
               }, {
                 "input": "src/styles/pathologie-styles/protanopie.scss",
-                "bundleName": "pathologie-1",
+                "bundleName": "protanopie",
                 "inject": false
               }, {
                 "input": "src/styles/pathologie-styles/deuteranopie.scss",
-                "bundleName": "pathologie-2",
+                "bundleName": "deuteranopie",
                 "inject": false
               }, {
                 "input": "src/styles/pathologie-styles/tritanopie.scss",
-                "bundleName": "pathologie-3",
+                "bundleName": "tritanopie",
                 "inject": false
               }, {
                 "input": "src/styles/pathologie-styles/contrast.scss",
-                "bundleName": "pathologie-4",
+                "bundleName": "contraste",
                 "inject": false
               }
             ],

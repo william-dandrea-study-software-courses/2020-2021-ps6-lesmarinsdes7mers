@@ -21,16 +21,19 @@ import {AppRoutingModule} from './app-routing-module';
 import { DifficultyBarComponent } from './homePage/difficulty-bar/difficulty-bar.component';
 import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar/question-presenter-bar.component';
 import GuestConfigPageComponent from './users/guest/guest-config/guest-config-page/guest-config-page.component';
-import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component'
-import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component'
+import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component';
+import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
-import {QuizCorrectionComponent} from "./quizzes/quiz-correction/quiz-correction.component";
-import {QuizCorrectionListComponent} from "./quizzes/quiz-correction/quiz-correction-list/quiz-correction-list.component";
-import {QuizCorrectionItemComponent} from "./quizzes/quiz-correction/quiz-correction-item/quiz-correction-item.component";
+import {QuizCorrectionComponent} from './quizzes/quiz-correction/quiz-correction.component';
+import {QuizCorrectionListComponent} from './quizzes/quiz-correction/quiz-correction-list/quiz-correction-list.component';
+import {QuizCorrectionItemComponent} from './quizzes/quiz-correction/quiz-correction-item/quiz-correction-item.component';
 import { QuizCorrectionAnswerComponent } from './quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component';
 import { ChangeFontSizeComponent } from './change-font-size/change-font-size.component';
 import {QuizIntroComponent} from "./quizzes/quiz-intro/quiz-intro.component";
 import {QuizResultComponent} from "./quizzes/quiz-result/quiz-result.component";
+import { AnimQuizzHomepageComponent } from './animateur/anim-quizz-page/anim-quizz-homepage/anim-quizz-homepage.component';
+import { AnimUserHomepageComponent } from './animateur/anim-user-page/anim-user-homepage/anim-user-homepage.component';
+import { AnimSettingsHomepageComponent } from './animateur/anim-settings/anim-settings-homepage/anim-settings-homepage.component';
 
 
 @NgModule({
@@ -64,6 +67,14 @@ import {QuizResultComponent} from "./quizzes/quiz-result/quiz-result.component";
     QuizCorrectionAnswerComponent,
       QuizIntroComponent,
     ChangeFontSizeComponent
+
+    QuizCorrectionAnswerComponent,
+
+    AnimQuizzHomepageComponent,
+
+    AnimUserHomepageComponent,
+
+    AnimSettingsHomepageComponent
   ],
   imports: [
     BrowserModule,

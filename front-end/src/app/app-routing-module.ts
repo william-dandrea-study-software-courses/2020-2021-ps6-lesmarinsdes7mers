@@ -11,6 +11,9 @@ import GuestConfigHandicapComponent from './users/guest/guest-config/guest-confi
 import LoginPageComponent from './users/login-page/login-page.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import {QuizCorrectionAnswerComponent} from "./quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component";
+import {AnimQuizzHomepageComponent} from "./animateur/anim-quizz-page/anim-quizz-homepage/anim-quizz-homepage.component";
+import {AnimUserHomepageComponent} from "./animateur/anim-user-page/anim-user-homepage/anim-user-homepage.component";
+import {AnimSettingsHomepageComponent} from "./animateur/anim-settings/anim-settings-homepage/anim-settings-homepage.component";
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -24,7 +27,10 @@ const routes: Routes = [
     {path: 'quiz-correction', component: QuizCorrectionComponent},
     {path: 'quiz-correction-answer/:id-question', component: QuizCorrectionAnswerComponent},
     {path: 'play-quiz/:id-quiz', component: PlayQuizComponent},
-    {path: '', redirectTo: '/login', pathMatch: 'full' },
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
+    {path: 'animateur/quizz-home-page', component: AnimQuizzHomepageComponent},
+    {path: 'animateur/user-home-page', component: AnimUserHomepageComponent},
+    {path: 'animateur/settings-home-page', component: AnimSettingsHomepageComponent},
 ];
 
 @NgModule({
