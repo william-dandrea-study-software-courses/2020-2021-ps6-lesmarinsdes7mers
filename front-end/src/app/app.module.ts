@@ -66,7 +66,7 @@ import { AnimSettingsHomepageComponent } from './animateur/anim-settings/anim-se
       QuizResultComponent,
     QuizCorrectionAnswerComponent,
       QuizIntroComponent,
-    ChangeFontSizeComponent
+    ChangeFontSizeComponent,
 
     QuizCorrectionAnswerComponent,
 
