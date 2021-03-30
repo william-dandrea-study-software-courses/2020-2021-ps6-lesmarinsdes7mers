@@ -1,0 +1,57 @@
+.result {
+  border: solid black 2px;
+  height: auto;
+  margin: 15px;
+  padding: 10px;
+}
+
+.theme {
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.point {
+  flex: 1;
+  height: 100%;
+  background: aqua;
+}
+
+.percent {
+  flex: 1;
+  text-align: center;
+  background: #3f51b5;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu div {
+  flex: 1;
+}
+
+.menu :first-child {
+  text-align: right;
+}
+
+.correction {
+  margin-right: 50px;
+}
+
+.back_main_menu {
+  margin-left: 50px;
+}
+
+button {
+  font-size: inherit;
+}
+
+.menu_change_font_size {
+  text-align: center;
+}

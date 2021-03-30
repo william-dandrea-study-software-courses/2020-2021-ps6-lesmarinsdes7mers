@@ -17,12 +17,17 @@ import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { HomePageComponent } from './homePage/home-page/home-page.component';
-import {AppRoutingModule} from './app.routing.module';
+import {AppRoutingModule} from './app-routing-module';
 import { DifficultyBarComponent } from './homePage/difficulty-bar/difficulty-bar.component';
 import { QuestionPresenterBarComponent } from './homePage/question-presenter-bar/question-presenter-bar.component';
 import GuestConfigPageComponent from './users/guest/guest-config/guest-config-page/guest-config-page.component';
 import GuestConfigFontsizeComponent from './users/guest/guest-config/guest-config-fontsize/guest-config-fontsize.component'
 import GuestConfigHandicapComponent from './users/guest/guest-config/guest-config-handicap/guest-config-handicap.component'
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import {QuizCorrectionComponent} from "./quizzes/quiz-correction/quiz-correction.component";
+import {QuizCorrectionListComponent} from "./quizzes/quiz-correction/quiz-correction-list/quiz-correction-list.component";
+import {QuizCorrectionItemComponent} from "./quizzes/quiz-correction/quiz-correction-item/quiz-correction-item.component";
+import { QuizCorrectionAnswerComponent } from './quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component';
 
 
 @NgModule({
@@ -42,10 +47,17 @@ import GuestConfigHandicapComponent from './users/guest/guest-config/guest-confi
     HomePageComponent,
     DifficultyBarComponent,
     QuestionPresenterBarComponent,
+    QuizCorrectionComponent,
+    QuizCorrectionListComponent,
+    QuizCorrectionItemComponent,
 
     GuestConfigPageComponent,
     GuestConfigFontsizeComponent,
-    GuestConfigHandicapComponent
+    GuestConfigHandicapComponent,
+
+    PlayQuizComponent,
+
+    QuizCorrectionAnswerComponent
   ],
   imports: [
     BrowserModule,

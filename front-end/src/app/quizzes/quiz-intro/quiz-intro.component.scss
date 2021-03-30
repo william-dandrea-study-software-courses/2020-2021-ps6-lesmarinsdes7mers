@@ -1,0 +1,71 @@
+@import "../../../styles/userColors";
+
+* {
+  text-align: center;
+  font-weight: bold;
+}
+
+button {
+  font-size: inherit;
+}
+
+.change_font_size_bar {
+  background-color: #f4f4f4;
+  border-radius: 0 0 10px 10px;
+  padding: 10px 40px 40px 40px;
+  width: max-content;
+  margin: 0 12.5% 0 12.5%;
+  box-shadow: 0 5px 3px lightgray;
+}
+
+.bar_title {
+  margin: 5px 0 5px 0;
+  border-bottom: solid 1px black;
+}
+
+.change_font_size {}
+
+.change_font_size button {
+  border: unset;
+  background-color: inherit;
+}
+
+.change_font_size button {
+  margin: 10px;
+}
+
+.register_font_size {}
+
+.register_font_size button {
+  background-color: #7EBCA8;
+  color: white;
+  border-radius: 10px;
+  border-color: unset;
+  width: 75%;
+}
+
+.theme {
+  margin: 20px 0 20px 0;
+}
+
+.difficulty_box {
+  margin: 0 35% 0 35%;
+}
+
+.difficulty_box hr {
+  height: 3px;
+  background-color: black;
+  margin: 0;
+}
+
+.difficulty {
+  font-weight: lighter;
+  border-radius: 10px;
+  margin: 10px 0 0;
+}
+
+.navigation_quiz button {
+  margin: 0 100px 0 100px;
+}
+
+

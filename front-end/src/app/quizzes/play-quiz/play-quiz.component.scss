@@ -1,0 +1,111 @@
+@import '../../../styles/card.scss';
+
+.global-container {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    height: 100vh; // take all available spaces
+}
+
+.layout {
+    background-color: #EEE;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#header {
+    max-height: 10vh;
+}
+
+#question-display {
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding: 1px;
+
+    min-width: 80%;
+    max-width: 80%;
+
+    min-height: 50vh;
+    max-height: 50vh;
+}
+
+#validate-btn {
+    margin: auto 30% 5%;
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background-color: #9EBF44;
+
+    color: $white;
+    font-weight: bold;
+
+    border: none;
+}
+
+#validate-btn:hover {
+    cursor: pointer;
+}
+
+.answer-card-text {
+    background-color: white;
+    border-radius: 15px;
+
+    margin: 1%;
+    padding: 1px;
+
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+
+    min-width: 45%;
+    min-height: 40%;
+
+    max-width: 100%;
+    max-height: 50%;
+}
+
+.answer-card-text:hover {
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
+
+.answer-card-img {
+    display: inline-block;
+    background-color: white;
+    border-radius: 15px;
+
+    padding: 2px;
+
+    width: 22%;
+    height: 350px;
+
+    text-align: center;
+
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.answer-card-img:hover {
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
+
+.pref-updater {
+    border-radius: 10px 10px 0px 0px;
+
+    padding: 20px;
+
+    min-height: 4vh;
+    max-height: 4vh;
+}
+
+.pref-updater > h2 {
+    display: inline;
+    margin-left: 20%;
+    margin-right: 30%;
+}
+
+.pref-updater > span {
+    margin: 0% 5%;
+}

@@ -1,0 +1,6 @@
+<div class="answers">
+    <div class="answer" *ngFor="let answer of answers; let index = index">
+        <app-quiz-result-item [answer]="answer" [questionNum]="index"></app-quiz-result-item>
+    </div>
+</div>
+

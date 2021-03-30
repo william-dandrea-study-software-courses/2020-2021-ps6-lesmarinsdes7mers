@@ -1,0 +1,25 @@
+<div [style.font-size.px]="sizeFont">
+    <div class="change_font_size_bar">
+        <h2 class="bar_title">Modifier la taille des écritures</h2>
+        <div class="change_font_size">
+            <button (mousedown)="decreaseSizeFont()" (mouseup)="stopTimer()"><</button>
+            <span>{{preSizeFont}}</span>
+            <button (mousedown)="increaseSizeFont()" (mouseup)="stopTimer()">></button>
+            <span [style.font-size.px]="preSizeFont">Aperçu</span>
+        </div>
+        <div class="register_font_size">
+            <button (click)="registerFontSize()">Enregistrer</button>
+        </div>
+    </div>
+
+    <div class="theme">Thème: {{quiz.name}}</div>
+    <div class="difficulty_box">
+        <hr/>
+        <p [className]="getDifficultyColorClass()">{{difficulty(quiz.difficulty).toUpperCase()}}</p>
+    </div>
+    <p>C'est à vous de jouer</p>
+    <div class="navigation_quiz">
+        <button (click)="homepage()">Retour</button>
+        <button (click)="startQuiz()">C'est parti !</button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div [style.font-size.px]="sizeFont">
+    <div class="result">
+        <p class="theme">Les mers du monde</p>
+        <div class="stat">
+            <div class="point">
+                <p>Bonnes réponses: {{getRightAnswerCount()}}</p>
+                <p>Mauvaises réponses: {{getFalseAnswerCount()}}</p>
+                <p>Réponses totales: {{answers.length}}</p>
+            </div>
+            <div class="percent">
+                <p>RESULTAT:</p>
+                <p>{{getResultInPercent()}}%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div><button class="correction" (click)="navigateToCorrection()">CORRECTION</button></div>
+        <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
+    </div>
+
+    <div class="menu_change_font_size">
+        <h2>Modifier la taille des écritures</h2>
+        <div class="change_font_size" [style.font-size.px]="preSizeFont">
+            <button (click)="decreaseSizeFont()"><</button>
+            {{preSizeFont}}
+            <button (click)="increaseSizeFont()">></button>
+            Apercu
+        </div>
+        <div class="register_font_size">
+            <button (click)="registerFontSize()">Enregistrer</button>
+        </div>
+    </div>
+</div>

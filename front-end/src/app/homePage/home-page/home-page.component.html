@@ -1,7 +1,19 @@
 <p id="text-intro-quizz">A quel quiz voulez-vous jouer ?</p>
 
-<app-difficulty-bar></app-difficulty-bar>
+<app-difficulty-bar (difficultyChoiceEvent)="onDifficultyFiltrer($event)"></app-difficulty-bar>
 
 <hr class="divider">
 
-<app-question-presenter-bar></app-question-presenter-bar>
+
+<div *ngFor="let quiz of quizList">
+    <app-question-presenter-bar
+            [titleQuiz]="quiz.name"
+            [numberOfQuestions]="quiz.questions.length"
+            [difficulty]="quiz.difficulty"
+            [isMade]="true"
+            [numberOfGoodQuestions]="5"
+            [idQuiz]="quiz.id"
+    ></app-question-presenter-bar>
+</div>
+
+
