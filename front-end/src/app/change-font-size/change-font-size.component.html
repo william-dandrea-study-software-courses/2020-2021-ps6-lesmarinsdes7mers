@@ -1,0 +1,10 @@
+<div class="change_font_size_bar">
+    <h2 class="bar_title">Modifier la taille des écritures</h2>
+    <div class="change_font_size">
+        <button (mousedown)="decreaseSizeFont()" (mouseup)="stopTimer()"><</button>
+        <span>{{preSizeFont}}</span>
+        <button (mousedown)="increaseSizeFont()" (mouseup)="stopTimer()">></button>
+        <span [style.font-size.px]="preSizeFont">Aperçu</span>
+        <button class="register_font_size" (click)="registerFontSize()">Enregistrer</button>
+    </div>
+</div>

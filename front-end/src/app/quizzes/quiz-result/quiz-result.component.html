@@ -19,16 +19,5 @@
         <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
     </div>
 
-    <div class="menu_change_font_size">
-        <h2>Modifier la taille des écritures</h2>
-        <div class="change_font_size" [style.font-size.px]="preSizeFont">
-            <button (click)="decreaseSizeFont()"><</button>
-            {{preSizeFont}}
-            <button (click)="increaseSizeFont()">></button>
-            Apercu
-        </div>
-        <div class="register_font_size">
-            <button (click)="registerFontSize()">Enregistrer</button>
-        </div>
-    </div>
+    <app-change-font-size></app-change-font-size>
 </div>

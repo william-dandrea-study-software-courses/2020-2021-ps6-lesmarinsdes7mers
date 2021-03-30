@@ -28,6 +28,9 @@ import {QuizCorrectionComponent} from "./quizzes/quiz-correction/quiz-correction
 import {QuizCorrectionListComponent} from "./quizzes/quiz-correction/quiz-correction-list/quiz-correction-list.component";
 import {QuizCorrectionItemComponent} from "./quizzes/quiz-correction/quiz-correction-item/quiz-correction-item.component";
 import { QuizCorrectionAnswerComponent } from './quizzes/quiz-correction/quiz-correction-answer/quiz-correction-answer.component';
+import { ChangeFontSizeComponent } from './change-font-size/change-font-size.component';
+import {QuizIntroComponent} from "./quizzes/quiz-intro/quiz-intro.component";
+import {QuizResultComponent} from "./quizzes/quiz-result/quiz-result.component";
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { QuizCorrectionAnswerComponent } from './quizzes/quiz-correction/quiz-co
 
     PlayQuizComponent,
 
-    QuizCorrectionAnswerComponent
+      QuizResultComponent,
+    QuizCorrectionAnswerComponent,
+      QuizIntroComponent,
+    ChangeFontSizeComponent
   ],
   imports: [
     BrowserModule,

@@ -12,54 +12,17 @@ import UserPrefsService from "../../../services/userprefs.service";
 export class QuizIntroComponent implements OnInit {
 
     quiz: Quiz;
-    sizeFont: number;
-    preSizeFont: number;
     difficulty = difficultyToText;
 
-    interval;
-
-    constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, private userPref: UserPrefsService) {
-        userPref.$fontSize.subscribe(value => this.sizeFont = value);
+    constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, public userPref: UserPrefsService) {
         this.quizService.quizSelected$.subscribe(value => this.quiz = value);
-        console.log(this.userPref.getHandicap());
     }
 
     ngOnInit(): void {
-        this.sizeFont = this.userPref.getFontSize();
-        this.preSizeFont = this.sizeFont;
         const id = this.route.snapshot.paramMap.get('id');
         this.quizService.setSelectedQuiz(+id);
         //this.difficulty = difficultyToText(this.quiz.difficulty);
         //this.quiz = this.quizService.
-    }
-
-    registerFontSize(): void {
-        this.userPref.setFontSize(this.preSizeFont);
-    }
-
-    increaseSizeFont(): void {
-        this.preSizeFont++;
-        this.startTimer(false);
-    }
-
-    decreaseSizeFont(): void {
-        if (this.preSizeFont > 1) {
-            this.preSizeFont--;
-            this.startTimer(true);
-        }
-    }
-
-    startTimer(neg: boolean): void {
-        this.interval = setInterval(() => {
-            if (neg)
-                this.preSizeFont -= 5;
-            else
-                this.preSizeFont += 5;
-        }, 1000);
-    }
-
-    stopTimer(): void {
-        clearInterval(this.interval);
     }
 
     startQuiz(): void {

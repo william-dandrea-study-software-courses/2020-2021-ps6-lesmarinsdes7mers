@@ -19,6 +19,7 @@ button {
 
 .answers {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   border: solid black;
   margin: 0 15% 0 15%;

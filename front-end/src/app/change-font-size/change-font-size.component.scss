@@ -1,0 +1,38 @@
+button {
+  font: inherit;
+}
+
+.change_font_size_bar {
+  background-color: #f4f4f4;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 40px 40px 40px;
+  width: max-content;
+  margin: 40px 12.5% 0 12.5%;
+  text-align: center;
+  //box-shadow: 0 5px 3px lightgray;
+}
+
+.bar_title {
+  margin: 5px 0 5px 0;
+  border-bottom: solid 1px black;
+}
+
+.change_font_size {}
+
+.change_font_size button {
+  border: unset;
+  background-color: inherit;
+}
+
+.change_font_size button {
+  margin: 10px;
+}
+
+.register_font_size {
+  //TODO: mettre flex box + mettre changement font size dans div + justify-content: space-between
+  background-color: #7EBCA8 !important;
+  color: white;
+  border-radius: 10px;
+  border-color: unset;
+}
+
