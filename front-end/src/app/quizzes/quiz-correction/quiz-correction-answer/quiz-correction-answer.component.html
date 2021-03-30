@@ -1,0 +1,29 @@
+<div [style.font-size.px]="sizeFont">
+    <div class="question-number">{{question.id}} / {{quiz.questions.length}}</div>
+
+    <div class="question">
+        <div class="question-name">{{question.question_name}}</div>
+        <div class="answers">
+            <div *ngFor="let answerQ of question.answers">
+                <div class="answer" [style.background-color]="answerQ.is_correct ? 'green' : (answer.data == answerQ.data ? 'red' : 'white')">{{answerQ.data}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="to-correction">
+        <button [routerLink]="'/quiz-correction'">Retour au résultat</button>
+    </div>
+
+    <div class="menu_change_font_size">
+        <h2>Modifier la taille des écritures</h2>
+        <div class="change_font_size" [style.font-size.px]="preSizeFont">
+            <button (click)="decreaseSizeFont()"><</button>
+            {{preSizeFont}}
+            <button (click)="increaseSizeFont()">></button>
+            Apercu
+        </div>
+        <div class="register_font_size">
+            <button (click)="registerFontSize()">Enregistrer</button>
+        </div>
+    </div>
+</div>

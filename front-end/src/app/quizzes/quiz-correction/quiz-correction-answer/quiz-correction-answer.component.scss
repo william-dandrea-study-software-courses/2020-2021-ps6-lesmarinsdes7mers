@@ -1,0 +1,43 @@
+button {
+  font-size: inherit;
+}
+
+.question-number {
+  text-align: center;
+  margin-bottom: 50px;
+  border: solid black;
+}
+
+.question {
+  margin: 0 25% 0 25%;
+  border: black solid;
+}
+
+.question-name {
+  text-align: center;
+}
+
+.answers {
+  display: flex;
+  justify-content: space-evenly;
+  border: solid black;
+  margin: 0 15% 0 15%;
+}
+
+.answer {
+  border: solid black;
+}
+
+.to-correction {
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+
+
+
+.menu_change_font_size {
+  text-align: center;
+  background-color: red;
+}
