@@ -4,3 +4,27 @@ header {
   background: linear-gradient(180deg, rgba(211,211,211,1) 0%, rgba(212,212,212,1) 72%, rgba(255,255,255,0.3715861344537815) 100%);
   height: 5em;
 }
+
+hr.solid {
+  border-top: 2px solid #707070;
+  margin-top: 10px;
+}
+
+#question-divider{
+  margin: 30px 50px;
+}
+
+#question-divider-text {
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+#add-questions {
+  margin: 0px 50px;
+}
+
+
+#element-general-quiz-infos {
+  margin: 0px 50px;
+}

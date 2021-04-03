@@ -1,9 +1,9 @@
 #anim-create-quiz-element-general-quiz-info-main-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  border: 1px solid black;
+
 
 }
 
@@ -48,6 +48,7 @@ input {
 #quiz-info-main-difficulty-radio-elements {
   margin: auto;
   list-style: none;
+
 
   display: flex;
   flex-direction: row;
@@ -98,8 +99,8 @@ label {
 
 .switch-field {
   display: flex;
-  margin-bottom: 36px;
   overflow: hidden;
+  box-shadow: 0 3px 6px grey;
 }
 
 .switch-field input {
@@ -112,19 +113,21 @@ label {
   overflow: hidden;
 }
 .switch-field label {
-  background-color: #e4e4e4;
+  background-color: white;
   color: black;
   font-size: 18px;
   line-height: 1;
   text-align: center;
   padding: 8px 30px;
   margin-right: -1px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+
+
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in-out;
 }
 
 .switch-field label:hover {
+
   cursor: pointer;
 }
 

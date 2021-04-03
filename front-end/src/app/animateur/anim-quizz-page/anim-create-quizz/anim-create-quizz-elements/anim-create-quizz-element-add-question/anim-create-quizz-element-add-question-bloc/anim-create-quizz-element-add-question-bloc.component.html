@@ -1,0 +1,54 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div id="add-question-bloc">
+
+    <div id="add-question-bloc-left">
+        <span class="material-icons" id="bloc-left-arrow-top">double_arrow</span>
+        <span id="bloc-left-question-number">1</span>
+        <span class="material-icons" id="bloc-left-arrow-bottom">double_arrow</span>
+    </div>
+
+    <div id="add-question-bloc-right">
+
+        <div id="add-question-bloc-right-info-question">
+            <div id="add-question-bloc-right-info-question-line-one">
+
+                <div id="add-question-bloc-right-info-question-line-one-question-name">
+                    <div class="left-title">Question</div>
+                    <input id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz">
+                </div>
+
+                <button name="deleteQuestion" id="delete-question">
+                    Supprimer cette question
+                </button>
+
+            </div>
+
+            <div id="add-question-bloc-right-info-question-line-two">
+
+
+                <div id="switch-textuel-image">
+                    <input type="radio" id="radio-switch-textuel-img-one" name="switch-textuel-image" value="text" checked/><label for="radio-switch-textuel-img-one">Texte</label>
+                    <input type="radio" id="radio-switch-textuel-img-two" name="switch-textuel-image" value="image" /><label for="radio-switch-textuel-img-two">Image</label>
+                </div>
+
+                <button name="addQuestion" id="add-question">
+                    Ajouter une question
+                </button>
+            </div>
+        </div>
+
+
+        <div id="add-question-bloc-right-responses">
+
+            <app-anim-create-quizz-element-add-question-bloc-textuel></app-anim-create-quizz-element-add-question-bloc-textuel>
+
+
+        </div>
+
+    </div>
+
+
+
+
+</div>

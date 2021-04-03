@@ -4,6 +4,8 @@ export enum Difficulty {
     EASY, MEDIUM, HARD, EXPERT
 }
 
+
+
 export function difficultyToText(difficulty: Difficulty): string {
     switch (difficulty) {
         case Difficulty.EASY:

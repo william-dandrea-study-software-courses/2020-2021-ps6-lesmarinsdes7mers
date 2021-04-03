@@ -37,6 +37,9 @@ import { AnimSettingsHomepageComponent } from './animateur/anim-settings/anim-se
 import { AnimCreateQuizzHomepageComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-homepage/anim-create-quizz-homepage.component';
 import { AnimCreateQuizzElementHeaderComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-header/anim-create-quizz-element-header.component';
 import { AnimCreateQuizzElementGeneralQuizInfosComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-general-quiz-infos/anim-create-quizz-element-general-quiz-infos.component';
+import { AnimCreateQuizzElementAddQuestionBlocComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-add-question/anim-create-quizz-element-add-question-bloc/anim-create-quizz-element-add-question-bloc.component';
+import { AnimCreateQuizzElementAddQuestionBlocTextuelComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-add-question/anim-create-quizz-element-add-question-bloc-textuel/anim-create-quizz-element-add-question-bloc-textuel.component';
+import { AnimCreateQuizzElementAddQuestionBlocImageComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-add-question/anim-create-quizz-element-add-question-bloc-image/anim-create-quizz-element-add-question-bloc-image.component';
 
 
 @NgModule({
@@ -83,7 +86,13 @@ import { AnimCreateQuizzElementGeneralQuizInfosComponent } from './animateur/ani
 
     AnimCreateQuizzElementHeaderComponent,
 
-    AnimCreateQuizzElementGeneralQuizInfosComponent
+    AnimCreateQuizzElementGeneralQuizInfosComponent,
+
+    AnimCreateQuizzElementAddQuestionBlocComponent,
+
+    AnimCreateQuizzElementAddQuestionBlocTextuelComponent,
+
+    AnimCreateQuizzElementAddQuestionBlocImageComponent
   ],
   imports: [
     BrowserModule,
