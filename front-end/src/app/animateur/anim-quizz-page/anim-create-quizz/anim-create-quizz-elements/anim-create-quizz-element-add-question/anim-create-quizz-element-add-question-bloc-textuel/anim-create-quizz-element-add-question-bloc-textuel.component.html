@@ -1,1 +1,23 @@
-<p>anim-create-quizz-element-add-question-bloc-textuel works!</p>
+
+<div id="question-bloc-text-header">
+    <div id="question-bloc-text-header-good-response" class="question-bloc-text-first-column">Correcte</div>
+    <div id="question-bloc-text-header-name-response" class="question-bloc-text-second-column" >Réponse</div>
+    <div id="question-bloc-text-header-delete-response" class="question-bloc-text-third-column" >Supprimer</div>
+</div>
+
+<hr class="rounded">
+
+<div *ngFor="let answer of listOfAnswers">
+
+    <div class="question-bloc-text-answer">
+        <div class="question-bloc-text-first-column" id="question-bloc-text-answer-good-bad-question">
+            <span *ngIf="answer.is_correct === true" class="material-icons">radio_button_checked</span>
+            <span *ngIf="answer.is_correct === false" class="material-icons">radio_button_unchecked</span>
+        </div>
+        <input id="question-bloc-text-answer-input" type="text" class="question-bloc-text-second-column">
+        <div id="question-bloc-text-answer-trash" class="question-bloc-text-third-column"><span class="material-icons">delete</span></div>
+    </div>
+
+
+
+</div>

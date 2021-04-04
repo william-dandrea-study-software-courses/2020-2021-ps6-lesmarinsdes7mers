@@ -20,8 +20,8 @@
 <div id="add-questions">
     <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz">Ajouter une question au quizz</button>
 
-    <li *ngFor="let i of [].constructor(this.numberOfQuestions)">
-        <app-anim-create-quizz-element-add-question-bloc [questionNumber]="5" ></app-anim-create-quizz-element-add-question-bloc>
+    <li *ngFor="let questionElement of questionsQuiz">
+        <app-anim-create-quizz-element-add-question-bloc [questionNumber]=questionElement.id (upTheQuestion)="onUpQuestion($event)" (downTheQuestion)="onDownQuestion($event)" (deleteQuestion)="onDeleteQuestion($event)" ></app-anim-create-quizz-element-add-question-bloc>
     </li>
 
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CreateQuizzService} from "../../../../../services/admin/create-quizz.service";
 import {QuizCreationModel, Visibility} from "../../../../../models/quiz-creation.model";
 import {Question, QuestionType} from "../../../../../models/question.model";
@@ -23,6 +23,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
 
   constructor(private createQuizService: CreateQuizzService) {
     this.numberOfQuestions = 1;
+    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answers: []});
   }
 
   /**
@@ -66,9 +67,24 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
     this.visibilityQuiz = event;
   }
 
+  onDeleteQuestion(event: number): void {
+    const tmp = this.questionsQuiz.find(question => question.id === String(event));
+    this.questionsQuiz = this.questionsQuiz.filter(obj => obj !== tmp);
+  }
 
   onAddAnQuestion(): void {
     this.numberOfQuestions++;
+    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answers: []});
   }
+
+  onUpQuestion(event: number): void {
+    console.log('HOMEPAGE : UP QUESTION : ' + event);
+  }
+
+  onDownQuestion(event: number): void {
+    console.log('HOMEPAGE : DOWN QUESTION : ' + event);
+  }
+
+
 
 }

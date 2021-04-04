@@ -11,35 +11,47 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
   public questionType: QuestionType;
   public questionAnswers: Answer[];
   public questionName: string;
+  public numberOfAnswers: number;
+
+  public nameCssClassSwitchTxtImgOne: string;
+  public nameCssClassSwitchTxtImgTwo: string;
+  public nameCssClassSwitchTxtImg: string;
 
 
   // @Output() questionNameRequest = new EventEmitter<string>();
   @Input() questionNumber: number;
   @Output() question = new EventEmitter<Question>();
-  @Output() deleteQuestion = new EventEmitter<boolean>();
-  @Output() downTheQuestion = new EventEmitter<boolean>();
-  @Output() upTheQuestion = new EventEmitter<boolean>();
+  @Output() deleteQuestion = new EventEmitter<number>();
+  @Output() downTheQuestion = new EventEmitter<number>();
+  @Output() upTheQuestion = new EventEmitter<number>();
+
 
 
 
   constructor() {
-    this.questionType = QuestionType.TEXT;
-    this.questionName = '';
     }
 
   ngOnInit(): void {
+    this.questionType = QuestionType.TEXT;
+    this.questionName = '';
+    this.numberOfAnswers = 1;
+    this.nameCssClassSwitchTxtImgOne = 'radio-switch-textuel-img-one' + String(this.questionNumber);
+    this.nameCssClassSwitchTxtImgTwo = 'radio-switch-textuel-img-two' + String(this.questionNumber);
+    this.nameCssClassSwitchTxtImg = 'switch-textuel-image' + String(this.questionNumber);
+
+    console.log(this.nameCssClassSwitchTxtImg);
   }
 
   upQuestion(): void {
     console.log('up');
-    this.upTheQuestion.emit(true);
+    this.upTheQuestion.emit(this.questionNumber);
     this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
 
   }
 
   downQuestion(): void {
     console.log('down');
-    this.downTheQuestion.emit(true);
+    this.downTheQuestion.emit(this.questionNumber);
     this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
 
   }
@@ -47,12 +59,13 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
   deleteThisQuestion(): void {
     console.log('delete this question');
     this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
-    this.deleteQuestion.emit(true);
+    this.deleteQuestion.emit(this.questionNumber);
 
   }
 
   addAnAnswer(): void {
     console.log('add an answer et the question');
+    this.numberOfAnswers++;
   }
 
   editQuestionName(event: any): void {
@@ -67,8 +80,8 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
    */
   imageOrTextQuestion(event: number): void {
     switch (event) {
-      case 0: this.questionType = QuestionType.TEXT; console.log('QUESTION BLOC : textQuestion'); break;
-      case 1: this.questionType = QuestionType.IMAGE; console.log('QUESTION BLOC : imgQuestion'); break;
+      case 0: this.questionType = QuestionType.TEXT; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : textQuestion'); break;
+      case 1: this.questionType = QuestionType.IMAGE; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : imgQuestion'); break;
     }
     this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
   }
