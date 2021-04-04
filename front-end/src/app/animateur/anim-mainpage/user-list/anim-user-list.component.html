@@ -1,5 +1,26 @@
-<h2>User part</h2>
-
 <div class="user-list">
-    User list
+    <button class="alert-button">Effacer la selection</button>
+    <button class="info-button">Ajouter un nouvel utilisateur</button>
+
+    <table>
+        <tr>
+            <th><input type="checkbox"/></th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Naissance</th>
+            <th>Handicap</th>
+            <th>Nombre de quiz</th>
+            <th>Note</th>
+        </tr>
+
+        <tr *ngFor="let user of userList">
+                <td><input type="checkbox"/></td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td style="text-align: center;">Non défini</td>
+                <td style="text-align: center;">{{user.handicap}}</td>
+                <td style="text-align: center;">16</td>
+                <td>Rien</td>
+        </tr>
+    </table>
 </div>

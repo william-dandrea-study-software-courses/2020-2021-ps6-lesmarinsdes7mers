@@ -1,0 +1,29 @@
+.user-list {
+    padding: 2em 5em 0 5em;
+}
+
+th, td {
+    padding: 1em;
+    //border: dotted;
+
+    border-bottom: solid 0.2em #DDD;
+
+    text-align: start;
+}
+
+.alert-button, .info-button {
+    border: solid 1px white;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.alert-button {
+    background-color: rgb(183, 115, 115);
+}
+
+.info-button {
+    background-color: rgb(115, 183, 160);
+}

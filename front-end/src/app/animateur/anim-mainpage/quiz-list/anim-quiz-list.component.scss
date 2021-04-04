@@ -44,11 +44,7 @@
     width: 50vw;
 }
 
-.statistic-content {
-    padding: 0 5em 0 5em;
-}
-
-.quiz-list {
+.statistic-content, .quiz-list {
     padding: 0 5em 0 5em;
 }
 
@@ -59,4 +55,21 @@ th, td {
     border-bottom: solid 0.2em #DDD;
 
     text-align: start;
+}
+
+.alert-button, .info-button {
+    border: solid 1px white;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.alert-button {
+    background-color: rgb(183, 115, 115);
+}
+
+.info-button {
+    background-color: rgb(115, 183, 160);
 }
