@@ -21,12 +21,15 @@
 
 <div class="content">
     <div *ngIf="selectedHeaderMenuItem == 0">
-        <h2>Quiz part</h2>
+        <app-anim-main-quizz-list>
+        </app-anim-main-quizz-list>
     </div>
     <div *ngIf="selectedHeaderMenuItem == 1">
-        <h2>Users part</h2>
+        <app-anim-main-user-list>
+        </app-anim-main-user-list>
     </div>
     <div *ngIf="selectedHeaderMenuItem == 2">
-        <h2>Settings part</h2>
+        <app-anim-settings-homepage>
+        </app-anim-settings-homepage>
     </div>
 </div>

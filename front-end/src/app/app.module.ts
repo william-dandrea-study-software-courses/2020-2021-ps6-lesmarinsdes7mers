@@ -41,6 +41,8 @@ import { AnimCreateQuizzElementAddQuestionBlocComponent } from './animateur/anim
 import { AnimCreateQuizzElementAddQuestionBlocTextuelComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-add-question/anim-create-quizz-element-add-question-bloc-textuel/anim-create-quizz-element-add-question-bloc-textuel.component';
 import { AnimCreateQuizzElementAddQuestionBlocImageComponent } from './animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-elements/anim-create-quizz-element-add-question/anim-create-quizz-element-add-question-bloc-image/anim-create-quizz-element-add-question-bloc-image.component';
 import { AnimMainpageComponent } from './animateur/anim-mainpage/anim-mainpage.component';
+import { AnimMainQuizListComponent } from './animateur/anim-mainpage/quiz-list/anim-quiz-list.component';
+import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/anim-user-list.component';
 
 
 @NgModule({
@@ -96,6 +98,8 @@ import { AnimMainpageComponent } from './animateur/anim-mainpage/anim-mainpage.c
     AnimCreateQuizzElementAddQuestionBlocImageComponent,
 
     AnimMainpageComponent,
+    AnimMainQuizListComponent,
+    AnimMainUserListComponent,
   ],
   imports: [
     BrowserModule,
