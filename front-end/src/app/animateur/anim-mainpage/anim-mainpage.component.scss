@@ -1,0 +1,34 @@
+@import '../../../styles/userColors.scss';
+
+.header-menu {
+    background: rgb(211, 211, 211);
+    background: linear-gradient(180deg, 
+                                rgba(211, 211, 211, 1) 0%,
+                                rgba(212, 212, 212, 1) 72%,
+                                rgba(255, 255, 255, 0.3715861344537815) 100%);
+
+    height: 5em;
+    text-align: center;
+}
+
+.header-menu-item {
+    display: inline-block;
+    flex: 1;
+
+    margin: 0% 10%;
+    padding: 20px;
+
+    height: 100%;
+
+    text-align: center;
+    font-size: 30px;
+}
+
+.header-menu-item:hover {
+    cursor: pointer;
+}
+
+.menu-item-selected {
+    color: #7EBCA8;
+    text-decoration: underline;
+}

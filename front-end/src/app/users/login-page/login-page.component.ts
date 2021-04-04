@@ -15,4 +15,8 @@ export default class LoginPageComponent {
     logInGuestMode() {
         this.router.navigate(['guest', 'config', 'fontsize'])
     }
+
+    animateur () {
+        this.router.navigate(['animateur']);
+    }
 }

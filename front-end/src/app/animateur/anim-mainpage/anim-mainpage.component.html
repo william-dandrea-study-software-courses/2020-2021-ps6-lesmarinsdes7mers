@@ -1,0 +1,32 @@
+<div class="header-menu">
+    <div
+        [className]="selectedHeaderMenuItem == 0 ? 'header-menu-item menu-item-selected' : 'header-menu-item'"
+        (click)="selectMenuItem(0)"
+        >
+        {{headerMenuToString(0)}}
+    </div>
+    <div
+        [className]="selectedHeaderMenuItem == 1 ? 'header-menu-item menu-item-selected' : 'header-menu-item'"
+        (click)="selectMenuItem(1)"
+        >
+        {{headerMenuToString(1)}}
+    </div>
+    <div
+        [className]="selectedHeaderMenuItem == 2 ? 'header-menu-item menu-item-selected' : 'header-menu-item'"
+        (click)="selectMenuItem(2)"
+        >
+        {{headerMenuToString(2)}}
+    </div>
+</div>
+
+<div class="content">
+    <div *ngIf="selectedHeaderMenuItem == 0">
+        <h2>Quiz part</h2>
+    </div>
+    <div *ngIf="selectedHeaderMenuItem == 1">
+        <h2>Users part</h2>
+    </div>
+    <div *ngIf="selectedHeaderMenuItem == 2">
+        <h2>Settings part</h2>
+    </div>
+</div>
