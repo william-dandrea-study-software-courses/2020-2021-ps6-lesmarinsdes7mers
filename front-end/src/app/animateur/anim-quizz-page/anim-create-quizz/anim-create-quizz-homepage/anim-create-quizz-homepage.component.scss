@@ -24,7 +24,26 @@ hr.solid {
   margin: 0px 50px;
 }
 
+button {
+  padding: 5px 50px;
+  margin: 0 0 30px 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px #aaa;
+  background-color: #7EBCA8;
+
+}
+
 
 #element-general-quiz-infos {
   margin: 0px 50px;
 }
+
+li {
+  list-style: none;
+  margin-top: 20px;
+}
+

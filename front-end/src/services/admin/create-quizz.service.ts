@@ -14,7 +14,10 @@ export class CreateQuizzService {
     constructor() {}
 
     addQuiz(quiz: QuizCreationModel): void {
-        this.createQuiz = quiz;
+        this.createQuiz.questions = quiz.questions;
+        this.createQuiz.visibility = quiz.visibility;
+        this.createQuiz.name = quiz.name;
+        this.createQuiz.id = 10;
     }
 
     deleteQuiz(): void {

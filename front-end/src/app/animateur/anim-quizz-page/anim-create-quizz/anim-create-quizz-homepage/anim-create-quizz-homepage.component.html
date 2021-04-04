@@ -6,7 +6,7 @@
 
 
 <div id="element-general-quiz-infos">
-    <app-anim-create-quizz-element-general-quiz-infos></app-anim-create-quizz-element-general-quiz-infos>
+    <app-anim-create-quizz-element-general-quiz-infos (quizDifficultyRequest)="onDifficultyQuiz($event)"  (quizNameRequest)="onThemeQuiz($event)" (quizVisibilityRequest)="onVisibilityQuiz($event)"></app-anim-create-quizz-element-general-quiz-infos>
 </div>
 
 
@@ -15,8 +15,15 @@
     <hr class="solid">
 </div>
 
+
+
 <div id="add-questions">
-    <app-anim-create-quizz-element-add-question-bloc></app-anim-create-quizz-element-add-question-bloc>
+    <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz">Ajouter une question au quizz</button>
+
+    <li *ngFor="let i of [].constructor(this.numberOfQuestions)">
+        <app-anim-create-quizz-element-add-question-bloc [questionNumber]="5" ></app-anim-create-quizz-element-add-question-bloc>
+    </li>
+
 </div>
 
 

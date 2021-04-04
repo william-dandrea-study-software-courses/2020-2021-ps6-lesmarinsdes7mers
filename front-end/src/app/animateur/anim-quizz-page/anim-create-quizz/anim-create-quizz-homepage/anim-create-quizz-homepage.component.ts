@@ -12,16 +12,18 @@ import {Difficulty} from "../../../../../models/quiz.model";
 export class AnimCreateQuizzHomepageComponent implements OnInit {
 
 
-  private nameQuiz: string;
-  private difficultyQuiz: Difficulty;
-  private visibilityQuiz: Visibility;
-  private questionsQuiz: Question[] = new Array();
-  private quiz: QuizCreationModel;
+  public nameQuiz: string;
+  public difficultyQuiz: Difficulty;
+  public visibilityQuiz: Visibility;
+  public questionsQuiz: Question[] = new Array();
+  public quiz: QuizCreationModel;
+
+  public numberOfQuestions: number;
 
 
-  constructor(private createQuizService: CreateQuizzService) {}
-
-
+  constructor(private createQuizService: CreateQuizzService) {
+    this.numberOfQuestions = 1;
+  }
 
   /**
    * Cette méthode va push le quiz sur le service
@@ -46,5 +48,27 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+
+
+  onDifficultyQuiz(event: Difficulty): void {
+    console.log('HOMEPAGE : DIFFICULTY : ' + event);
+    this.difficultyQuiz = event;
+  }
+
+  onThemeQuiz(event: string): void {
+    console.log('HOMEPAGE : CHANGENAME : ' + event);
+    this.nameQuiz = event;
+  }
+
+  onVisibilityQuiz(event: Visibility): void {
+    console.log('HOMEPAGE : VISIBILITY : ' + event);
+    this.visibilityQuiz = event;
+  }
+
+
+  onAddAnQuestion(): void {
+    this.numberOfQuestions++;
+  }
 
 }
