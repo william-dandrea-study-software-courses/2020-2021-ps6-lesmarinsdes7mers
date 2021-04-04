@@ -1,0 +1,62 @@
+@import "../../../../styles/variables";
+
+.element {
+    display: flex;
+    border-bottom: solid 0.1em #DDD;
+
+    margin-bottom: 10px;
+    padding: 1em 0 0 0;
+
+    flex-wrap: wrap;
+}
+
+.element:last-child {
+    margin-bottom: 0px;
+}
+
+.category {
+    display: inline-flex;
+
+    font-weight: 550;
+
+    flex: 1;
+}
+
+.info {
+    display: inline-flex;
+
+    text-align: end right;
+    color: #7EBCA8;
+    font-weight: 550;
+
+    flex: 1;
+    flex-direction: row-reverse;
+}
+
+.card {
+    background: $white;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+
+    width: 50vw;
+}
+
+.statistic-content {
+    padding: 0 5em 0 5em;
+}
+
+.quiz-list {
+    padding: 0 5em 0 5em;
+}
+
+th, td {
+    padding: 1em;
+    //border: dotted;
+
+    border-bottom: solid 0.2em #DDD;
+
+    text-align: start;
+}
