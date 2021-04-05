@@ -16,6 +16,7 @@ import {AnimUserHomepageComponent} from "./animateur/anim-user-page/anim-user-ho
 import {AnimSettingsHomepageComponent} from "./animateur/anim-settings/anim-settings-homepage/anim-settings-homepage.component";
 import {AnimCreateQuizzHomepageComponent} from "./animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-homepage/anim-create-quizz-homepage.component";
 import { AnimMainpageComponent } from './animateur/anim-mainpage/anim-mainpage.component';
+import {UserAddEditComponent} from "./animateur/anim-user-page/user-add-edit/user-add-edit.component";
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
@@ -34,8 +35,8 @@ const routes: Routes = [
     {path: 'animateur/user-home-page', component: AnimUserHomepageComponent},
     {path: 'animateur/settings-home-page', component: AnimSettingsHomepageComponent},
     {path: 'animateur/quizz-home-page/create-quizz', component: AnimCreateQuizzHomepageComponent},
-    
-    {path: 'animateur', component:AnimMainpageComponent},
+    {path: 'animateur/user-add-edit/:id-user', component: UserAddEditComponent},
+    {path: 'animateur', component:AnimMainpageComponent}
 ];
 
 @NgModule({

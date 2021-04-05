@@ -1,0 +1,111 @@
+<div class="header-menu">
+    <div class="header-menu-item"><a routerLink="/animateur">Quitter</a></div>
+</div>
+
+<div class="base">
+
+    <div>
+        <img src="assets/{{user.name}}_{{user.surname}}.jpg" alt="{{user.name}}_{{user.surname}}"
+             class="profile-picture section"/>
+
+        <div class="container section">
+            <table>
+                <tr>
+                    <th style="width: 300px">Nom</th>
+                    <td style="min-width: 250px">{{user.surname}}</td>
+                    <td>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{user.name}}</td>
+                    <td>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Date de naissance</th>
+                    <td>{{birthday}}</td>
+                    <td>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Handicape</th>
+                    <td>{{user.handicap}}</td>
+                    <td>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <div class="container section">
+            <div class="title">
+                <b>Tailles d'écritures</b>
+            </div>
+            <div class="modify">
+                <button class="delete">Effacer la sélection</button>
+                <button class="add">Ajouter une nouvelle taille</button>
+            </div>
+            <table id="size-font_configs">
+                <tr>
+                    <th style="width: 40px">&nbsp;</th>
+                    <th style="width: 200px">Titre</th>
+                    <th style="width: 400px">Taille d'écriture</th>
+                    <th style="width: 200px">Défaut</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr *ngFor="let fontSizeConfig of user.size_font_configs">
+                    <td><input type="checkbox" id="{{fontSizeConfig.name}}" name="size_font"><label
+                            for="{{fontSizeConfig.name}}"></label>&nbsp;
+                    </td>
+                    <td>{{fontSizeConfig.name}}</td>
+                    <td>{{fontSizeConfig.size}}</td>
+                    <td>
+                        <div *ngIf="fontSizeConfig.default; else notDefault">
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <ng-template #notDefault>&nbsp;</ng-template>
+                    </td>
+                    <td>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container section">
+            <div class="title"><b>Quizzs</b></div>
+            <div class="modify">
+                <button class="delete">Effacer la sélection</button>
+                <button class="add">Ajouter un nouveau quiz</button>
+            </div>
+            <table>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th style="width: 250px">Titre</th>
+                    <th style="width: 125px">Difficulté</th>
+                    <th style="width: 125px; text-align: center;">Résultat</th>
+                    <th style="width: 115px; text-align: center;">Tentatives</th>
+                    <th style="width: 225px; text-align: center;">Moyenne globale</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="quiz1" name="quiz"><label for="quiz1"></label>&nbsp;</td>
+                    <td>Les mers du monde</td>
+                    <td>Difficile</td>
+                    <td style="text-align: center">24/30</td>
+                    <td style="text-align: center">2</td>
+                    <td style="text-align: center">21/30</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+</div>

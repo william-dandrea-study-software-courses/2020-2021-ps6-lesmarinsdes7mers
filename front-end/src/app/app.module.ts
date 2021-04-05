@@ -43,7 +43,8 @@ import { AnimCreateQuizzElementAddQuestionBlocImageComponent } from './animateur
 import { AnimMainpageComponent } from './animateur/anim-mainpage/anim-mainpage.component';
 import { AnimMainQuizListComponent } from './animateur/anim-mainpage/quiz-list/anim-quiz-list.component';
 import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/anim-user-list.component';
-
+import { UserAddEditComponent } from './animateur/anim-user-page/user-add-edit/user-add-edit.component';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/a
     AnimMainpageComponent,
     AnimMainQuizListComponent,
     AnimMainUserListComponent,
+    UserAddEditComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,7 @@ import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/a
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

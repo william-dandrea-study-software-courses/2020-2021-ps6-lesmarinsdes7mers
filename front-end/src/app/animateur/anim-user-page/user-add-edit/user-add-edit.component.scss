@@ -1,0 +1,97 @@
+@import "../../anim-mainpage/anim-mainpage.component.scss";
+
+button {
+  font: inherit;
+}
+
+th {
+  text-align: left;
+  border-bottom: lightgray solid;
+  box-shadow: #EEEEEE 0 5px;
+  margin-bottom: 10px;
+}
+
+td {
+  border-bottom: lightgray solid;
+  padding: 10px 0 10px 0;
+}
+
+table {
+  border-spacing: 0;
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+.section {
+  box-shadow: #EEEEEE 0 5px;
+  border-radius: 20px 20px 20px 20px;
+  margin-top: 50px;
+}
+
+.profile-picture {
+  max-width: 700px;
+  max-height: 700px;
+}
+
+.container {
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.modify {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.modify button {
+  margin-right: 20px;
+  padding: 5px 30px 5px 30px;
+  border: unset;
+  color: white;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.delete {
+  background-color: #D84127;
+}
+
+.add {
+  background-color: #7EBCA8;
+}
+
+.star {
+  color: #FBE250;
+  filter: drop-shadow( 0 5px 5px lightgray);
+}
+
+.edit {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.good_score {
+  color: #96BF47;
+}
+
+.correct_score {
+  color: orange;
+}
+
+.bad_score {
+  color: #D84127;
+}

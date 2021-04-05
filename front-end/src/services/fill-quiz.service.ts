@@ -6,7 +6,7 @@ import { Answer } from "src/models/question.model";
 })
 export class FillQuizService {
     quizId: number;
-    selectedAnswers: Answer[] = new Array();
+    selectedAnswers: Answer[] = [];
 
     constructor() {}
 
