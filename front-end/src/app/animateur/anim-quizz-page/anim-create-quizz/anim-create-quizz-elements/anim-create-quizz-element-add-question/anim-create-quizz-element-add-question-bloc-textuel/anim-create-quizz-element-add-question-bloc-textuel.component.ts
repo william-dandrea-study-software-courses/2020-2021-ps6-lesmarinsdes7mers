@@ -1,4 +1,14 @@
-import {Component, Input, OnInit, EventEmitter, Output, SimpleChange, SimpleChanges, OnChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  EventEmitter,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+  OnChanges,
+  DoCheck
+} from '@angular/core';
 import {Answer} from "../../../../../../../models/question.model";
 
 @Component({
@@ -6,7 +16,7 @@ import {Answer} from "../../../../../../../models/question.model";
   templateUrl: './anim-create-quizz-element-add-question-bloc-textuel.component.html',
   styleUrls: ['./anim-create-quizz-element-add-question-bloc-textuel.component.scss']
 })
-export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements OnInit {
+export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements OnInit, OnChanges, DoCheck {
   constructor() { }
 
 
@@ -19,17 +29,38 @@ export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements On
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.numberOfAnswersListener) {
-      this.listOfAnswers.push({is_correct: false, data: ''});
+  ngDoCheck(): void {
+    if (this.listOfAnswers) {
+      console.log('ADD ANSWER TEXTUEL : emit answers to QUESTION BLOC with answersEmitter');
+      this.answersEmitter.emit(this.listOfAnswers);
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.numberOfAnswersListener) {
+      this.listOfAnswers.push({is_correct: false, data: ''});
+
+    }
 
 
+  }
 
 
+  onCorrectAnswer(event: Answer): void {
+    event.is_correct = (event.is_correct !== true);
+  }
 
+  onDeleteAnswer(event: Answer): void {
+    this.listOfAnswers.forEach(((value, index) => {
+      if (value === event) {
+        this.listOfAnswers.splice(index, 1);
+      }
+    }));
+  }
+
+  onEditAnswerText(event: any, answer: Answer): void {
+    answer.data = String(event.target.value);
+  }
 
 
 

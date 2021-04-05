@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, DoCheck} from '@angular/core';
 import {Answer, Question, QuestionType} from "../../../../../../../models/question.model";
 
 @Component({
@@ -6,7 +6,7 @@ import {Answer, Question, QuestionType} from "../../../../../../../models/questi
   templateUrl: './anim-create-quizz-element-add-question-bloc.component.html',
   styleUrls: ['./anim-create-quizz-element-add-question-bloc.component.scss']
 })
-export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
+export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, DoCheck {
 
   public questionType: QuestionType;
   public questionAnswers: Answer[];
@@ -24,12 +24,13 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
   @Output() deleteQuestion = new EventEmitter<number>();
   @Output() downTheQuestion = new EventEmitter<number>();
   @Output() upTheQuestion = new EventEmitter<number>();
+  @Output() listOfAnswers = new EventEmitter<Answer[]>();
 
 
 
 
   constructor() {
-    }
+  }
 
   ngOnInit(): void {
     this.questionType = QuestionType.TEXT;
@@ -40,6 +41,9 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
     this.nameCssClassSwitchTxtImg = 'switch-textuel-image' + String(this.questionNumber);
 
     console.log(this.nameCssClassSwitchTxtImg);
+  }
+
+  ngDoCheck(): void {
   }
 
   upQuestion(): void {
@@ -86,6 +90,9 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit {
     this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
   }
 
+  editListOfAnswer(event: Answer[]): void {
+    this.listOfAnswers.emit(event);
+  }
 
 
 }
