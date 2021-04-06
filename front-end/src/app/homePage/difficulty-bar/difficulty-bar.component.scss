@@ -1,25 +1,26 @@
+@import "../../../styles/userColors";
+
 * {
   font-family: Montserrat, serif;
 }
 
 .difficulty-bar-elements {
 
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0px 25px;
 
 }
 
 .difficulty-bar-elements-button {
 
-
-  width: 350px !important;
-  height: 80px!important;
+  width: 350px;
+  height: 80px;
 
   font-weight: bold!important;
   font-size: 30px!important;
-  color: black;
+
   border: none!important;
   border-radius: 20px!important;
   text-align: center!important;

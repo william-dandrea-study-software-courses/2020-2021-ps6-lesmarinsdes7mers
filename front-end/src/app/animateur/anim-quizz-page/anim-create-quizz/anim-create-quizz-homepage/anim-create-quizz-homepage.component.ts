@@ -11,7 +11,6 @@ import {Difficulty} from "../../../../../models/quiz.model";
 })
 export class AnimCreateQuizzHomepageComponent implements OnInit {
 
-
   public nameQuiz: string;
   public difficultyQuiz: Difficulty;
   public visibilityQuiz: Visibility;
@@ -70,6 +69,10 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   onDeleteQuestion(event: number): void {
     const tmp = this.questionsQuiz.find(question => question.id === String(event));
     this.questionsQuiz = this.questionsQuiz.filter(obj => obj !== tmp);
+
+    this.questionsQuiz.forEach((question , index) => {
+      question.id = String(index + 1);
+    });
   }
 
   onAddAnQuestion(): void {

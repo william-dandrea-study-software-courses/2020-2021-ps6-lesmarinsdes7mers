@@ -12,6 +12,7 @@ export class UserService {
   /*
    The list of user.
    */
+  // private users: User[] = USER_LIST;
   private users: User[] = USER_LIST;
 
   /*
@@ -36,11 +37,11 @@ export class UserService {
   }*/
 
   deleteUser(user: User): void {
-    this.users = this.users.filter(value => value.id != user.id);
+    this.users = this.users.filter(value => value.id !== user.id);
   }
 
   getUser(id: number): User {
-    return this.users.find(value => value.id == id);
+    return this.users.find(value => value.id === id);
   }
 
   getUsers(): User[] {
