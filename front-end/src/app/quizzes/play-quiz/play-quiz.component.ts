@@ -35,13 +35,21 @@ export class PlayQuizComponent implements OnInit {
         private userPrefsService: UserPrefsService) {
         this.fontsize = Math.min(Math.max(userPrefsService.getFontSize(), PlayQuizComponent.MIN_FONTSIZE), PlayQuizComponent.MAX_FONTSIZE);
 
-        if (this.fontsize > 30)
-            this.answerDisplayStyle = "inline-block";
+        this.updateStyle();
     }
 
     ngOnInit() {
         this.fillQuizService.clearSelection();
         this.loadData();
+    }
+
+    updateStyle():void {
+        if (this.fontsize > 30) {
+            this.answerDisplayStyle = "inline-block";
+        }
+        else {
+            this.answerDisplayStyle = "block";
+        }
     }
 
     loadData(): void {
@@ -64,8 +72,7 @@ export class PlayQuizComponent implements OnInit {
         this.fontsize += PlayQuizComponent.OFFSET;
         this.userPrefsService.setFontSize(this.fontsize);
 
-        if (this.fontsize > 30)
-            this.answerDisplayStyle = "inline-block";
+        this.updateStyle();
     }
 
     decreaseFontsize(): void {
@@ -75,8 +82,7 @@ export class PlayQuizComponent implements OnInit {
         this.fontsize -= PlayQuizComponent.OFFSET;
         this.userPrefsService.setFontSize(this.fontsize);
 
-        if (this.fontsize <= 30)
-            this.answerDisplayStyle = "block";
+        this.updateStyle();            
     }
 
     chooseQuestion(id: number): void {
