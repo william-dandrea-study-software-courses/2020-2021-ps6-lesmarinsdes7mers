@@ -1,1 +1,28 @@
-<p>anim-create-quizz-element-add-question-bloc-image works!</p>
+
+
+<div id="question-bloc-image-answer">
+
+    <div *ngFor="let answer of listOfAnswers" >
+
+        <div *ngIf="answer.data === ''" class="question-bloc-image-answer-one-image-element" id="question-bloc-image-answer-one-image-element-when-nothing">
+
+            <div class="question-bloc-image-answer-one-image-element-text"> Rechercher une image automatiquement</div>
+            <input (keyup.enter)="onClickAddPhotoSearch(answer, $event)" type="text" placeholder="Rechercher une photo">
+
+            <span class="material-icons" id="question-bloc-image-answer-one-image-element-when-nothing-circle">add_a_photo</span>
+
+            <div class="question-bloc-image-answer-one-image-element-text"> Insérer une de vos image</div>
+            <input (keyup.enter)="onClickAddPhotoLocal(answer, $event)" type="text" placeholder="Rechercher une photo">
+
+
+        </div>
+
+        <div *ngIf="answer.data != ''" class="question-bloc-image-answer-one-image-element">
+            <img src="{{answer.data}}" id="question-bloc-image-answer-one-image-element-img">
+        </div>
+
+    </div>
+
+
+
+</div>

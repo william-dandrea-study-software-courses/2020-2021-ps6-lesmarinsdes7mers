@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CreateQuizzService} from "../../../../../services/admin/create-quizz.service";
 import {QuizCreationModel, Visibility} from "../../../../../models/quiz-creation.model";
-import {Question, QuestionType} from "../../../../../models/question.model";
+import {Answer, Question, QuestionType} from "../../../../../models/question.model";
 import {Difficulty} from "../../../../../models/quiz.model";
 
 @Component({
@@ -85,6 +85,10 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
     console.log('HOMEPAGE : DOWN QUESTION : ' + event);
   }
 
+  onEditListAnswer(event: Answer[], question: Question): void {
+    question.answers = event;
+    console.log('HOMEPAGE : UPDATE ANSWERS FOR QUESTION : ' + question.answers);
+  }
 
 
 }

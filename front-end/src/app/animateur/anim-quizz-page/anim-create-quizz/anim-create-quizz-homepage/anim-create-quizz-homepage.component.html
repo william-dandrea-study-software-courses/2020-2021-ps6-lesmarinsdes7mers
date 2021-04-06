@@ -21,7 +21,7 @@
     <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz">Ajouter une question au quizz</button>
 
     <li *ngFor="let questionElement of questionsQuiz">
-        <app-anim-create-quizz-element-add-question-bloc [questionNumber]=questionElement.id (upTheQuestion)="onUpQuestion($event)" (downTheQuestion)="onDownQuestion($event)" (deleteQuestion)="onDeleteQuestion($event)" ></app-anim-create-quizz-element-add-question-bloc>
+        <app-anim-create-quizz-element-add-question-bloc [questionNumber]=questionElement.id (upTheQuestion)="onUpQuestion($event)" (downTheQuestion)="onDownQuestion($event)" (deleteQuestion)="onDeleteQuestion($event)" (listOfAnswers)="onEditListAnswer($event, questionElement)" ></app-anim-create-quizz-element-add-question-bloc>
     </li>
 
 </div>
