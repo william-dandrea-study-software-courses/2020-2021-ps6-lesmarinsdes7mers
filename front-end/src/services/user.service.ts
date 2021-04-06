@@ -43,4 +43,8 @@ export class UserService {
     return this.users.find(value => value.id == id);
   }
 
+  getUsers(): User[] {
+    return this.users;
+  }
+
 }

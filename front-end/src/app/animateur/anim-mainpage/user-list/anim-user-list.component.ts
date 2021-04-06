@@ -9,14 +9,16 @@ import { UserService } from "src/services/user.service";
 })
 export class AnimMainUserListComponent implements OnInit {
 
-    userList: User[] = new Array();
+    userList: User[] = [];
 
     constructor(private userService: UserService) {
     }
 
     ngOnInit() {
-        this.userService.users$.subscribe(users => {
+        this.userList = this.userService.getUsers();
+
+        /*this.userService.users$.subscribe(users => {
             users.forEach(user => this.userList.push(user));
-        })
+        })*/
     }
 }
