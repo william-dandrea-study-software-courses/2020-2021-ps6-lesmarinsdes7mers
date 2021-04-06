@@ -12,28 +12,28 @@
         <div *ngIf="question.type == 0">
             <!-- Answer 1 -->
             <div [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(1)"
-                [className]="answerChoosen == 1 ? 'answer-card-text easy-background easy-fontcolor' : 'answer-card-text'"
+                [className]="answerChoosen == 1 ? 'answer-card-text easy' : 'answer-card-text'"
                 *ngIf='question.answers[0] !== undefined'>
                 <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[0].data}}</h2>
             </div>
 
             <!-- Answer 2 -->
             <div [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(2)"
-                [className]="answerChoosen == 2 ? 'answer-card-text easy-background easy-fontcolor' : 'answer-card-text'"
+                [className]="answerChoosen == 2 ? 'answer-card-text easy' : 'answer-card-text'"
                 *ngIf='question.answers[1] !== undefined'>
                 <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[1].data}}</h2>
             </div>
 
             <!-- Answer 3 -->
             <div [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(3)"
-                [className]="answerChoosen == 3 ? 'answer-card-text easy-background easy-fontcolor' : 'answer-card-text'"
+                [className]="answerChoosen == 3 ? 'answer-card-text easy' : 'answer-card-text'"
                 *ngIf='question.answers[2] !== undefined'>
                 <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[2].data}}</h2>
             </div>
 
             <!-- Answer 4 -->
             <div [ngStyle]="{ 'display': answerDisplayStyle }" (click)="chooseQuestion(4)"
-                [className]="answerChoosen == 4 ? 'answer-card-text easy-background easy-fontcolor' : 'answer-card-text'"
+                [className]="answerChoosen == 4 ? 'answer-card-text easy' : 'answer-card-text'"
                 *ngIf='question.answers[3] !== undefined'>
                 <h2 [ngStyle]="{ 'font-size.px': fontsize }">{{question.answers[3].data}}</h2>
             </div>
@@ -43,28 +43,28 @@
         <div *ngIf="question.type == 1">
             <!-- Answer 1 -->
             <div (click)="chooseQuestion(1)"
-                [className]="answerChoosen == 1 ? 'answer-card-img easy-background easy-fontcolor' : 'answer-card-img'"
+                [className]="answerChoosen == 1 ? 'answer-card-img easy' : 'answer-card-img'"
                 *ngIf='question.answers[0] !== undefined'>
                 <img src="{{question.answers[0].data}}" alt="Answer 1" width="220" height="340">
             </div>
 
             <!-- Answer 2 -->
             <div (click)="chooseQuestion(2)"
-                [className]="answerChoosen == 2 ? 'answer-card-img easy-background easy-fontcolor' : 'answer-card-img'"
+                [className]="answerChoosen == 2 ? 'answer-card-img easy' : 'answer-card-img'"
                 *ngIf='question.answers[1] !== undefined'>
                 <img src="{{question.answers[1].data}}" alt="Answer 2" width="220" height="340">
             </div>
 
             <!-- Answer 3 -->
             <div (click)="chooseQuestion(3)"
-                [className]="answerChoosen == 3 ? 'answer-card-img easy-background easy-fontcolor' : 'answer-card-img'"
+                [className]="answerChoosen == 3 ? 'answer-card-img easy' : 'answer-card-img'"
                 *ngIf='question.answers[2] !== undefined'>
                 <img src="{{question.answers[2].data}}" alt="Answer 3" width="220" height="340">
             </div>
 
             <!-- Answer 4 -->
             <div (click)="chooseQuestion(4)"
-                [className]="answerChoosen == 4 ? 'answer-card-img easy-background easy-fontcolor' : 'answer-card-img'"
+                [className]="answerChoosen == 4 ? 'answer-card-img easy' : 'answer-card-img'"
                 *ngIf='question.answers[3] !== undefined'>
                 <img src="{{question.answers[3].data}}" alt="Answer 4" width="220" height="340">
             </div>
@@ -72,7 +72,7 @@
 
     </div>
 
-    <button id="validate-btn" class="easy-background easy-fontcolor" [ngStyle]="{ 'font-size.px': fontsize }" (click)="validate()">VALIDER</button>
+    <button id="validate-btn" class="easy" [ngStyle]="{ 'font-size.px': fontsize }" (click)="validate()">VALIDER</button>
 
     <div class="pref-updater layout">
         <button class="button-card" (click)="decreaseFontsize()"><i class="fas fa-chevron-left"></i></button>
