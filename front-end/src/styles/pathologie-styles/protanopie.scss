@@ -38,19 +38,24 @@ $red: #D84127;
 
 
 $difficulty-fontcolor: black;
+
 .easy {
-    background-color: $green !important;
-    color: $difficulty-fontcolor !important;
+    background-color: white !important;
+    color: black !important;
+    border: 5px solid black;
 }
 .medium {
-    background-color: $yellow !important;
-    color: $difficulty-fontcolor !important;
+    background-color: white !important;
+    color: black !important;
+    border: 5px solid black;
 }
 .hard {
-    background-color: $orange !important;
-    color: $difficulty-fontcolor !important;
+    background-color: white !important;
+    color: black !important;
+    border: 5px solid black;
 }
 .expert {
-    background-color: $red !important;
-    color: $difficulty-fontcolor !important;
+    background-color: white !important;
+    color: black !important;
+    border: 5px solid black;
 }

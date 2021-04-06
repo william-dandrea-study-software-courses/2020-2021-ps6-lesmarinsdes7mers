@@ -19,6 +19,17 @@
 
         <div *ngIf="answer.data != ''" class="question-bloc-image-answer-one-image-element">
             <img src="{{answer.data}}" id="question-bloc-image-answer-one-image-element-img">
+
+
+            <div id="question-bloc-img-answer-details">
+                <div id="question-bloc-img-answer-good-bad-question">
+                    <span *ngIf="answer.is_correct === true" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_checked</span>
+                    <span *ngIf="answer.is_correct === false" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_unchecked</span>
+                </div>
+                <div id="question-bloc-img-answer-trash" (click)="onDeleteAnswer(answer)"><span class="material-icons">delete</span></div>
+            </div>
+
+
         </div>
 
     </div>

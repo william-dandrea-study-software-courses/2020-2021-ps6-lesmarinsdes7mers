@@ -16,55 +16,55 @@ export default class GuestConfigHandicapComponent implements OnInit {
         
     }
 
-    ngOnInit() {
-        this.handicap = this.userprefsService.getHandicap()
+    ngOnInit(): void {
+        this.handicap = this.userprefsService.getHandicap();
     }
 
-    save() {
-        this.userprefsService.setHandicap(this.handicap)
-        console.log(this.userprefsService)
-        this.router.navigate(['homepage'])
+    save(): void {
+        this.userprefsService.setHandicap(this.handicap);
+        console.log(this.userprefsService);
+        this.router.navigate(['homepage']);
     }
 
 
     /// Protanopie methods
-    setProtanopie() {
-        this.handicap = Handicap.PROTANOPIE
+    setProtanopie(): void {
+        this.handicap = Handicap.PROTANOPIE;
     }
     isProtanopie() {
-        return this.handicap === Handicap.PROTANOPIE
+        return this.handicap === Handicap.PROTANOPIE;
     }
 
     /// Deuteranopie methods
     setDeuteranopie() {
-        this.handicap = Handicap.DEUTERANOPIE
+        this.handicap = Handicap.DEUTERANOPIE;
     }
     isDeuteranopie() {
-        return this.handicap === Handicap.DEUTERANOPIE
+        return this.handicap === Handicap.DEUTERANOPIE;
     }
 
     /// Tritanopie methods
     setTritanopie() {
-        this.handicap = Handicap.TRITANOPIE
+        this.handicap = Handicap.TRITANOPIE;
     }
     isTritanopie() {
-        return this.handicap === Handicap.TRITANOPIE
+        return this.handicap === Handicap.TRITANOPIE;
     }
 
     /// LCS methods
     setLowContrastSensi() {
-        this.handicap = Handicap.LOW_CONTRAST_SENSIBILITY
+        this.handicap = Handicap.LOW_CONTRAST_SENSIBILITY;
     }
     isLowContrastSensi() {
-        return this.handicap === Handicap.LOW_CONTRAST_SENSIBILITY
+        return this.handicap === Handicap.LOW_CONTRAST_SENSIBILITY;
     }
 
     /// None methods
     setNone() {
-        this.handicap = Handicap.NONE
+        this.handicap = Handicap.NONE;
     }
     isNone() {
-        return this.handicap === Handicap.NONE
+        return this.handicap === Handicap.NONE;
     }
 
 }

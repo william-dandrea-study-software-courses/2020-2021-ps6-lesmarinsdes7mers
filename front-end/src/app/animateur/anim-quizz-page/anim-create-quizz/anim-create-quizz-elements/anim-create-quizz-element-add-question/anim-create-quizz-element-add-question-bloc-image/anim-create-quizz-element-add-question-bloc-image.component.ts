@@ -80,5 +80,17 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
   }
 
 
+  onCorrectAnswer(event: Answer): void {
+    event.is_correct = (event.is_correct !== true);
+  }
+
+  onDeleteAnswer(event: Answer): void {
+    this.listOfAnswers.forEach(((value, index) => {
+      if (value === event) {
+        this.listOfAnswers.splice(index, 1);
+      }
+    }));
+  }
+
 
 }

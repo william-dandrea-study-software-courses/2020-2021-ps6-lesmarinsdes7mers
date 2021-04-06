@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userprefsService.$handicap.subscribe((h) => {
-      this.loadStyle(HandicapToString(h).toLowerCase() + '.css')
-    })
+      this.loadStyle(HandicapToString(h).toLowerCase() + '.css');
+    });
   }
 
   loadStyle(styleName: string) {
