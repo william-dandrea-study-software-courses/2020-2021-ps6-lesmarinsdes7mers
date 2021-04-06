@@ -11,6 +11,8 @@ export class AnimMainQuizListComponent implements OnInit {
 
     quizList: Quiz[] = new Array();
 
+    selectedQuiz: Quiz[] = new Array();
+
     constructor (private quizService: QuizService) {
 
     }
@@ -23,5 +25,37 @@ export class AnimMainQuizListComponent implements OnInit {
 
     translateDifficulty(difficulty: Difficulty):string {
         return difficultyToText(difficulty);
+    }
+
+    isSelectedKey(quiz: Quiz):boolean {
+        return this.selectedQuiz.filter(q => quiz.id == q.id).length > 0;
+    }
+
+    selectAll() {
+        // Remove all
+        this.selectedQuiz.splice(0, this.selectedQuiz.length);
+        if (!this.isAllSelected()) {
+            // Add all
+            this.quizList.forEach(quiz => this.selectQuiz(quiz));
+        }
+    }
+
+    isAllSelected():boolean {
+        return this.selectedQuiz.length == this.quizList.length;
+    }
+
+    selectQuiz(quiz: Quiz) {
+        if (this.isSelectedKey(quiz)) {
+            this.selectedQuiz.splice(this.selectedQuiz.indexOf(quiz), 1);
+        }
+        else {
+            this.selectedQuiz.push(quiz);
+        }
+    }
+
+    deleteSelection():void {
+        this.selectedQuiz.forEach(quiz => {
+            this.quizService.deleteQuiz(quiz);
+        })
     }
 }
