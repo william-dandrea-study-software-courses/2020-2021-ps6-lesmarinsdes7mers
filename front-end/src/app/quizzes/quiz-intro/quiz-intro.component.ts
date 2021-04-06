@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../../services/quiz.service";
-import {Difficulty, difficultyToText, Quiz} from "../../../models/quiz.model";
+import {getDifficultyClass, difficultyToText, Quiz} from "../../../models/quiz.model";
 import UserPrefsService from "../../../services/userprefs.service";
 
 @Component({
@@ -12,7 +12,8 @@ import UserPrefsService from "../../../services/userprefs.service";
 export class QuizIntroComponent implements OnInit {
 
     quiz: Quiz;
-    difficulty = difficultyToText;
+    difficultyToText = difficultyToText;
+    getDifficultyClass = getDifficultyClass;
 
     constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, public userPref: UserPrefsService) {
         this.quizService.quizSelected$.subscribe(value => this.quiz = value);
@@ -31,22 +32,6 @@ export class QuizIntroComponent implements OnInit {
 
     homepage(): void {
         this.router.navigate(['/homepage']);
-    }
-
-    getDifficultyColorClass(): string {
-        switch (this.quiz.difficulty) {
-            case Difficulty.EASY:
-                return "easy difficulty";
-            case Difficulty.MEDIUM:
-                return "medium difficulty";
-            case Difficulty.HARD:
-                return "hard difficulty";
-            case Difficulty.EXPERT:
-                return "expert difficulty";
-
-            // Old value
-            // return "easy-background easy-fontcolor difficulty";
-        }
     }
 
 

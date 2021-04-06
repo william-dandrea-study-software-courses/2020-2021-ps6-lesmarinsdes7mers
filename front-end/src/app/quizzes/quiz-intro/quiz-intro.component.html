@@ -1,13 +1,19 @@
-<div [style.font-size.px]="userPref.getFontSize()">
-    <div class="theme">Thème: {{quiz.name}}</div>
-    <div class="difficulty_box">
-        <hr/>
-        <p [className]="getDifficultyColorClass()">{{difficulty(quiz.difficulty).toUpperCase()}}</p>
+<div [style.font-size.px]="userPref.getFontSize()" class="container">
+    <div class="section title">
+        <div class="title-text">Thème: {{quiz.name}}</div>
+        <span class="difficulty-span" [ngClass]="getDifficultyClass(quiz.difficulty)">{{difficultyToText(quiz.difficulty)}}</span>
     </div>
-    <p>C'est à vous de jouer</p>
-    <div class="navigation_quiz">
+    <!--<div class="section difficulty">
+        <span [className]="getDifficultyColorClass()">{{difficulty(quiz.difficulty).toUpperCase()}}</span>
+    </div>-->
+    <div  class="section phrase">
+        C'est à vous de jouer
+    </div>
+    <div class="section commands">
         <button (click)="homepage()">Retour</button>
         <button (click)="startQuiz()">C'est parti !</button>
     </div>
-    <app-change-font-size></app-change-font-size>
+    <div class="section fontsizebar">
+        <app-change-font-size></app-change-font-size>
+    </div>
 </div>

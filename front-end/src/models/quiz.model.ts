@@ -4,7 +4,14 @@ export enum Difficulty {
     EASY, MEDIUM, HARD, EXPERT
 }
 
-
+export function getDifficultyClass(difficulty: Difficulty) {
+    return {
+        "easy": difficulty === Difficulty.EASY,
+        "medium": difficulty === Difficulty.MEDIUM,
+        "hard": difficulty === Difficulty.HARD,
+        "expert": difficulty === Difficulty.EXPERT
+    }
+}
 
 export function difficultyToText(difficulty: Difficulty): string {
     switch (difficulty) {
