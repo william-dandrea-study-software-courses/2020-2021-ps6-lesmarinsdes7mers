@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { Execute } from '../../Errors/ErrorSchield'
 import HttpMessage from '../../Errors/HttpMessage'
 import quizzModel from '../../Models/quizz.model'
-import IdParameterNotFound from '../BasicErrors/IdParameterNotFound'
+import quizzMiddleware from './quizz.middleware'
 
 
 const quizzManageRouter = Router()
@@ -14,25 +14,30 @@ quizzManageRouter.post('/', (req, res) => {
     })
 })
 
-quizzManageRouter.put('/:id', (req, res) => {
-    Execute(res, () => {
-        if(!req.params.id) throw new IdParameterNotFound()
+quizzManageRouter.put('/:quizz', quizzMiddleware, 
+    /**
+     * 
+     * @param { import('express').Request & { quizz: import('../../Models/quizz.model').Quizz }} req 
+     * @param {*} res 
+     */
+    (req, res) => {
+        Execute(res, () => {
+            req.body.id = req.quizz.id
+            quizzModel.update(req.body)
 
-        req.body.id = req.params.id
-        quizzModel.update(req.body)
+            new HttpMessage("Quizz updated successfully !").send(res)
+        })
+    }
+)
 
-        new HttpMessage("Quizz updated successfully !").send(res)
-    })
-})
+quizzManageRouter.delete('/:quizz', quizzMiddleware, 
+    (req, res) => {
+        Execute(res, () => {
+            quizzModel.delete(req.params.quizz)
 
-quizzManageRouter.delete('/:id', (req, res) => {
-    Execute(res, () => {
-        if(!req.params.id) throw new IdParameterNotFound()
-
-        quizzModel.delete(req.params.id)
-
-        new HttpMessage("Quizz deleted successfully !").send(res)
-    })
-})
+            new HttpMessage("Quizz deleted successfully !").send(res)
+        })
+    }
+)
 
 export default quizzManageRouter
