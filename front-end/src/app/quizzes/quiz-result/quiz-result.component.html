@@ -1,11 +1,20 @@
 <div [style.font-size.px]="sizeFont">
     <div class="result">
-        <p class="theme">Les mers du monde</p>
+        <h2 class="theme">Les mers du monde</h2>
         <div class="stat">
             <div class="point">
-                <p>Bonnes réponses: {{getRightAnswerCount()}}</p>
-                <p>Mauvaises réponses: {{getFalseAnswerCount()}}</p>
-                <p>Réponses totales: {{answers.length}}</p>
+                <div>
+                    <span class="category">Bonnes réponses:</span>
+                    <span class="info">{{getRightAnswerCount()}}</span>
+                </div>
+                <div>
+                    <span class="category">Mauvaises réponses:</span>
+                    <span class="info">{{getFalseAnswerCount()}}</span>
+                </div>
+                <div>
+                    <span class="category">Réponses totales:</span>
+                    <span class="info">{{answers.length}}</span>
+                </div>
             </div>
             <div class="percent">
                 <p>RESULTAT:</p>

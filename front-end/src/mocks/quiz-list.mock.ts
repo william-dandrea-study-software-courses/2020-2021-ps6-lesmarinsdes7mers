@@ -42,7 +42,7 @@ export const QUIZ_LIST: Quiz[] = [
                 id: '5',
                 question_name: 'Quel est le nom de l\'agence spatiale américaine ?',
                 type: 0,
-                answers: [{is_correct: true, data: 'Le Nil'}, {is_correct: false, data: 'La Lufthansa'}, {is_correct: false, data: 'La NASA'}]
+                answers: [{is_correct: false, data: 'Le Nil'}, {is_correct: false, data: 'La Lufthansa'}, {is_correct: true, data: 'La NASA'}]
             },
             {
                 id: '6',
