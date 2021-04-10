@@ -4,6 +4,8 @@ import quizzMiddleware from './quizz.middleware'
 
 const quizzGettersRouter = Router()
 
+
+
 quizzGettersRouter.get('/:quizz', quizzMiddleware, (req, res) => {
     new HttpMessage(req.quizz).send(res)
 })

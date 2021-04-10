@@ -7,12 +7,11 @@ import IdMustBeANumber from '../BasicErrors/IdMustBeANumber'
 
 const gettersUsersRouter = Router()
 
-gettersUsersRouter.get('/users', ((req, res, next) => {
+gettersUsersRouter.get('/all', ((req, res) => {
 
     const result = userModel.getAll(u => u != null)
     if(!result) throw new FileNotFound()
     new HttpMessage(result).send(res)
-
 
 }));
 

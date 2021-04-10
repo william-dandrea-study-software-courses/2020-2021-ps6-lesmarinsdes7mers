@@ -433,12 +433,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _Models_quizz_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Models/quizz.model */ "./src/Models/quizz.model.js");
 /* harmony import */ var _quizz_middleware__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./quizz.middleware */ "./src/API/Quizz/quizz.middleware.js");
+/* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+
+
 
 
 
 
 
 const quizzManageRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+quizzManageRouter.get('/all', (req, res) => {
+  const result = _Models_quizz_model__WEBPACK_IMPORTED_MODULE_3__["default"].getAll(u => u != null);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_6__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"](result).send(res);
+});
 quizzManageRouter.post('/', (req, res) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_1__["Execute"])(res, () => {
     _Models_quizz_model__WEBPACK_IMPORTED_MODULE_3__["default"].add(req.body);
@@ -522,7 +531,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const gettersUsersRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
-gettersUsersRouter.get('/users', (req, res, next) => {
+gettersUsersRouter.get('/all', (req, res) => {
   const result = _Models_user_model__WEBPACK_IMPORTED_MODULE_4__["default"].getAll(u => u != null);
   if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
   new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
@@ -948,10 +957,15 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
   id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
   name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
   difficulty: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(3).default(0),
+  privacy: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    is_public: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(true),
+    users_access: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number())
+  }),
   questions: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     type: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(1).default(0),
+    // 0 pour txt, 1 pour image
     answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
       is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
       data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()

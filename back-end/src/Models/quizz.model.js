@@ -28,11 +28,15 @@ const quizzModel = new BaseModel('quizz', joi.object({
     id: joi.number().integer().min(0).required(),
     name: joi.string().required(),
     difficulty: joi.number().integer().min(0).max(3).default(0),
+    privacy: joi.object({
+        is_public: joi.boolean().default(true),
+        users_access: joi.array().items(joi.number())
+    }),
 
     questions: joi.array().items(joi.object({
         id: joi.string().required(),
         question_name: joi.string().required(),
-        type: joi.number().integer().min(0).max(1).default(0),
+        type: joi.number().integer().min(0).max(1).default(0),  // 0 pour txt, 1 pour image
         answer: joi.array().items(joi.object({
             is_correct: joi.boolean().default(false),
             data: joi.string().required()
