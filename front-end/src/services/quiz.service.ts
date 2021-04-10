@@ -10,10 +10,6 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
   providedIn: 'root'
 })
 export class QuizService {
-  /*
-   Services Documentation:
-   https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */
 
   /*
    The list of quiz.
@@ -25,8 +21,7 @@ export class QuizService {
    Observable which contains the list of the quiz.
    Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
-  public quizzes$: BehaviorSubject<Quiz[]>
-    = new BehaviorSubject(this.quizzes);
+  public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
   public quizSelected$: Subject<Quiz> = new Subject();
 
@@ -53,10 +48,6 @@ export class QuizService {
   setSelectedQuiz(quizId: number): void {
     let quiz = QUIZ_LIST.find(value => value.id == quizId);
     this.quizSelected$.next(quiz);
-    /*const urlWithId = this.quizUrl + '/' + quizId;
-    this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
-      this.quizSelected$.next(quiz);
-    });*/
   }
 
   deleteQuiz(quiz: Quiz): void {
@@ -74,27 +65,4 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
-  /*
-  Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
-  addQuestion(quiz: Quiz, question: Question) {
-    quiz.questions.push(question);
-    const index = this.quizzes.findIndex((q: Quiz) => q.id === quiz.id);
-    if (index) {
-      this.updateQuizzes(quiz, index);
-    }
-  }
-
-  deleteQuestion(quiz: Quiz, question: Question) {
-    const index = quiz.questions.findIndex((q) => q.label === question.label);
-    if (index !== -1) {
-      quiz.questions.splice(index, 1)
-      this.updateQuizzes(quiz, index);
-    }
-  }
-
-  private updateQuizzes(quiz: Quiz, index: number) {
-    this.quizzes[index] = quiz;
-    this.quizzes$.next(this.quizzes);
-  }
-  */
 }

@@ -522,7 +522,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const gettersUsersRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
-gettersUsersRouter.get('/:id', (req, res) => {
+gettersUsersRouter.get('/users', (req, res, next) => {
+  const result = _Models_user_model__WEBPACK_IMPORTED_MODULE_4__["default"].getAll(u => u != null);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
+});
+gettersUsersRouter.get('/:id', (req, res, next) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_1__["Execute"])(res, () => {
     if (!req.params.id) throw new IdParameterNotFound();
     req.params.id = parseInt(req.params.id);
@@ -531,6 +536,7 @@ gettersUsersRouter.get('/:id', (req, res) => {
     if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
     new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
   });
+  next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (gettersUsersRouter);
 
@@ -994,6 +1000,7 @@ const userModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"
   handicap: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(5).default(5),
   font_size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().default(40),
   birthday: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.date(),
+  image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string(),
   size_font_configs: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().required(),
@@ -1051,7 +1058,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\projects\ps6\2020-2021-ps6-lesmarinsdes7mers\back-end\src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /Users/williamdandrea/Library/Mobile Documents/com~apple~CloudDocs/SI3/S6/PS6/projet/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),

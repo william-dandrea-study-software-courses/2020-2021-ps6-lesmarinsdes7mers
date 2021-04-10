@@ -7,4 +7,8 @@ const userRouter = Router()
 userRouter.use(gettersUsersRouter)
 userRouter.use(manageUser)
 
+
+
+
+
 export default userRouter

@@ -7,7 +7,17 @@ import IdMustBeANumber from '../BasicErrors/IdMustBeANumber'
 
 const gettersUsersRouter = Router()
 
-gettersUsersRouter.get('/:id', (req, res) => {
+gettersUsersRouter.get('/users', ((req, res, next) => {
+
+    const result = userModel.getAll(u => u != null)
+    if(!result) throw new FileNotFound()
+    new HttpMessage(result).send(res)
+
+
+}));
+
+
+gettersUsersRouter.get('/:id', (req, res, next) => {
     Execute(res, () => {
         if(!req.params.id) throw new IdParameterNotFound()
         req.params.id = parseInt(req.params.id)
@@ -18,7 +28,14 @@ gettersUsersRouter.get('/:id', (req, res) => {
         if(!result) throw new FileNotFound()
 
         new HttpMessage(result).send(res)
-    })
+
+
+    });
+    next();
 })
+
+
+
+
 
 export default gettersUsersRouter

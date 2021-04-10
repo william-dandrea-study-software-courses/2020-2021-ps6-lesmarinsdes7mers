@@ -9,19 +9,9 @@ import {USER_LIST} from "../mocks/user-list.mock";
   providedIn: 'root'
 })
 export class UserService {
-  /*
-   The list of user.
-   */
-  // private users: User[] = USER_LIST;
+
+
   private users: User[] = USER_LIST;
-
-  /*
-   Observable which contains the list of the user.
-   */
-  /*public users$: BehaviorSubject<User[]>
-    = new BehaviorSubject([]);*/
-
-  /*public userSelected$: Subject<User> = new Subject();*/
 
   constructor() {}
 
@@ -29,12 +19,6 @@ export class UserService {
     this.users.push(user);
   }
 
- /* setSelectedUser(userId: string): void {
-    const urlWithId = this.userUrl + '/' + userId;
-    this.http.get<User>(urlWithId).subscribe((user) => {
-      this.userSelected$.next(user);
-    });
-  }*/
 
   deleteUser(user: User): void {
     this.users = this.users.filter(value => value.id !== user.id);

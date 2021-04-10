@@ -26,6 +26,7 @@ const userModel = new BaseModel('users', joi.object({
     handicap: joi.number().integer().min(0).max(5).default(5),
     font_size: joi.number().default(40),
     birthday: joi.date(),
+    image_url: joi.string(),
     size_font_configs: joi.array().items(joi.object({
         name: joi.string().required(),
         size: joi.number().required(),
