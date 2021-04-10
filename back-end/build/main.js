@@ -1013,8 +1013,8 @@ const userModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"
   name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
   handicap: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(5).default(5),
   font_size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().default(40),
-  birthday: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.date(),
-  image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string(),
+  birthday: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.date().default("1962-12-19"),
+  image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
   size_font_configs: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().required(),
