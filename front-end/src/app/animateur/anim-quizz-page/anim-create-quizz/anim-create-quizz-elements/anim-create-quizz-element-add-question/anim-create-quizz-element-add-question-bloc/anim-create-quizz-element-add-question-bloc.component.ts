@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter, DoCheck} from '@angular/core';
-import {Answer, Question, QuestionType} from "../../../../../../../models/question.model";
+import {Answer, Question, QuestionType} from "../../../../../../../models/quiz.model";
 
 @Component({
   selector: 'app-anim-create-quizz-element-add-question-bloc',

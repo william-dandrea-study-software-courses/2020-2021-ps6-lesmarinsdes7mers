@@ -1,21 +1,29 @@
+#app-guest-config-page-main {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 100px;
+}
+
+#app-guest-config-page-main-div {
+
+
+    text-align: center;
+}
+
+
 .interactives {
+
+    margin-top: 50px;
+
+
     display: flex;
     flex-direction: column;
 
     align-items: center;
 
-    background-color: gray;
-
-    width: 300px;
-    height: 200px;
 }
 
-.controls {
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-}
 
 .preview {
     display:  flex;
@@ -23,5 +31,88 @@
     align-items: center;
     justify-content: center;
 
+
+    border-radius: 15px;
+    border: 5px solid black;
+
+    background-color: white;
+    color: black;
+    box-shadow: 3px 3px 3px #c6c6c6;
+
+    width: 50%;
+    margin: 30px 0px;
+    padding: 20px 0px;
+
     height: 100px;
+
 }
+
+
+#app-guest-config-font-size-writing-one {
+    font-size: 80px;
+    font-weight: 800;
+}
+
+#app-guest-config-font-size-writing-two {
+    font-size: 30px;
+    font-weight: 200;
+}
+
+
+#app-guest-config-controls {
+    height: 80px;
+    width: 50%;
+    border: 5px solid black;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-radius: 15px;
+}
+
+#app-guest-config-controls-div-one {
+
+    background-color: black;
+    border-radius: 10px 0 0 10px;
+    width: 30%;
+    height: auto;
+}
+
+#app-guest-config-controls-div-two {
+    margin: auto;
+    height: auto;
+    font-size: 60px;
+
+}
+
+#app-guest-config-controls-div-three {
+
+    background-color: black;
+    border-radius: 0 10px 10px 0;
+    width: 30%;
+    height: auto;
+}
+
+#app-guest-config-font-size-left-arrow {
+    transform: rotate(180deg);
+    font-size: 70px;
+    color: white;
+}
+
+#app-guest-config-font-size-right-arrow {
+    font-size: 70px;
+    color: white;
+}
+
+#validate-button {
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px #cfcfcf;
+}
+

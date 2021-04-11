@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Quiz } from '../models/quiz.model';
-import { QUIZ_LIST } from '../mocks/quiz-list.mock';
-import { Question } from '../models/question.model';
+import {Question, Quiz} from '../models/quiz.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 
 @Injectable({
@@ -15,7 +13,8 @@ export class QuizService {
    The list of quiz.
    The list is retrieved from the mock.
    */
-  private quizzes: Quiz[] = QUIZ_LIST;
+  private quizzes: Quiz[] = [];
+  // private quizzes: Quiz[] = QUIZ_LIST;
 
   /*
    Observable which contains the list of the quiz.
@@ -25,7 +24,7 @@ export class QuizService {
 
   public quizSelected$: Subject<Quiz> = new Subject();
 
-  private quizUrl = serverUrl + '/quizzes';
+  private quizUrl = serverUrl + '/quizz';
   private questionsPath = 'questions';
 
   private httpOptions = httpOptionsBase;
@@ -35,8 +34,8 @@ export class QuizService {
   }
 
   retrieveQuizzes(): void {
-    this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
-      this.quizzes = quizList;
+    this.http.get<any>(this.quizUrl + '/all').subscribe((quizList) => {
+      this.quizzes = quizList.data;
       this.quizzes$.next(this.quizzes);
     });
   }
@@ -46,7 +45,7 @@ export class QuizService {
   }
 
   setSelectedQuiz(quizId: number): void {
-    let quiz = QUIZ_LIST.find(value => value.id == quizId);
+    let quiz = this.quizzes.find(value => value.id === quizId);
     this.quizSelected$.next(quiz);
   }
 

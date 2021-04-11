@@ -1,5 +1,6 @@
-import { Difficulty, Quiz } from '../models/quiz.model';
-import {Answer, Question} from '../models/question.model';
+import {Difficulty, Question, Quiz} from '../models/quiz.model';
+
+/*
 
 export const QUESTION_ACTOR: Question = {
     id: '1',
@@ -123,3 +124,5 @@ export const QUIZ_LIST: Quiz[] = [
         ],
     }
 ];
+
+ */

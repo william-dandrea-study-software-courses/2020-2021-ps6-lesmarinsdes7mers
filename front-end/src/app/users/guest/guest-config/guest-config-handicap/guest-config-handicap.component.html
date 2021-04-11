@@ -1,6 +1,9 @@
-<app-guest-config-page>
-    <h1>Souffrez-vous de l’un des syndromes suivant : </h1>
-    
+
+<div id="guest-config-handicap-main-div">
+
+    <div id="guest-config-handicap-writing-one">Souffrez-vous de l’un des syndromes suivant ?</div>
+    <div id="guest-config-handicap-writing-two">Si oui, cliquez sur le syndrome, sinon, cliquez sur aucun</div>
+
     <div class="handicap-radio" (click)="setProtanopie()" [ngClass]="{ 'handicap-radio-selected': isProtanopie() }">PROTANOPIE / PROTANOMALIE</div>
     <div class="handicap-radio" (click)="setDeuteranopie()" [ngClass]="{ 'handicap-radio-selected': isDeuteranopie() }">DEUTERANOPIE / DEUTERANOMALIE</div>
     <div class="handicap-radio" (click)="setTritanopie()" [ngClass]="{ 'handicap-radio-selected': isTritanopie() }">TRITANOPIE / TRITANOMALIE</div>
@@ -8,6 +11,10 @@
     <div class="handicap-radio" (click)="setNone()" [ngClass]="{ 'handicap-radio-selected': isNone() }">AUCUN</div>
 
 
-    <button (click)="save()">Valider</button>
-</app-guest-config-page>
+    <button id="guest-config-handicap-validate-button" (click)="save()">Valider et passer à la suite</button>
+
+</div>
+
+
+
 

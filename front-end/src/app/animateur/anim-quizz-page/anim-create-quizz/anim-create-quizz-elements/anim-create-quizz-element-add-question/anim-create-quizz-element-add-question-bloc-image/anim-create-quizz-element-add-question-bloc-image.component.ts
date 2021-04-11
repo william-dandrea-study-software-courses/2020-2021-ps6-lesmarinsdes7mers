@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, Output, EventEmitter, DoCheck, OnChanges} from '@angular/core';
-import {Answer} from "../../../../../../../models/question.model";
 import {HttpClient} from "@angular/common/http";
 import {IUnsplashRequest, IUnsplashUrls} from "../../../../../../../models/unsplash.model";
 import {element} from "protractor";
 import {NgForm} from "@angular/forms";
+import {Answer} from "../../../../../../../models/quiz.model";
 
 @Component({
   selector: 'app-anim-create-quizz-element-add-question-bloc-image',

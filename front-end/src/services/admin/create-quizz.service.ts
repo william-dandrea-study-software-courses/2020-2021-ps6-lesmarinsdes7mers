@@ -1,7 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Difficulty} from "src/models/quiz.model";
-import {Answer, Question, QuestionType} from "../../models/question.model";
-import {QuizCreationModel, Visibility} from "../../models/quiz-creation.model";
+import {QuizCreationModel} from "../../models/quiz-creation.model";
 
 @Injectable({
     providedIn: 'root'

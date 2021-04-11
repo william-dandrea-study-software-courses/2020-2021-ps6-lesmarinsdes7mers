@@ -24,11 +24,16 @@ export class UserService {
   }
 
   retrieveUsers(): void {
-    // console.log(this.allUserUrl);
-
     this.http.get<any>(this.allUserUrl).subscribe((userList) => {
       this.users = userList.data;
       this.users$.next(this.users);
+    });
+  }
+
+  setSelectedUser(userId: number): void {
+    const urlUser = this.userUrl + '/' + String(userId);
+    this.http.get<any>(urlUser).subscribe((user) => {
+      this.userSelected$.next(user.data);
     });
   }
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Question } from "src/models/question.model";
-import { Quiz } from "src/models/quiz.model";
+
+import {Question, Quiz} from "src/models/quiz.model";
 import { FillQuizService } from "src/services/fill-quiz.service";
 import { QuizService } from "src/services/quiz.service";
 import UserPrefsService from "src/services/userprefs.service";

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CreateQuizzService} from "../../../../../services/admin/create-quizz.service";
 import {QuizCreationModel, Visibility} from "../../../../../models/quiz-creation.model";
-import {Answer, Question, QuestionType} from "../../../../../models/question.model";
-import {Difficulty} from "../../../../../models/quiz.model";
+import {Answer, Difficulty, Question, QuestionType} from "../../../../../models/quiz.model";
 
 @Component({
   selector: 'app-anim-create-quizz-homepage',

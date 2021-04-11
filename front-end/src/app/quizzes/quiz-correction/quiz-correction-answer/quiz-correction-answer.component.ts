@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FillQuizService} from "../../../../services/fill-quiz.service";
 import {QuizService} from "../../../../services/quiz.service";
-import {Answer, Question, QuestionType} from "../../../../models/question.model";
-import {Difficulty, Quiz} from "../../../../models/quiz.model";
+import {Difficulty, Quiz, Answer, Question, QuestionType} from "../../../../models/quiz.model";
 import UserPrefsService from "../../../../services/userprefs.service";
 
 @Component({
@@ -31,39 +30,11 @@ export class QuizCorrectionAnswerComponent implements OnInit {
     this.quizService.quizzes$.subscribe(value => {
       this.quiz = value.find(value1 => value1.id == this.result.getQuizId());
       this.question = this.quiz.questions[idQuestion];
-    })
-    if(this.answer != undefined)
-      return;
+    });
 
-    this.answer = {
-      data: "mdr", is_correct: true
-    }
-    this.quiz = {
-      id: 2,
-      name: "TEST",
-      difficulty: Difficulty.EASY,
-      questions: [
-        {
-          type: QuestionType.TEXT,
-          id: "1",
-          question_name: "Je me marre",
-          answers: [
-            {
-              is_correct: true, data: "lol"
-            },
-            {
-              is_correct: false, data: "mdr"
-            },
-            {
-              is_correct: false, data: "ptdr"
-            },
-            {
-              is_correct: false, data: "jpp"
-            }
-          ]
-        }
-      ]
-    }
+
+
+
     this.question = this.quiz.questions[0];
     this.sizeFont = 40;
   }

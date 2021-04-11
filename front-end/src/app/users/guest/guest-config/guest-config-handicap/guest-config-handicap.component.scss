@@ -1,9 +1,51 @@
 .handicap-radio {
     border-style: solid;
     cursor: pointer;
+
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    border-radius: 15px;
 }
 
 .handicap-radio-selected {
     background-color: black;
     color: white;
+}
+
+#guest-config-handicap-main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#guest-config-handicap-writing-one {
+    font-size: 80px;
+    font-weight: 800;
+    text-align: center;
+    margin: 50px 10px;
+}
+
+#guest-config-handicap-writing-two {
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#guest-config-handicap-validate-button {
+    margin-top: 50px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px #cfcfcf;
 }

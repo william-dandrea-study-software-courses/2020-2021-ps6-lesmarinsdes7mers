@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import UserPrefsService from "../../../services/userprefs.service";
 import {Difficulty, Quiz} from "../../../models/quiz.model";
 import {QuizService} from "../../../services/quiz.service";
+import {UserService} from "../../../services/user.service";
+import {User} from "../../../models/user.model";
 
 @Component({
   selector: 'app-home-page',
@@ -15,17 +17,30 @@ export class HomePageComponent implements OnInit {
   public quizList: Quiz[] = [];
   public difficultyFiltrer: Difficulty;
 
-  constructor(private router: Router, public userPrefService: UserPrefsService, public quizService: QuizService) {
-    this.userPrefService.$fontSize.subscribe((fontSizeService: number) => {
-      this.fontSize = fontSizeService;
-    });
+
+  public userSelected: User;
+
+  constructor( public quizService: QuizService, public userService: UserService, private route: ActivatedRoute) {
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
     });
+
+    this.userService.userSelected$.subscribe((user) => {
+      this.userSelected = user;
+    });
+
+    /*
+    this.route.params.subscribe(params => {
+      this.idUser = +params['idUser'];
+      console.log(this.idUser);
+    });
+     */
+
   }
 
   ngOnInit(): void {
+
   }
 
   onDifficultyFiltrer(choice: Difficulty): void {

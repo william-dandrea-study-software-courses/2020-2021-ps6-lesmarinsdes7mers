@@ -9,27 +9,27 @@ import UserPrefsService from "src/services/userprefs.service";
 })
 export default class GuestConfigFontsizeComponent implements OnInit {
 
-    fontsize: number = 60
+    public fontsize: number = 60;
 
-    constructor(private userprefsService: UserPrefsService, private router: Router) {
+    constructor(private userprefsService: UserPrefsService, private router: Router)  {
         
     }
 
 
-    increaseSize() {
-        this.fontsize += this.fontsize < 70 ? 10 : 0
+    increaseSize(): void  {
+        this.fontsize += this.fontsize < 70 ? 10 : 0;
     }
 
-    decreaseSize() {
-        this.fontsize -= this.fontsize > 10 ? 10 : 0
+    decreaseSize(): void  {
+        this.fontsize -= this.fontsize > 10 ? 10 : 0;
     }
 
-    ngOnInit() {
-        this.fontsize = this.userprefsService.getFontSize()
+    ngOnInit(): void  {
+        this.fontsize = this.userprefsService.getFontSize();
     }
 
-    save() {
-        this.userprefsService.setFontSize(this.fontsize)
-        this.router.navigate(['guest', 'config', 'handicap'])
+    save(): void {
+        this.userprefsService.setFontSize(this.fontsize);
+        this.router.navigate(['guest', 'config', 'handicap']);
     }
 }

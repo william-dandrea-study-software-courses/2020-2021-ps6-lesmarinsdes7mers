@@ -9,7 +9,7 @@ import {
   OnChanges,
   DoCheck
 } from '@angular/core';
-import {Answer} from "../../../../../../../models/question.model";
+import {Answer} from "../../../../../../../models/quiz.model";
 
 @Component({
   selector: 'app-anim-create-quizz-element-add-question-bloc-textuel',

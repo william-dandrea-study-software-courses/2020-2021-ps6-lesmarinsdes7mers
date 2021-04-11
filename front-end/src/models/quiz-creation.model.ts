@@ -1,5 +1,4 @@
-import {Difficulty} from "./quiz.model";
-import {Question, QuestionType} from "./question.model";
+import {Difficulty, Question} from "./quiz.model";
 
 
 export enum Visibility {

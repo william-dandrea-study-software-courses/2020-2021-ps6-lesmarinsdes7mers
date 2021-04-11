@@ -1,17 +1,53 @@
-<app-guest-config-page>
-    <h1>Choisissez votre taille d'écriture</h1>
-    <p>Cliquez sur les flèches pour agrandir / rétrécir la taille de l’écriture</p>
-    <div class="interactives">
-        <div class="controls">
-            <button (click)="decreaseSize()"><</button>
-            <span>{{ fontsize }}</span>
-            <button (click)="increaseSize()">></button>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div id="app-guest-config-page-main">
+    <div id="app-guest-config-page-main-div">
+
+        <div id="app-guest-config-font-size-writing-one">Choisissez votre taille d'écriture</div>
+        <div id="app-guest-config-font-size-writing-two">Cliquez sur les flèches pour agrandir / rétrécir la taille d’écriture</div>
+
+        <div class="interactives">
+            <div id="app-guest-config-controls">
+
+                <div id="app-guest-config-controls-div-one" (click)="decreaseSize()">
+                    <span id="app-guest-config-font-size-left-arrow" class="material-icons">double_arrow</span>
+                </div>
+
+                <div id="app-guest-config-controls-div-two">
+                    {{ fontsize }}
+                </div>
+
+                <div id="app-guest-config-controls-div-three" (click)="increaseSize()">
+                    <span id="app-guest-config-font-size-right-arrow" class="material-icons">double_arrow</span>
+                </div>
+
+            </div>
+
+
+            <div class="preview">
+                <span [ngStyle]="{ 'font-size.px': fontsize }">Aperçu</span>
+            </div>
         </div>
-        <div class="preview">
-            <span [ngStyle]="{ 'font-size.px': fontsize }">Aperçu</span>
-        </div>
+
+        <button id="validate-button" (click)="save()" routerLink="/homePage">Passer à l'étape suivante</button>
     </div>
-    
-    <button (click)="save()"  routerLink="/homePage">Valider</button>
-</app-guest-config-page>
+</div>
+
+
+<!--
+
+<div class="controls-empty-div" id="app-guest-config-font-size-left" (click)="decreaseSize()"><span id="app-guest-config-font-size-left-arrow" class="material-icons">double_arrow</span></div>
+
+
+<div><span id="app-guest-config-font-size-regulate-size">{{ fontsize }}</span></div>
+
+
+
+<div class="controls-empty-div" id="app-guest-config-font-size-right" (click)="increaseSize()"><span id="app-guest-config-font-size-right-arrow" class="material-icons">double_arrow</span></div>
+
+
+
+-->
+
+
 
