@@ -22,13 +22,27 @@
             <div *ngFor="let us of userList">
 
 
-                <div>
+                <div id="login-page-user-main-div" (click)="onUserClick(us)">
+
+                    <div id="login-page-user-image-container" >
+                        <div></div>
+                        <img id="login-page-user-image" src="{{us.image_url}}">
+                        <div></div>
+                    </div>
+
+                    <div id="login-page-user-texte-container">
+                        <div >
+                            {{us.name}}
+                        </div>
+
+                        <div>
+                            {{us.surname}}
+                        </div>
+                    </div>
+
 
                 </div>
 
-
-
-                <p>{{us.id}}</p>
             </div>
         </div>
 

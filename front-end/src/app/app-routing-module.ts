@@ -25,6 +25,7 @@ const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list', component: QuizListComponent},
     {path: 'homepage', component: HomePageComponent},
+    {path: 'homepage/:idUser', component: HomePageComponent},
     {path: 'quiz-intro/:id', component: QuizIntroComponent},
     {path: 'quiz-result', component: QuizResultComponent},
     {path: 'quiz-correction', component: QuizCorrectionComponent},
