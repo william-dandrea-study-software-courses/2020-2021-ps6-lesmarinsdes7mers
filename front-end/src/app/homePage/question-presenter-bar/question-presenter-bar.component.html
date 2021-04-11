@@ -1,24 +1,24 @@
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div id="app-question-presenter-bar-main-divider" class="active-panel" routerLink="/quiz-intro/{{idQuiz}}">
 
     <div id="app-question-presenter-bar-description-quiz">
-        <div id="app-question-presenter-bar-title-of-question">
+        <div id="app-question-presenter-bar-title-of-question" [ngStyle]="{'font-size.px': fontSizeMain}" >
             {{titleQuiz}}
         </div>
 
         <div id="app-question-presenter-bar-description-quiz-advanced-description">
 
-            <div id="app-question-presenter-number-of-questions-in-quiz" class="app-question-presenter-bar-inside-writting">
-                {{numberOfQuestions}} questions
+            <div id="app-question-presenter-number-of-questions-in-quiz" class="app-question-presenter-bar-inside-writting" [ngStyle]="{'font-size.px': fontSizeSecond}">
+                {{numberOfQuestions}} QUESTIONS
             </div>
 
-            <div class="app-question-presenter-difficulty-of-quiz">
-                <div *ngIf="difficulty==0" class="app-question-presenter-difficulty-of-quiz easy" >FACILE</div>
-                <div *ngIf="difficulty==1" class="app-question-presenter-difficulty-of-quiz medium">MOYEN</div>
-                <div *ngIf="difficulty==2" class="app-question-presenter-difficulty-of-quiz hard">DIFFICILE</div>
-                <div *ngIf="difficulty==3" class="app-question-presenter-difficulty-of-quiz expert">EXPERT</div>
-            </div>
+
+            <div *ngIf="difficulty==0" class="app-question-presenter-difficulty-of-quiz easy" [ngStyle]="{'font-size.px': fontSizeSecond}">FACILE</div>
+            <div *ngIf="difficulty==1" class="app-question-presenter-difficulty-of-quiz medium" [ngStyle]="{'font-size.px': fontSizeSecond}">MOYEN</div>
+            <div *ngIf="difficulty==2" class="app-question-presenter-difficulty-of-quiz hard" [ngStyle]="{'font-size.px': fontSizeSecond}">DIFFICILE</div>
+            <div *ngIf="difficulty==3" class="app-question-presenter-difficulty-of-quiz expert" [ngStyle]="{'font-size.px': fontSizeSecond}">EXPERT</div>
+
 
         </div>
 
@@ -28,9 +28,9 @@
 
     <div id="app-question-presenter-quiz-is-validate" class="quizz-done-check">
         <div id="app-question-presenter-quiz-is-validate-icon">
-            <i class="fas fa-check-square"></i>
+            <span class="material-icons" id="app-question-presenter-quiz-is-validate--check-icon">done_all</span>
         </div>
-        <div id="app-question-presenter-quiz-is-validate-number-of-good-questions">
+        <div id="app-question-presenter-quiz-is-validate-number-of-good-questions" [ngStyle]="{'font-size.px': fontSizeSecond}">
             {{numberOfGoodQuestions}} / {{numberOfQuestions}}
         </div>
     </div>

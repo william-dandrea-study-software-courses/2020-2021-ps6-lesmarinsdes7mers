@@ -33,6 +33,8 @@ export enum QuestionType {
 }
 
 export interface Answer {
+
+    id_answer: number;
     is_correct: boolean;
     data: string;
 }

@@ -38,6 +38,7 @@ const quizzModel = new BaseModel('quizz', joi.object({
         question_name: joi.string().required(),
         type: joi.number().integer().min(0).max(1).default(0),  // 0 pour txt, 1 pour image
         answer: joi.array().items(joi.object({
+            id_answer:  joi.number().integer().min(1).max(4).required(),
             is_correct: joi.boolean().default(false),
             data: joi.string().required()
         })).max(4).required()

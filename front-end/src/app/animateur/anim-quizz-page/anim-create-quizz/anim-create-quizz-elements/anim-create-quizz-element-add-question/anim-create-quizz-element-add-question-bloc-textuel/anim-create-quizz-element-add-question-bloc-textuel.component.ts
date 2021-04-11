@@ -38,7 +38,7 @@ export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements On
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.numberOfAnswersListener) {
-      this.listOfAnswers.push({is_correct: false, data: ''});
+      this.listOfAnswers.push({id_answer: 1, is_correct: false, data: ''});
 
     }
 

@@ -620,6 +620,77 @@ manageUser.delete('/:id', (req, res) => {
 
 /***/ }),
 
+/***/ "./src/API/UserAndQuiz/getters.js":
+/*!****************************************!*\
+  !*** ./src/API/UserAndQuiz/getters.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+/* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
+/* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
+/* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
+
+
+
+
+
+
+const gettersUserAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+gettersUserAndQuizRouter.get('/all', (req, res, next) => {
+  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u != null);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
+  next();
+});
+gettersUserAndQuizRouter.get('/user/:id', (req, res, next) => {
+  if (!req.params.id) throw new IdParameterNotFound();
+  req.params.id = parseInt(req.params.id);
+  if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_4__["default"]();
+  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getOne(u => u.id_user === req.params.id);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
+  next();
+});
+gettersUserAndQuizRouter.get('/quiz/:id', (req, res, next) => {
+  if (!req.params.id) throw new IdParameterNotFound();
+  req.params.id = parseInt(req.params.id);
+  if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_4__["default"]();
+  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u.answers.some(quiz => quiz.id_question === id));
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
+  next();
+});
+/* harmony default export */ __webpack_exports__["default"] = (gettersUserAndQuizRouter);
+
+/***/ }),
+
+/***/ "./src/API/UserAndQuiz/index.js":
+/*!**************************************!*\
+  !*** ./src/API/UserAndQuiz/index.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getters */ "./src/API/UserAndQuiz/getters.js");
+
+
+const userAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+userAndQuizRouter.use(_getters__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (userAndQuizRouter);
+
+/***/ }),
+
 /***/ "./src/API/index.js":
 /*!**************************!*\
   !*** ./src/API/index.js ***!
@@ -633,12 +704,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Quizz__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quizz */ "./src/API/Quizz/index.js");
 /* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./User */ "./src/API/User/index.js");
+/* harmony import */ var _UserAndQuiz__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UserAndQuiz */ "./src/API/UserAndQuiz/index.js");
+
 
 
 
 const apiRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
 apiRouter.use('/quizz', _Quizz__WEBPACK_IMPORTED_MODULE_1__["default"]);
 apiRouter.use('/user', _User__WEBPACK_IMPORTED_MODULE_2__["default"]);
+apiRouter.use('/userAndQuiz', _UserAndQuiz__WEBPACK_IMPORTED_MODULE_3__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (apiRouter);
 
 /***/ }),
@@ -967,6 +1041,7 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
     type: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(1).default(0),
     // 0 pour txt, 1 pour image
     answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+      id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
       is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
       data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
     })).max(4).required()
@@ -1022,6 +1097,36 @@ const userModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"
   }))
 }));
 /* harmony default export */ __webpack_exports__["default"] = (userModel);
+
+/***/ }),
+
+/***/ "./src/Models/userAndQuizModel.js":
+/*!****************************************!*\
+  !*** ./src/Models/userAndQuizModel.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Database/BaseModel */ "./src/Database/BaseModel.js");
+/* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @hapi/joi */ "@hapi/joi");
+/* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hapi_joi__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const userAndQuizModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('quizz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  id_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  maded_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id_quiz: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+    score_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+    user_answers: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+      id_question: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+      response_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required()
+    })).default([])
+  })).default([])
+}));
+/* harmony default export */ __webpack_exports__["default"] = (userAndQuizModel);
 
 /***/ }),
 

@@ -3,7 +3,7 @@
 // Le tout
 #app-question-presenter-bar-main-divider {
   background-color: $background-button-color;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 2%;
   margin: 1% 2%;
   height: 20%;
@@ -14,28 +14,35 @@
   flex-direction: row;
   justify-content: space-between;
 
+  box-shadow: 3px 3px 3px lightgrey;
+
 }
 
 // Partie de gauche
 #app-question-presenter-bar-description-quiz {
 
-  width: 90%;
+  width: 70%;
 
   font-size: 18px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+
+
 }
 
-#app-question-presenter-bar-description-quiz:nth-child(1) {flex: 1;}
+
 
 // Les mers des 5 mondes
 #app-question-presenter-bar-title-of-question {
 
   font-size: 50px;
   font-weight: bold;
-  height: 50%;
+  padding: 10px 10px;
+
+
 }
 
 // Sous parties ou on a le nombre de questions et la difficulté de la question
@@ -43,50 +50,72 @@
 
   display: flex;
   flex-direction: row;
-  height: 50%;
-  margin: 15px 10px;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
 }
 
 // 30 questions
 #app-question-presenter-number-of-questions-in-quiz {
-  border-radius: 10px;
-  width: 40%;
+  border-radius: 5px;
+
   background-color: $principal-application-color;
 
   color: white;
 
   text-align: center;
 
-  margin: auto;
-  height: auto;
-
+  margin-top: 5px;
+  padding: 5px 40px;
+  min-width: 400px;
+  box-shadow: 3px 3px 3px lightgrey;
 
 }
 
 // Difficile
 .app-question-presenter-difficulty-of-quiz {
 
-  border-radius: 10px !important;
-  width: 50%;
+  border-radius: 5px;
+
 
   text-align: center;
+  padding: 5px 40px;
 
-  margin: auto;
-  height: auto;
+  min-width: 300px;
+
+  margin-top: 5px;
 
   color: black;
+
+  box-shadow: 3px 3px 3px lightgrey;
 
 }
 
 // Validation du questionnaire => quand les gens ont fait le questionnaire
 #app-question-presenter-quiz-is-validate {
-  border-radius: 10px;
-  width: 10%;
-  height: auto;
-  margin: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 5px;
+  padding: 5px 40px;
+
   background-color: $validate-color;
+
+  box-shadow: 3px 3px 3px lightgrey;
+}
+
+#app-question-presenter-quiz-is-validate-number-of-good-questions {
+  color: white
+}
+
+#app-question-presenter-quiz-is-validate-icon {
+  text-align: center;
+}
+
+#app-question-presenter-quiz-is-validate--check-icon {
+  color: white;
+  font-size: 50px;
 }

@@ -34,8 +34,7 @@ export default class LoginPageComponent implements OnInit{
 
     onUserClick(event: User): void {
 
-        this.userService.setSelectedUser(event.id);
-
+        this.userService.setSelectedUser(event);
         const url: string = '/homepage/' + String(event.id);
         this.router.navigate([url]);
     }

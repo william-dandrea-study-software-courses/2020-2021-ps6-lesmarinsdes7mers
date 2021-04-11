@@ -13,7 +13,7 @@ export class ChangeFontSizeComponent implements OnInit {
   interval;
 
   constructor(private userPref: UserPrefsService) {
-    userPref.$fontSize.subscribe(value => this.sizeFont = value);
+    userPref.fontSize$.subscribe(value => this.sizeFont = value);
   }
 
   ngOnInit(): void {

@@ -12,15 +12,19 @@
       "question_name": "Comment appelle-t-on une personne qui élève des abeilles à miel ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Raniculteur"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Apiculteur"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Aviculteur"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Ostréiculteur"
       }],
@@ -30,15 +34,19 @@
       "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Cerne"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Bourgeon"
       }, {
+        "id_answer": 3,
         "is_correct": true,
         "data": "Nectar"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Loge"
       }],
@@ -48,15 +56,19 @@
       "question_name": "Avec quel autre insecte plus agressif confond-on souvent l'abeille ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Bourdon"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Guêpe"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Frelon"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Taon"
       }],
@@ -66,15 +78,19 @@
       "question_name": "Que font les abeilles volant de fleur en fleur à la recherche de nourriture ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": true,
         "data": "Elles butinent"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Elles ruminent"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Elles dessinent"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Elles patinent"
       }],
@@ -84,15 +100,19 @@
       "question_name": "Quel phénomène important l'abeille permet-elle d'assurer en butinant ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Introgression"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Pollinisation"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Germination"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Sporulation"
       }],
@@ -102,15 +122,19 @@
       "question_name": "Laquelle de ces propositions n'est pas un produit dérivé de l'abeille ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Gelée"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Beurre"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Miel"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Cire"
       }],
@@ -120,34 +144,42 @@
       "question_name": "Quel est le seul individu femelle fertile au sein d'une colonie d'abeilles ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Ouvrière"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Guêpe"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Frelon"
       }, {
+        "id_answer": 4,
         "is_correct": true,
         "data": "Reine"
       }],
       "anecdote": "La reine, à l'abdomen plus allongé, est habituellement la mère de la plupart des abeilles de la ruche, sinon de la totalité."
     },
     {
-      "id":6,
+      "id":7,
       "question_name": "Laquelle de ces abeilles est une abeille reine ?",
       "type": 1,
       "answer": [{
+        "id_answer": 1,
         "is_correct": true,
         "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
       }],
@@ -168,15 +200,19 @@
         "question_name": "Comment appelle-t-on une personne qui élève des abeilles à miel ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Raniculteur"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Apiculteur"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Aviculteur"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Ostréiculteur"
         }],
@@ -186,15 +222,19 @@
         "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Cerne"
         }, {
+          "id_answer": 2,
           "is_correct": false,
           "data": "Bourgeon"
         }, {
+          "id_answer": 3,
           "is_correct": true,
           "data": "Nectar"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Loge"
         }],
@@ -204,15 +244,19 @@
         "question_name": "Avec quel autre insecte plus agressif confond-on souvent l'abeille ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Bourdon"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Guêpe"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Frelon"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Taon"
         }],
@@ -222,15 +266,19 @@
         "question_name": "Que font les abeilles volant de fleur en fleur à la recherche de nourriture ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": true,
           "data": "Elles butinent"
         }, {
+          "id_answer": 2,
           "is_correct": false,
           "data": "Elles ruminent"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Elles dessinent"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Elles patinent"
         }],
@@ -240,15 +288,19 @@
         "question_name": "Quel phénomène important l'abeille permet-elle d'assurer en butinant ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Introgression"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Pollinisation"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Germination"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Sporulation"
         }],
@@ -258,15 +310,19 @@
         "question_name": "Laquelle de ces propositions n'est pas un produit dérivé de l'abeille ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Gelée"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Beurre"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Miel"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Cire"
         }],
@@ -276,38 +332,23 @@
         "question_name": "Quel est le seul individu femelle fertile au sein d'une colonie d'abeilles ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Ouvrière"
         }, {
+          "id_answer": 2,
           "is_correct": false,
           "data": "Guêpe"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Frelon"
         }, {
+          "id_answer": 4,
           "is_correct": true,
           "data": "Reine"
         }],
         "anecdote": "La reine, à l'abdomen plus allongé, est habituellement la mère de la plupart des abeilles de la ruche, sinon de la totalité."
-      },
-      {
-        "id":6,
-        "question_name": "Laquelle de ces abeilles est une abeille reine ?",
-        "type": 1,
-        "answer": [{
-          "is_correct": true,
-          "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
-        }],
-        "anecdote": "La reine est la plus grande des abeilles"
       }
     ]
   },
@@ -326,15 +367,19 @@
         "question_name": "Comment appelle-t-on une personne qui élève des abeilles à miel ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Raniculteur"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Apiculteur"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Aviculteur"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Ostréiculteur"
         }],
@@ -344,15 +389,19 @@
         "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Cerne"
         }, {
+          "id_answer": 2,
           "is_correct": false,
           "data": "Bourgeon"
         }, {
+          "id_answer": 3,
           "is_correct": true,
           "data": "Nectar"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Loge"
         }],
@@ -362,15 +411,19 @@
         "question_name": "Avec quel autre insecte plus agressif confond-on souvent l'abeille ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Bourdon"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Guêpe"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Frelon"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Taon"
         }],
@@ -380,15 +433,19 @@
         "question_name": "Que font les abeilles volant de fleur en fleur à la recherche de nourriture ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": true,
           "data": "Elles butinent"
         }, {
+          "id_answer": 2,
           "is_correct": false,
           "data": "Elles ruminent"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Elles dessinent"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Elles patinent"
         }],
@@ -398,15 +455,19 @@
         "question_name": "Quel phénomène important l'abeille permet-elle d'assurer en butinant ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Introgression"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Pollinisation"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Germination"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Sporulation"
         }],
@@ -416,56 +477,23 @@
         "question_name": "Laquelle de ces propositions n'est pas un produit dérivé de l'abeille ?",
         "type": 0,
         "answer": [{
+          "id_answer": 1,
           "is_correct": false,
           "data": "Gelée"
         }, {
+          "id_answer": 2,
           "is_correct": true,
           "data": "Beurre"
         }, {
+          "id_answer": 3,
           "is_correct": false,
           "data": "Miel"
         }, {
+          "id_answer": 4,
           "is_correct": false,
           "data": "Cire"
         }],
         "anecdote": "Ces produits sont stockés dans des galeries pour les espèces solitaires, des assemblages complexes pour les espèces sociales."
-      }, {
-        "id":6,
-        "question_name": "Quel est le seul individu femelle fertile au sein d'une colonie d'abeilles ?",
-        "type": 0,
-        "answer": [{
-          "is_correct": false,
-          "data": "Ouvrière"
-        }, {
-          "is_correct": false,
-          "data": "Guêpe"
-        }, {
-          "is_correct": false,
-          "data": "Frelon"
-        }, {
-          "is_correct": true,
-          "data": "Reine"
-        }],
-        "anecdote": "La reine, à l'abdomen plus allongé, est habituellement la mère de la plupart des abeilles de la ruche, sinon de la totalité."
-      },
-      {
-        "id":6,
-        "question_name": "Laquelle de ces abeilles est une abeille reine ?",
-        "type": 1,
-        "answer": [{
-          "is_correct": true,
-          "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
-        }, {
-          "is_correct": false,
-          "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
-        }],
-        "anecdote": "La reine est la plus grande des abeilles"
       }
     ]
   }, {
@@ -482,15 +510,19 @@
       "question_name": "Comment appelle-t-on une personne qui élève des abeilles à miel ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Raniculteur"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Apiculteur"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Aviculteur"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Ostréiculteur"
       }],
@@ -500,15 +532,19 @@
       "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Cerne"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Bourgeon"
       }, {
+        "id_answer": 3,
         "is_correct": true,
         "data": "Nectar"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Loge"
       }],
@@ -518,15 +554,19 @@
       "question_name": "Avec quel autre insecte plus agressif confond-on souvent l'abeille ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Bourdon"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Guêpe"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Frelon"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Taon"
       }],
@@ -536,15 +576,19 @@
       "question_name": "Que font les abeilles volant de fleur en fleur à la recherche de nourriture ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": true,
         "data": "Elles butinent"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Elles ruminent"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Elles dessinent"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Elles patinent"
       }],
@@ -554,15 +598,19 @@
       "question_name": "Quel phénomène important l'abeille permet-elle d'assurer en butinant ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Introgression"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Pollinisation"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Germination"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Sporulation"
       }],
@@ -572,34 +620,64 @@
       "question_name": "Laquelle de ces propositions n'est pas un produit dérivé de l'abeille ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Gelée"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Beurre"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Miel"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Cire"
       }],
       "anecdote": "Ces produits sont stockés dans des galeries pour les espèces solitaires, des assemblages complexes pour les espèces sociales."
+    }, {
+      "id":6,
+      "question_name": "Quel est le seul individu femelle fertile au sein d'une colonie d'abeilles ?",
+      "type": 0,
+      "answer": [{
+        "id_answer": 1,
+        "is_correct": false,
+        "data": "Ouvrière"
+      }, {
+        "id_answer": 2,
+        "is_correct": false,
+        "data": "Guêpe"
+      }, {
+        "id_answer": 3,
+        "is_correct": false,
+        "data": "Frelon"
+      }, {
+        "id_answer": 4,
+        "is_correct": true,
+        "data": "Reine"
+      }],
+      "anecdote": "La reine, à l'abdomen plus allongé, est habituellement la mère de la plupart des abeilles de la ruche, sinon de la totalité."
     },
     {
-      "id":5,
+      "id":7,
       "question_name": "Laquelle de ces abeilles est une abeille reine ?",
       "type": 1,
       "answer": [{
+        "id_answer": 1,
         "is_correct": true,
         "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
       }],
@@ -620,15 +698,19 @@
       "question_name": "Comment appelle-t-on une personne qui élève des abeilles à miel ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Raniculteur"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Apiculteur"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Aviculteur"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Ostréiculteur"
       }],
@@ -638,15 +720,19 @@
       "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Cerne"
       }, {
+        "id_answer": 2,
         "is_correct": false,
         "data": "Bourgeon"
       }, {
+        "id_answer": 3,
         "is_correct": true,
         "data": "Nectar"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Loge"
       }],
@@ -656,113 +742,24 @@
       "question_name": "Avec quel autre insecte plus agressif confond-on souvent l'abeille ?",
       "type": 0,
       "answer": [{
+        "id_answer": 1,
         "is_correct": false,
         "data": "Bourdon"
       }, {
+        "id_answer": 2,
         "is_correct": true,
         "data": "Guêpe"
       }, {
+        "id_answer": 3,
         "is_correct": false,
         "data": "Frelon"
       }, {
+        "id_answer": 4,
         "is_correct": false,
         "data": "Taon"
       }],
       "anecdote": "La guêpe est un insecte ayant généralement un abdomen jaune rayé de noir et dont la femelle porte un dard venimeux."
-    }, {
-      "id":3,
-      "question_name": "Que font les abeilles volant de fleur en fleur à la recherche de nourriture ?",
-      "type": 0,
-      "answer": [{
-        "is_correct": true,
-        "data": "Elles butinent"
-      }, {
-        "is_correct": false,
-        "data": "Elles ruminent"
-      }, {
-        "is_correct": false,
-        "data": "Elles dessinent"
-      }, {
-        "is_correct": false,
-        "data": "Elles patinent"
-      }],
-      "anecdote": "L'abeille récolte ainsi dans la nature nectar, propolis, miellat et pollen. En butinant, l'abeille assure également la pollinisation."
-    }, {
-      "id":4,
-      "question_name": "Quel phénomène important l'abeille permet-elle d'assurer en butinant ?",
-      "type": 0,
-      "answer": [{
-        "is_correct": false,
-        "data": "Introgression"
-      }, {
-        "is_correct": true,
-        "data": "Pollinisation"
-      }, {
-        "is_correct": false,
-        "data": "Germination"
-      }, {
-        "is_correct": false,
-        "data": "Sporulation"
-      }],
-      "anecdote": "Les plantes contribuent quant à elle à l'alimentation des pollinisateurs en leur fournissant le pollen en excès ou nectar."
-    }, {
-      "id":5,
-      "question_name": "Laquelle de ces propositions n'est pas un produit dérivé de l'abeille ?",
-      "type": 0,
-      "answer": [{
-        "is_correct": false,
-        "data": "Gelée"
-      }, {
-        "is_correct": true,
-        "data": "Beurre"
-      }, {
-        "is_correct": false,
-        "data": "Miel"
-      }, {
-        "is_correct": false,
-        "data": "Cire"
-      }],
-      "anecdote": "Ces produits sont stockés dans des galeries pour les espèces solitaires, des assemblages complexes pour les espèces sociales."
-    }, {
-      "id":6,
-      "question_name": "Quel est le seul individu femelle fertile au sein d'une colonie d'abeilles ?",
-      "type": 0,
-      "answer": [{
-        "is_correct": false,
-        "data": "Ouvrière"
-      }, {
-        "is_correct": false,
-        "data": "Guêpe"
-      }, {
-        "is_correct": false,
-        "data": "Frelon"
-      }, {
-        "is_correct": true,
-        "data": "Reine"
-      }],
-      "anecdote": "La reine, à l'abdomen plus allongé, est habituellement la mère de la plupart des abeilles de la ruche, sinon de la totalité."
-    },
-    {
-      "id":6,
-      "question_name": "Laquelle de ces abeilles est une abeille reine ?",
-      "type": 1,
-      "answer": [{
-        "is_correct": true,
-        "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
-      }, {
-        "is_correct": false,
-        "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
-      }, {
-        "is_correct": false,
-        "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
-      }, {
-        "is_correct": false,
-        "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
-      }],
-      "anecdote": "La reine est la plus grande des abeilles"
     }
   ]
 }
-
-
 ]

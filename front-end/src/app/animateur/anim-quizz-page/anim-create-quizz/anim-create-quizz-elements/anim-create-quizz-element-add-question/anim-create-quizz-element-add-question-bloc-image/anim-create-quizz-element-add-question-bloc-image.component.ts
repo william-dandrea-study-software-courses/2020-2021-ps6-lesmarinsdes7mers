@@ -27,8 +27,8 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
 
   ngOnChanges(): void {
     if (this.numberOfAnswersListener) {
-      this.listOfAnswers.push({is_correct: false, data: ''});
-      console.log('====<<>>');
+      this.listOfAnswers.push({id_answer: 1, is_correct: false, data: ''});
+
     }
   }
 

@@ -9,6 +9,4 @@ userRouter.use(manageUser)
 
 
 
-
-
 export default userRouter

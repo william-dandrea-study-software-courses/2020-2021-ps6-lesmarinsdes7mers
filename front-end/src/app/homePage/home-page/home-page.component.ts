@@ -20,7 +20,8 @@ export class HomePageComponent implements OnInit {
 
   public userSelected: User;
 
-  constructor( public quizService: QuizService, public userService: UserService, private route: ActivatedRoute) {
+  // [ngStyle]="{'font-size.px': fontSize}"
+  constructor( public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService) {
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -30,12 +31,7 @@ export class HomePageComponent implements OnInit {
       this.userSelected = user;
     });
 
-    /*
-    this.route.params.subscribe(params => {
-      this.idUser = +params['idUser'];
-      console.log(this.idUser);
-    });
-     */
+    this.fontSize = this.userPrefsService.getFontSize();
 
   }
 

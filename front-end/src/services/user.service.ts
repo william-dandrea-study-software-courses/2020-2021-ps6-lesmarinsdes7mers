@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {USER_LIST} from "../mocks/user-list.mock";
 import {Quiz} from "../models/quiz.model";
+import UserPrefsService from "./userprefs.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class UserService {
   private allUserUrl = this.userUrl + '/all';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userPrefService: UserPrefsService) {
+
+
     this.retrieveUsers();
   }
 
@@ -30,11 +33,14 @@ export class UserService {
     });
   }
 
-  setSelectedUser(userId: number): void {
-    const urlUser = this.userUrl + '/' + String(userId);
-    this.http.get<any>(urlUser).subscribe((user) => {
-      this.userSelected$.next(user.data);
+  setSelectedUser(user: User): void {
+    const urlUser = this.userUrl + '/' + String(user.id);
+    this.http.get<any>(urlUser).subscribe((eachUser) => {
+      this.userSelected$.next(eachUser.data);
     });
+
+    this.userPrefService.setFontSize(user.font_size);
+    this.userPrefService.setHandicap(user.handicap);
   }
 
 

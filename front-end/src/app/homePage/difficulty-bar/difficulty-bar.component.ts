@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Difficulty} from "../../../models/quiz.model";
+import UserPrefsService from "../../../services/userprefs.service";
 
 @Component({
   selector: 'app-difficulty-bar',
@@ -17,14 +18,27 @@ export class DifficultyBarComponent implements OnInit {
 
   private reinitializeQuizz: boolean;
 
-  constructor() {
+  public fontSize: number;
+
+  constructor(private userPrefsService: UserPrefsService) {
+
+    /*
+    this.userPrefsService.fontSize$.subscribe((eachFontSize) => {
+      this.fontSize = eachFontSize;
+      console.log(this.fontSize);
+    });
+
+     */
+
+  }
+
+  ngOnInit(): void {
     this.numberOfClickOnEasy = 0;
     this.numberOfClickOnMedium = 0;
     this.numberOfClickOnHard = 0;
     this.numberOfClickOnExpert = 0;
-  }
 
-  ngOnInit(): void {
+    this.fontSize = Math.max(50, this.userPrefsService.getFontSize());
   }
 
 

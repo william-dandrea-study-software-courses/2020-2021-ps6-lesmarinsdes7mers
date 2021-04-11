@@ -9,25 +9,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0px 25px;
+  margin: 0px 20px;
+  flex-wrap: wrap;
+
+
 
 }
 
 .difficulty-bar-elements-button {
 
+  flex: 1;
   margin: 10px;
+  padding: 20px 20px;
 
   width: 350px;
-  height: 80px;
+  height: auto;
 
   font-weight: bold!important;
-  font-size: 30px!important;
 
-  border: none!important;
-  border-radius: 20px!important;
-  text-align: center!important;
-  box-shadow: grey!important;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 3px 3px 3px #e3e3e3;
 
+  min-width: 300px;
 
 
 }
