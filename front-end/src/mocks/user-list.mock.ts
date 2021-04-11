@@ -7,7 +7,8 @@ export const USER_LIST: User[] = [
         name: "Alexandre",
         font_size: 30,
         birthday: new Date("2000-03-27"),
-        handicap: "Aucun",
+        handicap: 0,
+        image_url: "",
         size_font_configs: [
             {
                 name: "ConfigOne",

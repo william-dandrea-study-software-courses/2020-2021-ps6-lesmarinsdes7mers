@@ -1,2 +1,55 @@
-<button (click)="logInGuestMode()">Mode invité</button>
-<button (click)="animateur()">Animateur</button>
+
+<div id="login-page-container-buttons">
+    <div>
+
+    </div>
+    <div id="login-page-buttons">
+        <button class="login-page-button" (click)="logInGuestMode()">Mode invité</button>
+        <button class="login-page-button" (click)="animateur()">Animateur</button>
+    </div>
+</div>
+
+
+<div id="login-page-presentation-users-illustration">
+
+    <div id="login-page-presentation-users">
+        <div id="login-page-presentation-write">
+            <div id="login-page-welcome-to">Bienvenue sur</div>
+            <div id="login-page-polyquiz">PolyQuiz</div>
+        </div>
+
+        <div id="login-page-users">
+            <div *ngFor="let us of userList">
+
+
+                <div>
+
+                </div>
+
+
+
+                <p>{{us.id}}</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <img id="login-page-illustration" src="../../../assets/images/illustration-login-page.png">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -45,6 +45,7 @@ import { AnimMainQuizListComponent } from './animateur/anim-mainpage/quiz-list/a
 import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/anim-user-list.component';
 import { UserAddEditComponent } from './animateur/anim-user-page/user-add-edit/user-add-edit.component';
 import {DatePipe} from "@angular/common";
+import LoginPageComponent from "./users/login-page/login-page.component";
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {DatePipe} from "@angular/common";
     QuizCorrectionComponent,
     QuizCorrectionListComponent,
     QuizCorrectionItemComponent,
+    LoginPageComponent,
 
     GuestConfigPageComponent,
     GuestConfigFontsizeComponent,

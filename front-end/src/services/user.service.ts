@@ -11,12 +11,12 @@ import {Quiz} from "../models/quiz.model";
 })
 export class UserService {
 
-  private users: User[] = USER_LIST;
-  public users$: BehaviorSubject<User[]> = new BehaviorSubject(this.users);
+  private users: User[] = [];
+  public users$: BehaviorSubject<User[]> = new BehaviorSubject([]);
+  public userSelected$: Subject<User> = new Subject();
 
   private userUrl = serverUrl + '/user';
   private allUserUrl = this.userUrl + '/all';
-
 
 
   constructor(private http: HttpClient) {
@@ -24,8 +24,10 @@ export class UserService {
   }
 
   retrieveUsers(): void {
-    this.http.get<User[]>(this.allUserUrl).subscribe((userList) => {
-      this.users = userList;
+    // console.log(this.allUserUrl);
+
+    this.http.get<any>(this.allUserUrl).subscribe((userList) => {
+      this.users = userList.data;
       this.users$.next(this.users);
     });
   }

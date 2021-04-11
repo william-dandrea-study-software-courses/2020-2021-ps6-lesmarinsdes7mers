@@ -5,11 +5,12 @@ export interface ConfigSizeFont {
 }
 
 export interface User {
-    id: number;
-    surname: string;
     name: string;
-    handicap: string;
+    surname: string;
+    id: number;
+    handicap: number;
     font_size: number;
     birthday: Date;
+    image_url: string;
     size_font_configs: ConfigSizeFont[];
 }

@@ -1,0 +1,52 @@
+
+.login-page-button {
+  background-color: black;
+  color: white;
+  height: 50px;
+  width: 300px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 5px 5px 5px #e3e3e3;
+  font-weight: 800;
+  font-size: 20px;
+  margin: 10px 20px;
+}
+
+#login-page-container-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#login-page-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#login-page-presentation-users {
+  margin: 2% 5%;
+}
+
+#login-page-presentation-users-illustration {
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
+  border: 1px solid black;
+}
+
+#login-page-illustration {
+
+
+}
+
+#login-page-welcome-to {
+  font-weight: 500;
+  font-size: 60px;
+  color: #7EBCA8;
+}
+
+#login-page-polyquiz {
+  font-weight: 900;
+  font-size: 100px;
+  color: black;
+}

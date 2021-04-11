@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { Router } from "@angular/router";
+import {User} from "../../../models/user.model";
+import {UserService} from "../../../services/user.service";
 
 
 @Component({
@@ -7,16 +9,26 @@ import { Router } from "@angular/router";
     styleUrls: [ './login-page.component.scss' ],
     selector: 'app-login-page'
 })
-export default class LoginPageComponent {
-    constructor(private router: Router) {
+export default class LoginPageComponent implements OnInit{
 
+    public userList: User[] = [];
+
+
+
+    constructor(private router: Router, private userService: UserService) {
+        this.userService.users$.subscribe((users) => {
+            this.userList = users;
+        });
     }
 
-    logInGuestMode() {
-        this.router.navigate(['guest', 'config', 'fontsize'])
+
+    ngOnInit(): void {}
+
+    logInGuestMode(): void {
+        this.router.navigate(['guest', 'config', 'fontsize']);
     }
 
-    animateur () {
+    animateur(): void {
         this.router.navigate(['animateur']);
     }
 }
