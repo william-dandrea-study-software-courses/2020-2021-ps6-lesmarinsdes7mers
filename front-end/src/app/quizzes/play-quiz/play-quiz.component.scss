@@ -5,5 +5,83 @@
   right: 0;
   left: 0;
 
-  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+
+
+}
+
+
+#play-quiz-header-div {
+  min-height: 5%;
+  width: 90%;
+  background-color: #d7d7d7;
+  border-radius: 0 0 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+#play-quiz-question {
+  font-weight: 900;
+  text-align: center;
+  width: 90%;
+}
+
+#play-quiz-answers {
+
+
+  width: 90%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  background-color: #F4F4F4;
+  border-radius: 10px;
+  padding: 20px 0px;
+
+  box-shadow: 3px 3px 3px #d2d2d2;
+
+
+}
+
+#play-quiz-answers-inner {
+  min-width: 45%;
+
+
+  text-align: center;
+
+  border-radius: 5px;
+  background-color: white;
+
+  margin: 10px;
+}
+
+#play-quiz-answers-inner-one-answer {
+  border-radius: 5px;
+}
+
+
+#play-quiz-validate-question {
+  width: 30%;
+  padding: 5px;
+  background-color: #73B7A0;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+
+#play-quiz-change-size-div {
+  height: 25%;
+  width: 90%;
 }

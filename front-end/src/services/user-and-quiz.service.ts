@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserAndQuizModel} from "../models/user-and-quiz.model";
+import {UserAndQuizModel, UserAnswer} from "../models/user-and-quiz.model";
 import {BehaviorSubject, Subject} from "rxjs";
 import {serverUrl} from "../configs/server.config";
 import {HttpClient} from "@angular/common/http";
@@ -15,7 +15,6 @@ export class UserAndQuizService {
 
   private oneUserQuizzes: UserAndQuizModel;
   public oneUserQuizzes$: Subject<UserAndQuizModel> = new Subject();
-
 
 
   private userUrl = serverUrl + '/userandquiz';
@@ -34,6 +33,11 @@ export class UserAndQuizService {
 
   setOneUserQuizzes(user: User): void {
     this.oneUserQuizzes = this.userAndQuizs.find(each => each.id === user.id);
+    this.oneUserQuizzes$.next(this.oneUserQuizzes);
+  }
+
+  setAnswersForOneUserQuizzes(idQuiz: number, scoreUser: number, answers: UserAnswer[]): void {
+    this.oneUserQuizzes.maded_quizzes.push({id_quiz: idQuiz, score_user: scoreUser, user_answers: answers});
     this.oneUserQuizzes$.next(this.oneUserQuizzes);
   }
 

@@ -3,30 +3,32 @@
 
 <div id="play-quiz-main-div">
 
-    <div id="play-quiz-header-div">
+    <div id="play-quiz-header-div" [ngStyle]="{'font-size.px': fontSizeMain}">
         {{currentQuestion + 1}} / {{inNumberOfQuestionsInQuiz()}}
     </div>
 
+    <div id="play-quiz-question" [ngStyle]="{'font-size.px': fontSizeMain}">
+        {{inQuestionName()}}
+    </div>
 
-    <div id="play-quiz-question-and-answers">
+    <div id="play-quiz-answers">
 
-        <div id="play-quiz-question-inner">
-            {{inQuestionName()}}
-        </div>
 
-        <div id="play-quiz-answers-inner" *ngFor="let eachAnswer of inQuestionAnswers()">
-            <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)">
-                {{eachAnswer.id_answer}}
+        <div id="play-quiz-answers-inner" *ngFor="let eachAnswer of inQuestionAnswers()" >
+            <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'background-color': getColorForSelectedItems(eachAnswer)}">
+
                 {{eachAnswer.data}}
-                {{eachAnswer.is_correct}}
+
             </div>
         </div>
 
     </div>
 
-    <div id="play-quiz-validate-question" (click)="goToNextQuestion()">
+    <div id="play-quiz-validate-question" (click)="goToNextQuestion()" [ngStyle]="{'font-size.px': fontSizeMain}">
         Valider
     </div>
 
+
+    <app-change-font-size id="play-quiz-change-size-div" ></app-change-font-size>
 
 </div>
