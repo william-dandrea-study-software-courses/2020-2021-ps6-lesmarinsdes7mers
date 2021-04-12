@@ -524,6 +524,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
 /* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
+/* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
+
 
 
 
@@ -635,8 +637,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
-/* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
-
 
 
 
@@ -662,7 +662,7 @@ gettersUserAndQuizRouter.get('/quiz/:id', (req, res, next) => {
   if (!req.params.id) throw new IdParameterNotFound();
   req.params.id = parseInt(req.params.id);
   if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_4__["default"]();
-  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u.answers.some(quiz => quiz.id_question === id));
+  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u.answer.some(quiz => quiz.id_question === id));
   if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
   new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
   next();
@@ -683,11 +683,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getters */ "./src/API/UserAndQuiz/getters.js");
+/* harmony import */ var _manage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./manage */ "./src/API/UserAndQuiz/manage.js");
+
 
 
 const userAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
 userAndQuizRouter.use(_getters__WEBPACK_IMPORTED_MODULE_1__["default"]);
+userAndQuizRouter.use(_manage__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (userAndQuizRouter);
+
+/***/ }),
+
+/***/ "./src/API/UserAndQuiz/manage.js":
+/*!***************************************!*\
+  !*** ./src/API/UserAndQuiz/manage.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
+/* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
+/* harmony import */ var _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../BasicErrors/IdParameterNotFound */ "./src/API/BasicErrors/IdParameterNotFound.js");
+
+
+
+
+const manageUserAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+manageUserAndQuizRouter.post('/', (req, res) => {
+  _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].add(req.body);
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("UserAndQuiz added successfully !").send(res);
+});
+manageUserAndQuizRouter.put('/:id', (req, res) => {
+  if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  req.body.id = req.params.id; //userAndQuizModel.update_second(req.params.id, req.body)
+
+  _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].update(req.body);
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("UserAndQuiz udpated successfully").send(res);
+});
+manageUserAndQuizRouter.delete('/:id', (req, res) => {
+  if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].delete(req.params.id);
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("UserAndQuiz deleted successfully").send(res);
+});
+/* harmony default export */ __webpack_exports__["default"] = (manageUserAndQuizRouter);
 
 /***/ }),
 
@@ -712,7 +754,7 @@ __webpack_require__.r(__webpack_exports__);
 const apiRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
 apiRouter.use('/quizz', _Quizz__WEBPACK_IMPORTED_MODULE_1__["default"]);
 apiRouter.use('/user', _User__WEBPACK_IMPORTED_MODULE_2__["default"]);
-apiRouter.use('/userAndQuiz', _UserAndQuiz__WEBPACK_IMPORTED_MODULE_3__["default"]);
+apiRouter.use('/userandquiz', _UserAndQuiz__WEBPACK_IMPORTED_MODULE_3__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (apiRouter);
 
 /***/ }),
@@ -755,6 +797,8 @@ class BaseModel {
   constructor(name, model) {
     this.name = name;
     this.filename = path__WEBPACK_IMPORTED_MODULE_2___default.a.resolve(`Database/${name}.dbb.json`);
+    console.log(this.name);
+    console.log(this.filename);
     this.model = model;
     this.content = [];
     if (!fs__WEBPACK_IMPORTED_MODULE_1___default.a.existsSync(this.filename)) fs__WEBPACK_IMPORTED_MODULE_1___default.a.writeFileSync(this.filename, '[]');
@@ -769,7 +813,9 @@ class BaseModel {
     if (!obj.id) obj.id = this.content.map(o => o.id).reduce((pv, cv) => pv > cv ? pv : cv, 0) + 1;
     const result = this.model.validate(obj);
     if (result.error) throw new _Errors_InvalidScheme__WEBPACK_IMPORTED_MODULE_5__["default"](result.error);
+    console.log(this.content.find(d => parseInt(d.id) === parseInt(result.value.id)));
     if (this.content.find(d => d.id === result.value.id)) throw new _Errors_IdAlreadyUsed__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    console.log("bonjour");
     this.content.push(result.value);
     this.save();
   }
@@ -782,7 +828,7 @@ class BaseModel {
     this.load();
     const result = this.model.validate(obj);
     if (result.error) throw new _Errors_InvalidScheme__WEBPACK_IMPORTED_MODULE_5__["default"](result.error);
-    const i = this.content.findIndex(o => o.id === obj.id);
+    const i = this.content.findIndex(o => parseInt(o.id) === parseInt(obj.id));
     if (i === -1) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
     this.content[i] = obj;
     this.save();
@@ -1114,7 +1160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hapi_joi__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const userAndQuizModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('quizz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+const userAndQuizModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('userAndQuiz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
   id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
   id_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
   maded_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({

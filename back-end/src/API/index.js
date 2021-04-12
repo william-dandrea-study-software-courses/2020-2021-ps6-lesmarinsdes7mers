@@ -5,8 +5,9 @@ import userAndQuizRouter from './UserAndQuiz'
 
 const apiRouter = Router()
 
+
 apiRouter.use('/quizz', quizzRouter)
 apiRouter.use('/user', userRouter)
-apiRouter.use('/userAndQuiz', userAndQuizRouter)
+apiRouter.use('/userandquiz', userAndQuizRouter)
 
 export default apiRouter

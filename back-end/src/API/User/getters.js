@@ -4,14 +4,16 @@ import FileNotFound from '../../Errors/FileNotFound'
 import HttpMessage from '../../Errors/HttpMessage'
 import userModel from '../../Models/user.model'
 import IdMustBeANumber from '../BasicErrors/IdMustBeANumber'
+import userAndQuizModel from "../../Models/userAndQuizModel";
 
 const gettersUsersRouter = Router()
 
 gettersUsersRouter.get('/all', ((req, res) => {
 
-    const result = userModel.getAll(u => u != null)
+    const result = userModel.getAll(u => u != null);
     if(!result) throw new FileNotFound()
     new HttpMessage(result).send(res)
+
 
 }));
 

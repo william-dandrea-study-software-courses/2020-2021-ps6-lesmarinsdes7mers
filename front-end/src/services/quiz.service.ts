@@ -9,19 +9,10 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
 })
 export class QuizService {
 
-  /*
-   The list of quiz.
-   The list is retrieved from the mock.
-   */
   private quizzes: Quiz[] = [];
-  // private quizzes: Quiz[] = QUIZ_LIST;
+  private quizSelected: Quiz;
 
-  /*
-   Observable which contains the list of the quiz.
-   Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-   */
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
-
   public quizSelected$: Subject<Quiz> = new Subject();
 
   private quizUrl = serverUrl + '/quizz';
@@ -40,13 +31,18 @@ export class QuizService {
     });
   }
 
+  getQuizSelected(): Quiz {
+    return this.quizSelected;
+  }
+
   addQuiz(quiz: Quiz): void {
     this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
   }
 
   setSelectedQuiz(quizId: number): void {
-    let quiz = this.quizzes.find(value => value.id === quizId);
-    this.quizSelected$.next(quiz);
+
+    this.quizSelected = this.quizzes.find(value => value.id === quizId);
+    this.quizSelected$.next(this.quizSelected);
   }
 
 

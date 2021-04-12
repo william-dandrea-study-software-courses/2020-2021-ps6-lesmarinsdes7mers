@@ -5,6 +5,8 @@ import {Difficulty, Quiz} from "../../../models/quiz.model";
 import {QuizService} from "../../../services/quiz.service";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user.model";
+import {UserAndQuizService} from "../../../services/user-and-quiz.service";
+import {UserAndQuizModel} from "../../../models/user-and-quiz.model";
 
 @Component({
   selector: 'app-home-page',
@@ -20,9 +22,11 @@ export class HomePageComponent implements OnInit {
 
   public userSelected: User;
 
+  public currentUserAndQuiz: UserAndQuizModel;
+
 
   // [ngStyle]="{'font-size.px': fontSize}"
-  constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService) {
+  constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -36,6 +40,11 @@ export class HomePageComponent implements OnInit {
 
     this.userPrefsService.fontSize$.subscribe();
     this.fontSize = this.userPrefsService.getFontSize();
+
+    this.userAndQuizService.oneUserQuizzes$.subscribe();
+    this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
+    console.log(this.currentUserAndQuiz);
 
   }
 

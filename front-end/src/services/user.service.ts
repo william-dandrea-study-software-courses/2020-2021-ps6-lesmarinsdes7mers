@@ -6,6 +6,7 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {USER_LIST} from "../mocks/user-list.mock";
 import {Quiz} from "../models/quiz.model";
 import UserPrefsService from "./userprefs.service";
+import {UserAndQuizService} from "./user-and-quiz.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,18 @@ export class UserService {
 
   private users: User[] = [];
   public users$: BehaviorSubject<User[]> = new BehaviorSubject([]);
+  private userSelected: User;
   public userSelected$: Subject<User> = new Subject();
 
   private userUrl = serverUrl + '/user';
   private allUserUrl = this.userUrl + '/all';
 
 
-  constructor(private http: HttpClient, private userPrefService: UserPrefsService) {
+  constructor(private http: HttpClient, private userPrefService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+
+    this.userAndQuizService.userAndQuizs$.subscribe();
+    this.userAndQuizService.oneUserQuizzes$.subscribe();
+
 
 
     this.retrieveUsers();
@@ -36,13 +42,20 @@ export class UserService {
   setSelectedUser(user: User): void {
     const urlUser = this.userUrl + '/' + String(user.id);
     this.http.get<any>(urlUser).subscribe((eachUser) => {
+      this.userSelected = eachUser.data;
       this.userSelected$.next(eachUser.data);
     });
+
+
+
 
     this.userPrefService.setFontSize(user.font_size);
     this.userPrefService.setHandicap(user.handicap);
   }
 
+  getUserSelected(): User {
+    return this.userSelected;
+  }
 
   addUser(user: User): void {
     this.users.push(user);

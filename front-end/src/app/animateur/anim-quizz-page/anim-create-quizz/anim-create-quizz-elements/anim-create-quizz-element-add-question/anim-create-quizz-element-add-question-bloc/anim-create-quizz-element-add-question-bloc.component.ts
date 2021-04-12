@@ -49,20 +49,20 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   upQuestion(): void {
     console.log('up');
     this.upTheQuestion.emit(this.questionNumber);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
+    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
 
   }
 
   downQuestion(): void {
     console.log('down');
     this.downTheQuestion.emit(this.questionNumber);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
+    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
 
   }
 
   deleteThisQuestion(): void {
     console.log('delete this question');
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
+    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
     this.deleteQuestion.emit(this.questionNumber);
 
   }
@@ -75,7 +75,7 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   editQuestionName(event: any): void {
     this.questionName = event.target.value;
     console.log('QUESTION INFO : EDIT NAME : ' + event.target.value);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
+    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
   }
 
   /**
@@ -87,7 +87,7 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
       case 0: this.questionType = QuestionType.TEXT; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : textQuestion'); break;
       case 1: this.questionType = QuestionType.IMAGE; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : imgQuestion'); break;
     }
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answers: this.questionAnswers});
+    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
   }
 
   editListOfAnswer(event: Answer[]): void {

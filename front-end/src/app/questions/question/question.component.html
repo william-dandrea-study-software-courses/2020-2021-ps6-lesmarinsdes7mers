@@ -3,7 +3,7 @@
         <i class="fab fa-leanpub"></i>
         {{question.type}}
     </h2>
-    <div class="answer" *ngFor="let answer of question.answers; let i=index">
+    <div class="answer" *ngFor="let answer of question.answer; let i=index">
         {{i}} - {{answer.data}} <ng-container *ngIf="answer.is_correct"><i class="far fa-check-square"></i></ng-container> <br>
     </div>
     <button class="button-card" (click)="delete()">Delete</button>

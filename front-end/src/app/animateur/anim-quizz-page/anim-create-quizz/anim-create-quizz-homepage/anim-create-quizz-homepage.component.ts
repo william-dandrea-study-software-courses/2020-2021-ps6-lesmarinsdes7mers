@@ -21,7 +21,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
 
   constructor(private createQuizService: CreateQuizzService) {
     this.numberOfQuestions = 1;
-    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answers: []});
+    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
   }
 
   /**
@@ -76,7 +76,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
 
   onAddAnQuestion(): void {
     this.numberOfQuestions++;
-    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answers: []});
+    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
   }
 
   onUpQuestion(event: number): void {
@@ -88,8 +88,8 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   }
 
   onEditListAnswer(event: Answer[], question: Question): void {
-    question.answers = event;
-    console.log('HOMEPAGE : UPDATE ANSWERS FOR QUESTION : ' + question.answers);
+    question.answer = event;
+    console.log('HOMEPAGE : UPDATE ANSWERS FOR QUESTION : ' + question.answer);
   }
 
 

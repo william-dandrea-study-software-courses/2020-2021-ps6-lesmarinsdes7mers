@@ -2,7 +2,7 @@ import BaseModel from "../Database/BaseModel";
 import joi from '@hapi/joi'
 
 
-const userAndQuizModel = new BaseModel('quizz', joi.object({
+const userAndQuizModel = new BaseModel('userAndQuiz', joi.object({
     id: joi.number().integer().min(0).required(),
     id_user: joi.number().integer().min(0).required(),
     maded_quizzes: joi.array().items(joi.object({

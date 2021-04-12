@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import UserPrefsService from "../../../services/userprefs.service";
+import {QuizService} from "../../../services/quiz.service";
+import {Answer, Quiz} from "../../../models/quiz.model";
+import {UserAndQuizService} from "../../../services/user-and-quiz.service";
+import {UserAndQuizModel} from "../../../models/user-and-quiz.model";
+import {UserService} from "../../../services/user.service";
+import {User} from "../../../models/user.model";
 
 
-import {Question, Quiz} from "src/models/quiz.model";
-import { FillQuizService } from "src/services/fill-quiz.service";
-import { QuizService } from "src/services/quiz.service";
-import UserPrefsService from "src/services/userprefs.service";
 
 @Component({
     selector: 'app-play-quiz',
@@ -14,102 +16,99 @@ import UserPrefsService from "src/services/userprefs.service";
 })
 export class PlayQuizComponent implements OnInit {
 
-    private static OFFSET: number = 5;
-    private static MAX_FONTSIZE: number = 70;
-    private static MIN_FONTSIZE: number = 10;
+    public fontSizeMain: number;
+    public fontSizeSecond: number;
 
-    question: Question;
-    quiz: Quiz;
+    public currentQuiz: Quiz;
+    public currentQuestion: number;
 
-    nbQuestion: number = 1;
-    answerChoosen: number = 0;
+    public currentUser: User;
 
-    fontsize: number;
-    answerDisplayStyle: string = "block";
+    public currentUserAndQuiz: UserAndQuizModel;
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private quizService: QuizService,
-        private fillQuizService: FillQuizService,
-        private userPrefsService: UserPrefsService) {
-        this.fontsize = Math.min(Math.max(userPrefsService.getFontSize(), PlayQuizComponent.MIN_FONTSIZE), PlayQuizComponent.MAX_FONTSIZE);
+    constructor(private userPrefsService: UserPrefsService, private quizService: QuizService, private userAndQuizService: UserAndQuizService, private userService: UserService) {
 
-        this.updateStyle();
+        // === FONT SIZE
+        this.userPrefsService.fontSize$.subscribe();
+        // this.fontSizeMain = userPrefsService.getFontSize();
+        // this.fontSizeSecond = userPrefsService.getFontSize() - 10;
+        this.fontSizeMain = 70;
+        this.fontSizeSecond = 60;
+        console.log(this.fontSizeMain);
+        console.log(this.fontSizeSecond);
+
+        // === QUIZ
+        this.quizService.quizSelected$.subscribe();
+        this.currentQuiz = this.quizService.getQuizSelected();
+        console.log(this.currentQuiz);
+
+        // === QUESTION
+        this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
+
+        // === USER
+        this.userService.userSelected$.subscribe();
+        this.currentUser = this.userService.getUserSelected();
+
+        // === USER AND QUIZ
+        this.userAndQuizService.userAndQuizs$.subscribe();
+        this.userAndQuizService.oneUserQuizzes$.subscribe();
+        this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
+
+
     }
 
-    ngOnInit() {
-        this.fillQuizService.clearSelection();
-        this.loadData();
+    ngOnInit(): void {
+
     }
 
-    updateStyle():void {
-        if (this.fontsize > 30) {
-            this.answerDisplayStyle = "inline-block";
-        }
-        else {
-            this.answerDisplayStyle = "block";
-        }
-    }
 
-    loadData(): void {
-        const quizId = +this.route.snapshot.paramMap.get('id-quiz');
-        const questionId = 0;
 
-        this.quizService.quizzes$.subscribe(quiz => {
-            this.quiz = quiz.find(q => quizId === q.id);
-            this.question = this.quiz.questions[questionId];
-        });
 
-        this.nbQuestion = questionId + 1;
-        this.fillQuizService.setQuizId(quizId);
-    }
+    goToNextQuestion(): void {
 
-    increaseFontsize(): void {
-        if (this.fontsize >= PlayQuizComponent.MAX_FONTSIZE)
-            return;
+        console.log(this.currentUser);
+        console.log(this.currentUserAndQuiz);
 
-        this.fontsize += PlayQuizComponent.OFFSET;
-        this.userPrefsService.setFontSize(this.fontsize);
-
-        this.updateStyle();
-    }
-
-    decreaseFontsize(): void {
-        if (this.fontsize <= PlayQuizComponent.MIN_FONTSIZE)
-            return;
-
-        this.fontsize -= PlayQuizComponent.OFFSET;
-        this.userPrefsService.setFontSize(this.fontsize);
-
-        this.updateStyle();            
-    }
-
-    chooseQuestion(id: number): void {
-        if (id < 1 || id > 4) {
-            this.answerChoosen = 0;
-        }
-        else {
-            this.answerChoosen = id;
+        if (this.currentQuestion < this.inNumberOfQuestionsInQuiz() - 1) {
+            this.currentQuestion += 1;
+        } else {
+            console.log('fini');
         }
     }
 
-    validate(): void {
-        //console.log("selected answer: ", this.question.answers[this.answerChoosen - 1]);
-        this.fillQuizService.addAnswerChoice(this.question.answers[this.answerChoosen - 1]);
+    selectedAnswer(answer: Answer): void {
 
-        if (this.nbQuestion >= this.quiz.questions.length) {
-            // go to next
-            this.router.navigate(['/quiz-result']);
-        }
-        else {
-            if (this.answerChoosen < 1 || this.answerChoosen > this.question.answers.length)
-                return;
 
-            this.question = this.quiz.questions[this.nbQuestion];
-            this.nbQuestion++;
 
-            this.answerChoosen = 0;
-        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    inNumberOfQuestionsInQuiz(): number {
+        return this.currentQuiz.questions.length;
+    }
+
+    inQuestionName(): string {
+        return this.currentQuiz.questions[this.currentQuestion].question_name;
+    }
+
+    inQuestionAnswers(): Answer[] {
+        return this.currentQuiz.questions[this.currentQuestion].answer;
+    }
+
+
+
+
 }

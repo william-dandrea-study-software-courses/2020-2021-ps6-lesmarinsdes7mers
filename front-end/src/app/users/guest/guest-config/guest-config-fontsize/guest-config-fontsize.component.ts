@@ -13,10 +13,9 @@ export default class GuestConfigFontsizeComponent implements OnInit  {
 
     constructor(private userprefsService: UserPrefsService, private router: Router)  {
 
+        this.userprefsService.fontSize$.subscribe();
+
     }
-
-
-
 
     increaseSize(): void  {
         this.fontsize += this.fontsize < 70 ? 10 : 0;

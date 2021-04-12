@@ -4,7 +4,7 @@
     <div class="question">
         <div class="question-name">{{question.question_name}}</div>
         <div class="answers">
-            <div *ngFor="let answerQ of question.answers">
+            <div *ngFor="let answerQ of question.answer">
                 <div class="answer" [style.background-color]="answerQ.is_correct ? 'green' : (answer.data == answerQ.data ? 'red' : 'white')">{{answerQ.data}}</div>
             </div>
         </div>

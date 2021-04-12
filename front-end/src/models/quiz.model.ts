@@ -43,7 +43,7 @@ export interface Question {
     id: string;
     question_name: string;
     type: QuestionType;
-    answers: Answer[];
+    answer: Answer[];
 }
 
 
