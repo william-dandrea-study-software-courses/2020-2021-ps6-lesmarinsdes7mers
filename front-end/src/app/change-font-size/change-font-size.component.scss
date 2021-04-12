@@ -10,18 +10,31 @@ button {
   height: 100%;
 }
 
-.change_font_size_bar {
+#change_font_size_bar {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
   background-color: #f4f4f4;
   border-radius: 10px 10px 0 0;
   height: 100%;
   width: 100%;
-  text-align: center;
+
+  box-shadow: 3px -3px  3px #cbcbcb;
+
+
 }
 
 .bar_title {
   flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
   //margin: 5px 0 5px 0;
   //border-bottom: solid 1px black;
 }
@@ -48,3 +61,94 @@ button {
   border-color: unset;
 }
 
+
+#change-font-size-bar-bar-title-divider-bar {
+  width: 60%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: black;
+  box-shadow: 3px 3px 3px #c6c6c6;
+
+}
+
+#change-font-size-bar-bar-title-divider-bar-text {
+  margin: 5px;
+}
+
+
+
+
+#change-font-size-second-line {
+
+  width: 60%;
+  font-size: 40px;
+  font-weight: 800;
+
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #cbcbcb;
+}
+
+
+
+#app-guest-config-controls {
+  height: 90px;
+  width: 60%;
+  border: 5px solid black;
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  border-radius: 15px;
+
+  margin: 20px 0;
+}
+
+#app-guest-config-controls-div-one {
+
+  background-color: black;
+  border-radius: 10px 0 0 10px;
+  width: 25%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#app-guest-config-controls-div-two {
+  margin: auto;
+  height: auto;
+  font-size: 60px;
+
+}
+
+#app-guest-config-controls-div-three {
+
+  background-color: black;
+  border-radius: 0 10px 10px 0;
+  width: 25%;
+  height: auto;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#app-guest-config-font-size-left-arrow {
+  color: white;
+  transform: rotate(180deg);
+  font-size: 100px;
+
+}
+
+#app-guest-config-font-size-right-arrow {
+  color: white;
+  font-size: 100px;
+
+}

@@ -75,9 +75,9 @@ import LoginPageComponent from "./users/login-page/login-page.component";
 
     PlayQuizComponent,
 
-      QuizResultComponent,
+    QuizResultComponent,
     QuizCorrectionAnswerComponent,
-      QuizIntroComponent,
+    QuizIntroComponent,
     ChangeFontSizeComponent,
 
     QuizCorrectionAnswerComponent,

@@ -7,13 +7,15 @@ import UserPrefsService from "src/services/userprefs.service";
     styleUrls: ['./guest-config-fontsize.component.scss'],
     selector: 'app-guest-config-fontsize'
 })
-export default class GuestConfigFontsizeComponent implements OnInit {
+export default class GuestConfigFontsizeComponent implements OnInit  {
 
     public fontsize: number = 60;
 
     constructor(private userprefsService: UserPrefsService, private router: Router)  {
-        
+
     }
+
+
 
 
     increaseSize(): void  {

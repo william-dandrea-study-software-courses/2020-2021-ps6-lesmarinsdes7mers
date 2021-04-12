@@ -1,14 +1,32 @@
-<div class="change_font_size_bar">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div id="change_font_size_bar">
+
     <div class="bar_title">
-        <div style="width: 100%; border-bottom: solid 1px black;">
-            Taille de caractères
+        <div id="change-font-size-bar-bar-title-divider-bar-text" [ngStyle]="{ 'font-size.px': fontSizeMain }">
+            Taille d'écriture
         </div>
+
+        <div id="change-font-size-bar-bar-title-divider-bar"></div>
     </div>
-    <div class="change_font_size">
-        <button (mousedown)="decreaseSizeFont()" (mouseup)="stopTimer()"><</button>
-        <span>{{preSizeFont}}</span>
-        <button (mousedown)="increaseSizeFont()" (mouseup)="stopTimer()">></button>
-        <span [style.font-size.px]="preSizeFont">Aperçu</span>
-        <button class="register_font_size right-answer" (click)="registerFontSize()">Enregistrer</button>
+
+
+
+
+    <div id="app-guest-config-controls">
+
+        <div id="app-guest-config-controls-div-one" (click)="decreaseSizeFont()">
+            <span id="app-guest-config-font-size-left-arrow" class="material-icons">double_arrow</span>
+        </div>
+
+        <div id="app-guest-config-controls-div-two" [ngStyle]="{ 'font-size.px': fontSizeMain }">Aperçu</div>
+
+        <div id="app-guest-config-controls-div-three" (click)="increaseSizeFont()">
+            <span id="app-guest-config-font-size-right-arrow" class="material-icons">double_arrow</span>
+        </div>
+
     </div>
+
+
+
 </div>

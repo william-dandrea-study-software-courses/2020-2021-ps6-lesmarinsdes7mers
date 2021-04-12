@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import UserPrefsService from "../../services/userprefs.service";
 
 @Component({
@@ -8,47 +8,54 @@ import UserPrefsService from "../../services/userprefs.service";
 })
 export class ChangeFontSizeComponent implements OnInit {
 
-  sizeFont: number;
-  preSizeFont: number;
-  interval;
+  public fontSizeMain: number;
+  public fontSizeSecond: number;
+
+
 
   constructor(private userPref: UserPrefsService) {
-    userPref.fontSize$.subscribe(value => this.sizeFont = value);
+    this.fontSizeMain =  Math.max(50, this.userPref.getFontSize());
+    this.fontSizeSecond = Math.max(30, this.userPref.getFontSize() - 10);
   }
 
   ngOnInit(): void {
-    this.sizeFont = this.userPref.getFontSize();
-    this.preSizeFont = this.sizeFont;
+    this.fontSizeMain = this.userPref.getFontSize();
+
   }
 
-  registerFontSize(): void {
-    this.userPref.setFontSize(this.preSizeFont);
-  }
+
+
 
   increaseSizeFont(): void {
-    this.preSizeFont++;
-    this.startTimer(false);
+    if (this.fontSizeMain < 70) {
+      this.userPref.setFontSize(this.fontSizeMain += 5);
+    }
+
+    // this.startTimer(false);
   }
 
   decreaseSizeFont(): void {
-    if (this.preSizeFont > 1) {
-      this.preSizeFont--;
-      this.startTimer(true);
+    if (this.fontSizeMain > 20) {
+      this.userPref.setFontSize(this.fontSizeMain -= 5);
+      // this.startTimer(true);
     }
   }
 
+  /*
   startTimer(neg: boolean): void {
     this.interval = setInterval(() => {
       if (neg)
-        this.preSizeFont -= 5;
+        this.fontSizeMain -= 5;
       else
-        this.preSizeFont += 5;
+        this.fontSizeMain += 5;
     }, 1000);
   }
 
   stopTimer(): void {
     clearInterval(this.interval);
   }
+
+   */
 
 
 

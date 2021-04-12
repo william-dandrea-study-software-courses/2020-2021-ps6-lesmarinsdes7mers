@@ -20,8 +20,9 @@ export class HomePageComponent implements OnInit {
 
   public userSelected: User;
 
+
   // [ngStyle]="{'font-size.px': fontSize}"
-  constructor( public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService) {
+  constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService) {
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -31,6 +32,9 @@ export class HomePageComponent implements OnInit {
       this.userSelected = user;
     });
 
+    this.quizService.quizSelected$.subscribe();
+
+    this.userPrefsService.fontSize$.subscribe();
     this.fontSize = this.userPrefsService.getFontSize();
 
   }
@@ -74,6 +78,15 @@ export class HomePageComponent implements OnInit {
 
   filterDifficultyExpert(): Quiz[] {
     return this.quizList.filter((quiz) => quiz.difficulty === Difficulty.EXPERT);
+  }
+
+
+  // routerLink="/quiz-intro/{{idQuiz}}
+  onSelectedQuiz(event: Quiz): void {
+    this.quizService.setSelectedQuiz(+event.id);
+
+
+    this.router.navigate(['/quiz-intro', event.id]);
   }
 
 }

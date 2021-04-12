@@ -1,5 +1,6 @@
 <div *ngIf="userSelected != null">
 
+    {{userSelected.name}}
     <div>Bonjour</div>
 </div>
 
@@ -12,7 +13,7 @@
 
 
 <div *ngFor="let quiz of quizList">
-    <app-question-presenter-bar
+    <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
             [titleQuiz]="quiz.name"
             [numberOfQuestions]="quiz.questions.length"
             [difficulty]="quiz.difficulty"

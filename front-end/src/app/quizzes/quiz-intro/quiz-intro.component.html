@@ -1,11 +1,11 @@
+<!--
+
 <div [style.font-size.px]="userPref.getFontSize()" class="container">
     <div class="section title">
         <div class="title-text">Thème: {{quiz.name}}</div>
         <span class="difficulty-span" [ngClass]="getDifficultyClass(quiz.difficulty)">{{difficultyToText(quiz.difficulty)}}</span>
     </div>
-    <!--<div class="section difficulty">
-        <span [className]="getDifficultyColorClass()">{{difficulty(quiz.difficulty).toUpperCase()}}</span>
-    </div>-->
+
     <div  class="section phrase">
         C'est à vous de jouer
     </div>
@@ -17,3 +17,31 @@
         <app-change-font-size></app-change-font-size>
     </div>
 </div>
+
+-->
+
+<div id="quiz-intro-main-container">
+
+    <div id="quiz-intro-description-quiz">
+
+        <div id="quiz-intro-description-quiz-theme" [ngStyle]="{'font-size.px': fontSizeMain ? fontSizeMain : '60'}">{{quizSelected.name}}</div>
+        <div id="quiz-intro-description-quiz-bar"></div>
+        <div id="quiz-intro-description-quiz-difficulty" class="{{generateNameDifficultyClass()}}" [ngStyle]="{'font-size.px': fontSizeSecond ? fontSizeMain : '60'}">{{difficultyToText(quizSelected.difficulty) | uppercase }}</div>
+
+    </div>
+
+    <div id="quiz-intro-text-one">C'est à vous de jouer !</div>
+
+    <div id="quiz-intro-buttons" >
+        <button (click)="homepage()" id="quiz-intro-buttons-back" [ngStyle]="{'font-size.px': fontSizeSecond ? fontSizeSecond : '50'}" >Retour</button>
+        <button (click)="startQuiz()" id="quiz-intro-buttons-next"[ngStyle]="{'font-size.px': fontSizeSecond ? fontSizeSecond : '50'}" >C'est parti !</button>
+    </div>
+
+    <div id="quiz-intro-change-font-size-footer">
+        <app-change-font-size></app-change-font-size>
+    </div>
+
+
+</div>
+
+
