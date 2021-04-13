@@ -22,6 +22,7 @@ export class UserAndQuizService {
 
   constructor(private http: HttpClient) {
     this.retrieveAllUserAndQuiz();
+    console.log("[userAndQuizService] stats: ", this.userAndQuizs);
   }
 
   retrieveAllUserAndQuiz(): void {

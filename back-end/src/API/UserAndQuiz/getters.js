@@ -7,12 +7,15 @@ import IdMustBeANumber from "../BasicErrors/IdMustBeANumber";
 const gettersUserAndQuizRouter = Router();
 
 
-gettersUserAndQuizRouter.get('/all', ((req, res, next) => {
-
-    const result = userAndQuizModel.getAll(u => u != null);
-    if(!result) throw new FileNotFound()
-    new HttpMessage(result).send(res)
-    next();
+gettersUserAndQuizRouter.get('/al', ((req, res, /*next*/) => {
+    try {
+        const result = userAndQuizModel.getAll(u => u != null);
+        if(!result) throw new FileNotFound()
+        new HttpMessage(result).send(res)
+        //next();
+    } catch (err) {
+        res.status(500).json(err);
+    }
 }));
 
 gettersUserAndQuizRouter.get('/user/:id', ((req, res, next) => {

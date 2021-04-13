@@ -643,11 +643,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const gettersUserAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
-gettersUserAndQuizRouter.get('/all', (req, res, next) => {
-  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u != null);
-  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
-  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
-  next();
+gettersUserAndQuizRouter.get('/al', (req, res) =>
+/*next*/
+{
+  try {
+    const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u != null);
+    if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res); //next();
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 gettersUserAndQuizRouter.get('/user/:id', (req, res, next) => {
   if (!req.params.id) throw new IdParameterNotFound();
