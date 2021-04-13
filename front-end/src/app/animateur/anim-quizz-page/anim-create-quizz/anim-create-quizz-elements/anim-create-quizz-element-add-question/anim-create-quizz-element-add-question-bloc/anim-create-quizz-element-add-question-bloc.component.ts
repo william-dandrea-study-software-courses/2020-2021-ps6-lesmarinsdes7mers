@@ -22,8 +22,8 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   @Input() questionNumber: number;
   @Output() question = new EventEmitter<Question>();
   @Output() deleteQuestion = new EventEmitter<number>();
-  @Output() downTheQuestion = new EventEmitter<number>();
-  @Output() upTheQuestion = new EventEmitter<number>();
+  @Output() downTheQuestion = new EventEmitter<void>();
+  @Output() upTheQuestion = new EventEmitter<void>();
   @Output() listOfAnswers = new EventEmitter<Answer[]>();
 
 
@@ -48,15 +48,15 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
 
   upQuestion(): void {
     console.log('up');
-    this.upTheQuestion.emit(this.questionNumber);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
+    this.upTheQuestion.emit();
+    this.question.emit();
 
   }
 
   downQuestion(): void {
     console.log('down');
-    this.downTheQuestion.emit(this.questionNumber);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
+    this.downTheQuestion.emit();
+    this.question.emit();
 
   }
 

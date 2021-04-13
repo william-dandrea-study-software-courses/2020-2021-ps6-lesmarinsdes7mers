@@ -13,7 +13,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   public nameQuiz: string;
   public difficultyQuiz: Difficulty;
   public visibilityQuiz: Visibility;
-  public questionsQuiz: Question[] = new Array();
+  public questionsQuiz: Question[] = [];
   public quiz: QuizCreationModel;
 
   public numberOfQuestions: number;
@@ -79,12 +79,35 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
     this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
   }
 
-  onUpQuestion(event: number): void {
-    console.log('HOMEPAGE : UP QUESTION : ' + event);
+  onDownQuestion(event: Question): void {
+    console.log(event)
+    const i = this.questionsQuiz.findIndex(q => q.id === event.id);
+    if(i >= this.questionsQuiz.length - 1) return;
+
+    // change order in list
+    const c = this.questionsQuiz[i]
+    this.questionsQuiz[i] = this.questionsQuiz[i + 1]
+    this.questionsQuiz[i + 1] = c
+
+    const id = this.questionsQuiz[i].id
+    this.questionsQuiz[i].id = this.questionsQuiz[i + 1].id
+    this.questionsQuiz[i + 1].id = id
   }
 
-  onDownQuestion(event: number): void {
-    console.log('HOMEPAGE : DOWN QUESTION : ' + event);
+  onUpQuestion(event: Question): void {
+    console.log(event)
+
+    const i = this.questionsQuiz.findIndex(q => q.id === event.id);
+    if(i <= 0) return;
+
+    const c = this.questionsQuiz[i]
+    this.questionsQuiz[i] = this.questionsQuiz[i - 1]
+    this.questionsQuiz[i - 1] = c
+
+    const id = this.questionsQuiz[i].id
+    this.questionsQuiz[i].id = this.questionsQuiz[i - 1].id
+    this.questionsQuiz[i - 1].id = id
+    
   }
 
   onEditListAnswer(event: Answer[], question: Question): void {
