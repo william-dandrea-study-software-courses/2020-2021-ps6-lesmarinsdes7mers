@@ -48,7 +48,6 @@ export class UserService {
 
 
 
-
     this.userPrefService.setFontSize(user.font_size);
     this.userPrefService.setHandicap(user.handicap);
   }
