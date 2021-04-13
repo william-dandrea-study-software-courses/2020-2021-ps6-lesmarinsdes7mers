@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import UserPrefsService from "../../services/userprefs.service";
 
 @Component({
@@ -8,8 +8,11 @@ import UserPrefsService from "../../services/userprefs.service";
 })
 export class ChangeFontSizeComponent implements OnInit {
 
+  @Input() dispTheSizeWritings: boolean;
+
   public fontSizeMain: number;
   public fontSizeSecond: number;
+
 
 
 

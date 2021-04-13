@@ -2,7 +2,9 @@
 
 <div id="change_font_size_bar">
 
-    <div class="bar_title">
+
+
+    <div class="bar_title" *ngIf="!dispTheSizeWritings">
         <div id="change-font-size-bar-bar-title-divider-bar-text" [ngStyle]="{ 'font-size.px': fontSizeMain }">
             Taille d'écriture
         </div>

@@ -3,7 +3,7 @@
 
 <div id="play-quiz-main-div">
 
-    <div id="play-quiz-header-div" [ngStyle]="{'font-size.px': fontSizeMain}">
+    <div id="play-quiz-header-div" [ngStyle]="{'font-size.px': fontSizeMain}" *ngIf="!adaptPageToBigFont()">
         {{currentQuestion + 1}} / {{inNumberOfQuestionsInQuiz()}}
     </div>
 
@@ -15,11 +15,21 @@
 
 
         <div id="play-quiz-answers-inner" *ngFor="let eachAnswer of inQuestionAnswers()" >
-            <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'background-color': getColorForSelectedItems(eachAnswer)}">
 
-                {{eachAnswer.data}}
-
+            <div *ngIf="isTextAnswer()">
+                <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'background-color': getColorForSelectedItems(eachAnswer)}">
+                    {{eachAnswer.data}}
+                </div>
             </div>
+
+            <div *ngIf="!isTextAnswer()">
+                <div  (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'border': getColorForSelectedImages(eachAnswer) }">
+                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image">
+                </div>
+            </div>
+
+
+
         </div>
 
     </div>
@@ -29,6 +39,6 @@
     </div>
 
 
-    <app-change-font-size id="play-quiz-change-size-div" ></app-change-font-size>
+    <app-change-font-size id="play-quiz-change-size-div" [dispTheSizeWritings]="adaptPageToBigFont()" ></app-change-font-size>
 
 </div>

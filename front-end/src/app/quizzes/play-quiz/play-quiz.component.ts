@@ -6,6 +6,7 @@ import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 import {MadedQuizzesModel, UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -29,12 +30,13 @@ export class PlayQuizComponent implements OnInit {
     public userAnswers: UserAnswer[] = [];
 
     public currentSelectedAnswer: Answer;
-
+    public numberOfGoodResponses: number;
 
 
     public backgroundColorForSelectedElements: string;
 
-    constructor(private userPrefsService: UserPrefsService, private quizService: QuizService, private userAndQuizService: UserAndQuizService, private userService: UserService) {
+
+    constructor(private router: Router, private route: ActivatedRoute, private userPrefsService: UserPrefsService, private quizService: QuizService, private userAndQuizService: UserAndQuizService, private userService: UserService) {
 
         // === FONT SIZE
         this.userPrefsService.fontSize$.subscribe((size) => {
@@ -69,6 +71,7 @@ export class PlayQuizComponent implements OnInit {
         // === RESTE
         this.backgroundColorForSelectedElements = 'white';
         this.currentSelectedAnswer = null;
+        this.numberOfGoodResponses = 0;
 
     }
 
@@ -86,9 +89,17 @@ export class PlayQuizComponent implements OnInit {
         console.log(this.currentUserAndQuiz);
 
         if (this.currentSelectedAnswer && this.currentQuestion < this.inNumberOfQuestionsInQuiz() - 1) {
+
+            if (this.currentSelectedAnswer.is_correct) {
+                this.numberOfGoodResponses += 1;
+            }
+
             this.currentQuestion += 1;
         } else {
             console.log('fini');
+            console.log(this.numberOfGoodResponses);
+            //this.userAndQuizService.setAnswersForOneUserQuizzes(this.currentQuiz.id, this.numberOfGoodResponses, this.userAnswers);
+            this.router.navigate(['/quiz-result']);
         }
 
         this.currentSelectedAnswer = null;
@@ -110,6 +121,21 @@ export class PlayQuizComponent implements OnInit {
         return 'white';
     }
 
+    getColorForSelectedImages(answer: Answer): string {
+
+        if (answer === this.currentSelectedAnswer){
+            return '20px solid #73B7A0';
+        }
+        return 'none';
+    }
+
+
+    adaptPageToBigFont(): boolean {
+        if (this.fontSizeMain >= 50) {
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -133,6 +159,10 @@ export class PlayQuizComponent implements OnInit {
         return this.currentQuiz.questions[this.currentQuestion].answer;
     }
 
+    isTextAnswer(): boolean {
+        if (this.currentQuiz.questions[this.currentQuestion].type === 0) {return true;}
+        return false;
+    }
 
 
 
