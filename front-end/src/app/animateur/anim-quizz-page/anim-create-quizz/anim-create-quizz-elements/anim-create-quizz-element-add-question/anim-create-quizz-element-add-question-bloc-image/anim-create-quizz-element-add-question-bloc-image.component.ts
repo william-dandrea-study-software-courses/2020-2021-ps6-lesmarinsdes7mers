@@ -57,9 +57,12 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
   onSearchPhoto(searchValue: string, answer: Answer): void {
 
     this.listOfUrls.length = 0;
+    const url = 'https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=' + searchValue;
+
+    console.log(url)
 
     this.http
-        .get<IUnsplashRequest>('https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=' + searchValue)
+        .get<IUnsplashRequest>(url)
         .subscribe(response => {
           const urls: IUnsplashUrls[][] = response.results.map(res2 => res2.urls);
           let goodUrls: IUnsplashUrls[] = [];

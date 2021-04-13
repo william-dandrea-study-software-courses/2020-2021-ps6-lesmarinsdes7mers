@@ -2,13 +2,17 @@
     padding: 2em 5em 0 5em;
 }
 
+table {
+    width: 90vw;
+}
+
 th, td {
     padding: 1em;
     //border: dotted;
 
     border-bottom: solid 0.2em #DDD;
 
-    text-align: start;
+    text-align: center;
 }
 
 .alert-button, .info-button {
