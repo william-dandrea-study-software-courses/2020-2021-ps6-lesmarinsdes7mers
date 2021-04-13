@@ -29,8 +29,6 @@ export class QuizIntroComponent implements OnInit {
             this.fontSizeSecond = Math.max(30, fontSiz - 10);
         });
 
-
-
         console.log(this.fontSizeMain);
         console.log(this.fontSizeSecond);
     }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import {User} from "../../../models/user.model";
 import {UserService} from "../../../services/user.service";
@@ -12,6 +12,8 @@ import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 })
 export default class LoginPageComponent implements OnInit{
 
+
+
     public userList: User[] = [];
 
     constructor(private router: Router, private userService: UserService, private userAndQuizService: UserAndQuizService) {
@@ -20,6 +22,7 @@ export default class LoginPageComponent implements OnInit{
         });
 
         this.userAndQuizService.oneUserQuizzes$.subscribe();
+
     }
 
 
@@ -43,6 +46,10 @@ export default class LoginPageComponent implements OnInit{
         const url: string = '/homepage/' + String(event.id);
         this.router.navigate([url]);
 
+    }
+
+
+    onSearchUser(event: KeyboardEvent): void {
 
     }
 

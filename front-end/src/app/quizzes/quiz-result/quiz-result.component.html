@@ -1,32 +1,43 @@
-<div [style.font-size.px]="sizeFont">
-    <div class="result">
-        <h2 class="theme">Les mers du monde</h2>
-        <div class="stat">
-            <div class="point">
-                <div>
-                    <span class="category">Bonnes réponses:</span>
-                    <span class="info">{{getRightAnswerCount()}}</span>
-                </div>
-                <div>
-                    <span class="category">Mauvaises réponses:</span>
-                    <span class="info">{{getFalseAnswerCount()}}</span>
-                </div>
-                <div>
-                    <span class="category">Réponses totales:</span>
-                    <span class="info">{{answers.length}}</span>
-                </div>
-            </div>
-            <div class="percent">
-                <p>RESULTAT:</p>
-                <p>{{getResultInPercent()}}%</p>
-            </div>
+<div id="quiz-result-main-div">
+
+    <div id="quiz-result-title" [ngStyle]="{'font-size.px': fontSizeMain}">{{quizSelected.name}}</div>
+
+    <div id="quiz-result-resultdiv" [ngStyle]="{'font-size.px': fontSizeSecond}">
+
+        <div class="quiz-result-resultdiv-line-class" id="quiz-result-resultdiv-line-one">
+            <div class="quiz-result-resultdiv-line-first-elem-class" >Nombre de mauvaises réponses : </div>
+            <div class="quiz-result-resultdiv-line-second-elem-class" >{{getNumberOfGoodQuestions()}}</div>
         </div>
+
+        <div class="quiz-result-resultdiv-line-class" id="quiz-result-resultdiv-line-two">
+            <div class="quiz-result-resultdiv-line-first-elem-class" >Nombre de bonne réponses : </div>
+            <div class="quiz-result-resultdiv-line-second-elem-class" >{{getNumberOfBadQuestions()}}</div>
+        </div>
+
+        <div class="quiz-result-resultdiv-line-class" id="quiz-result-resultdiv-line-three">
+            <div class="quiz-result-resultdiv-line-first-elem-class" >Nombre de questions dans le quiz : </div>
+            <div class="quiz-result-resultdiv-line-second-elem-class" >{{getNumberOfQuestions()}}</div>
+        </div>
+
+        <div class="quiz-result-resultdiv-line-class" id="quiz-result-resultdiv-line-third">
+            <div class="quiz-result-resultdiv-line-first-elem-class" >Pourcentage de bonne réponses : </div>
+            <div class="quiz-result-resultdiv-line-second-elem-class" >{{getResultPercentage()}} %</div>
+        </div>
+
+
     </div>
 
-    <div class="menu">
-        <div><button class="correction" (click)="navigateToCorrection()">CORRECTION</button></div>
-        <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
+    <div id="quiz-result-menu">
+        <div><button class="quiz-result-menu-button" (click)="navigateToCorrection()" [ngStyle]="{'font-size.px': fontSizeSecond}">Correction</button></div>
+        <div><button class="quiz-result-menu-button" (click)="navigateToHomepage()" [ngStyle]="{'font-size.px': fontSizeSecond}">Menu principal</button></div>
     </div>
 
-    <app-change-font-size></app-change-font-size>
+    <app-change-font-size id="quiz-result-footer-change-size" [dispTheSizeWritings]="adaptPageToBigFont()"> </app-change-font-size>
 </div>
+
+
+<!--
+{{getNumberOfGoodQuestions()}}
+{{getNumberOfBadQuestions()}}
+{{getNumberOfQuestions()}}
+-->

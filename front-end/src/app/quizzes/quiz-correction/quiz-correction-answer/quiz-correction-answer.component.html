@@ -1,18 +1,79 @@
-<div [style.font-size.px]="sizeFont">
-    <div class="question-number">{{question.id}} / {{quiz.questions.length}}</div>
 
-    <div class="question">
-        <div class="question-name">{{question.question_name}}</div>
-        <div class="answers">
-            <div *ngFor="let answerQ of question.answer">
-                <div class="answer" [style.background-color]="answerQ.is_correct ? 'green' : (answer.data == answerQ.data ? 'red' : 'white')">{{answerQ.data}}</div>
+
+
+<div id="play-quiz-main-div">
+
+    <div id="play-quiz-header-div" [ngStyle]="{'font-size.px': fontSizeMain}" *ngIf="!adaptPageToBigFont()">
+        {{idCurrentQuestion + 1}} / {{inNumberOfQuestionsInQuiz()}}
+    </div>
+
+    <div id="play-quiz-question" [ngStyle]="{'font-size.px': fontSizeMain}">
+        {{inQuestionTitle()}}
+    </div>
+
+    <div id="play-quiz-answers">
+
+
+        <div id="play-quiz-answers-inner" *ngFor="let eachAnswer of inQuestionAnswers()" >
+
+            <div *ngIf="isTextAnswer()">
+
+                <!-- LE USER A LA BONNE REPONSE -->
+                <div *ngIf="getGoodAnswerId() === eachAnswer.id_answer && getUserAnswerId() === eachAnswer.id_answer">
+                    <div class="play-quiz-answers-inner-one-answer right-answer" [ngStyle]="{'font-size.px': fontSizeSecond}">
+                        {{eachAnswer.data}}
+                    </div>
+                </div>
+
+                <!-- LE USER A LA MAUVAISE REPONSE ET LA REPONSE LA EST LA REPONSE DE L'UTILISATEUR -->
+                <div *ngIf="(getGoodAnswerId() != eachAnswer.id_answer && getUserAnswerId() === eachAnswer.id_answer) ">
+
+                    <div class="play-quiz-answers-inner-one-answer wrong-answer" [ngStyle]="{'font-size.px': fontSizeSecond}">
+                        {{eachAnswer.data}}
+                    </div>
+
+                </div>
+
+                <!-- LE USER A LA MAUVAISE REPONSE ET LA REPONSE LA EST LA BONNE REPONSE -->
+                <div *ngIf="(getGoodAnswerId() === eachAnswer.id_answer && getUserAnswerId() != eachAnswer.id_answer) ">
+
+                    <div class="play-quiz-answers-inner-one-answer right-answer" [ngStyle]="{'font-size.px': fontSizeSecond}">
+                        {{eachAnswer.data}}
+                    </div>
+
+                </div>
+
+                <!-- C'EST UNE REPONSE QUI N4EST NI BONNE NI SELECTIONNE PAR LE USER -->
+                <div *ngIf="getGoodAnswerId() != eachAnswer.id_answer && getUserAnswerId() != eachAnswer.id_answer">
+
+                    <div class="play-quiz-answers-inner-one-answer" [ngStyle]="{'font-size.px': fontSizeSecond}">
+                        {{eachAnswer.data}}
+                    </div>
+
+                </div>
+
+
+
             </div>
+
+            <div *ngIf="!isTextAnswer()">
+                <div [ngStyle]="{'font-size.px': fontSizeSecond}">
+                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image">
+                </div>
+            </div>
+
+
+
         </div>
+
     </div>
 
-    <div class="to-correction">
-        <button [routerLink]="'/quiz-correction'">Retour au résultat</button>
+    <div id="play-quiz-validate-question"  [ngStyle]="{'font-size.px': fontSizeMain}">
+        Valider
     </div>
 
-    <app-change-font-size></app-change-font-size>
+
+    <app-change-font-size id="play-quiz-change-size-div" [dispTheSizeWritings]="adaptPageToBigFont()" ></app-change-font-size>
+
 </div>
+

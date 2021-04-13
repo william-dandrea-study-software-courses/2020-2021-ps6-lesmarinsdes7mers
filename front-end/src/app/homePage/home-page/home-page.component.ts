@@ -94,7 +94,6 @@ export class HomePageComponent implements OnInit {
   onSelectedQuiz(event: Quiz): void {
     this.quizService.setSelectedQuiz(+event.id);
 
-
     this.router.navigate(['/quiz-intro', event.id]);
   }
 

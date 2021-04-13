@@ -51,7 +51,7 @@ export class PlayQuizComponent implements OnInit {
         console.log(this.fontSizeSecond);
 
         // === QUIZ
-        this.quizService.quizSelected$.subscribe();
+        this.quizService.quizSelected$.subscribe((elem) => this.currentQuiz = elem);
         this.currentQuiz = this.quizService.getQuizSelected();
         console.log(this.currentQuiz);
 
@@ -59,12 +59,12 @@ export class PlayQuizComponent implements OnInit {
         this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
 
         // === USER
-        this.userService.userSelected$.subscribe();
+        this.userService.userSelected$.subscribe((elem) => this.currentUser = elem);
         this.currentUser = this.userService.getUserSelected();
 
         // === USER AND QUIZ
         this.userAndQuizService.userAndQuizs$.subscribe();
-        this.userAndQuizService.oneUserQuizzes$.subscribe();
+        this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.currentUserAndQuiz = elem);
         this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
 
@@ -98,7 +98,7 @@ export class PlayQuizComponent implements OnInit {
         } else {
             console.log('fini');
             console.log(this.numberOfGoodResponses);
-            //this.userAndQuizService.setAnswersForOneUserQuizzes(this.currentQuiz.id, this.numberOfGoodResponses, this.userAnswers);
+            this.userAndQuizService.setAnswersForOneUserQuizzes(this.currentQuiz.id, this.numberOfGoodResponses, this.userAnswers);
             this.router.navigate(['/quiz-result']);
         }
 
@@ -142,7 +142,7 @@ export class PlayQuizComponent implements OnInit {
 
 
 
-
+x
 
 
 
