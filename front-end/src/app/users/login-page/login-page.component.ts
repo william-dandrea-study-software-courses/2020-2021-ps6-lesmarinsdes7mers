@@ -58,7 +58,11 @@ export default class LoginPageComponent implements OnInit{
         this.userList.splice(0, this.userList.length);
         if (value.length < 1) {
             this.userService.users$.subscribe((users) => {
-                users.forEach(user => this.userList.push(user))
+                users.forEach(user => {
+                    if (!this.userList.includes(user)) {
+                        this.userList.push(user);
+                    }
+                })
             });
 
             console.log("Bonjour");
