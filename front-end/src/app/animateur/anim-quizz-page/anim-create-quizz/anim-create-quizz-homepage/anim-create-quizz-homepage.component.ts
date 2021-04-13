@@ -75,8 +75,10 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   }
 
   onAddAnQuestion(): void {
-    this.numberOfQuestions++;
-    this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
+    if(this.numberOfQuestions < 30) {
+      this.numberOfQuestions++;
+      this.questionsQuiz.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
+    }
   }
 
   onDownQuestion(event: Question): void {

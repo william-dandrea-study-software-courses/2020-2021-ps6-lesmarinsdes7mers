@@ -68,8 +68,10 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   }
 
   addAnAnswer(): void {
-    console.log('add an answer et the question');
-    this.numberOfAnswers++;
+    if(this.numberOfAnswers < 4) {
+      console.log('add an answer et the question');
+      this.numberOfAnswers++;
+    }
   }
 
   editQuestionName(event: any): void {
