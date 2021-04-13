@@ -40,7 +40,7 @@ export interface Answer {
 }
 
 export interface Question {
-    id: string;
+    id: number;
     question_name: string;
     type: QuestionType;
     answer: Answer[];

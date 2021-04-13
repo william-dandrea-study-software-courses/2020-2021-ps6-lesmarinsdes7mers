@@ -52,8 +52,14 @@ export class QuizService {
   }
 
   updateQuiz(quiz: Quiz) {
-    this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
-    this.quizzes.push(quiz)
+    if(quiz.id === undefined) {
+      quiz.id = this.quizzes.length;
+      console.log("Create quiz")
+      this.addQuiz(quiz);
+    } else {
+      console.log("Update quiz")
+      this.http.put<Quiz>(this.quizUrl + "/" + quiz.id, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
+    }
   }
 
   addQuestion(quiz: Quiz, question: Question): void {

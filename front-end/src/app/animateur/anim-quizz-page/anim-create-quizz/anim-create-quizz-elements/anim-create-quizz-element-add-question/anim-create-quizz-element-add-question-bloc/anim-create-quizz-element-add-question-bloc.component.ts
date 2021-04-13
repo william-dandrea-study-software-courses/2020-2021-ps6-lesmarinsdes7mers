@@ -13,7 +13,7 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
     answer: [{
       data: "",
       is_correct: true,
-      id_answer: 0
+      id_answer: 1
     }],
     question_name: "",
     type: QuestionType.TEXT
@@ -52,7 +52,7 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   addAnAnswer(): void {
     this.question.answer.push({
       data: "",
-      id_answer: this.question.answer.length,
+      id_answer: this.question.answer.length + 1,
       is_correct: this.question.answer.find(a => a.is_correct) === undefined
     })
   }

@@ -27,10 +27,10 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
         this.quiz = {
           name: "Test",
           difficulty: Difficulty.EASY,
-          questions: [{question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: [
+          questions: [{question_name: '', type: QuestionType.TEXT, id: 0, answer: [
             {
               data: "",
-              id_answer: 0,
+              id_answer: 1,
               is_correct: true
             }
           ]}],
@@ -50,6 +50,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
           // Getting quiz
           createQuizService.setSelectedQuiz(idNum)
           this.quiz = createQuizService.getQuizSelected()
+          this.quiz.id = idNum
         }
       }
     })
@@ -58,8 +59,11 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   /**
    * Cette méthode va push le quiz sur le service
    */
-  addQuiz(canAdd: boolean): void {
+  save(): void {
+    if(!this.quiz.name) return;
     console.log(this.quiz)
+    this.createQuizService.updateQuiz(this.quiz);
+    this.router.navigate(['animateur'])
   }
 
   deleteQuiz(canDelete: boolean): void {
@@ -92,14 +96,14 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   }
 
   onDeleteQuestion(event: number): void {
-    const tmp = this.quiz.questions.find(question => question.id === String(event));
+    const tmp = this.quiz.questions.find(question => question.id === event);
     this.quiz.questions = this.quiz.questions.filter(obj => obj !== tmp);
   }
 
   onAddAnQuestion(): void {
     if(this.numberOfQuestions < 30) {
       this.numberOfQuestions++;
-      this.quiz.questions.push({question_name: '', type: QuestionType.TEXT, id: String(this.numberOfQuestions), answer: []});
+      this.quiz.questions.push({question_name: '', type: QuestionType.TEXT, id: this.quiz.questions.length, answer: []});
     }
   }
 

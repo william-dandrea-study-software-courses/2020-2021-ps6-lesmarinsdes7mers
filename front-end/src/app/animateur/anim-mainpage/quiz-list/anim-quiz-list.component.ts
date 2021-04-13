@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Quiz, Difficulty, difficultyToText, Privacy } from "src/models/quiz.model";
 import { UserAndQuizModel } from "src/models/user-and-quiz.model";
 import { QuizService } from "src/services/quiz.service";
@@ -19,7 +20,8 @@ export class AnimMainQuizListComponent implements OnInit {
     userAndQuizList : UserAndQuizModel[] = [];
 
     constructor (private quizService: QuizService,
-        private userAndQuizService: UserAndQuizService) {
+        private userAndQuizService: UserAndQuizService,
+        private router: Router) {
 
     }
 
@@ -170,5 +172,9 @@ export class AnimMainQuizListComponent implements OnInit {
         }
 
         return res;
+    }
+
+    editQuiz(quiz: Quiz) {
+        this.router.navigate([ 'animateur', 'quizz-home-page', 'create-quizz', quiz.id ])
     }
 }

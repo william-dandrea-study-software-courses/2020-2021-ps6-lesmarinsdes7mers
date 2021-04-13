@@ -488,19 +488,21 @@ quizzManageRouter.delete('/:quizz', _quizz_middleware__WEBPACK_IMPORTED_MODULE_4
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Errors/ErrorSchield */ "./src/Errors/ErrorSchield.js");
 /* harmony import */ var _Models_quizz_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Models/quizz.model */ "./src/Models/quizz.model.js");
-/* harmony import */ var _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Errors/QuizzIdParameterMustBeInt */ "./src/API/Quizz/Errors/QuizzIdParameterMustBeInt.js");
-/* harmony import */ var _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Errors/QuizzIdParameterNotFound */ "./src/API/Quizz/Errors/QuizzIdParameterNotFound.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+/* harmony import */ var _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Errors/QuizzIdParameterMustBeInt */ "./src/API/Quizz/Errors/QuizzIdParameterMustBeInt.js");
+/* harmony import */ var _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Errors/QuizzIdParameterNotFound */ "./src/API/Quizz/Errors/QuizzIdParameterNotFound.js");
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ((req, res, next) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_0__["Execute"])(res, () => {
-    if (!req.params.quizz) throw new _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    if (!req.params.quizz) throw new _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
     req.params.quizz = parseInt(req.params.quizz);
-    if (isNaN(req.params.quizz)) throw new _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_2__["QuizzIdParameterMustBeInt"]();
+    if (isNaN(req.params.quizz)) throw new _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_3__["QuizzIdParameterMustBeInt"]();
     const result = _Models_quizz_model__WEBPACK_IMPORTED_MODULE_1__["default"].getOne(q => q.id === req.params.quizz);
-    if (!result) throw new FileNotFound();
+    if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
     req.quizz = result;
     next();
   });
@@ -1087,7 +1089,7 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
     users_access: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number())
   }),
   questions: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
-    id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
+    id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
     question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     type: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(1).default(0),
     // 0 pour txt, 1 pour image
@@ -1228,7 +1230,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Documents/Polytech/si3/ps6/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! D:\projects\ps6\2020-2021-ps6-lesmarinsdes7mers\2020-2021-ps6-lesmarinsdes7mers\back-end\src/index.js */"./src/index.js");
 
 
 /***/ }),
