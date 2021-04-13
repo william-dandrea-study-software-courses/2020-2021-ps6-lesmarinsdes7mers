@@ -36,6 +36,8 @@ export class UserAndQuizService {
     this.oneUserQuizzes$.next(this.oneUserQuizzes);
   }
 
+
+
   setAnswersForOneUserQuizzes(idQuiz: number, scoreUser: number, answers: UserAnswer[]): void {
     let temp_played_quiz = this.oneUserQuizzes.played_quizzes;
     temp_played_quiz.push({id_quiz: idQuiz, score_user: scoreUser, user_answers: answers});

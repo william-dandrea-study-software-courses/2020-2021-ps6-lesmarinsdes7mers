@@ -44,7 +44,6 @@ export class HomePageComponent implements OnInit {
     this.userAndQuizService.oneUserQuizzes$.subscribe();
     this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
-    console.log(this.currentUserAndQuiz);
 
   }
 

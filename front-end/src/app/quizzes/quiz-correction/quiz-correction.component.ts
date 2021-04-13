@@ -42,16 +42,28 @@ export class QuizCorrectionComponent implements OnInit {
 
 
 
+
   getAllTheUserAnswers(): UserAnswer[] {
+
+    console.log('getAllTheUsers ===========');
+    console.log(this.quizSelected.id);
     const idQuiz = this.quizSelected.id;
     const answersUsers = this.oneUserAndQuiz.played_quizzes.findIndex(eQuiz => eQuiz.id_quiz === idQuiz);
+    console.log(answersUsers);
+    console.log(this.oneUserAndQuiz.played_quizzes[answersUsers]);
 
+    console.log('getAllTheUsers ===========');
     return this.oneUserAndQuiz.played_quizzes[answersUsers].user_answers;
   }
 
   verifyIfAnswerIsCorrect(userAnswer: UserAnswer): boolean {
 
+
     const indexQuestionInQuizSelected = this.quizSelected.questions.findIndex(elem => +elem.id === userAnswer.id_question);
+    if (indexQuestionInQuizSelected === -1) {
+      return false;
+    }
+
     const indexOfGoodAnswer = this.quizSelected.questions[indexQuestionInQuizSelected].answer.findIndex((elem) => elem.is_correct === true);
     const idOfGoodAnswer = this.quizSelected.questions[indexQuestionInQuizSelected].answer[indexOfGoodAnswer].id_answer;
 
@@ -71,6 +83,7 @@ export class QuizCorrectionComponent implements OnInit {
 
   navigateToHomepage(): void {
     this.router.navigate(['homepage']);
+
   }
 
   adaptPageToBigFont(): boolean {

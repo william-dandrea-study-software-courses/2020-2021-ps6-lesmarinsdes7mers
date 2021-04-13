@@ -62,6 +62,12 @@ export class QuizCorrectionAnswerComponent implements OnInit {
 
   inQuestionTitle(): string {
 
+    console.log('============');
+    console.log(this.currentQuiz.questions);
+    console.log(this.idCurrentQuestion);
+    console.log('============');
+
+
     return this.currentQuiz.questions[this.idCurrentQuestion].question_name;
   }
 
