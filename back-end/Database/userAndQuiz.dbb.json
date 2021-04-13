@@ -2,7 +2,7 @@
   {
     "id": 1,
     "id_user": 0,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 0,
         "score_user": 5,
@@ -46,7 +46,7 @@
   {
     "id": 2,
     "id_user": 1,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 1,
         "score_user": 5,
@@ -90,7 +90,7 @@
   {
     "id": 3,
     "id_user": 2,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 1,
         "score_user": 5,
@@ -134,7 +134,7 @@
   {
     "id": 4,
     "id_user": 3,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 3,
         "score_user": 5,
@@ -178,7 +178,7 @@
   {
     "id": 5,
     "id_user": 4,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 2,
         "score_user": 5,
@@ -222,7 +222,7 @@
   {
     "id": 6,
     "id_user": 5,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 5,
         "score_user": 3,
@@ -266,7 +266,7 @@
   {
     "id": 7,
     "id_user": 6,
-    "maded_quizzes": [
+    "played_quizzes": [
       {
         "id_quiz": 2,
         "score_user": 3,

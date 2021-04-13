@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Quiz, Difficulty, difficultyToText } from "src/models/quiz.model";
+import { Quiz, Difficulty, difficultyToText, Privacy } from "src/models/quiz.model";
+import { UserAndQuizModel } from "src/models/user-and-quiz.model";
 import { QuizService } from "src/services/quiz.service";
+import { UserAndQuizService } from "src/services/user-and-quiz.service";
 
 @Component({
     selector: 'app-anim-main-quizz-list',
@@ -12,15 +14,23 @@ export class AnimMainQuizListComponent implements OnInit {
     quizList: Quiz[] = new Array();
 
     selectedQuiz: Quiz[] = new Array();
+    
+    /*  For statistic   */
+    userAndQuizList : UserAndQuizModel[] = [];
 
-    constructor (private quizService: QuizService) {
+    constructor (private quizService: QuizService,
+        private userAndQuizService: UserAndQuizService) {
 
     }
 
     ngOnInit() {
         this.quizService.quizzes$.subscribe(quiz => {
             quiz.forEach(q => this.quizList.push(q));
-        })
+        });
+        this.userAndQuizService.userAndQuizs$.subscribe(stat => {
+            stat.forEach(s => this.userAndQuizList.push(s));
+        });
+        console.log("stats : ", this.userAndQuizList);
     }
 
     translateDifficulty(difficulty: Difficulty):string {
@@ -41,7 +51,7 @@ export class AnimMainQuizListComponent implements OnInit {
     }
 
     isAllSelected():boolean {
-        return this.selectedQuiz.length == this.quizList.length;
+        return this.selectedQuiz.length == this.quizList.length && this.selectedQuiz.length != 0;
     }
 
     selectQuiz(quiz: Quiz) {
@@ -55,7 +65,34 @@ export class AnimMainQuizListComponent implements OnInit {
 
     deleteSelection():void {
         this.selectedQuiz.forEach(quiz => {
+            this.quizList.splice(this.quizList.indexOf(quiz), 1);
             this.quizService.deleteQuiz(quiz);
-        })
+        });
+        this.quizList.splice(0, this.quizList.length);
+    }
+
+    getVisibilityAccess(quiz: Quiz):string {
+        if (quiz.privacy.is_public) {
+            return "Publique";
+        }
+        else {
+            return "Privé";
+        }
+    }
+
+    getNbPlayedQuiz():number {
+        var count = 0;
+
+        for (let stat of this.userAndQuizList) {
+            if (stat.played_quizzes != undefined) {
+                count += stat.played_quizzes.length;
+            }
+        }
+
+        return count;
+    }
+
+    getNbPlayer(quizId: number):number {
+        return 0;
     }
 }

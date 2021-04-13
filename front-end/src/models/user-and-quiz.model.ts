@@ -3,7 +3,7 @@
 export interface UserAndQuizModel {
     id: number;
     id_user: number;
-    maded_quizzes: MadedQuizzesModel[];
+    played_quizzes: MadedQuizzesModel[];
 }
 
 export interface MadedQuizzesModel {

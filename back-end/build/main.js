@@ -1163,7 +1163,7 @@ __webpack_require__.r(__webpack_exports__);
 const userAndQuizModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('userAndQuiz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
   id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
   id_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
-  maded_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  played_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     id_quiz: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
     score_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
     user_answers: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
@@ -1223,7 +1223,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/williamdandrea/Library/Mobile Documents/com~apple~CloudDocs/SI3/S6/PS6/projet/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /home/user/Documents/Polytech/si3/ps6/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),
