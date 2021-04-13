@@ -8,24 +8,21 @@ import {Answer, Question, QuestionType} from "../../../../../../../models/quiz.m
 })
 export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, DoCheck {
 
-  public questionType: QuestionType;
-  public questionAnswers: Answer[];
-  public questionName: string;
-  public numberOfAnswers: number;
+  @Input() question: Question = {
+    id: undefined,
+    answer: [{
+      data: "",
+      is_correct: true,
+      id_answer: 0
+    }],
+    question_name: "",
+    type: QuestionType.TEXT
+  }
 
-  public nameCssClassSwitchTxtImgOne: string;
-  public nameCssClassSwitchTxtImgTwo: string;
-  public nameCssClassSwitchTxtImg: string;
 
-
-  // @Output() questionNameRequest = new EventEmitter<string>();
-  @Input() questionNumber: number;
-  @Output() question = new EventEmitter<Question>();
-  @Output() deleteQuestion = new EventEmitter<number>();
-  @Output() downTheQuestion = new EventEmitter<void>();
-  @Output() upTheQuestion = new EventEmitter<void>();
-  @Output() listOfAnswers = new EventEmitter<Answer[]>();
-
+  @Output() up: EventEmitter<void> = new EventEmitter()
+  @Output() down: EventEmitter<void> = new EventEmitter()
+  @Output() delete: EventEmitter<void> = new EventEmitter()
 
 
 
@@ -33,14 +30,6 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   }
 
   ngOnInit(): void {
-    this.questionType = QuestionType.TEXT;
-    this.questionName = '';
-    this.numberOfAnswers = 1;
-    this.nameCssClassSwitchTxtImgOne = 'radio-switch-textuel-img-one' + String(this.questionNumber);
-    this.nameCssClassSwitchTxtImgTwo = 'radio-switch-textuel-img-two' + String(this.questionNumber);
-    this.nameCssClassSwitchTxtImg = 'switch-textuel-image' + String(this.questionNumber);
-
-    console.log(this.nameCssClassSwitchTxtImg);
   }
 
   ngDoCheck(): void {
@@ -48,36 +37,28 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
 
   upQuestion(): void {
     console.log('up');
-    this.upTheQuestion.emit();
-    this.question.emit();
-
+    this.up.emit();
   }
 
   downQuestion(): void {
     console.log('down');
-    this.downTheQuestion.emit();
-    this.question.emit();
-
+    this.down.emit();
   }
-
+  
   deleteThisQuestion(): void {
-    console.log('delete this question');
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
-    this.deleteQuestion.emit(this.questionNumber);
-
+    
   }
 
   addAnAnswer(): void {
-    if(this.numberOfAnswers < 4) {
-      console.log('add an answer et the question');
-      this.numberOfAnswers++;
-    }
+    this.question.answer.push({
+      data: "",
+      id_answer: this.question.answer.length,
+      is_correct: this.question.answer.find(a => a.is_correct) === undefined
+    })
   }
 
   editQuestionName(event: any): void {
-    this.questionName = event.target.value;
-    console.log('QUESTION INFO : EDIT NAME : ' + event.target.value);
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
+    this.question.question_name = event.target.value
   }
 
   /**
@@ -85,15 +66,8 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
    * event = 1 pour une question image
    */
   imageOrTextQuestion(event: number): void {
-    switch (event) {
-      case 0: this.questionType = QuestionType.TEXT; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : textQuestion'); break;
-      case 1: this.questionType = QuestionType.IMAGE; console.log('QUESTION BLOC ' + String(this.questionNumber) + ' : imgQuestion'); break;
-    }
-    this.question.emit({id: String(this.questionNumber), question_name: this.questionName, type: this.questionType, answer: this.questionAnswers});
-  }
-
-  editListOfAnswer(event: Answer[]): void {
-    this.listOfAnswers.emit(event);
+    if(event === 0) this.question.type = QuestionType.TEXT
+    else this.question.type = QuestionType.IMAGE
   }
 
 

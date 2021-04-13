@@ -7,16 +7,14 @@
 
 <hr class="rounded">
 
-<div *ngFor="let answer of listOfAnswers">
+<div *ngFor="let answer of answers">
 
     <div class="question-bloc-text-answer">
         <div class="question-bloc-text-first-column" id="question-bloc-text-answer-good-bad-question">
-            <span *ngIf="answer.is_correct === true" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_checked</span>
-            <span *ngIf="answer.is_correct === false" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_unchecked</span>
+            <span *ngIf="answer.is_correct" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_checked</span>
+            <span *ngIf="!answer.is_correct" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_unchecked</span>
         </div>
-        <input id="question-bloc-text-answer-input" (keyup)="onEditAnswerText($event, answer)" type="text" class="question-bloc-text-second-column" maxlength="45">
+        <input id="question-bloc-text-answer-input" type="text" class="question-bloc-text-second-column" maxlength="45"  [(ngModel)]="answer.data">
         <div id="question-bloc-text-answer-trash" (click)="onDeleteAnswer(answer)" class="question-bloc-text-third-column"><span class="material-icons">delete</span></div>
     </div>
-
-
 </div>

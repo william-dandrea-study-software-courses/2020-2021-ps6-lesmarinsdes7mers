@@ -10,14 +10,11 @@ import {Answer} from "../../../../../../../models/quiz.model";
   templateUrl: './anim-create-quizz-element-add-question-bloc-image.component.html',
   styleUrls: ['./anim-create-quizz-element-add-question-bloc-image.component.scss']
 })
-export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnInit, DoCheck, OnChanges  {
+export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnInit {
 
-  @Input() numberOfAnswersListener: number;
-  @Output() answersEmitter = new EventEmitter<Answer[]>();
-
-  public listOfAnswers: Answer[] = new Array();
+  @Input() answers: Answer[] = []
+  
   public urlUnsplash = 'https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=';
-  public listOfUrls: string[] = new Array();
 
 
   constructor(private http: HttpClient) { }
@@ -25,41 +22,20 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
   ngOnInit(): void {
   }
 
-  ngOnChanges(): void {
-    if (this.numberOfAnswersListener) {
-      this.listOfAnswers.push({id_answer: 1, is_correct: false, data: ''});
-
-    }
-  }
-
-  ngDoCheck(): void {
-    if (this.listOfAnswers) {
-      this.answersEmitter.emit(this.listOfAnswers);
-    }
-  }
-
 
   onClickAddPhotoLocal(answer: Answer, themeSearch: any): void {
-
     answer.data = themeSearch.target.value;
-
-
   }
 
   onClickAddPhotoSearch(answer: Answer, themeSearch: any): void {
-
     this.onSearchPhoto(themeSearch.target.value, answer);
-
-
   }
 
 
   onSearchPhoto(searchValue: string, answer: Answer): void {
 
-    this.listOfUrls.length = 0;
+    //this.listOfUrls.length = 0;
     const url = 'https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=' + searchValue;
-
-    console.log(url)
 
     this.http
         .get<IUnsplashRequest>(url)
@@ -73,7 +49,7 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
 
 
           goodUrls.forEach(val => {
-            this.listOfUrls.push(val.regular);
+            //this.listOfUrls.push(val.regular);
             // console.log(val.regular.toString());
             answer.data = val.regular.toString();
           });
@@ -88,9 +64,9 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
   }
 
   onDeleteAnswer(event: Answer): void {
-    this.listOfAnswers.forEach(((value, index) => {
+    this.answers.forEach(((value, index) => {
       if (value === event) {
-        this.listOfAnswers.splice(index, 1);
+        this.answers.splice(index, 1);
       }
     }));
   }

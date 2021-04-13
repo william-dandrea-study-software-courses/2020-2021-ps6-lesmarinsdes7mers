@@ -16,33 +16,14 @@ import {Answer} from "../../../../../../../models/quiz.model";
   templateUrl: './anim-create-quizz-element-add-question-bloc-textuel.component.html',
   styleUrls: ['./anim-create-quizz-element-add-question-bloc-textuel.component.scss']
 })
-export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements OnInit, OnChanges, DoCheck {
+export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements OnInit {
+  
+  @Input() answers: Answer[] = []
+
   constructor() { }
 
 
-  public listOfAnswers: Answer[] = new Array();
-
-  @Input() numberOfAnswersListener: number;
-  @Output() answersEmitter = new EventEmitter<Answer[]>();
-
-
   ngOnInit(): void {
-  }
-
-  ngDoCheck(): void {
-    if (this.listOfAnswers) {
-      console.log('ADD ANSWER TEXTUEL : emit answers to QUESTION BLOC with answersEmitter');
-      this.answersEmitter.emit(this.listOfAnswers);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.numberOfAnswersListener) {
-      this.listOfAnswers.push({id_answer: 1, is_correct: false, data: ''});
-
-    }
-
-
   }
 
 
@@ -51,9 +32,9 @@ export class AnimCreateQuizzElementAddQuestionBlocTextuelComponent implements On
   }
 
   onDeleteAnswer(event: Answer): void {
-    this.listOfAnswers.forEach(((value, index) => {
+    this.answers.forEach(((value, index) => {
       if (value === event) {
-        this.listOfAnswers.splice(index, 1);
+        this.answers.splice(index, 1);
       }
     }));
   }

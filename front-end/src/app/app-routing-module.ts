@@ -35,7 +35,9 @@ const routes: Routes = [
     {path: 'animateur/quizz-home-page', component: AnimQuizzHomepageComponent},
     {path: 'animateur/user-home-page', component: AnimUserHomepageComponent},
     {path: 'animateur/settings-home-page', component: AnimSettingsHomepageComponent},
+    {path: 'animateur/quizz-home-page/create-quizz/:quiz', component: AnimCreateQuizzHomepageComponent},
     {path: 'animateur/quizz-home-page/create-quizz', component: AnimCreateQuizzHomepageComponent},
+
     {path: 'animateur/user-add-edit/:id-user', component: UserAddEditComponent},
     {path: 'animateur', component:AnimMainpageComponent}
 ];
