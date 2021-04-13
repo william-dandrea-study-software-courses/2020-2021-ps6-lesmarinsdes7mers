@@ -13,11 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AnimCreateQuizzHomepageComponent implements OnInit {
   public quiz: Quiz;
 
-  public numberOfQuestions: number;
+  private saving = false
 
 
   constructor(private createQuizService: QuizService, private aRoute: ActivatedRoute, private router: Router) {
-    this.numberOfQuestions = 1;
     
     aRoute.params.subscribe(v => {
       const idStr = aRoute.snapshot.params['quiz']
@@ -61,9 +60,16 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
    */
   save(): void {
     if(!this.quiz.name) return;
+    if(this.saving) return;
+    this.saving = true;
     console.log(this.quiz)
-    this.createQuizService.updateQuiz(this.quiz);
-    this.router.navigate(['animateur'])
+    const subs = this.createQuizService.updateQuiz(this.quiz).subscribe({ next: (next) => {
+      this.router.navigate(['animateur'])
+      subs.unsubscribe()
+    }, error: err => {
+      alert("An error occured.\nPlease check your quiz, maybe there is some field missing")
+      this.saving = false
+    }})
   }
 
   deleteQuiz(canDelete: boolean): void {
@@ -101,8 +107,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   }
 
   onAddAnQuestion(): void {
-    if(this.numberOfQuestions < 30) {
-      this.numberOfQuestions++;
+    if(this.quiz.questions.length < 30) {
       this.quiz.questions.push({question_name: '', type: QuestionType.TEXT, id: this.quiz.questions.length, answer: []});
     }
   }

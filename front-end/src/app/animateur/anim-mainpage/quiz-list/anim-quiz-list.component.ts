@@ -56,7 +56,8 @@ export class AnimMainQuizListComponent implements OnInit {
         return this.selectedQuiz.length == this.quizList.length && this.selectedQuiz.length != 0;
     }
 
-    selectQuiz(quiz: Quiz) {
+    selectQuiz(quiz: Quiz, event?: Event) {
+        event?.stopImmediatePropagation()
         if (this.isSelectedKey(quiz)) {
             this.selectedQuiz.splice(this.selectedQuiz.indexOf(quiz), 1);
         }

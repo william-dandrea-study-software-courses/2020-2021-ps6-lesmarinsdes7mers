@@ -39,7 +39,7 @@
         </tr>
 
         <tr *ngFor="let quiz of quizList" (click)="editQuiz(quiz)">
-            <td><input type="checkbox" (click)="selectQuiz(quiz)" [checked]="isSelectedKey(quiz)"/></td>
+            <td><input type="checkbox" (click)="selectQuiz(quiz, $event)" [checked]="isSelectedKey(quiz)"/></td>
             <td style="text-align: start;">{{quiz.name}}</td>
             <td>{{translateDifficulty(quiz.difficulty)}}</td>
             <!--<td></td>-->

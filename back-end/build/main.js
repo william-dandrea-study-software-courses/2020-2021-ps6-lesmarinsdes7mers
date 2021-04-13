@@ -1055,6 +1055,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Database/BaseModel */ "./src/Database/BaseModel.js");
 /* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @hapi/joi */ "@hapi/joi");
 /* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hapi_joi__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var joi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! joi */ "joi");
+/* harmony import */ var joi__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(joi__WEBPACK_IMPORTED_MODULE_2__);
+
+
 
 
 /**
@@ -1078,6 +1082,28 @@ __webpack_require__.r(__webpack_exports__);
  * }} Quizz
  */
 
+const questionImage = _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
+  type: 1,
+  // 0 pour txt, 1 pour image
+  answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
+    is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
+    data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+  })).max(4).required()
+});
+const questionText = _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
+  type: 0,
+  // 0 pour txt, 1 pour image
+  answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
+    is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
+    data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(45).required()
+  })).max(4).required()
+});
 /** @type { BaseModel<Quizz> } */
 
 const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('quizz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
@@ -1090,15 +1116,19 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
   }),
   questions: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
-    question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
+    question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
     type: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(1).default(0),
     // 0 pour txt, 1 pour image
     answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
       id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
       is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
-      data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+      data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.alternatives().conditional('..type', {
+        is: 0,
+        then: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(45).required(),
+        otherwise: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+      })
     })).max(4).required()
-  })).default([])
+  })).max(4).required()
 }));
 /* harmony default export */ __webpack_exports__["default"] = (quizzModel);
 
@@ -1287,6 +1317,17 @@ module.exports = require("express");
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ "joi":
+/*!**********************!*\
+  !*** external "joi" ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("joi");
 
 /***/ }),
 
