@@ -145,4 +145,24 @@ label {
   border-radius: 0 4px 4px 0;
 }
 
+.info-content {
+  padding: 20px;
+  visibility: hidden;
+  border-radius: 20px;
+  color: black;
+  z-index: 0;
+}
+
+.info-button {
+  color: gray;
+}
+
+.info-button:hover {
+  color: black;
+}
+
+
+.info-button:hover .info-content {
+  visibility: visible;
+}
 
