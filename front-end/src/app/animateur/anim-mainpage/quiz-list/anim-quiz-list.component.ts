@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Quiz, Difficulty, difficultyToText, Privacy } from "src/models/quiz.model";
+import { Quiz, Difficulty, difficultyToText } from "src/models/quiz.model";
 import { QuizService } from "src/services/quiz.service";
 
 @Component({
@@ -41,7 +41,7 @@ export class AnimMainQuizListComponent implements OnInit {
     }
 
     isAllSelected():boolean {
-        return this.selectedQuiz.length == this.quizList.length && this.selectedQuiz.length != 0;
+        return this.selectedQuiz.length == this.quizList.length;
     }
 
     selectQuiz(quiz: Quiz) {
@@ -55,18 +55,7 @@ export class AnimMainQuizListComponent implements OnInit {
 
     deleteSelection():void {
         this.selectedQuiz.forEach(quiz => {
-            this.quizList.splice(this.quizList.indexOf(quiz), 1);
             this.quizService.deleteQuiz(quiz);
-        });
-        this.quizList.splice(0, this.quizList.length);
-    }
-
-    getVisibilityAccess(quiz: Quiz):string {
-        if (quiz.privacy.is_public) {
-            return "Publique";
-        }
-        else {
-            return "Privé";
-        }
+        })
     }
 }
