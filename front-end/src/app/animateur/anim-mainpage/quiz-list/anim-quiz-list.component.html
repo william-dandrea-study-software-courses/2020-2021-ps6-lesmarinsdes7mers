@@ -28,7 +28,7 @@
     <table>
         <tr>
             <th><input type="checkbox" (click)="selectAll()" [checked]="isAllSelected()"/></th>
-            <th>Titre</th>
+            <th style="text-align: start;">Titre</th>
             <th>Difficutlé</th>
             <th>Création</th>
             <th>Handicap</th>
@@ -39,13 +39,13 @@
 
         <tr *ngFor="let quiz of quizList">
                 <td><input type="checkbox" (click)="selectQuiz(quiz)" [checked]="isSelectedKey(quiz)"/></td>
-                <td>{{quiz.name}}</td>
-                <td style="text-align: center;">{{translateDifficulty(quiz.difficulty)}}</td>
-                <td style="text-align: center;"></td>
-                <td style="text-align: center;">Visuel</td>
-                <td style="text-align: center;">{{quiz.questions.length}}</td>
-                <td style="text-align: center;"></td>
-                <td style="text-align: center;"></td>
+                <td style="text-align: start;">{{quiz.name}}</td>
+                <td>{{translateDifficulty(quiz.difficulty)}}</td>
+                <td></td>
+                <td>Visuel</td>
+                <td>{{quiz.questions.length}}</td>
+                <td></td>
+                <td></td>
         </tr>
     </table>
 </div>
