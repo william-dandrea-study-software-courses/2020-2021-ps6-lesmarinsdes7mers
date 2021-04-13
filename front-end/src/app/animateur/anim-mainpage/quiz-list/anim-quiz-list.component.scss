@@ -25,7 +25,7 @@
 .info {
     display: inline-flex;
 
-    text-align: end right;
+    text-align: right;
     color: #7EBCA8;
     font-weight: 550;
 
@@ -57,7 +57,7 @@ th, td {
     text-align: start;
 }
 
-.alert-button, .info-button {
+.delete-button, .add-button {
     border: solid 1px white;
     color: white;
     font-weight: bold;
@@ -66,10 +66,10 @@ th, td {
     margin: 10px;
 }
 
-.alert-button {
+.delete-button {
     background-color: rgb(183, 115, 115);
 }
 
-.info-button {
+.add-button {
     background-color: rgb(115, 183, 160);
 }

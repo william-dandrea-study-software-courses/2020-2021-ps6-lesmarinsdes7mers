@@ -3,10 +3,11 @@
     "name": "Philippo",
     "surname": "Robertine",
     "id": 1,
-    "handicap": 5,
+    "handicap": 0,
     "font_size": 40,
     "birthday": "1962-12-19",
     "image_url": "https://unsplash.com/photos/VQ2L7t5qt_8/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",
@@ -33,6 +34,7 @@
     "font_size": 20,
     "birthday": "1964-1-11",
     "image_url": "https://unsplash.com/photos/z_8Jqe0Cc-s/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",
@@ -59,6 +61,7 @@
     "font_size": 50,
     "birthday": "1968-11-13",
     "image_url": "https://unsplash.com/photos/Z2MCFqEQiMw/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",
@@ -85,6 +88,7 @@
     "font_size": 70,
     "birthday": "1953-8-5",
     "image_url": "https://unsplash.com/photos/i9uIhSlOWYc/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",
@@ -111,6 +115,7 @@
     "font_size": 45,
     "birthday": "1932-6-22",
     "image_url": "https://unsplash.com/photos/XHpgMMiOvuM/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",
@@ -137,6 +142,7 @@
     "font_size": 55,
     "birthday": "1912-12-14",
     "image_url": "https://unsplash.com/photos/DR5hnFIIlrQ/download?force=true&w=640",
+    "note": "Aucune",
     "size_font_configs": [
       {
         "name": "grande",

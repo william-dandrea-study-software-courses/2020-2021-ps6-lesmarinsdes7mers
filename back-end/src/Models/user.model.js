@@ -27,6 +27,7 @@ const userModel = new BaseModel('users', joi.object({
     font_size: joi.number().default(40),
     birthday: joi.date().default("1962-12-19"),
     image_url: joi.string().default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
+    note: joi.string().default("Aucune"),
     size_font_configs: joi.array().items(joi.object({
         name: joi.string().required(),
         size: joi.number().required(),

@@ -2,28 +2,46 @@
     padding: 2em 5em 0 5em;
 }
 
+table {
+    border-spacing: 0;
+}
+
 th, td {
     padding: 1em;
-    //border: dotted;
-
     border-bottom: solid 0.2em #DDD;
-
     text-align: start;
 }
 
-.alert-button, .info-button {
+button:disabled {
+    opacity: 70%;
+}
+
+.delete-button, .add-button {
     border: solid 1px white;
     color: white;
     font-weight: bold;
     padding: 0.5em 1em;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 10px;
+    font-size: 18px;
 }
 
-.alert-button {
+.delete-button {
     background-color: rgb(183, 115, 115);
 }
 
-.info-button {
+.add-button {
     background-color: rgb(115, 183, 160);
+}
+
+.check {
+    width: 20px;
+    height: 20px;
+}
+
+.modify {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 25px;
 }

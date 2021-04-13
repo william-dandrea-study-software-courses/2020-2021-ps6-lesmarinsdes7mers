@@ -1,26 +1,28 @@
 <div class="user-list">
-    <button class="alert-button">Effacer la selection</button>
-    <button class="info-button">Ajouter un nouvel utilisateur</button>
+    <button class="delete-button" (click)="deleteSelectedFontSizeConfig()" [attr.disabled]="userSelected.length == 0?'disabled':null">Effacer la selection</button>
+    <button class="add-button" (click)="createUser()">Ajouter un nouvel utilisateur</button>
 
     <table>
         <tr>
-            <th><input type="checkbox"/></th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Naissance</th>
-            <th>Handicap</th>
-            <th>Nombre de quiz</th>
-            <th>Note</th>
+            <th>&nbsp;</th>
+            <th style="min-width: 150px">Nom</th>
+            <th style="min-width: 150px">Prénom</th>
+            <th style="min-width: 200px">Naissance</th>
+            <th style="min-width: 150px">Handicape</th>
+            <th style="min-width: 200px">Nombre de quiz</th>
+            <th style="max-width: 300px">Note</th>
+            <th>Modifier</th>
         </tr>
 
         <tr *ngFor="let user of userList">
-                <td><input type="checkbox"/></td>
-                <td>{{user.name}}</td>
-                <td>{{user.surname}}</td>
-                <td style="text-align: center;">Non défini</td>
-                <td style="text-align: center;">{{user.handicap}}</td>
-                <td style="text-align: center;">16</td>
-                <td>Rien</td>
+            <td><input type="checkbox" class="check" (change)="onConfigFontSizeChange(user)"/></td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.birthday| date:'d MMMM y'}}</td>
+            <td>{{handicapToString(user.handicap)}}</td>
+            <td>{{getQuizFinishCount(user)}}</td>
+            <td>{{user.note}}</td>
+            <td style="text-align: center; padding: 0"><button class="modify" (click)="modifyUserPage(user)"><i class="fas fa-edit"></i></button></td>
         </tr>
     </table>
 </div>

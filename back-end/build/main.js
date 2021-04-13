@@ -1136,6 +1136,7 @@ const userModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"
   font_size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().default(40),
   birthday: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.date().default("1962-12-19"),
   image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
+  note: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().default("Aucune"),
   size_font_configs: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().required(),
@@ -1223,7 +1224,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/williamdandrea/Library/Mobile Documents/com~apple~CloudDocs/SI3/S6/PS6/projet/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /home/CanardNocturne/Documents/Programmation/Web/PolyQuiz_PS6/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),

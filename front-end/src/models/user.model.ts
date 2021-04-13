@@ -1,4 +1,6 @@
+
 export interface ConfigSizeFont {
+    id: number;
     name: string;
     size: number;
     default: boolean;
@@ -12,5 +14,6 @@ export interface User {
     font_size: number;
     birthday: Date;
     image_url: string;
+    note: string;
     size_font_configs: ConfigSizeFont[];
 }
