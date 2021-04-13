@@ -15,7 +15,7 @@
 
                 <div id="add-question-bloc-right-info-question-line-one-question-name">
                     <div class="left-title">Question</div>
-                    <input (keyup)="editQuestionName($event)" id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz">
+                    <input (keyup)="editQuestionName($event)" id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz" maxlength="70">
                 </div>
 
                 <button (click)="deleteThisQuestion()" name="deleteQuestion" id="delete-question">

@@ -36,7 +36,22 @@
                 <input (click)="editQuizVisibility(0)" type="radio" id="radio-switch-one" name="visibility-bar" value="public" checked/><label for="radio-switch-one">Public</label>
                 <input (click)="editQuizVisibility(1)" type="radio" id="radio-switch-two" name="visibility-bar" value="private" /><label for="radio-switch-two">Privée</label>
             </div>
-
+            <div style="display: flex; justify-content: flex-end; margin-top: 20px;" class="info-button">
+                <i class="fas fa-info-circle" style="z-index: 10;"></i>
+                <div style="position: absolute;" class="info-content active-panel">
+                    <table style="border-spacing: 20px 3px;">
+                        <tr>
+                            <td style="text-decoration: underline solid;">Public</td>
+                            <td>Visible part tout les utilisateurs</td>
+                        </tr>
+                        <tr>
+                            <td style="text-decoration: underline solid;">Privée</td>
+                            <td>Visible par les utilisateurs de votre liste</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
         </div>
 
 
