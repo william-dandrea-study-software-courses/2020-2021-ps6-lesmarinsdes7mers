@@ -93,6 +93,82 @@ export class AnimMainQuizListComponent implements OnInit {
     }
 
     getNbPlayer(quizId: number):number {
-        return 0;
+        var count = 0;
+
+        for (let stat of this.userAndQuizList) {
+            if (stat.played_quizzes != undefined) {
+                count += stat.played_quizzes.filter(quiz => quiz.id_quiz === quizId).length;
+            }
+        }
+
+        return count;
+    }
+
+    private getAverageScoreForQuizAsNumber(quizId: number):number {
+        var count = 0;
+
+        for (let stat of this.userAndQuizList) {
+            if (stat.played_quizzes != undefined) {
+                for (let s of stat.played_quizzes.filter(quiz => quiz.id_quiz === quizId)) {
+                    count += s.score_user;
+                }
+            }
+        }
+
+        var quiz = this.quizList.find(q => q.id === quizId);
+
+        var score = count / this.getNbPlayer(quizId);
+
+        score = Math.min(20, Math.max(0, score * 20 / quiz.questions.length));
+
+        return score;
+    }
+
+    getAverageScoreForQuiz(quizId: number):string {
+        var res = "" + this.getAverageScoreForQuizAsNumber(quizId);
+
+        if (res.length >= res.indexOf('.') + 3) {
+            res = res.substring(0, res.indexOf('.') + 3);
+        }
+
+        return res;
+    }
+
+    getAverageScore():string {
+        var count = 0;
+
+        for (let quiz of this.quizList) {
+            count += this.getAverageScoreForQuizAsNumber(quiz.id);
+        }
+
+        var score = count / this.quizList.length;
+
+        var res = "" + score;
+
+        if (res.length >= res.indexOf('.') + 3) {
+            res = res.substring(0, res.indexOf('.') + 3);
+        }
+
+        return res;
+    }
+
+    getAverageNbPlayedQuizPerPerson():string {
+        var count = 0;
+        var val = 0;
+
+        for (let stat of this.userAndQuizList) {
+            count++;
+            val += stat.played_quizzes.length;
+        }
+
+        var score = val / count;
+
+        var res = "" + score;
+
+        if (res.length >= res.indexOf('.') + 3) {
+            res = res.substring(0, res.indexOf('.') + 3);
+        }
+
+        return res;
     }
 }

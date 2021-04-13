@@ -7,16 +7,16 @@
         </div>
         <div class="element">
             <div class="category">Score moyen</div>
-            <div class="info">17,4 / 20</div>
+            <div class="info">{{getAverageScore()}} / 20</div>
         </div>
         <div class="element">
             <div class="category">Nombre de quiz effectué par personne</div>
-            <div class="info">12,45</div>
+            <div class="info">{{getAverageNbPlayedQuizPerPerson()}}</div>
         </div>
-        <div class="element">
+        <!--<div class="element">
             <div class="category">Temps moyen par quiz</div>
             <div class="info">38 min</div>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -34,8 +34,8 @@
             <th>Handicap</th>
             <th>Questions</th>
             <th>Accéssibilité</th>
-            <!--<th>Participants</th>
-            <th>Score moyen</th>-->
+            <th>Participants</th>
+            <th>Score moyen</th>
         </tr>
 
         <tr *ngFor="let quiz of quizList">
@@ -46,8 +46,8 @@
                 <td>Visuel</td>
                 <td>{{quiz.questions.length}}</td>
                 <td>{{getVisibilityAccess(quiz)}}</td>
-                <!--<td></td>
-                <td></td>-->
+                <td>{{getNbPlayer(quiz.id)}}</td>
+                <td>{{getAverageScoreForQuiz(quiz.id)}} / 20</td>
         </tr>
     </table>
 </div>

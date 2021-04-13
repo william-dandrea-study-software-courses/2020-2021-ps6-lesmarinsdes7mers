@@ -643,11 +643,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const gettersUserAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
-gettersUserAndQuizRouter.get('/al', (req, res) =>
+gettersUserAndQuizRouter.get('/all', (req, res) =>
 /*next*/
 {
   try {
-    const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u != null);
+    const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u.id_user != null);
     if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
     new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res); //next();
   } catch (err) {
