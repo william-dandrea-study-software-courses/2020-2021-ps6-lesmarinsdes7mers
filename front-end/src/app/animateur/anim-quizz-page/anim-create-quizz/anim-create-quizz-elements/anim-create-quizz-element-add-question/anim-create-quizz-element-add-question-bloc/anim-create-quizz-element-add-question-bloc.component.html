@@ -4,7 +4,7 @@
 
     <div id="add-question-bloc-left">
         <span (click)="upQuestion()" class="material-icons" id="bloc-left-arrow-top">double_arrow</span>
-        <span id="bloc-left-question-number">{{questionNumber}}</span>
+        <span id="bloc-left-question-number">{{question.id}}</span>
         <span (click)="downQuestion()" class="material-icons" id="bloc-left-arrow-bottom">double_arrow</span>
     </div>
 
@@ -28,8 +28,8 @@
 
 
                 <div id="switch-textuel-image">
-                    <input (click)="imageOrTextQuestion(0)" type="radio" id="{{nameCssClassSwitchTxtImgOne}}" name="{{nameCssClassSwitchTxtImg}}" value="text" checked/><label for="{{nameCssClassSwitchTxtImgOne}}">Texte</label>
-                    <input (click)="imageOrTextQuestion(1)" type="radio" id="{{nameCssClassSwitchTxtImgTwo}}" name="{{nameCssClassSwitchTxtImg}}" value="image" /><label for="{{nameCssClassSwitchTxtImgTwo}}">Image</label>
+                    <input (click)="imageOrTextQuestion(0)" id="TmvPZoFoqd" type="radio" value="text" [checked]="question.type === 0"/><label for="TmvPZoFoqd">Texte</label>
+                    <input (click)="imageOrTextQuestion(1)" id="o7JqFvFfre" type="radio" value="image" [checked]="question.type === 1" /><label for="o7JqFvFfre">Image</label>
                 </div>
 
                 <button (click)="addAnAnswer()" name="addQuestion" id="add-question">
@@ -42,9 +42,8 @@
         <div id="add-question-bloc-right-responses">
 
 
-            <app-anim-create-quizz-element-add-question-bloc-textuel *ngIf="questionType === 0" [numberOfAnswersListener]="numberOfAnswers" (answersEmitter)="editListOfAnswer($event)"></app-anim-create-quizz-element-add-question-bloc-textuel>
-            <app-anim-create-quizz-element-add-question-bloc-image *ngIf="questionType === 1" [numberOfAnswersListener]="numberOfAnswers" (answersEmitter)="editListOfAnswer($event)"></app-anim-create-quizz-element-add-question-bloc-image>
-
+            <app-anim-create-quizz-element-add-question-bloc-textuel *ngIf="question.type === 0" [answers]="question.answer"></app-anim-create-quizz-element-add-question-bloc-textuel>
+            <app-anim-create-quizz-element-add-question-bloc-image *ngIf="question.type === 1" [answers]="question.answer"></app-anim-create-quizz-element-add-question-bloc-image>
 
         </div>
 

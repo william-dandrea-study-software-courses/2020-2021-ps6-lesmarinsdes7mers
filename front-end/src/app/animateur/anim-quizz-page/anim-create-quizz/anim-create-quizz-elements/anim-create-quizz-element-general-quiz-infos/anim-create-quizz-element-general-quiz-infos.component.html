@@ -8,7 +8,7 @@
             <div class="left-title">
                 Thème
             </div>
-            <input (keyup)="editQuizName($event)" id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz">
+            <input (keyup)="editQuizName($event)" [value]="quizName" id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz">
         </div>
 
 
@@ -18,10 +18,10 @@
             </div>
 
             <div id="quiz-info-main-difficulty-radio-elements">
-                <li><input (click)="editQuizDifficulty(0)" class="create-quiz-difficulty-input" type="radio" id="create-quiz-easy" name="difficulty-bar" value="easy" checked> <label for="create-quiz-easy">Facile</label></li>
-                <li><input (click)="editQuizDifficulty(1)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-medium" name="difficulty-bar" value="medium"> <label for="create-quiz-medium">Moyen</label></li>
-                <li><input (click)="editQuizDifficulty(2)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-hard" name="difficulty-bar" value="hard"> <label for="create-quiz-hard">Difficile</label></li>
-                <li><input (click)="editQuizDifficulty(3)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-expert" name="difficulty-bar" value="expert"> <label for="create-quiz-expert">Expert</label></li>
+                <li><input (click)="editQuizDifficulty(0)" class="create-quiz-difficulty-input" type="radio" id="create-quiz-easy" name="difficulty-bar" value="easy" [checked]="quizDifficulty === 0"> <label for="create-quiz-easy">Facile</label></li>
+                <li><input (click)="editQuizDifficulty(1)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-medium" name="difficulty-bar" value="medium" [checked]="quizDifficulty === 1"> <label for="create-quiz-medium">Moyen</label></li>
+                <li><input (click)="editQuizDifficulty(2)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-hard" name="difficulty-bar" value="hard" [checked]="quizDifficulty === 2"> <label for="create-quiz-hard">Difficile</label></li>
+                <li><input (click)="editQuizDifficulty(3)"class="create-quiz-difficulty-input" type="radio" id="create-quiz-expert" name="difficulty-bar" value="expert" [checked]="quizDifficulty === 3"> <label for="create-quiz-expert">Expert</label></li>
             </div>
 
         </div>
@@ -33,8 +33,8 @@
         <div id="anim-create-quiz-element-general-quiz-info-main-public-or-private-inputs-div">
 
             <div class="switch-field">
-                <input (click)="editQuizVisibility(0)" type="radio" id="radio-switch-one" name="visibility-bar" value="public" checked/><label for="radio-switch-one">Public</label>
-                <input (click)="editQuizVisibility(1)" type="radio" id="radio-switch-two" name="visibility-bar" value="private" /><label for="radio-switch-two">Privée</label>
+                <input (click)="editQuizVisibility(true)" type="radio" id="radio-switch-one" name="visibility-bar" value="public" [checked]="quizPrivacy?.is_public || false" /><label for="radio-switch-one">Public</label>
+                <input (click)="editQuizVisibility(false)" type="radio" id="radio-switch-two" name="visibility-bar" value="private" [checked]="!(quizPrivacy?.is_public || false)" /><label for="radio-switch-two">Privée</label>
             </div>
             <div style="display: flex; justify-content: flex-end; margin-top: 20px;" class="info-button">
                 <i class="fas fa-info-circle" style="z-index: 10;"></i>
