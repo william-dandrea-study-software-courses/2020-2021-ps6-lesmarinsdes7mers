@@ -79,8 +79,6 @@ export class QuizIntroComponent implements OnInit {
             this.currentOneUserAndQuiz.played_quizzes.push(madedQuiz);
             this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
         }
-
-
     }
 
     startQuiz(): void {

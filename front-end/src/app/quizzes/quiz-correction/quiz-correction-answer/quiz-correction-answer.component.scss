@@ -37,6 +37,7 @@
 
 
   width: 90%;
+
   display: flex;
 
   justify-content: center;
@@ -45,7 +46,7 @@
 
   background-color: #F4F4F4;
   border-radius: 10px;
-  padding: 20px 0px;
+  padding: 10px 0px;
 
   box-shadow: 3px 3px 3px #d2d2d2;
 
@@ -70,14 +71,42 @@
 
 }
 
-#play-quiz-answers-inner-one-answer-image {
+.play-quiz-answers-inner-one-answer-image {
 
   max-width: 200px;
   height: 300px;
   object-fit: cover;
 
   margin: 10px;
+  border: 30px solid;
 
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px #dbdbdb;
+
+}
+
+.play-quiz-answers-inner-one-answer-image-without-border {
+  max-width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px #dbdbdb;
+
+  margin: 10px;
+}
+
+
+.image-superpose-element {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translate(0, 80px);
+}
+
+.image-google-font-resize-img {
+  transform: translate(0, -80px);
+  font-size: 100px;
 }
 
 #play-quiz-validate-question {
@@ -87,6 +116,16 @@
   color: white;
   text-align: center;
   border-radius: 5px;
+}
+
+.inner-question-texte-icon {
+  display: flex;
+  align-content: space-between;
+  flex-direction: row;
+}
+
+.image-google-font-resize-txt {
+  font-size: 100px;
 }
 
 

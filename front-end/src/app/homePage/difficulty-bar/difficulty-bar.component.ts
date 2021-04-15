@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Difficulty} from "../../../models/quiz.model";
 import UserPrefsService from "../../../services/userprefs.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-difficulty-bar',
@@ -20,7 +21,7 @@ export class DifficultyBarComponent implements OnInit {
 
   public fontSize: number;
 
-  constructor(private userPrefsService: UserPrefsService) {
+  constructor(private userPrefsService: UserPrefsService, private router: Router) {
 
     /*
     this.userPrefsService.fontSize$.subscribe((eachFontSize) => {
@@ -99,5 +100,6 @@ export class DifficultyBarComponent implements OnInit {
       this.difficultyChoiceEvent.emit(null);
     }
   }
+
 
 }

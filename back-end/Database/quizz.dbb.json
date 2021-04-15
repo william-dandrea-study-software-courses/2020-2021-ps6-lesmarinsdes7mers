@@ -794,26 +794,26 @@
       "anecdote": "Pratiquée sur tous les continents, cette activité diffère selon les variétés d'abeilles, le climat et le développement économique."
     }, {
       "id":1,
-      "question_name": "De quel suc sécrété se nourrissent la plupart des abeilles de nos régions ?",
-      "type": 0,
+      "question_name": "Laquelle de ces abeilles est une abeille reine ?",
+      "type": 1,
       "answer": [{
         "id_answer": 1,
-        "is_correct": false,
-        "data": "Cerne"
+        "is_correct": true,
+        "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
       }, {
         "id_answer": 2,
         "is_correct": false,
-        "data": "Bourgeon"
+        "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
       }, {
         "id_answer": 3,
-        "is_correct": true,
-        "data": "Bonne réponse"
+        "is_correct": false,
+        "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
       }, {
         "id_answer": 4,
         "is_correct": false,
-        "data": "Loge"
+        "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
       }],
-      "anecdote": "Cette substance possède, par son goût ou son odeur, un pouvoir d'attraction sur les insectes ainsi que sur certains oiseaux."
+      "anecdote": "La reine est la plus grande des abeilles"
     }
   ]
 }

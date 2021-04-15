@@ -13,14 +13,14 @@ import {QuizService} from "../../../services/quiz.service";
 })
 export class QuizCorrectionComponent implements OnInit {
 
-
-
   fontSizeMain: number;
   fontSizeSecond: number;
   answers: Answer[];
 
   public oneUserAndQuiz: UserAndQuizModel;
   public quizSelected: Quiz;
+
+  public currentCorrectionSelected: number;
 
 
   constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService ) {
@@ -35,6 +35,10 @@ export class QuizCorrectionComponent implements OnInit {
     });
     this.fontSizeMain = this.userPref.getFontSize();
     this.fontSizeSecond = this.userPref.getFontSize() - 20;
+
+
+    this.quizService.currentCorrectionSelected$.subscribe((elem) => this.currentCorrectionSelected = elem);
+    this.currentCorrectionSelected = this.quizService.getCurrentQuestionSelected();
   }
 
   ngOnInit(): void {
@@ -73,8 +77,10 @@ export class QuizCorrectionComponent implements OnInit {
 
   navigateToQuestionAnswerPage(answer: UserAnswer): void {
 
-    this.router.navigate(['/quiz-correction-answer/' + answer.id_question]);
+    this.quizService.setCurrentQuestionSelected(answer.id_question);
+    this.router.navigate(['/quiz-correction-answer']);
   }
+
 
 
   navigateToResult(): void {
@@ -85,6 +91,8 @@ export class QuizCorrectionComponent implements OnInit {
     this.router.navigate(['homepage']);
 
   }
+
+
 
   adaptPageToBigFont(): boolean {
     if (this.fontSizeMain >= 50) {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FillQuizService} from "../../../../services/fill-quiz.service";
 import {QuizService} from "../../../../services/quiz.service";
 import {Difficulty, Quiz, Answer, Question, QuestionType} from "../../../../models/quiz.model";
@@ -23,7 +23,8 @@ export class QuizCorrectionAnswerComponent implements OnInit {
   public currentQuiz: Quiz;
 
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+  constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+
 
 
     this.userPrefsService.fontSize$.subscribe((elem) => {this.fontSizeMain = elem; this.fontSizeSecond = elem - 10; });
@@ -36,13 +37,14 @@ export class QuizCorrectionAnswerComponent implements OnInit {
     this.quizService.quizSelected$.subscribe((elem) => this.currentQuiz = elem);
     this.currentQuiz = this.quizService.getQuizSelected();
 
-    console.log(this.currentQuiz);
+    this.quizService.currentCorrectionSelected$.subscribe((elem) => this.idCurrentQuestion = elem);
+    this.idCurrentQuestion = quizService.getCurrentQuestionSelected();
 
   }
 
   ngOnInit(): void {
 
-    this.idCurrentQuestion = this.route.snapshot.paramMap.get['id'];
+    console.log(this.idCurrentQuestion);
 
   }
 
@@ -72,13 +74,14 @@ export class QuizCorrectionAnswerComponent implements OnInit {
   }
 
   inQuestionAnswers(): Answer[] {
-
-    console.log(this.currentQuiz.questions[this.idCurrentQuestion]);
     return this.currentQuiz.questions[this.idCurrentQuestion].answer;
   }
 
   isTextAnswer(): boolean {
+
     const indexOfQuestion = this.currentQuiz.questions.findIndex(elem => +elem.id === this.idCurrentQuestion);
+    console.log(indexOfQuestion);
+    console.log( this.currentQuiz.questions[indexOfQuestion]);
     return this.currentQuiz.questions[indexOfQuestion].type === 0;
   }
 
@@ -94,5 +97,9 @@ export class QuizCorrectionAnswerComponent implements OnInit {
     return false;
   }
 
+
+  navigateToQuizCorrection(): void {
+    this.router.navigate(["/quiz-correction"]);
+  }
 
 }

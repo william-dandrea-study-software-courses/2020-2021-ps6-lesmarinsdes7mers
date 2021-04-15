@@ -18,6 +18,7 @@ export class UserService {
   private userSelected: User;
   public userSelected$: Subject<User> = new Subject();
 
+
   private userUrl = serverUrl + '/user';
   private allUserUrl = this.userUrl + '/all';
 

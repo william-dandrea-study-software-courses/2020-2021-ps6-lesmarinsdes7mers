@@ -20,3 +20,38 @@ hr.divider {
 
 
 
+#message-de-bienvenue-bonjour {
+  font-weight: 900;
+  font-size: 100px;
+}
+
+.difficulty-bar-elements-button {
+
+  flex: 1;
+  margin: 10px 30px;
+  padding: 20px 20px;
+
+  font-size: 30px;
+
+  max-width: 200px;
+  height: auto;
+
+  font-weight: bold!important;
+
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 3px 3px 3px #e3e3e3;
+
+
+  background-color: #f4f4f4;
+  min-width: 300px;
+
+
+}
+
+#pseudo-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

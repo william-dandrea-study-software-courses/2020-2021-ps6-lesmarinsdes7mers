@@ -96,4 +96,8 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/quiz-intro', event.id]);
   }
 
+
+  deconnect(): void {
+    this.router.navigate(["/login"]);
+  }
 }

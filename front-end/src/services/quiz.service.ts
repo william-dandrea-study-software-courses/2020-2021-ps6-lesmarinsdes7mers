@@ -15,6 +15,9 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
   public quizSelected$: Subject<Quiz> = new Subject();
 
+  private currentCorrectionSelected: number;
+  public currentCorrectionSelected$: Subject<number> = new Subject<number>();
+
   private quizUrl = serverUrl + '/quizz';
   private questionsPath = 'questions';
 
@@ -24,13 +27,22 @@ export class QuizService {
     this.retrieveQuizzes();
   }
 
+  setCurrentQuestionSelected(idQuestion: number): void {
+    this.currentCorrectionSelected = idQuestion;
+    this.currentCorrectionSelected$.next(this.currentCorrectionSelected);
+  }
+
+  getCurrentQuestionSelected(): number {
+    return this.currentCorrectionSelected;
+  }
+
   retrieveQuizzes() {
-    const result = this.http.get<any>(this.quizUrl + '/all')
+    const result = this.http.get<any>(this.quizUrl + '/all');
     result.subscribe((quizList) => {
       this.quizzes = quizList.data;
       this.quizzes$.next(this.quizzes);
     });
-    return result
+    return result;
   }
 
   getQuizSelected(): Quiz {
