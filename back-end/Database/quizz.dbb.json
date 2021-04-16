@@ -1,6 +1,6 @@
 [{
   "id": 0,
-  "name": "Abeilles du rucher",
+  "name": "Abeilles du ruche 1",
   "difficulty": 2,
   "privacy": {
     "is_public": true,
@@ -191,8 +191,8 @@
     "name": "Les plantes du monde",
     "difficulty": 3,
     "privacy": {
-      "is_public": true,
-      "users_access": []
+      "is_public": false,
+      "users_access": [2]
     },
     "questions": [
       {
@@ -359,7 +359,7 @@
     "difficulty": 0,
     "privacy": {
       "is_public": false,
-      "users_access": [1]
+      "users_access": [1,0,2,3,4]
     },
     "questions": [
       {
@@ -502,7 +502,7 @@
   "difficulty": 1,
   "privacy": {
     "is_public": true,
-    "users_access": []
+    "users_access": [0]
   },
   "questions": [
     {
@@ -686,11 +686,11 @@
   ]
 }, {
   "id": 4,
-  "name": "Abeilles du rucher",
+  "name": "Abeilles du rucher 2",
   "difficulty": 2,
   "privacy": {
     "is_public": true,
-    "users_access": []
+    "users_access": [0,1,2,3,4,5,6]
   },
   "questions": [
     {
@@ -767,7 +767,7 @@
   "difficulty": 2,
   "privacy": {
     "is_public": true,
-    "users_access": []
+    "users_access": [0, 1]
   },
   "questions": [
     {

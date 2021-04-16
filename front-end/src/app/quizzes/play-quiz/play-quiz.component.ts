@@ -134,7 +134,7 @@ export class PlayQuizComponent implements OnInit {
     getColorForSelectedImages(answer: Answer): string {
 
         if (answer === this.currentSelectedAnswer){
-            return '20px solid #73B7A0';
+            return '40px solid #73B7A0';
         }
         return 'none';
     }
@@ -167,6 +167,10 @@ export class PlayQuizComponent implements OnInit {
         return false;
     }
 
+
+    quitQuiz(): void {
+        this.router.navigate(['/homepage']);
+    }
 
 
 }

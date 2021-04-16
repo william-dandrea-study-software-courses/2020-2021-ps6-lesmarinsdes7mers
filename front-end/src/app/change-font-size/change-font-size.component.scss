@@ -116,6 +116,9 @@ button {
   justify-content: center;
   align-items: center;
 
+  border: none;
+  box-shadow: none;
+
 }
 
 #app-guest-config-controls-div-two {
@@ -137,6 +140,9 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  border: none;
+  box-shadow: none;
 }
 
 
@@ -150,5 +156,16 @@ button {
 #app-guest-config-font-size-right-arrow {
   color: white;
   font-size: 100px;
-
 }
+
+#app-guest-config-font-size-right-arrow:hover {
+  color: #aaaaaa;
+  transform: translate(30px);
+}
+
+#app-guest-config-font-size-left-arrow:hover {
+  color: #aaaaaa;
+  transform: translate(-30px) rotate(180deg);
+}
+
+

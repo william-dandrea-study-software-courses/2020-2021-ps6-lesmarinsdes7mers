@@ -17,15 +17,15 @@
 
     <div id="app-guest-config-controls">
 
-        <div id="app-guest-config-controls-div-one" (click)="decreaseSizeFont()">
+        <button id="app-guest-config-controls-div-one" (click)="decreaseSizeFont()">
             <span id="app-guest-config-font-size-left-arrow" class="material-icons">double_arrow</span>
-        </div>
+        </button>
 
         <div id="app-guest-config-controls-div-two" [ngStyle]="{ 'font-size.px': fontSizeMain }">Aperçu</div>
 
-        <div id="app-guest-config-controls-div-three" (click)="increaseSizeFont()">
+        <button id="app-guest-config-controls-div-three" (click)="increaseSizeFont()">
             <span id="app-guest-config-font-size-right-arrow" class="material-icons">double_arrow</span>
-        </div>
+        </button>
 
     </div>
 
