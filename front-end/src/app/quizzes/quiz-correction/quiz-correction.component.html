@@ -1,12 +1,29 @@
-<div [style.font-size.px]="sizeFont">
-    <div class="result">
-        <app-quiz-result-list></app-quiz-result-list>
+<div id="correction-main-div">
+
+    <div id="quiz-result-title-main-div">
+        <div id="quiz-result-title" [ngStyle]="{'font-size.px': fontSizeMain}">{{quizSelected.name}}</div>
+        <div id="quiz-result-title-description" [ngStyle]="{'font-size.px': fontSizeSecond}">Cliquez sur un numéro de question pour voir la réponse à la question</div>
     </div>
 
-    <div class="menu">
-        <div><button class="result_menu" (click)="navigateToResult()">Résultat</button></div>
-        <div><button class="back_main_menu" (click)="navigateToHomepage()">Retour au menu des quiz</button></div>
+    <div id="correction-result-main-div">
+
+        <div *ngFor="let answer of getAllTheUserAnswers()" >
+            <div [ngClass]="verifyIfAnswerIsCorrect(answer) ? 'right-answer' : 'wrong-answer'"
+                 [ngStyle]="{'font-size.px': fontSizeSecond}"
+                 (click)="navigateToQuestionAnswerPage(answer)"
+                 id="correction-result-main-each-answer-div"
+            >
+                {{answer.id_question}}
+            </div>
+        </div>
+
+
     </div>
 
-    <app-change-font-size></app-change-font-size>
+    <div id="correction-menu-main-div">
+        <div><button class="quiz-result-menu-button" (click)="navigateToResult()" [ngStyle]="{'font-size.px': fontSizeSecond}" >Résultat</button></div>
+        <div><button class="quiz-result-menu-button" (click)="navigateToHomepage()" [ngStyle]="{'font-size.px': fontSizeSecond}">Retour au menu des quiz</button></div>
+    </div>
+
+    <app-change-font-size id="correction-quiz-change-size-div" [dispTheSizeWritings]="adaptPageToBigFont()"></app-change-font-size>
 </div>

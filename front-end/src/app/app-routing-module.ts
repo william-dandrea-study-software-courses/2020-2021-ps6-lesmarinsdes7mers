@@ -29,13 +29,15 @@ const routes: Routes = [
     {path: 'quiz-intro/:id', component: QuizIntroComponent},
     {path: 'quiz-result', component: QuizResultComponent},
     {path: 'quiz-correction', component: QuizCorrectionComponent},
-    {path: 'quiz-correction-answer/:id-question', component: QuizCorrectionAnswerComponent},
+    {path: 'quiz-correction-answer', component: QuizCorrectionAnswerComponent},
     {path: 'play-quiz/:id-quiz', component: PlayQuizComponent},
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'animateur/quizz-home-page', component: AnimQuizzHomepageComponent},
     {path: 'animateur/user-home-page', component: AnimUserHomepageComponent},
     {path: 'animateur/settings-home-page', component: AnimSettingsHomepageComponent},
+    {path: 'animateur/quizz-home-page/create-quizz/:quiz', component: AnimCreateQuizzHomepageComponent},
     {path: 'animateur/quizz-home-page/create-quizz', component: AnimCreateQuizzHomepageComponent},
+
     {path: 'animateur/user-add-edit/:id-user', component: UserAddEditComponent},
     {path: 'animateur', component:AnimMainpageComponent}
 ];

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import UserPrefsService from "../../../services/userprefs.service";
 import {Router} from "@angular/router";
+import {Answer, Quiz} from "../../../models/quiz.model";
+import {UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
+import {UserAndQuizService} from "../../../services/user-and-quiz.service";
+import {QuizService} from "../../../services/quiz.service";
 
 @Component({
   selector: 'app-quiz-correction',
@@ -9,36 +13,92 @@ import {Router} from "@angular/router";
 })
 export class QuizCorrectionComponent implements OnInit {
 
-  sizeFont: number;
-  preSizeFont: number;
+  fontSizeMain: number;
+  fontSizeSecond: number;
+  answers: Answer[];
 
-  constructor(private userPref: UserPrefsService, private router: Router) { }
+  public oneUserAndQuiz: UserAndQuizModel;
+  public quizSelected: Quiz;
+
+  public currentCorrectionSelected: number;
+
+
+  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService ) {
+    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.oneUserAndQuiz = elem);
+    this.oneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+    this.quizService.quizSelected$.subscribe((elem) => this.quizSelected = elem);
+    this.quizSelected = this.quizService.getQuizSelected();
+
+    this.userPref.fontSize$.subscribe((size) => {
+      this.fontSizeMain = size;
+      this.fontSizeSecond = size - 20;
+    });
+    this.fontSizeMain = this.userPref.getFontSize();
+    this.fontSizeSecond = this.userPref.getFontSize() - 20;
+
+
+    this.quizService.currentCorrectionSelected$.subscribe((elem) => this.currentCorrectionSelected = elem);
+    this.currentCorrectionSelected = this.quizService.getCurrentQuestionSelected();
+  }
 
   ngOnInit(): void {
-    this.sizeFont = this.userPref.getFontSize();
-    this.preSizeFont = this.userPref.getFontSize();
   }
 
-  registerFontSize(): void {
-    this.sizeFont = this.preSizeFont;
-    this.userPref.setFontSize(this.sizeFont);
+
+
+
+  getAllTheUserAnswers(): UserAnswer[] {
+
+    console.log('getAllTheUsers ===========');
+    console.log(this.quizSelected.id);
+    const idQuiz = this.quizSelected.id;
+    const answersUsers = this.oneUserAndQuiz.played_quizzes.findIndex(eQuiz => eQuiz.id_quiz === idQuiz);
+    console.log(answersUsers);
+    console.log(this.oneUserAndQuiz.played_quizzes[answersUsers]);
+
+    console.log('getAllTheUsers ===========');
+    return this.oneUserAndQuiz.played_quizzes[answersUsers].user_answers;
   }
 
-  increaseSizeFont(): void {
-    this.preSizeFont++;
+  verifyIfAnswerIsCorrect(userAnswer: UserAnswer): boolean {
+
+
+    const indexQuestionInQuizSelected = this.quizSelected.questions.findIndex(elem => +elem.id === userAnswer.id_question);
+    if (indexQuestionInQuizSelected === -1) {
+      return false;
+    }
+
+    const indexOfGoodAnswer = this.quizSelected.questions[indexQuestionInQuizSelected].answer.findIndex((elem) => elem.is_correct === true);
+    const idOfGoodAnswer = this.quizSelected.questions[indexQuestionInQuizSelected].answer[indexOfGoodAnswer].id_answer;
+
+    return idOfGoodAnswer === userAnswer.response_user;
+
   }
 
-  decreaseSizeFont(): void {
-    if (this.preSizeFont > 1)
-      this.preSizeFont--;
+  navigateToQuestionAnswerPage(answer: UserAnswer): void {
+
+    this.quizService.setCurrentQuestionSelected(answer.id_question);
+    this.router.navigate(['/quiz-correction-answer']);
   }
 
-  navigateToResult() {
+
+
+  navigateToResult(): void {
     this.router.navigate(['/quiz-result']);
   }
 
-  navigateToHomepage() {
+  navigateToHomepage(): void {
     this.router.navigate(['homepage']);
+
+  }
+
+
+
+  adaptPageToBigFont(): boolean {
+    if (this.fontSizeMain >= 50) {
+      return true;
+    }
+    return false;
   }
 
 }

@@ -3,6 +3,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../../services/quiz.service";
 import {getDifficultyClass, difficultyToText, Quiz, Difficulty} from "../../../models/quiz.model";
 import UserPrefsService from "../../../services/userprefs.service";
+import {UserAndQuizService} from "../../../services/user-and-quiz.service";
+import {User} from "../../../models/user.model";
+import {UserService} from "../../../services/user.service";
+import {MadedQuizzesModel, UserAndQuizModel} from "../../../models/user-and-quiz.model";
 
 @Component({
     selector: 'app-quiz-intro',
@@ -15,10 +19,14 @@ export class QuizIntroComponent implements OnInit {
     public difficultyToText = difficultyToText;
     public getDifficultyClass = getDifficultyClass;
 
+    public userSelected: User;
+
     public fontSizeMain: number;
     public fontSizeSecond: number;
 
-    constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, public userPref: UserPrefsService) {
+    public currentOneUserAndQuiz: UserAndQuizModel;
+
+    constructor(private router: Router, private route: ActivatedRoute, public userService: UserService, private quizService: QuizService, public userPref: UserPrefsService, private userAndQuizService: UserAndQuizService) {
 
         this.quizService.quizSelected$.subscribe((eachQuiz) => {
             this.quizSelected = eachQuiz;
@@ -29,10 +37,15 @@ export class QuizIntroComponent implements OnInit {
             this.fontSizeSecond = Math.max(30, fontSiz - 10);
         });
 
+        this.userService.userSelected$.subscribe((user) => {
+            this.userSelected = user;
+        });
+        this.userSelected = this.userService.getUserSelected();
 
-
-        console.log(this.fontSizeMain);
-        console.log(this.fontSizeSecond);
+        this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
+            this.currentOneUserAndQuiz = elem;
+        });
+        this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
     }
 
     ngOnInit(): void {
@@ -52,7 +65,25 @@ export class QuizIntroComponent implements OnInit {
         }
     }
 
+    initializeTheOneUseQuizzes(): void {
+
+        const index = this.currentOneUserAndQuiz.played_quizzes.findIndex(pq => pq.id_quiz === this.quizSelected.id);
+
+        // Si il n'y a pas l'élement dans le tableau, one le crée, sinon, il faut le remettre a zero
+        if (index >= 0) {
+            this.currentOneUserAndQuiz.played_quizzes[index].user_answers = [];
+            this.currentOneUserAndQuiz.played_quizzes[index].score_user = 0;
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+        } else {
+            const madedQuiz: MadedQuizzesModel = {id_quiz: this.quizSelected.id, score_user: 0, user_answers: []};
+            this.currentOneUserAndQuiz.played_quizzes.push(madedQuiz);
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+        }
+    }
+
     startQuiz(): void {
+        this.initializeTheOneUseQuizzes();
+        console.log(this.userAndQuizService.getOneUserQuizzes());
         this.router.navigate(['/play-quiz', this.quizSelected.id]);
     }
 

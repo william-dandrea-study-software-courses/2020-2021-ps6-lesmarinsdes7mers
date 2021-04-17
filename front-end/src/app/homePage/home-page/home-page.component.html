@@ -1,10 +1,19 @@
-<div *ngIf="userSelected != null">
+<div *ngIf="userSelected != null" id="message-de-bienvenue">
 
-    {{currentUserAndQuiz.id}}
+    <div id="pseudo-header">
+        <div id="message-de-bienvenue-bonjour">Bonjour, {{userSelected.surname}}</div>
+        <button class="difficulty-bar-elements-button" (click)="deconnect()">Se Déconnecter</button>
+    </div>
 
-    <div>Bonjour</div>
+
+    <hr class="divider">
+
 </div>
 
+
+
+
+<button class="difficulty-bar-elements-button" (click)="deconnect()" *ngIf="!userSelected">Se Déconnecter</button>
 
 <p id="text-intro-quizz" >A quel quiz voulez-vous jouer ?</p>
 

@@ -2,7 +2,7 @@
 
 <div id="question-bloc-image-answer">
 
-    <div *ngFor="let answer of listOfAnswers" >
+    <div *ngFor="let answer of answers" >
 
         <div *ngIf="answer.data === ''" class="question-bloc-image-answer-one-image-element" id="question-bloc-image-answer-one-image-element-when-nothing">
 
@@ -28,12 +28,7 @@
                 </div>
                 <div id="question-bloc-img-answer-trash" (click)="onDeleteAnswer(answer)"><span class="material-icons">delete</span></div>
             </div>
-
-
         </div>
 
     </div>
-
-
-
 </div>

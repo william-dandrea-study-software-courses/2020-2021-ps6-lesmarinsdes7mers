@@ -25,7 +25,7 @@ export class PlayQuizComponent implements OnInit {
 
     public currentUser: User;
 
-    public currentUserAndQuiz: UserAndQuizModel;
+    public currentOneUserAndQuiz: UserAndQuizModel;
     public currentMadedQuizModel: MadedQuizzesModel;
     public userAnswers: UserAnswer[] = [];
 
@@ -45,13 +45,10 @@ export class PlayQuizComponent implements OnInit {
         });
         this.fontSizeMain = userPrefsService.getFontSize();
         this.fontSizeSecond = userPrefsService.getFontSize() - 10;
-        // this.fontSizeMain = 70;
-        // this.fontSizeSecond = 60;
-        console.log(this.fontSizeMain);
-        console.log(this.fontSizeSecond);
+
 
         // === QUIZ
-        this.quizService.quizSelected$.subscribe();
+        this.quizService.quizSelected$.subscribe((elem) => this.currentQuiz = elem);
         this.currentQuiz = this.quizService.getQuizSelected();
         console.log(this.currentQuiz);
 
@@ -59,19 +56,20 @@ export class PlayQuizComponent implements OnInit {
         this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
 
         // === USER
-        this.userService.userSelected$.subscribe();
+        this.userService.userSelected$.subscribe((elem) => this.currentUser = elem);
         this.currentUser = this.userService.getUserSelected();
 
         // === USER AND QUIZ
         this.userAndQuizService.userAndQuizs$.subscribe();
-        this.userAndQuizService.oneUserQuizzes$.subscribe();
-        this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+        this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.currentOneUserAndQuiz = elem);
+        this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
 
         // === RESTE
         this.backgroundColorForSelectedElements = 'white';
         this.currentSelectedAnswer = null;
         this.numberOfGoodResponses = 0;
+        this.currentQuestion = 0;
 
     }
 
@@ -83,22 +81,34 @@ export class PlayQuizComponent implements OnInit {
 
     goToNextQuestion(): void {
 
-        this.userAnswers.push({id_question: this.currentQuestion, response_user: this.currentSelectedAnswer.id_answer });
-
-        console.log(this.currentUser);
-        console.log(this.currentUserAndQuiz);
 
         if (this.currentSelectedAnswer && this.currentQuestion < this.inNumberOfQuestionsInQuiz() - 1) {
 
             if (this.currentSelectedAnswer.is_correct) {
                 this.numberOfGoodResponses += 1;
             }
+            this.userAnswers.push({id_question: this.currentQuestion, response_user: this.currentSelectedAnswer.id_answer });
+
+            const indexUserAndQuiz = this.currentOneUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === this.currentQuiz.id);
+            this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].user_answers = this.userAnswers;
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+
 
             this.currentQuestion += 1;
-        } else {
-            console.log('fini');
+        } else if (this.currentSelectedAnswer) {
+            if (this.currentSelectedAnswer.is_correct) {
+                this.numberOfGoodResponses += 1;
+            }
+
+            this.userAnswers.push({id_question: this.currentQuestion, response_user: this.currentSelectedAnswer.id_answer });
+            const indexUserAndQuiz = this.currentOneUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === this.currentQuiz.id);
+            this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].user_answers = this.userAnswers;
+
+            this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].score_user = this.numberOfGoodResponses;
+
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+
             console.log(this.numberOfGoodResponses);
-            //this.userAndQuizService.setAnswersForOneUserQuizzes(this.currentQuiz.id, this.numberOfGoodResponses, this.userAnswers);
             this.router.navigate(['/quiz-result']);
         }
 
@@ -124,7 +134,7 @@ export class PlayQuizComponent implements OnInit {
     getColorForSelectedImages(answer: Answer): string {
 
         if (answer === this.currentSelectedAnswer){
-            return '20px solid #73B7A0';
+            return '40px solid #73B7A0';
         }
         return 'none';
     }
@@ -136,13 +146,6 @@ export class PlayQuizComponent implements OnInit {
         }
         return false;
     }
-
-
-
-
-
-
-
 
 
 
@@ -164,6 +167,10 @@ export class PlayQuizComponent implements OnInit {
         return false;
     }
 
+
+    quitQuiz(): void {
+        this.router.navigate(['/homepage']);
+    }
 
 
 }

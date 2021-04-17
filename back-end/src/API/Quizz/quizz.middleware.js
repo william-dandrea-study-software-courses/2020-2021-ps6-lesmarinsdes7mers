@@ -1,5 +1,6 @@
 import { Execute } from "../../Errors/ErrorSchield"
 import quizzModel from "../../Models/quizz.model"
+import FileNotFound from '../../Errors/FileNotFound'
 import { QuizzIdParameterMustBeInt } from "./Errors/QuizzIdParameterMustBeInt"
 import QuizzIdParameterNotFound from "./Errors/QuizzIdParameterNotFound"
 

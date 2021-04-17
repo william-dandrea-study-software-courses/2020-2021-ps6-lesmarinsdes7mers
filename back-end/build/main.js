@@ -488,19 +488,21 @@ quizzManageRouter.delete('/:quizz', _quizz_middleware__WEBPACK_IMPORTED_MODULE_4
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Errors/ErrorSchield */ "./src/Errors/ErrorSchield.js");
 /* harmony import */ var _Models_quizz_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Models/quizz.model */ "./src/Models/quizz.model.js");
-/* harmony import */ var _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Errors/QuizzIdParameterMustBeInt */ "./src/API/Quizz/Errors/QuizzIdParameterMustBeInt.js");
-/* harmony import */ var _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Errors/QuizzIdParameterNotFound */ "./src/API/Quizz/Errors/QuizzIdParameterNotFound.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+/* harmony import */ var _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Errors/QuizzIdParameterMustBeInt */ "./src/API/Quizz/Errors/QuizzIdParameterMustBeInt.js");
+/* harmony import */ var _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Errors/QuizzIdParameterNotFound */ "./src/API/Quizz/Errors/QuizzIdParameterNotFound.js");
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ((req, res, next) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_0__["Execute"])(res, () => {
-    if (!req.params.quizz) throw new _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    if (!req.params.quizz) throw new _Errors_QuizzIdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
     req.params.quizz = parseInt(req.params.quizz);
-    if (isNaN(req.params.quizz)) throw new _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_2__["QuizzIdParameterMustBeInt"]();
+    if (isNaN(req.params.quizz)) throw new _Errors_QuizzIdParameterMustBeInt__WEBPACK_IMPORTED_MODULE_3__["QuizzIdParameterMustBeInt"]();
     const result = _Models_quizz_model__WEBPACK_IMPORTED_MODULE_1__["default"].getOne(q => q.id === req.params.quizz);
-    if (!result) throw new FileNotFound();
+    if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
     req.quizz = result;
     next();
   });
@@ -643,11 +645,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const gettersUserAndQuizRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
-gettersUserAndQuizRouter.get('/all', (req, res, next) => {
-  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u != null);
-  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
-  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res);
-  next();
+gettersUserAndQuizRouter.get('/all', (req, res) =>
+/*next*/
+{
+  try {
+    const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(u => u.id_user != null);
+    if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__["default"](result).send(res); //next();
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 gettersUserAndQuizRouter.get('/user/:id', (req, res, next) => {
   if (!req.params.id) throw new IdParameterNotFound();
@@ -1048,6 +1055,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Database/BaseModel */ "./src/Database/BaseModel.js");
 /* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @hapi/joi */ "@hapi/joi");
 /* harmony import */ var _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hapi_joi__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var joi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! joi */ "joi");
+/* harmony import */ var joi__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(joi__WEBPACK_IMPORTED_MODULE_2__);
+
+
 
 
 /**
@@ -1071,6 +1082,28 @@ __webpack_require__.r(__webpack_exports__);
  * }} Quizz
  */
 
+const questionImage = _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
+  type: 1,
+  // 0 pour txt, 1 pour image
+  answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
+    is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
+    data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+  })).max(4).required()
+});
+const questionText = _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+  question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
+  type: 0,
+  // 0 pour txt, 1 pour image
+  answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
+    is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
+    data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(45).required()
+  })).max(4).required()
+});
 /** @type { BaseModel<Quizz> } */
 
 const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('quizz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
@@ -1082,16 +1115,20 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
     users_access: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number())
   }),
   questions: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
-    id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
-    question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
+    id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
+    question_name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(70).required(),
     type: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(1).default(0),
     // 0 pour txt, 1 pour image
     answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
       id_answer: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(1).max(4).required(),
       is_correct: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false),
-      data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+      data: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.alternatives().conditional('..type', {
+        is: 0,
+        then: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().max(45).required(),
+        otherwise: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
+      })
     })).max(4).required()
-  })).default([])
+  })).max(4).required()
 }));
 /* harmony default export */ __webpack_exports__["default"] = (quizzModel);
 
@@ -1164,7 +1201,7 @@ __webpack_require__.r(__webpack_exports__);
 const userAndQuizModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"]('userAndQuiz', _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
   id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
   id_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
-  maded_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+  played_quizzes: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
     id_quiz: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
     score_user: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).required(),
     user_answers: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
@@ -1281,6 +1318,17 @@ module.exports = require("express");
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ "joi":
+/*!**********************!*\
+  !*** external "joi" ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("joi");
 
 /***/ }),
 

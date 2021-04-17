@@ -5,7 +5,7 @@ import joi from '@hapi/joi'
 const userAndQuizModel = new BaseModel('userAndQuiz', joi.object({
     id: joi.number().integer().min(0).required(),
     id_user: joi.number().integer().min(0).required(),
-    maded_quizzes: joi.array().items(joi.object({
+    played_quizzes: joi.array().items(joi.object({
         id_quiz: joi.number().integer().min(0).required(),
         score_user: joi.number().integer().min(0).required(),
 

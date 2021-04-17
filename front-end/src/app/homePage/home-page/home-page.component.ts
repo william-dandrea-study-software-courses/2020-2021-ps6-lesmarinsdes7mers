@@ -29,7 +29,15 @@ export class HomePageComponent implements OnInit {
   constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.quizList = quizzes;
+      this.quizList = quizzes.filter(elem => elem.privacy.is_public);
+
+      if (this.userSelected) {
+
+        const tst = quizzes.filter(elem => elem.privacy.users_access.includes(this.userSelected.id));
+        Array.prototype.push.apply(this.quizList, tst);
+        this.quizList = [...new Set(this.quizList)];
+      }
+
     });
 
     this.userService.userSelected$.subscribe((user) => {
@@ -44,7 +52,9 @@ export class HomePageComponent implements OnInit {
     this.userAndQuizService.oneUserQuizzes$.subscribe();
     this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
-    console.log(this.currentUserAndQuiz);
+
+
+
 
   }
 
@@ -94,8 +104,11 @@ export class HomePageComponent implements OnInit {
   onSelectedQuiz(event: Quiz): void {
     this.quizService.setSelectedQuiz(+event.id);
 
-
     this.router.navigate(['/quiz-intro', event.id]);
   }
 
+
+  deconnect(): void {
+    this.router.navigate(["/login"]);
+  }
 }

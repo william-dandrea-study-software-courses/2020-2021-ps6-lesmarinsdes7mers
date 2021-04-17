@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Difficulty} from "../../../../../../models/quiz.model";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Difficulty, Privacy} from "../../../../../../models/quiz.model";
 import {Visibility} from "../../../../../../models/quiz-creation.model";
 
 @Component({
@@ -9,37 +9,47 @@ import {Visibility} from "../../../../../../models/quiz-creation.model";
 })
 export class AnimCreateQuizzElementGeneralQuizInfosComponent implements OnInit {
 
-  @Output() quizNameRequest = new EventEmitter<string>();
-  @Output() quizDifficultyRequest = new EventEmitter<Difficulty>();
-  @Output() quizVisibilityRequest = new EventEmitter<Visibility>();
+  @Input() quizName: string = "";
+  @Output() quizNameChange: EventEmitter<string> = new EventEmitter();
+
+  @Input() quizDifficulty: Difficulty = Difficulty.EASY;
+  @Output() quizDifficultyChange: EventEmitter<Difficulty> = new EventEmitter();
+
+  @Input() quizPrivacy: Privacy = {
+    users_access: [],
+    is_public: false
+  }
+  @Output() quizPrivacyChange: EventEmitter<Privacy> = new EventEmitter();
 
   constructor() {
-    this.quizVisibilityRequest.emit(Visibility.PUBLIC);
-    this.quizDifficultyRequest.emit(Difficulty.EASY);
   }
 
   ngOnInit(): void {
   }
 
   editQuizName(event: any): void {
-    this.quizNameRequest.emit(event.target.value);
+    //this.quizNameRequest.emit(event.target.value);
+    this.quizName = event.target.value
+    this.quizNameChange.emit(this.quizName)
     console.log('QUIZ-INFO : EDIT NAME : ' + event.target.value);
   }
 
   editQuizDifficulty(event: number): void {
     switch (event) {
-      case 0: this.quizDifficultyRequest.emit(Difficulty.EASY); console.log('QUIZ-INFO : EDIT DIFFICULTY : ' + Difficulty.EASY); break;
-      case 1: this.quizDifficultyRequest.emit(Difficulty.MEDIUM); console.log('QUIZ-INFO : EDIT DIFFICULTY : ' + Difficulty.MEDIUM); break;
-      case 2: this.quizDifficultyRequest.emit(Difficulty.HARD); console.log('QUIZ-INFO : EDIT DIFFICULTY : ' + Difficulty.HARD); break;
-      case 3: this.quizDifficultyRequest.emit(Difficulty.EXPERT); console.log('QUIZ-INFO : EDIT DIFFICULTY : ' + Difficulty.EXPERT); break;
+      case 0: this.quizDifficulty = Difficulty.EASY; break;
+      case 1: this.quizDifficulty = Difficulty.MEDIUM; break;
+      case 2: this.quizDifficulty = Difficulty.HARD; break;
+      case 3: this.quizDifficulty = Difficulty.EXPERT; break;
     }
+    this.quizDifficultyChange.emit(this.quizDifficulty)
   }
 
-  editQuizVisibility(event: number): void {
-    switch (event) {
-      case 0: this.quizVisibilityRequest.emit(Visibility.PUBLIC); console.log('QUIZ-INFO : EDIT VISIBILITY : ' + Visibility.PUBLIC); break;
-      case 1: this.quizVisibilityRequest.emit(Visibility.PRIVATE); console.log('QUIZ-INFO : EDIT VISIBILITY : ' + Visibility.PRIVATE); break;
+  editQuizVisibility(event: boolean): void {
+    this.quizPrivacy = {
+      is_public: event,
+      users_access: []
     }
+    this.quizPrivacyChange.emit(this.quizPrivacy)
   }
 
 }

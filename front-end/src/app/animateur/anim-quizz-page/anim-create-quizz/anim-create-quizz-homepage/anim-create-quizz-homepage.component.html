@@ -1,12 +1,12 @@
 
 
 <header>
-    <app-anim-create-quizz-element-header (deleteQuizRequest)="deleteQuiz($event)" (saveAndExitQuiz)="addQuiz($event)" ></app-anim-create-quizz-element-header>
+    <app-anim-create-quizz-element-header (deleteQuizRequest)="deleteQuiz($event)" (saveAndExitQuiz)="save()" ></app-anim-create-quizz-element-header>
 </header>
 
 
 <div id="element-general-quiz-infos">
-    <app-anim-create-quizz-element-general-quiz-infos (quizDifficultyRequest)="onDifficultyQuiz($event)"  (quizNameRequest)="onThemeQuiz($event)" (quizVisibilityRequest)="onVisibilityQuiz($event)"></app-anim-create-quizz-element-general-quiz-infos>
+    <app-anim-create-quizz-element-general-quiz-infos [(quizDifficulty)]="quiz.difficulty"  [(quizName)]="quiz.name" [(quizPrivacy)]="quiz.privacy"></app-anim-create-quizz-element-general-quiz-infos>
 </div>
 
 
@@ -20,8 +20,10 @@
 <div id="add-questions">
     <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz">Ajouter une question au quizz</button>
 
-    <li *ngFor="let questionElement of questionsQuiz">
-        <app-anim-create-quizz-element-add-question-bloc [questionNumber]=questionElement.id (upTheQuestion)="onUpQuestion($event)" (downTheQuestion)="onDownQuestion($event)" (deleteQuestion)="onDeleteQuestion($event)" (listOfAnswers)="onEditListAnswer($event, questionElement)" ></app-anim-create-quizz-element-add-question-bloc>
+    <li *ngFor="let questionElement of quiz.questions">
+        <app-anim-create-quizz-element-add-question-bloc 
+            [question]="questionElement" >
+        </app-anim-create-quizz-element-add-question-bloc>
     </li>
 
 </div>

@@ -16,6 +16,7 @@ $red: #8D7E32;
 .panel {
     background-color: white !important;
     color: black !important;
+    border: 10px solid black !important;
 }
 
 .right-answer {
@@ -54,3 +55,5 @@ $difficulty-fontcolor: black;
     background-color: $red !important;
     color: $difficulty-fontcolor !important;
 }
+
+

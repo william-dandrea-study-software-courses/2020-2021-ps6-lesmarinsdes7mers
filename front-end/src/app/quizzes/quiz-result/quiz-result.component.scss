@@ -1,93 +1,82 @@
-.result {
-  background-color: #EEE;
-  border-radius: 10px;
+#quiz-result-main-div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
-  //border: solid black 2px;
-
-  height: auto;
-  margin: 15px;
-  padding: 10px;
-}
-
-.theme {
-  text-align: center;
-}
-
-.stat {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.percent {
-  flex: 1;
-  text-align: center;
-  font-weight: 550;
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-}
-
-.menu div {
-  flex: 1;
-}
-
-.menu :first-child {
-  text-align: right;
-}
-
-.correction {
-  margin-right: 50px;
-}
-
-.back_main_menu {
-  margin-left: 50px;
-}
-
-button {
-  font-size: inherit;
-}
-
-.menu_change_font_size {
-  text-align: center;
-}
-
-.point {
-  display: flex;
-  flex-wrap: wrap;
-
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-  flex: 1;
-  height: 100%;
-  //background: aqua;
+  border: 5px solid black;
 }
 
-.point > div {
+#quiz-result-title {
+  font-weight: 900;
+  margin-top: 20px;
+}
+
+
+#quiz-result-resultdiv {
+
+  width: 80%;
+
+  padding: 30px;
+
+
+  background-color: #f4f4f4;
+  box-shadow: 3px 3px 3px #cacaca;
+  border-radius: 10px;
+}
+
+
+.quiz-result-resultdiv-line-class {
   display: flex;
-  flex: 1;
+  justify-content: space-between;
+
+}
+
+.quiz-result-resultdiv-line-first-elem-class {
+
+  margin: 10px;
+
+}
+
+.quiz-result-resultdiv-line-second-elem-class {
+  margin: 10px;
+}
+
+#quiz-result-menu {
+
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
-  padding-left: 1em;
-  padding-right: 1em;
+  width: 80%;
+
+
+
 }
 
-.category, .info {
-  font-weight: 550;
+.quiz-result-menu-button {
+
+  border: none;
+  border-radius: 5px;
+  padding: 10px 50px;
+
+  box-shadow: 3px 3px 3px #cacaca;
+  background-color: #f4f4f4;
+
+
+  font-weight: 800;
+
 }
 
-.category {
-  display: inline;
+#quiz-result-footer-change-size {
+  max-height: 25%;
+  width: 80%;
 
-  //flex: 1;
-}
 
-.info {
-  display: flex;
-
-  flex: 1;
-
-  flex-direction: row-reverse;
 }

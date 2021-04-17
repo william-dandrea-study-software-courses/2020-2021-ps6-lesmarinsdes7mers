@@ -23,20 +23,30 @@
             </div>
 
             <div *ngIf="!isTextAnswer()">
-                <div  (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'border': getColorForSelectedImages(eachAnswer) }">
-                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image">
+                <div   [ngStyle]="{'font-size.px': fontSizeSecond }">
+                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image" [ngStyle]="{'border':getColorForSelectedImages(eachAnswer)}" (click)="selectedAnswer(eachAnswer)">
                 </div>
             </div>
-
 
 
         </div>
 
     </div>
 
-    <div id="play-quiz-validate-question" (click)="goToNextQuestion()" [ngStyle]="{'font-size.px': fontSizeMain}">
-        Valider
+
+    <div id="navigate-button">
+
+        <div id="play-quiz-quit-quiz" (click)="quitQuiz()" [ngStyle]="{'font-size.px': fontSizeMain}">
+            Quitter le quiz
+        </div>
+        <div id="play-quiz-validate-question" (click)="goToNextQuestion()" [ngStyle]="{'font-size.px': fontSizeMain}">
+            Valider
+        </div>
+
+
     </div>
+
+
 
 
     <app-change-font-size id="play-quiz-change-size-div" [dispTheSizeWritings]="adaptPageToBigFont()" ></app-change-font-size>

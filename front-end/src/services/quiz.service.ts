@@ -15,6 +15,9 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
   public quizSelected$: Subject<Quiz> = new Subject();
 
+  private currentCorrectionSelected: number;
+  public currentCorrectionSelected$: Subject<number> = new Subject<number>();
+
   private quizUrl = serverUrl + '/quizz';
   private questionsPath = 'questions';
 
@@ -24,19 +27,36 @@ export class QuizService {
     this.retrieveQuizzes();
   }
 
-  retrieveQuizzes(): void {
-    this.http.get<any>(this.quizUrl + '/all').subscribe((quizList) => {
+  setCurrentQuestionSelected(idQuestion: number): void {
+    this.currentCorrectionSelected = idQuestion;
+    this.currentCorrectionSelected$.next(this.currentCorrectionSelected);
+  }
+
+  getCurrentQuestionSelected(): number {
+    return this.currentCorrectionSelected;
+  }
+
+  retrieveQuizzes() {
+    const result = this.http.get<any>(this.quizUrl + '/all');
+    result.subscribe((quizList) => {
       this.quizzes = quizList.data;
       this.quizzes$.next(this.quizzes);
     });
+    return result;
   }
 
   getQuizSelected(): Quiz {
     return this.quizSelected;
   }
 
-  addQuiz(quiz: Quiz): void {
-    this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
+  addQuiz(quiz: Quiz) {
+    const resultSubject = new Subject<Quiz>()
+    const result = this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions)
+    result.subscribe((quiz) => {
+      this.retrieveQuizzes()
+      resultSubject.next(quiz)
+    });
+    return resultSubject;
   }
 
   setSelectedQuiz(quizId: number): void {
@@ -49,6 +69,29 @@ export class QuizService {
   deleteQuiz(quiz: Quiz): void {
     const urlWithId = this.quizUrl + '/' + quiz.id;
     this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuizzes());
+  }
+
+  updateQuiz(quiz: Quiz) {
+
+    const q = Object.assign({}, quiz);
+
+    if(quiz.id === undefined) {
+      console.log("Create quiz")
+      const s = this.addQuiz(q);
+      s.subscribe({ next: n => quiz.id = q.id });
+      return s
+    } else {
+      console.log("Update quiz")
+      const result = new Subject<Quiz>()
+      const s = this.http.put<Quiz>(this.quizUrl + "/" + q.id, quiz, this.httpOptions)
+      s.subscribe({ next: n => {
+        quiz.id = q.id
+        this.retrieveQuizzes()
+        result.next(n)
+      }});
+
+      return result
+    }
   }
 
   addQuestion(quiz: Quiz, question: Question): void {
