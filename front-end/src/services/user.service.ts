@@ -23,12 +23,8 @@ export class UserService {
 
 
   constructor(private http: HttpClient, private userPrefService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
-
     this.userAndQuizService.userAndQuizs$.subscribe();
     this.userAndQuizService.oneUserQuizzes$.subscribe();
-
-
-
     this.retrieveUsers();
   }
 
@@ -45,10 +41,6 @@ export class UserService {
       this.userSelected = eachUser.data;
       this.userSelected$.next(eachUser.data);
     });
-
-
-
-
     this.userPrefService.setFontSize(user.font_size);
     this.userPrefService.setHandicap(user.handicap);
   }
@@ -59,11 +51,13 @@ export class UserService {
 
   addUser(user: User): void {
     this.users.push(user);
+    this.users$.next(this.users);
   }
 
 
   deleteUser(user: User): void {
     this.users = this.users.filter(value => value.id !== user.id);
+    this.users$.next(this.users);
   }
 
   getUser(id: number): User {

@@ -20,7 +20,7 @@ manageUser.put('/:id', (req, res) => {
         req.body.id = req.params.id
         userModel.update(req.body)
 
-        new HttpMessage("User udpated successfully").send(res)
+        new HttpMessage("User updated successfully").send(res)
     })
 })
 

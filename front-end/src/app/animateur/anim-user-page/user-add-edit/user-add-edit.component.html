@@ -1,12 +1,30 @@
 <div class="header-menu">
-    <div class="header-menu-item"><a routerLink="/animateur">Quitter</a></div>
+    <div class="header-menu-item quit"><a routerLink="/animateur" (click)="quit()">Quitter</a></div>
+    <div class="header-menu-item">
+
+        <span class="error_save" *ngIf="!user.surname; else missing_name">Il manque le nom</span>
+        <ng-template #missing_name>
+            <span class="error_save" *ngIf="!user.name; else missing_birthday" >Il manque le prénom</span>
+            <ng-template #missing_birthday>
+                <span class="error_save" *ngIf="!user.birthday" >Il manque l'anniversaire</span>
+            </ng-template>
+        </ng-template>
+
+        <a (click)="saveUserModificationAndQuit()" [style.opacity]="this.userInfoCorrect()?1:0.4">
+            Sauvegardez
+        </a>
+    </div>
 </div>
 
 <div class="base">
 
     <div>
-        <img src="assets/{{user.name}}_{{user.surname}}.jpg" alt="{{user.name}}_{{user.surname}}"
-             class="profile-picture section"/>
+        <div class="image_placeholder">
+            <img src="{{user.image_url}}" alt="{{user.name}}_{{user.surname}}" class="profile-picture section"
+                 (error)="img.src = 'https://img.icons8.com/metro/208/000000/user-male.png'" #img/>
+            <label for="img_url" class="change_image">Mettez l'URL de l'image</label>
+            <input (input)="imageUrlChange(img_url)" id="img_url" class="img_url" autocomplete="off" #img_url>
+        </div>
 
         <div class="container section">
             <table>
@@ -36,6 +54,18 @@
                     <td>{{user.handicap}}</td>
                     <td>
                         <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Note</th>
+                    <td>
+                        <label for="note"></label>
+                        <textarea id="note" value="{{user.note}}"
+                               [attr.disabled]="modifyInput===4?null:'disabled'" (keyup.enter)="enter($event)"
+                                  (keyup.escape)="escapeInput(note)" (focusout)="onLostFocus($event)" #note></textarea>
+                    </td>
+                    <td>
+                        <button class="edit" (click)="setModifyInput(note, 4)"><i class="fas fa-edit"></i></button>
                     </td>
                 </tr>
             </table>
@@ -94,13 +124,13 @@
                     <th style="width: 225px; text-align: center;">Moyenne globale</th>
                     <th>&nbsp;</th>
                 </tr>
-                <tr>
+                <tr *ngFor="let quizAnswer of quizAnswers">
                     <td><input type="checkbox" id="quiz1" name="quiz"><label for="quiz1"></label>&nbsp;</td>
-                    <td>Les mers du monde</td>
-                    <td>Difficile</td>
-                    <td style="text-align: center">24/30</td>
-                    <td style="text-align: center">2</td>
-                    <td style="text-align: center">21/30</td>
+                    <td>{{quizAnswer.name}}</td>
+                    <td>{{quizAnswer.difficulty}}</td>
+                    <td style="text-align: center">{{quizAnswer.result}}</td>
+                    <td style="text-align: center">{{quizAnswer.tries}}</td>
+                    <td style="text-align: center">{{quizAnswer.mean}}</td>
                     <td>&nbsp;</td>
                 </tr>
             </table>

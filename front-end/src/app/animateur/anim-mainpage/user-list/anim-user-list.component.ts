@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {ConfigSizeFont, User} from "src/models/user.model";
+import { User} from "src/models/user.model";
 import { UserService } from "src/services/user.service";
 import {HandicapToString} from "../../../../models/handicap.enum";
 import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
@@ -52,7 +52,7 @@ export class AnimMainUserListComponent implements OnInit {
     }
 
     createUser() {
-        const user = {"id": this.getNextId(), name: '', surname: '', handicap: 0, font_size: 20, birthday: new Date(),
+        const user = {id: this.getNextId(), name: '', surname: '', handicap: 0, font_size: 20, birthday: new Date(),
             note: 'Aucune', image_url: '', size_font_configs: []} as User;
         this.userService.addUser(user);
         this.router.navigate(['animateur', 'user-add-edit', user.id]);

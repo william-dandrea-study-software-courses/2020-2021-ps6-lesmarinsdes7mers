@@ -37,12 +37,10 @@ export default class BaseModel {
         const result = this.model.validate(obj)
         if(result.error) throw new InvalidSchemeError(result.error)
 
-
         console.log(this.content.find(d => parseInt(d.id) === parseInt(result.value.id)))
 
         if(this.content.find(d => d.id === result.value.id)) throw new IdAlreadyUsed();
 
-        console.log("bonjour")
         this.content.push(result.value)
         this.save()
     }

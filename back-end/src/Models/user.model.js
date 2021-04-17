@@ -26,9 +26,10 @@ const userModel = new BaseModel('users', joi.object({
     handicap: joi.number().integer().min(0).max(5).default(5),
     font_size: joi.number().default(40),
     birthday: joi.date().default("1962-12-19"),
-    image_url: joi.string().default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
+    image_url: joi.string().allow(null, '').default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
     note: joi.string().default("Aucune"),
     size_font_configs: joi.array().items(joi.object({
+        id: joi.number().required(),
         name: joi.string().required(),
         size: joi.number().required(),
         default: joi.boolean().default(false)

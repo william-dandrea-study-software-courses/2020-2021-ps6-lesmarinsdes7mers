@@ -4,7 +4,6 @@ import FileNotFound from '../../Errors/FileNotFound'
 import HttpMessage from '../../Errors/HttpMessage'
 import userModel from '../../Models/user.model'
 import IdMustBeANumber from '../BasicErrors/IdMustBeANumber'
-import userAndQuizModel from "../../Models/userAndQuizModel";
 
 const gettersUsersRouter = Router()
 
