@@ -26,7 +26,7 @@ export class UserAddEditComponent implements OnInit {
   }
 
   getUserQuiz(): MadedQuizzesModel[] {
-    return this.userAndQuiz.getUserAndQuizs().find(value => value.id_user == this.user.id)?.maded_quizzes || [];
+    return this.userAndQuiz.getUserAndQuizs().find(value => value.id_user == this.user.id)?.played_quizzes || [];
   }
 
   saveUserModificationAndQuit() {
@@ -62,7 +62,7 @@ export class UserAddEditComponent implements OnInit {
   getGoodAnswerCount(quiz: Quiz, answers: MadedQuizzesModel[]): number {
     const quizAnswers = answers.filter(value => value.id_quiz == quiz.id);
     return quizAnswers[quizAnswers.length - 1].user_answers.filter(value => {
-        return quiz.questions.find(question => question.id == value.id_question.toString())
+        return quiz.questions.find(question => question.id == value.id_question)
             .answer.find(answer => answer.id_answer == value.response_user).is_correct
       }).length;
   }
@@ -76,7 +76,7 @@ export class UserAddEditComponent implements OnInit {
     let mean = 0;
     quizAnswers.forEach(answer => {
       mean += answer.user_answers.filter(value => {
-        return quiz.questions.find(question => question.id == value.id_question.toString())
+        return quiz.questions.find(question => question.id == value.id_question)
             .answer.find(answer => answer.id_answer == value.response_user).is_correct
       }).length;
     })
