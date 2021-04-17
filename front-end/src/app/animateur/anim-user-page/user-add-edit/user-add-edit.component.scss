@@ -4,6 +4,11 @@ button {
   font: inherit;
 }
 
+button:disabled {
+  font: inherit;
+  opacity: 70%;
+}
+
 th {
   text-align: left;
   border-bottom: lightgray solid;
@@ -24,6 +29,40 @@ table {
 input[type='checkbox'] {
   width: 20px;
   height: 20px;
+}
+
+input[type='text']:disabled, input[type='date']:disabled, input[type='number']:disabled, textarea:disabled, select:disabled {
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: unset;
+  opacity: unset;
+  appearance: unset;
+  resize: none;
+}
+
+input[type='text'], input[type='number'] {
+  font: inherit;
+}
+
+select {
+  font: inherit;
+  padding-left: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.quit {
+  color: #D84127;
+}
+
+.error_save {
+  position: absolute;
+  top: 55px;
+  font-size: 20px;
 }
 
 .base {
@@ -153,7 +192,7 @@ input[type='checkbox'] {
 }
 
 .delete {
-  background-color: #D84127;
+  background-color: #b77373;
 }
 
 .add {
