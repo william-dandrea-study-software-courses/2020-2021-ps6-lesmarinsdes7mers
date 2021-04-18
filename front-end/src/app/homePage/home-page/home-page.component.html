@@ -28,8 +28,9 @@
             [numberOfQuestions]="quiz.questions.length"
             [difficulty]="quiz.difficulty"
             [isMade]="true"
-            [numberOfGoodQuestions]="5"
-            [idQuiz]="quiz.id"
+            [numberOfGoodQuestions]="getNumberOfGoodQuestion(quiz)"
+            [idQuiz]="quiz.id" [playedQuiz]="isPlayedQuiz(quiz)"
+
     ></app-question-presenter-bar>
 </div>
 

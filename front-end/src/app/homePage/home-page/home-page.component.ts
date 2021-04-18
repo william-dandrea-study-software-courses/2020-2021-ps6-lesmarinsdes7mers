@@ -46,15 +46,15 @@ export class HomePageComponent implements OnInit {
 
     this.quizService.quizSelected$.subscribe();
 
-    this.userPrefsService.fontSize$.subscribe();
+    this.userPrefsService.fontSize$.subscribe((elem) => {
+          this.fontSize = elem;
+    });
     this.fontSize = this.userPrefsService.getFontSize();
 
-    this.userAndQuizService.oneUserQuizzes$.subscribe();
+    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
+      this.currentUserAndQuiz = elem;
+    });
     this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
-
-
-
-
 
   }
 
@@ -99,6 +99,32 @@ export class HomePageComponent implements OnInit {
     return this.quizList.filter((quiz) => quiz.difficulty === Difficulty.EXPERT);
   }
 
+
+  isPlayedQuiz(quiz: Quiz): boolean {
+
+
+    if (this.userSelected) {
+      if (this.currentUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === quiz.id) >= 0) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  getNumberOfGoodQuestion(quiz: Quiz): number {
+
+    if (this.userSelected) {
+      const index = this.currentUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === quiz.id);
+      if (index >= 0) {
+
+        return this.currentUserAndQuiz.played_quizzes[index].score_user;
+
+      }
+    }
+    return 0;
+
+  }
 
   // routerLink="/quiz-intro/{{idQuiz}}
   onSelectedQuiz(event: Quiz): void {

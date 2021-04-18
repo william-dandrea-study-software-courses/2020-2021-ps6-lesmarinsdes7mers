@@ -67,6 +67,14 @@ export class QuizIntroComponent implements OnInit {
 
     initializeTheOneUseQuizzes(): void {
 
+
+        if (!this.currentOneUserAndQuiz) {
+
+            console.log("yo");
+            this.userAndQuizService.addEmptyPlayedQuizOneUserQuiz();
+
+        }
+
         const index = this.currentOneUserAndQuiz.played_quizzes.findIndex(pq => pq.id_quiz === this.quizSelected.id);
 
         // Si il n'y a pas l'élement dans le tableau, one le crée, sinon, il faut le remettre a zero
