@@ -101,9 +101,8 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
     };
   }
 
-  onDeleteQuestion(event: number): void {
-    const tmp = this.quiz.questions.find(question => question.id === event);
-    this.quiz.questions = this.quiz.questions.filter(obj => obj !== tmp);
+  onDeleteQuestion(event: Question): void {
+    this.quiz.questions = this.quiz.questions.filter(obj => obj.id !== event.id);
   }
 
   onAddAnQuestion(): void {

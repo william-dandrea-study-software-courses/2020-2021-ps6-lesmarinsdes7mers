@@ -22,7 +22,10 @@
 
     <li *ngFor="let questionElement of quiz.questions">
         <app-anim-create-quizz-element-add-question-bloc 
-            [question]="questionElement" >
+            [question]="questionElement" 
+            (up)="onUpQuestion(questionElement)"
+            (down)="onDownQuestion(questionElement)"
+            (delete)="onDeleteQuestion(questionElement)">
         </app-anim-create-quizz-element-add-question-bloc>
     </li>
 
