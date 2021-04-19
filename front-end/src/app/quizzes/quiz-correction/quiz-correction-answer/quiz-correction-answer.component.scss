@@ -116,6 +116,7 @@
   color: white;
   text-align: center;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .inner-question-texte-icon {
@@ -135,5 +136,5 @@
 }
 
 #play-quiz-answers-inner>div:hover {
-  cursor: pointer;
+  //cursor: pointer;
 }

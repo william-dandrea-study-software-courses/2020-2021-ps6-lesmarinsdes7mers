@@ -189,14 +189,21 @@ a {
   border: unset;
   color: white;
   border-radius: 3px 3px 3px 3px;
+
 }
 
 .delete {
   background-color: #b77373;
+  cursor: pointer;
+}
+
+.delete:disabled {
+  cursor: not-allowed;
 }
 
 .add {
   background-color: #7EBCA8;
+  cursor: pointer;
 }
 
 .star {

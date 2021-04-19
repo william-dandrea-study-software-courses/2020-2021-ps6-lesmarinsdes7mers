@@ -76,6 +76,8 @@
     border-radius: 10px 0 0 10px;
     width: 30%;
     height: auto;
+    cursor: pointer;
+    user-select: none;
 }
 
 #app-guest-config-controls-div-two {
@@ -91,6 +93,8 @@
     border-radius: 0 10px 10px 0;
     width: 30%;
     height: auto;
+    cursor: pointer;
+    user-select: none;
 }
 
 #app-guest-config-font-size-left-arrow {
@@ -114,5 +118,6 @@
     border: none;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #cfcfcf;
+    cursor: pointer;
 }
 

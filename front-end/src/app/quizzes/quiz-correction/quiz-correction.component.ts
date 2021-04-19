@@ -94,7 +94,7 @@ export class QuizCorrectionComponent implements OnInit {
   }
 
   navigateToHomepage(): void {
-    this.router.navigate(["/homepage/" + this.userSelected.id]);
+    this.router.navigate(["/homepage/" + this.userSelected?.id]);
 
   }
 
