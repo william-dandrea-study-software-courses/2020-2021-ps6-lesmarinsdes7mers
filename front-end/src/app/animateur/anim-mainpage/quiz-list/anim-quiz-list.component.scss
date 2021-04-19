@@ -1,5 +1,9 @@
 @import "../../../../styles/variables";
 
+table {
+    border-spacing: 0;
+}
+
 .element {
     display: flex;
     border-bottom: solid 0.1em #DDD;
