@@ -68,7 +68,7 @@ const quizzModel = new BaseModel('quizz', joi.object({
             data: joi.alternatives().conditional('..type', 
                 { is: 0, then: joi.string().max(45).required(), otherwise: joi.string().required() })
         })).max(4).required()
-    })).max(4).required()
+    })).max(30).required()
 }))
 
 export default quizzModel

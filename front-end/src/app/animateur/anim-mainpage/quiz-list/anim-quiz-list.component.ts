@@ -153,6 +153,10 @@ export class AnimMainQuizListComponent implements OnInit {
             res = res.substring(0, res.indexOf('.') + 3);
         }
 
+        if (res == "Na") {
+            return "-"
+        }
+
         return res;
     }
 
