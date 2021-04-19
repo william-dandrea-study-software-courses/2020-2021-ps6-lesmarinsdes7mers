@@ -60,7 +60,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
    */
   save(): void {
     if(!this.quiz.name) return;
-    if(this.saving) return;
+    //if(this.saving) return;
     this.saving = true;
     console.log(this.quiz)
     const subs = this.createQuizService.updateQuiz(this.quiz).subscribe({ next: (next) => {
