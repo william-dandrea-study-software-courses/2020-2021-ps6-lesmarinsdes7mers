@@ -1259,7 +1259,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/williamdandrea/Library/Mobile Documents/com~apple~CloudDocs/SI3/S6/PS6/projet/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /home/user/Documents/Polytech/si3/ps6/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),
