@@ -51,9 +51,7 @@ export class QuizIntroComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
         this.quizService.setSelectedQuiz(+id);
-
     }
-
 
     generateNameDifficultyClass(): string {
         switch (this.quizSelected.difficulty) {
@@ -61,12 +59,10 @@ export class QuizIntroComponent implements OnInit {
             case Difficulty.MEDIUM: return 'medium';
             case Difficulty.HARD: return 'hard';
             case Difficulty.EXPERT: return 'expert';
-
         }
     }
 
     initializeTheOneUseQuizzes(): void {
-
 
         if (!this.currentOneUserAndQuiz) {
 
@@ -96,7 +92,7 @@ export class QuizIntroComponent implements OnInit {
     }
 
     homepage(): void {
-        this.router.navigate(['/homepage']);
+        this.router.navigate(['/homepage/' + this.userService.getUserSelected().id]);
     }
 
 

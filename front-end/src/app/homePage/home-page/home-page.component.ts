@@ -17,28 +17,28 @@ export class HomePageComponent implements OnInit {
 
   public fontSize: number;
   public quizList: Quiz[] = [];
+  public insideQuizList: Quiz[] = [];
   public difficultyFiltrer: Difficulty;
+  public idCl: number;
+
+  public publicSession: boolean;
 
 
   public userSelected: User;
 
   public currentUserAndQuiz: UserAndQuizModel;
 
+  constructor(private router: Router, private route: ActivatedRoute, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
 
-  // [ngStyle]="{'font-size.px': fontSize}"
-  constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+    this.userService.publicSession$.subscribe((elem) => this.publicSession = elem);
+    this.publicSession = this.userService.getPublicSession();
 
-    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.quizList = quizzes.filter(elem => elem.privacy.is_public);
 
-      if (this.userSelected) {
-
-        const tst = quizzes.filter(elem => elem.privacy.users_access.includes(this.userSelected.id));
-        Array.prototype.push.apply(this.quizList, tst);
-        this.quizList = [...new Set(this.quizList)];
-      }
-
-    });
+    const id = parseInt(this.route.snapshot.paramMap.get('idUser'), 10);
+    this.idCl = id;
+    if (id && !this.publicSession) {
+      this.userService.setSelectedUser(this.userService.getUsers()[this.userService.getUsers().findIndex(el => el.id === id)]);
+    }
 
     this.userService.userSelected$.subscribe((user) => {
       this.userSelected = user;
@@ -46,29 +46,38 @@ export class HomePageComponent implements OnInit {
 
     this.quizService.quizSelected$.subscribe();
 
-    this.userPrefsService.fontSize$.subscribe((elem) => {
-          this.fontSize = elem;
-    });
+    this.userPrefsService.fontSize$.subscribe((elem) => {this.fontSize = elem;});
     this.fontSize = this.userPrefsService.getFontSize();
 
-    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
-      this.currentUserAndQuiz = elem;
-    });
+    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {this.currentUserAndQuiz = elem;});
     this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
+    console.log(this.quizList);
 
   }
 
   ngOnInit(): void {
 
-  }
-
-  onDifficultyFiltrer(choice: Difficulty): void {
-
-    this.difficultyFiltrer = choice;
-
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
     });
+
+    if (this.publicSession) {
+      this.quizList = this.quizService.getPublicQuizzes();
+    } else {
+      this.quizList = this.quizService.getQuizForOneUser(this.idCl);
+    }
+
+    console.log(this.publicSession);
+
+
+  }
+
+
+  onDifficultyFiltrer(choice: Difficulty): void {
+
+
+    this.difficultyFiltrer = choice;
 
     switch (this.difficultyFiltrer) {
       case Difficulty.EASY: this.quizList = this.filterDifficultyEasy(); break;
@@ -102,13 +111,6 @@ export class HomePageComponent implements OnInit {
 
   isPlayedQuiz(quiz: Quiz): boolean {
 
-
-    if (this.userSelected) {
-      if (this.currentUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === quiz.id) >= 0) {
-        return true;
-      }
-    }
-
     return false;
   }
 
@@ -117,9 +119,7 @@ export class HomePageComponent implements OnInit {
     if (this.userSelected) {
       const index = this.currentUserAndQuiz.played_quizzes.findIndex(elem => elem.id_quiz === quiz.id);
       if (index >= 0) {
-
         return this.currentUserAndQuiz.played_quizzes[index].score_user;
-
       }
     }
     return 0;
@@ -135,6 +135,9 @@ export class HomePageComponent implements OnInit {
 
 
   deconnect(): void {
+    this.userService.userSelected$.next(undefined);
+    this.userAndQuizService.userAndQuizs$.next(undefined);
+    this.userAndQuizService.oneUserQuizzes$.next(undefined);
     this.router.navigate(["/login"]);
   }
 }

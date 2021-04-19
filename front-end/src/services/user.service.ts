@@ -18,6 +18,9 @@ export class UserService {
   private userSelected: User;
   public userSelected$: Subject<User> = new Subject();
 
+  private publicSession = false;
+  public publicSession$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.publicSession);
+
   private userUrl = serverUrl + '/user';
   private allUserUrl = this.userUrl + '/all';
 
@@ -33,6 +36,14 @@ export class UserService {
       this.users = userList.data;
       this.users$.next(this.users);
     });
+  }
+
+  setPublicSession(isPublic: boolean): void {
+    this.publicSession = isPublic;
+    this.publicSession$.next(this.publicSession);
+  }
+  getPublicSession(): boolean {
+    return this.publicSession;
   }
 
   setSelectedUser(user: User): void {
