@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import {Question, Quiz} from '../models/quiz.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,17 @@ export class QuizService {
 
   private httpOptions = httpOptionsBase;
 
-  constructor(private http: HttpClient) {
+  public publicSession: boolean;
+
+  constructor(private http: HttpClient, private userService: UserService) {
     this.retrieveQuizzes();
+
+    this.publicSession = this.userService.getPublicSession();
+    if (this.publicSession) {
+      this.quizzes = this.quizzes.filter(quiz => quiz.privacy.is_public === true);
+      this.quizzes$.next(this.quizzes);
+    }
+
   }
 
   setCurrentQuestionSelected(idQuestion: number): void {
@@ -113,7 +123,9 @@ export class QuizService {
   }
 
   getPublicQuizzes(): Quiz[] {
+    console.log("apl public");
     const elements =  this.quizzes.filter(quiz => quiz.privacy.is_public === true);
+    this.quizzes = elements;
     this.quizzes$.next(elements);
     return elements;
   }

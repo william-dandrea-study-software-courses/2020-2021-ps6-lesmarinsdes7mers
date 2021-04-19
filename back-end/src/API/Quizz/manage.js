@@ -33,7 +33,7 @@ quizzManageRouter.put('/:quizz', quizzMiddleware,
      */
     (req, res) => {
         Execute(res, () => {
-            req.body.id = req.quizz.id
+            req.body.id = parseInt(req.quizz.id)
             quizzModel.update(req.body)
 
             new HttpMessage("Quizz updated successfully !").send(res)

@@ -17,12 +17,10 @@ export class HomePageComponent implements OnInit {
 
   public fontSize: number;
   public quizList: Quiz[] = [];
-  public insideQuizList: Quiz[] = [];
   public difficultyFiltrer: Difficulty;
   public idCl: number;
 
   public publicSession: boolean;
-
 
   public userSelected: User;
 
@@ -64,10 +62,13 @@ export class HomePageComponent implements OnInit {
 
     if (this.publicSession) {
       this.quizList = this.quizService.getPublicQuizzes();
+      // Verification
+      this.quizList = this.quizList.filter(el => el.privacy.is_public === true);
     } else {
       this.quizList = this.quizService.getQuizForOneUser(this.idCl);
     }
 
+    console.log(this.quizList);
     console.log(this.publicSession);
 
 
@@ -111,7 +112,12 @@ export class HomePageComponent implements OnInit {
 
   isPlayedQuiz(quiz: Quiz): boolean {
 
-    return false;
+    if (this.publicSession) {
+      return false;
+    }
+
+    return this.currentUserAndQuiz.played_quizzes.map(plQz => plQz.id_quiz).includes(quiz.id);
+
   }
 
   getNumberOfGoodQuestion(quiz: Quiz): number {

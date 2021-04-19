@@ -18,8 +18,7 @@ manageUserAndQuizRouter.put('/:id', (req, res) => {
 
     if(!req.params.id) throw new IdParameterNotFound()
 
-
-    req.body.id = req.params.id
+    req.body.id = parseInt(req.params.id);
     //userAndQuizModel.update_second(req.params.id, req.body)
     userAndQuizModel.update(req.body)
 

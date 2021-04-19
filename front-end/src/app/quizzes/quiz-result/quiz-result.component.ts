@@ -83,7 +83,11 @@ export class QuizResultComponent implements OnInit {
   }
 
   navigateToHomepage(): void {
-    this.router.navigate(["/homepage/" + this.userSelected?.id]);
+    if (this.userSelected) {
+      this.router.navigate(["/homepage/" + this.userSelected.id]);
+    } else {
+      this.router.navigate(["/homepage"]);
+    }
   }
 
   adaptPageToBigFont(): boolean {

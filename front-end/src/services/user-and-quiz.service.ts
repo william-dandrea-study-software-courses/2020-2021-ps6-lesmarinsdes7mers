@@ -31,6 +31,14 @@ export class UserAndQuizService {
     });
   }
 
+  setOneUserAndQuizElement(userAndQuiz: UserAndQuizModel): void {
+    this.oneUserQuizzes = userAndQuiz;
+    this.oneUserQuizzes$.next(userAndQuiz);
+    console.log(this.oneUserQuizzes.id);
+    console.log(this.oneUserQuizzes);
+    this.http.put<UserAndQuizModel>(this.userUrl + '/' + this.oneUserQuizzes.id, this.oneUserQuizzes).subscribe(data => {});
+  }
+
   setOneUserQuizzes(user: User): void {
     this.oneUserQuizzes = this.userAndQuizs.find(each => each.id === user.id);
     this.oneUserQuizzes$.next(this.oneUserQuizzes);

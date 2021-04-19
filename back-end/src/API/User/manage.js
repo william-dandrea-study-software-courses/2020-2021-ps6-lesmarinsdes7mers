@@ -17,7 +17,7 @@ manageUser.put('/:id', (req, res) => {
     Execute(res, () => {
         if(!req.params.id) throw new IdParameterNotFound()
 
-        req.body.id = req.params.id
+        req.body.id = parseInt(req.params.id);
         userModel.update(req.body)
 
         new HttpMessage("User updated successfully").send(res)

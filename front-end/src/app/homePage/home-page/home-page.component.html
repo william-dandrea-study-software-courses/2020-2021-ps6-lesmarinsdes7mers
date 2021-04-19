@@ -22,7 +22,7 @@
 <hr class="divider">
 
 
-<div *ngFor="let quiz of quizList">
+<div *ngFor="let quiz of quizList" >
     <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
             [titleQuiz]="quiz.name"
             [numberOfQuestions]="quiz.questions.length"

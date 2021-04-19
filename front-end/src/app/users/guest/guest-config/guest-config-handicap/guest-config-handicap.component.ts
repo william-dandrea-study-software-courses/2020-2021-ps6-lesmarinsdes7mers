@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import UserPrefsService from "src/services/userprefs.service";
 import { Handicap } from '../../../../../models/handicap.enum'
+import {QuizService} from "../../../../../services/quiz.service";
 
 @Component({
     templateUrl: './guest-config-handicap.component.html',
@@ -12,7 +13,7 @@ export default class GuestConfigHandicapComponent implements OnInit {
 
     handicap: Handicap = Handicap.NONE;
 
-    constructor(private userprefsService: UserPrefsService, private router: Router) {
+    constructor(private userprefsService: UserPrefsService, private router: Router, private quizService: QuizService) {
         
     }
 
@@ -23,6 +24,7 @@ export default class GuestConfigHandicapComponent implements OnInit {
     save(): void {
         this.userprefsService.setHandicap(this.handicap);
         console.log(this.userprefsService);
+        this.quizService.getPublicQuizzes();
         this.router.navigate(['homepage']);
     }
 

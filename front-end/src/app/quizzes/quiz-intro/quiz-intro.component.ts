@@ -92,7 +92,13 @@ export class QuizIntroComponent implements OnInit {
     }
 
     homepage(): void {
-        this.router.navigate(['/homepage/' + this.userService.getUserSelected().id]);
+        if (this.userService.getUserSelected() === undefined) {
+            this.router.navigate(['/homepage']);
+        } else {
+
+            this.router.navigate(['/homepage/' + this.userService.getUserSelected().id]);
+        }
+
     }
 
 

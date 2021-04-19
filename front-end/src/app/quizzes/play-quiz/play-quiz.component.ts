@@ -106,7 +106,11 @@ export class PlayQuizComponent implements OnInit {
 
             this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].score_user = this.numberOfGoodResponses;
 
-            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+            // this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+            if (!this.userService.getPublicSession()) {
+                this.userAndQuizService.setOneUserAndQuizElement(this.currentOneUserAndQuiz);
+            }
+
 
             console.log(this.numberOfGoodResponses);
             this.router.navigate(['/quiz-result']);
@@ -123,13 +127,7 @@ export class PlayQuizComponent implements OnInit {
     }
 
 
-    getColorForSelectedItems(answer: Answer): string {
 
-        if (answer === this.currentSelectedAnswer){
-            return '#73B7A0';
-        }
-        return 'white';
-    }
 
     isSelectedElement(answer: Answer): boolean {
         if (answer === this.currentSelectedAnswer){
@@ -138,13 +136,7 @@ export class PlayQuizComponent implements OnInit {
         return false;
     }
 
-    getColorForSelectedImages(answer: Answer): string {
 
-        if (answer === this.currentSelectedAnswer){
-            return '40px solid #73B7A0';
-        }
-        return 'none';
-    }
 
 
     adaptPageToBigFont(): boolean {

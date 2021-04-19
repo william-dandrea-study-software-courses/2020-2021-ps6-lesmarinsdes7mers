@@ -462,7 +462,7 @@ quizzManageRouter.put('/:quizz', _quizz_middleware__WEBPACK_IMPORTED_MODULE_4__[
  */
 (req, res) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_1__["Execute"])(res, () => {
-    req.body.id = req.quizz.id;
+    req.body.id = parseInt(req.quizz.id);
     _Models_quizz_model__WEBPACK_IMPORTED_MODULE_3__["default"].update(req.body);
     new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("Quizz updated successfully !").send(res);
   });
@@ -606,7 +606,7 @@ manageUser.post('/', (req, res) => {
 manageUser.put('/:id', (req, res) => {
   Object(_Errors_ErrorSchield__WEBPACK_IMPORTED_MODULE_1__["Execute"])(res, () => {
     if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
-    req.body.id = req.params.id;
+    req.body.id = parseInt(req.params.id);
     _Models_user_model__WEBPACK_IMPORTED_MODULE_3__["default"].update(req.body);
     new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("User updated successfully").send(res);
   });
@@ -724,7 +724,7 @@ manageUserAndQuizRouter.post('/', (req, res) => {
 });
 manageUserAndQuizRouter.put('/:id', (req, res) => {
   if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
-  req.body.id = req.params.id; //userAndQuizModel.update_second(req.params.id, req.body)
+  req.body.id = parseInt(req.params.id); //userAndQuizModel.update_second(req.params.id, req.body)
 
   _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].update(req.body);
   new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("UserAndQuiz udpated successfully").send(res);
@@ -840,9 +840,11 @@ class BaseModel {
 
   delete(objId) {
     this.load();
-    const i = this.content.findIndex(p => p.id === objId);
+    const i = this.content.findIndex(p => {
+      return parseInt(p.id) === parseInt(objId);
+    });
     if (i === -1) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
-    this.content = this.content.filter(o => o.id !== objId);
+    this.content = this.content.filter(o => parseInt(o.id) !== parseInt(objId));
     this.save();
   }
   /**
