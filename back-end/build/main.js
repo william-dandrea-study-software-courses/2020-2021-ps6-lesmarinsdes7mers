@@ -526,8 +526,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
 /* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
-/* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
-
 
 
 
@@ -610,7 +608,7 @@ manageUser.put('/:id', (req, res) => {
     if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
     req.body.id = req.params.id;
     _Models_user_model__WEBPACK_IMPORTED_MODULE_3__["default"].update(req.body);
-    new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("User udpated successfully").send(res);
+    new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("User updated successfully").send(res);
   });
 });
 manageUser.delete('/:id', (req, res) => {
@@ -822,7 +820,6 @@ class BaseModel {
     if (result.error) throw new _Errors_InvalidScheme__WEBPACK_IMPORTED_MODULE_5__["default"](result.error);
     console.log(this.content.find(d => parseInt(d.id) === parseInt(result.value.id)));
     if (this.content.find(d => d.id === result.value.id)) throw new _Errors_IdAlreadyUsed__WEBPACK_IMPORTED_MODULE_4__["default"]();
-    console.log("bonjour");
     this.content.push(result.value);
     this.save();
   }
@@ -1172,9 +1169,10 @@ const userModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default"
   handicap: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().integer().min(0).max(5).default(5),
   font_size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().default(40),
   birthday: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.date().default("1962-12-19"),
-  image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
+  image_url: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().allow(null, '').default("https://unsplash.com/photos/75xPHEQBmvA/download?force=true&w=1920"),
   note: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().default("Aucune"),
   size_font_configs: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.array().items(_hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.object({
+    id: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().required(),
     name: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required(),
     size: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.number().required(),
     default: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.boolean().default(false)
@@ -1261,7 +1259,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/CanardNocturne/Documents/Programmation/Web/PolyQuiz_PS6/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /home/user/Documents/Polytech/si3/ps6/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),

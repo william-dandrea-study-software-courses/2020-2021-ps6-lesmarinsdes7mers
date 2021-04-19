@@ -3,6 +3,17 @@ $yellow: #ECE76E;
 $orange: #ECA751;
 $red: #D84127;
 
+.main-color {
+    background-color: #73B7A0;
+    color: white;
+}
+
+.back-color {
+    background-color: #f4f4f4;
+    border: 5px solid black;
+    color: black;
+}
+
 .quizz-done-check {
     background-color: $green !important;
     color: black !important;
@@ -53,4 +64,23 @@ $difficulty-fontcolor: black;
 .expert {
     background-color: $red !important;
     color: $difficulty-fontcolor !important;
+}
+
+
+
+.selected-element-txt {
+    background-color: #73B7A0 !important;
+    color: white !important;
+}
+
+.non-selected-element-txt {
+    background-color: white !important;
+    color: black !important;
+}
+
+.selected-element-image {
+    border: 30px solid #73B7A0 !important;
+}
+
+.non-selected-element-image {
 }

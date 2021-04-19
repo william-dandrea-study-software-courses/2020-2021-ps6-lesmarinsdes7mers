@@ -15,6 +15,7 @@ export class QuestionPresenterBarComponent implements OnInit {
   @Input() isMade: boolean;
   @Input() numberOfGoodQuestions: number;
   @Input() idQuiz: number;
+  @Input() playedQuiz: boolean;
 
   public fontSizeMain: number;
   public fontSizeSecond: number;

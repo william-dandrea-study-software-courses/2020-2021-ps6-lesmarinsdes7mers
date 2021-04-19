@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div id="app-question-presenter-bar-main-divider" class="active-panel">
+<div id="app-question-presenter-bar-main-divider" class="panel">
 
     <div id="app-question-presenter-bar-description-quiz">
         <div id="app-question-presenter-bar-title-of-question" [ngStyle]="{'font-size.px': fontSizeMain}" >
@@ -9,7 +9,7 @@
 
         <div id="app-question-presenter-bar-description-quiz-advanced-description">
 
-            <div id="app-question-presenter-number-of-questions-in-quiz" class="app-question-presenter-bar-inside-writting" [ngStyle]="{'font-size.px': fontSizeSecond}">
+            <div id="app-question-presenter-number-of-questions-in-quiz" class="app-question-presenter-bar-inside-writting back-color" [ngStyle]="{'font-size.px': fontSizeSecond}">
                 {{numberOfQuestions}} QUESTIONS
             </div>
 
@@ -26,7 +26,7 @@
     </div>
 
 
-    <div id="app-question-presenter-quiz-is-validate" class="quizz-done-check">
+    <div *ngIf="playedQuiz" id="app-question-presenter-quiz-is-validate" class="quizz-done-check">
         <div id="app-question-presenter-quiz-is-validate-icon">
             <span class="material-icons" id="app-question-presenter-quiz-is-validate--check-icon">done_all</span>
         </div>

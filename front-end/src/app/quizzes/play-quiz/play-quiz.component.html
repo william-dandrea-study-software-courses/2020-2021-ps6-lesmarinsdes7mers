@@ -17,14 +17,14 @@
         <div id="play-quiz-answers-inner" *ngFor="let eachAnswer of inQuestionAnswers()" >
 
             <div *ngIf="isTextAnswer()">
-                <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond, 'background-color': getColorForSelectedItems(eachAnswer)}">
+                <div id="play-quiz-answers-inner-one-answer" (click)="selectedAnswer(eachAnswer)" [ngStyle]="{'font-size.px': fontSizeSecond}" [ngClass]="isSelectedElement(eachAnswer)?'selected-element-txt':'non-selected-element-txt'">
                     {{eachAnswer.data}}
                 </div>
             </div>
 
             <div *ngIf="!isTextAnswer()">
                 <div   [ngStyle]="{'font-size.px': fontSizeSecond }">
-                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image" [ngStyle]="{'border':getColorForSelectedImages(eachAnswer)}" (click)="selectedAnswer(eachAnswer)">
+                    <img src="{{eachAnswer.data}}" id="play-quiz-answers-inner-one-answer-image" (click)="selectedAnswer(eachAnswer)" [ngClass]="isSelectedElement(eachAnswer)?'selected-element-image':'non-selected-element-image'">
                 </div>
             </div>
 
@@ -36,10 +36,10 @@
 
     <div id="navigate-button">
 
-        <div id="play-quiz-quit-quiz" (click)="quitQuiz()" [ngStyle]="{'font-size.px': fontSizeMain}">
+        <div id="play-quiz-quit-quiz" class="back-color" (click)="quitQuiz()" [ngStyle]="{'font-size.px': fontSizeMain}">
             Quitter le quiz
         </div>
-        <div id="play-quiz-validate-question" (click)="goToNextQuestion()" [ngStyle]="{'font-size.px': fontSizeMain}">
+        <div id="play-quiz-validate-question" class="main-color" (click)="goToNextQuestion()" [ngStyle]="{'font-size.px': fontSizeMain}">
             Valider
         </div>
 

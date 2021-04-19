@@ -131,6 +131,13 @@ export class PlayQuizComponent implements OnInit {
         return 'white';
     }
 
+    isSelectedElement(answer: Answer): boolean {
+        if (answer === this.currentSelectedAnswer){
+            return true;
+        }
+        return false;
+    }
+
     getColorForSelectedImages(answer: Answer): string {
 
         if (answer === this.currentSelectedAnswer){

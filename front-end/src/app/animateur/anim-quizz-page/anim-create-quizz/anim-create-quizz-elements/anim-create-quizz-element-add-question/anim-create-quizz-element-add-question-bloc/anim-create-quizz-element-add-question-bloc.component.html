@@ -3,9 +3,9 @@
 <div id="add-question-bloc">
 
     <div id="add-question-bloc-left">
-        <span (click)="upQuestion()" class="material-icons" id="bloc-left-arrow-top">double_arrow</span>
-        <span id="bloc-left-question-number">{{question.id + 1}}</span>
-        <span (click)="downQuestion()" class="material-icons" id="bloc-left-arrow-bottom">double_arrow</span>
+        <span (click)="upQuestion()" class="material-icons" id="bloc-left-arrow-top" style="cursor: pointer;">double_arrow</span>
+        <span id="bloc-left-question-number"  style="cursor: default;">{{question.id + 1}}</span>
+        <span (click)="downQuestion()" class="material-icons" id="bloc-left-arrow-bottom" style="cursor: pointer;">double_arrow</span>
     </div>
 
     <div id="add-question-bloc-right">
@@ -18,7 +18,7 @@
                     <input [(ngModel)]="question.question_name" id="create-quiz-name-input" type="text" class="form-field-text" placeholder="Entrez le titre du quizz" maxlength="70">
                 </div>
 
-                <button (click)="deleteThisQuestion()" name="deleteQuestion" id="delete-question">
+                <button (click)="deleteThisQuestion()" name="deleteQuestion" id="delete-question" style="cursor: pointer;">
                     Supprimer cette question
                 </button>
 
@@ -28,11 +28,11 @@
 
 
                 <div id="switch-textuel-image">
-                    <input (click)="imageOrTextQuestion(0)" id="TmvPZoFoqd" type="radio" value="text" [checked]="question.type === 0"/><label for="TmvPZoFoqd">Texte</label>
-                    <input (click)="imageOrTextQuestion(1)" id="o7JqFvFfre" type="radio" value="image" [checked]="question.type === 1" /><label for="o7JqFvFfre">Image</label>
+                    <input (click)="imageOrTextQuestion(0)" type="radio" [id]="'text' + question.id" value="text" [checked]="question.type === 0"/><label [for]="'text' + question.id" style="cursor: pointer;">Texte</label>
+                    <input (click)="imageOrTextQuestion(1)" type="radio" [id]="'image' + question.id" value="image" [checked]="question.type === 1" /><label [for]="'image' + question.id" style="cursor: pointer;">Image</label>
                 </div>
 
-                <button (click)="addAnAnswer()" name="addQuestion" id="add-question">
+                <button (click)="addAnAnswer()" name="addQuestion" id="add-question" style="cursor: pointer;">
                     Ajouter une réponse
                 </button>
             </div>

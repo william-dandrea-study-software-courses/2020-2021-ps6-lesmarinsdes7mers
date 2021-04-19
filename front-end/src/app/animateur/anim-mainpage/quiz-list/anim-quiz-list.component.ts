@@ -32,6 +32,7 @@ export class AnimMainQuizListComponent implements OnInit {
         this.userAndQuizService.userAndQuizs$.subscribe(stat => {
             stat.forEach(s => this.userAndQuizList.push(s));
         });
+        this.quizList.splice(0, this.quizList.length);
         console.log("stats : ", this.userAndQuizList);
     }
 
@@ -176,6 +177,6 @@ export class AnimMainQuizListComponent implements OnInit {
     }
 
     editQuiz(quiz: Quiz) {
-        this.router.navigate([ 'animateur', 'quizz-home-page', 'create-quizz', quiz.id ])
+        this.router.navigate([ 'animateur', 'quizz-home-page', 'create-quizz', quiz.id ]);
     }
 }

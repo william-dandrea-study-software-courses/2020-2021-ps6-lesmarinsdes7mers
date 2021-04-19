@@ -36,6 +36,10 @@ export class UserAndQuizService {
     this.oneUserQuizzes$.next(this.oneUserQuizzes);
   }
 
+  addEmptyPlayedQuizOneUserQuiz(): void {
+    this.oneUserQuizzes = {id: 5000, id_user: 5000, played_quizzes: []};
+    this.oneUserQuizzes$.next(this.oneUserQuizzes);
+  }
 
 
   setAnswersForOneUserQuizzes(idQuiz: number, scoreUser: number, answers: UserAnswer[]): void {

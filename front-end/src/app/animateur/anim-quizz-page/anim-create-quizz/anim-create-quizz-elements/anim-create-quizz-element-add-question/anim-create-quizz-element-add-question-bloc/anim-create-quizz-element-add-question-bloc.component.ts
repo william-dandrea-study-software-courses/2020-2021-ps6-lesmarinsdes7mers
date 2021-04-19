@@ -46,7 +46,7 @@ export class AnimCreateQuizzElementAddQuestionBlocComponent implements OnInit, D
   }
   
   deleteThisQuestion(): void {
-    
+    this.delete.emit()
   }
 
   addAnAnswer(): void {

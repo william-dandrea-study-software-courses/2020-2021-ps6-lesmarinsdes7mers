@@ -3,9 +3,21 @@ $yellow: #FBE250;
 $orange: #ECA751;
 $red: #8D7E32;
 
+.main-color {
+    background-color: black;
+    color: white;
+}
+
+.back-color {
+    background-color: white;
+    color: black;
+    border: 10px solid black;
+}
+
+
 .quizz-done-check {
-    background-color: $green !important;
-    color: black !important;
+    background-color: green !important;
+    color: white !important;
 }
 
 .active-panel {
@@ -19,41 +31,68 @@ $red: #8D7E32;
     border: 10px solid black !important;
 }
 
-.right-answer {
+.selected-element-txt {
+    background-color: black !important;
+    color: white !important;
+}
+
+.non-selected-element-txt {
+    background-color: white !important;
     color: black !important;
-    background-color: $green !important;
+}
+
+.selected-element-image {
+    border: 30px solid black !important;
+}
+
+.non-selected-element-image {
+}
+
+.right-answer {
+    color: white !important;
+    background-color: green !important;
 }
 
 .wrong-answer {
     color: white !important;
-    background-color: $red !important;
+    background-color: red !important;
 }
 
 .right-image-answer {
-    border-color: $green !important;
+    border-color: green !important;
 }
 
 .wrong-image-answer {
-    border-color: $red !important;
+    border-color: red !important;
 }
 
 
 $difficulty-fontcolor: black;
 .easy {
-    background-color: $green !important;
-    color: $difficulty-fontcolor !important;
+    background-color: black !important;
+    color: white !important;
+    // background-color: $green !important;
+    //color: $difficulty-fontcolor !important;
 }
 .medium {
-    background-color: $yellow !important;
-    color: $difficulty-fontcolor !important;
+    background-color: black !important;
+    color: white !important;
+    //background-color: $yellow !important;
+    //color: $difficulty-fontcolor !important;
 }
 .hard {
-    background-color: $orange !important;
-    color: $difficulty-fontcolor !important;
+    background-color: black !important;
+    color: white !important;
+    //background-color: $orange !important;
+    //color: $difficulty-fontcolor !important;
 }
 .expert {
-    background-color: $red !important;
-    color: $difficulty-fontcolor !important;
+    background-color: black !important;
+    color: white !important;
+    //background-color: $red !important;
+    //color: $difficulty-fontcolor !important;
 }
+
+
 
 

@@ -38,7 +38,7 @@
             <th>Score moyen</th>
         </tr>
 
-        <tr *ngFor="let quiz of quizList" (click)="editQuiz(quiz)">
+        <tr *ngFor="let quiz of quizList" (click)="editQuiz(quiz)" style="cursor: pointer;">
             <td><input type="checkbox" (click)="selectQuiz(quiz, $event)" [checked]="isSelectedKey(quiz)"/></td>
             <td style="text-align: start;">{{quiz.name}}</td>
             <td>{{translateDifficulty(quiz.difficulty)}}</td>
