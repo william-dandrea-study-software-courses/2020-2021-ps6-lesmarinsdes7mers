@@ -64,10 +64,12 @@ export default class BaseModel {
 
     delete(objId) {
         this.load()
-        const i = this.content.findIndex(p => p.id === objId)
+        const i = this.content.findIndex(p => {
+            return (parseInt(p.id)) === parseInt(objId)
+        })
         if(i === -1) throw new FileNotFound();
 
-        this.content = this.content.filter(o => o.id !== objId)
+        this.content = this.content.filter(o => parseInt(o.id) !== parseInt(objId))
         this.save()
     }
 

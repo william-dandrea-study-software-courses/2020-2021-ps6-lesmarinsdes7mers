@@ -4,6 +4,8 @@ import { UserService } from "src/services/user.service";
 import {HandicapToString} from "../../../../models/handicap.enum";
 import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {serverUrl} from "../../../../configs/server.config";
 
 @Component({
     selector: 'app-anim-main-user-list',
@@ -16,7 +18,8 @@ export class AnimMainUserListComponent implements OnInit {
     handicapToString = HandicapToString;
     userSelected: User[];
 
-    constructor(private userService: UserService, private userAndQuizService: UserAndQuizService, private router: Router) {
+    constructor(private userService: UserService, private userAndQuizService: UserAndQuizService, private router: Router,
+                private http: HttpClient) {
     }
 
     ngOnInit() {
@@ -43,6 +46,7 @@ export class AnimMainUserListComponent implements OnInit {
         console.log(this.userSelected);
         this.userSelected.forEach(value => this.userService.deleteUser(value));
         this.userList = this.userList.filter(value => !this.userSelected.includes(value));
+        this.userSelected.forEach(value => this.http.delete(serverUrl+"/user/"+value.id).subscribe(value1 => console.log(value1)))
         this.userSelected = [];
     }
 

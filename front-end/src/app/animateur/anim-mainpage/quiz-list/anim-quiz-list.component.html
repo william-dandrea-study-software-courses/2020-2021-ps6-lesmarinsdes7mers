@@ -22,9 +22,9 @@
 
 <div class="quiz-list">
     <h2>Quiz</h2>
-    <button class="alert-button" (click)="deleteSelection()">Effacer la selection</button>
-    <button class="info-button" routerLink="/animateur/quizz-home-page/create-quizz" >Ajouter un quiz</button>
-
+    <button class="delete-button" (click)="deleteSelection()">Effacer la selection</button>
+    <button class="add-button" routerLink="/animateur/quizz-home-page/create-quizz" >Ajouter un quiz</button>
+    <!--TODO CHANGER DESIGN BOUTON-->
     <table>
         <tr>
             <th><input type="checkbox" (click)="selectAll()" [checked]="isAllSelected()"/></th>
@@ -33,7 +33,7 @@
             <!--<th>Création</th>-->
             <th>Handicap</th>
             <th>Questions</th>
-            <th>Accéssibilité</th>
+            <th>Accessibilité</th>
             <th>Participants</th>
             <th>Score moyen</th>
         </tr>

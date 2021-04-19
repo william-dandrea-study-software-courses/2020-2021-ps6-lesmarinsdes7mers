@@ -60,8 +60,6 @@ export class UserAddEditComponent implements OnInit {
       }
     });
 
-    console.log("USER ID: "+this.user.id)
-
   }
 
   setModifyInput(elmt: HTMLInputElement | HTMLTextAreaElement, id: number): void {
