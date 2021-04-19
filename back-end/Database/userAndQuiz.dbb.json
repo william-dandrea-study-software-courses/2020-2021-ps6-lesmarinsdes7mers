@@ -78,10 +78,6 @@
           {
             "id_question": 6,
             "response_user": 2
-          },
-          {
-            "id_question": 7,
-            "response_user": 3
           }
         ]
       }
@@ -122,10 +118,6 @@
           {
             "id_question": 6,
             "response_user": 2
-          },
-          {
-            "id_question": 7,
-            "response_user": 3
           }
         ]
       }
@@ -206,14 +198,6 @@
           {
             "id_question": 5,
             "response_user": 4
-          },
-          {
-            "id_question": 6,
-            "response_user": 2
-          },
-          {
-            "id_question": 7,
-            "response_user": 3
           }
         ]
       }
@@ -233,30 +217,6 @@
           },
           {
             "id_question": 1,
-            "response_user": 3
-          },
-          {
-            "id_question": 2,
-            "response_user": 2
-          },
-          {
-            "id_question": 3,
-            "response_user": 1
-          },
-          {
-            "id_question": 4,
-            "response_user": 1
-          },
-          {
-            "id_question": 5,
-            "response_user": 4
-          },
-          {
-            "id_question": 6,
-            "response_user": 2
-          },
-          {
-            "id_question": 7,
             "response_user": 3
           }
         ]
@@ -294,14 +254,6 @@
           {
             "id_question": 5,
             "response_user": 4
-          },
-          {
-            "id_question": 6,
-            "response_user": 2
-          },
-          {
-            "id_question": 7,
-            "response_user": 3
           }
         ]
       }
