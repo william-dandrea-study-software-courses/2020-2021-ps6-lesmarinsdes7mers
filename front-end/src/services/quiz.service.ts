@@ -36,6 +36,8 @@ export class QuizService {
     return this.currentCorrectionSelected;
   }
 
+
+
   retrieveQuizzes() {
     const result = this.http.get<any>(this.quizUrl + '/all');
     result.subscribe((quizList) => {
@@ -104,4 +106,23 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+
+
+  getAllQuizzes(): Quiz[] {
+    return this.quizzes;
+  }
+
+  getPublicQuizzes(): Quiz[] {
+    const elements =  this.quizzes.filter(quiz => quiz.privacy.is_public === true);
+    this.quizzes$.next(elements);
+    return elements;
+  }
+
+  getQuizForOneUser(idUser: number): Quiz[] {
+    let finalArray = this.quizzes.filter(quiz => quiz.privacy.users_access.includes(idUser));
+    finalArray = [...finalArray, ...this.getPublicQuizzes()];
+    const finalValue = [...new Set(finalArray)];
+    this.quizzes$.next(finalValue);
+    return finalValue;
+  }
 }

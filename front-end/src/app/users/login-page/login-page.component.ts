@@ -31,6 +31,7 @@ export default class LoginPageComponent implements OnInit{
     }
 
     logInGuestMode(): void {
+        this.userService.setPublicSession(true);
         this.router.navigate(['guest', 'config', 'fontsize']);
     }
 
@@ -39,8 +40,7 @@ export default class LoginPageComponent implements OnInit{
     }
 
     onUserClick(event: User): void {
-
-
+        this.userService.setPublicSession(false);
         this.userService.setSelectedUser(event);
         this.userAndQuizService.setOneUserQuizzes(event);
         const url: string = '/homepage/' + String(event.id);

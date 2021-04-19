@@ -52,6 +52,7 @@ export class UserAndQuizService {
   }
 
   getOneUserQuizzes(): UserAndQuizModel {
+    this.retrieveAllUserAndQuiz();
     return this.oneUserQuizzes;
   }
 

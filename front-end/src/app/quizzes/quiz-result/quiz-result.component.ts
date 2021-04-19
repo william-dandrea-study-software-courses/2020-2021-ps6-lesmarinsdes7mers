@@ -7,6 +7,8 @@ import {Answer, Quiz} from "../../../models/quiz.model";
 import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 import {UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
 import {QuizService} from "../../../services/quiz.service";
+import {User} from "../../../models/user.model";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-quiz-result',
@@ -22,7 +24,9 @@ export class QuizResultComponent implements OnInit {
   public oneUserAndQuiz: UserAndQuizModel;
   public quizSelected: Quiz;
 
-  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService ) {
+  public userSelected: User;
+
+  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService, private userService: UserService ) {
     this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.oneUserAndQuiz = elem);
     this.quizService.quizSelected$.subscribe((elem) => this.quizSelected = elem);
 
@@ -30,6 +34,9 @@ export class QuizResultComponent implements OnInit {
       this.fontSizeMain = size;
       this.fontSizeSecond = size - 10;
     });
+
+    this.userService.userSelected$.subscribe(elem => this.userSelected = elem);
+    this.userSelected = this.userService.getUserSelected();
 
 
   }
@@ -76,7 +83,7 @@ export class QuizResultComponent implements OnInit {
   }
 
   navigateToHomepage(): void {
-    this.router.navigate(["/homepage"]);
+    this.router.navigate(["/homepage/" + this.userSelected.id]);
   }
 
   adaptPageToBigFont(): boolean {

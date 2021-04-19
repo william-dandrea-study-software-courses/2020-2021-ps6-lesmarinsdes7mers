@@ -1125,7 +1125,7 @@ const quizzModel = new _Database_BaseModel__WEBPACK_IMPORTED_MODULE_0__["default
         otherwise: _hapi_joi__WEBPACK_IMPORTED_MODULE_1___default.a.string().required()
       })
     })).max(4).required()
-  })).max(4).required()
+  })).max(30).required()
 }));
 /* harmony default export */ __webpack_exports__["default"] = (quizzModel);
 
@@ -1259,7 +1259,7 @@ app.listen(PORT, () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Documents/Polytech/si3/ps6/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! /Users/williamdandrea/Library/Mobile Documents/com~apple~CloudDocs/SI3/S6/PS6/projet/2020-2021-ps6-lesmarinsdes7mers/back-end/src/index.js */"./src/index.js");
 
 
 /***/ }),

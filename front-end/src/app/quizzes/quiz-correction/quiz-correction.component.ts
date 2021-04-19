@@ -5,6 +5,8 @@ import {Answer, Quiz} from "../../../models/quiz.model";
 import {UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
 import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 import {QuizService} from "../../../services/quiz.service";
+import {User} from "../../../models/user.model";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-quiz-correction',
@@ -22,8 +24,10 @@ export class QuizCorrectionComponent implements OnInit {
 
   public currentCorrectionSelected: number;
 
+  public userSelected: User;
 
-  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService ) {
+
+  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService, private userService: UserService ) {
     this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.oneUserAndQuiz = elem);
     this.oneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
     this.quizService.quizSelected$.subscribe((elem) => this.quizSelected = elem);
@@ -39,11 +43,13 @@ export class QuizCorrectionComponent implements OnInit {
 
     this.quizService.currentCorrectionSelected$.subscribe((elem) => this.currentCorrectionSelected = elem);
     this.currentCorrectionSelected = this.quizService.getCurrentQuestionSelected();
+
+    this.userService.userSelected$.subscribe(elem => this.userSelected = elem);
+    this.userSelected = this.userService.getUserSelected();
   }
 
   ngOnInit(): void {
   }
-
 
 
 
@@ -88,7 +94,7 @@ export class QuizCorrectionComponent implements OnInit {
   }
 
   navigateToHomepage(): void {
-    this.router.navigate(['homepage']);
+    this.router.navigate(["/homepage/" + this.userSelected.id]);
 
   }
 
