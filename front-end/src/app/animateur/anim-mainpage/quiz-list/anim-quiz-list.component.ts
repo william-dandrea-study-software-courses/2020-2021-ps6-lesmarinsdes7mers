@@ -1,3 +1,4 @@
+import { TmplAstTemplate } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Quiz, Difficulty, difficultyToText, Privacy } from "src/models/quiz.model";
@@ -27,13 +28,11 @@ export class AnimMainQuizListComponent implements OnInit {
 
     ngOnInit() {
         this.quizService.quizzes$.subscribe(quiz => {
-            quiz.forEach(q => this.quizList.push(q));
+            this.quizList = quiz;
         });
         this.userAndQuizService.userAndQuizs$.subscribe(stat => {
             stat.forEach(s => this.userAndQuizList.push(s));
         });
-        this.quizList.splice(0, this.quizList.length);
-        console.log("stats : ", this.userAndQuizList);
     }
 
     translateDifficulty(difficulty: Difficulty):string {
