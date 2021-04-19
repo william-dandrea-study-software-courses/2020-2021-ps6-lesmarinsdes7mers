@@ -11,12 +11,7 @@
         >
         {{headerMenuToString(1)}}
     </div>
-    <div
-        [className]="selectedHeaderMenuItem == 2 ? 'header-menu-item menu-item-selected' : 'header-menu-item'"
-        (click)="selectMenuItem(2)"
-        >
-        {{headerMenuToString(2)}}
-    </div>
+    <div class="header-menu-item" (click)="mainHome()">Menu principale</div>
 </div>
 
 <div class="content">
@@ -27,9 +22,5 @@
     <div *ngIf="selectedHeaderMenuItem == 1">
         <app-anim-main-user-list>
         </app-anim-main-user-list>
-    </div>
-    <div *ngIf="selectedHeaderMenuItem == 2">
-        <app-anim-settings-homepage>
-        </app-anim-settings-homepage>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 enum HeaderMenuItem {
     QUIZ, USERS, SETTINGS
@@ -11,6 +12,10 @@ enum HeaderMenuItem {
 })
 export class AnimMainpageComponent implements OnInit {
     selectedHeaderMenuItem: HeaderMenuItem = HeaderMenuItem.QUIZ;
+
+    constructor(private router: Router) {
+
+    }
 
     ngOnInit () {
     }
@@ -30,4 +35,9 @@ export class AnimMainpageComponent implements OnInit {
                 return "";
         }
     }
+
+    mainHome() {
+        this.router.navigate(["/login"])
+    }
+
 }
