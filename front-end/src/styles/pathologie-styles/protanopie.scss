@@ -16,7 +16,7 @@ $red: #D84127;
 
 
 .quizz-done-check {
-    background-color: $green !important;
+    background-color: #387EF6 !important;
     color: black !important;
 }
 
@@ -26,27 +26,28 @@ $red: #D84127;
 }
 
 .panel {
+    border: 10px solid black !important;
     background-color: #f4f4f4 !important;
     color: black !important;
 }
 
 .right-answer {
     color: black !important;
-    background-color: $green !important;
+    background-color: #387EF6 !important;
 }
 
 .wrong-answer {
     color: white !important;
-    background-color: $red !important;
+    background-color: #8D7E32 !important;
 }
 
 
 .right-image-answer {
-    border-color: $green !important;
+    border-color: #387EF6 !important;
 }
 
 .wrong-image-answer {
-    border-color: $red !important;
+    border-color: #8D7E32 !important;
 }
 
 
