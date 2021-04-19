@@ -24,7 +24,7 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
       if(!idStr) {
         // Creating empty quiz
         this.quiz = {
-          name: "Test",
+          name: "",
           difficulty: Difficulty.EASY,
           questions: [{question_name: '', type: QuestionType.TEXT, id: 0, answer: [
             {

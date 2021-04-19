@@ -18,7 +18,7 @@
 
 
 <div id="add-questions">
-    <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz">Ajouter une question au quizz</button>
+    <button (click)="onAddAnQuestion()" name="addQuestionButton" id="add-question-quiz" style="cursor: pointer;">Ajouter une question au quizz</button>
 
     <li *ngFor="let questionElement of quiz.questions">
         <app-anim-create-quizz-element-add-question-bloc 

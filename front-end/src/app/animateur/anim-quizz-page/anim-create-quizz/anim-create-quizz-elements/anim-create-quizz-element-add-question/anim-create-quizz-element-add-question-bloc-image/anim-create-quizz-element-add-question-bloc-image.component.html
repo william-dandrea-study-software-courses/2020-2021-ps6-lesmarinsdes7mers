@@ -23,10 +23,10 @@
 
             <div id="question-bloc-img-answer-details">
                 <div id="question-bloc-img-answer-good-bad-question">
-                    <span *ngIf="answer.is_correct === true" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_checked</span>
-                    <span *ngIf="answer.is_correct === false" (click)="onCorrectAnswer(answer)" class="material-icons">radio_button_unchecked</span>
+                    <span *ngIf="answer.is_correct === true" (click)="onCorrectAnswer(answer)" class="material-icons" style="cursor: pointer;">radio_button_checked</span>
+                    <span *ngIf="answer.is_correct === false" (click)="onCorrectAnswer(answer)" class="material-icons" style="cursor: pointer;">radio_button_unchecked</span>
                 </div>
-                <div id="question-bloc-img-answer-trash" (click)="onDeleteAnswer(answer)"><span class="material-icons">delete</span></div>
+                <div id="question-bloc-img-answer-trash" (click)="onDeleteAnswer(answer)"><span class="material-icons" style="cursor: pointer;">delete</span></div>
             </div>
         </div>
 
