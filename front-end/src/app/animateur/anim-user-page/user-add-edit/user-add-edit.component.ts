@@ -44,12 +44,13 @@ export class UserAddEditComponent implements OnInit {
     this.modifyInput = -1;
     this.configFontSizeSelected = [];
     this.modifyFontSizeConfig = -1;
+    this.quizAnswers = [];
     this.userAndQuiz.setOneUserQuizzes(this.user);
     this.quizService.quizzes$.subscribe(quizs => {
       this.getUserQuiz().forEach(answer => {
         const quiz = quizs.find(value => value.id == answer.id_quiz);
         this.quizAnswers.push({name: quiz.name, difficulty: difficultyToText(quiz.difficulty), result: this.getGoodAnswerCount(quiz, this.getUserQuiz())+"/"+quiz.questions.length,
-          tries: this.getTriesCount(quiz, this.getUserQuiz()), mean: this.getAnswerCorrectMean(quiz, this.getUserQuiz())} as QuizUserAnswer);
+          tries: this.getTriesCount(quiz, this.getUserQuiz()), mean: this.getAnswerCorrectMean(quiz, this.getUserQuiz()), questions_count:quiz.questions.length} as QuizUserAnswer);
       })
     });
 
@@ -58,6 +59,8 @@ export class UserAddEditComponent implements OnInit {
         this.registerConfigFontSize();
       }
     });
+
+    console.log("USER ID: "+this.user.id)
 
   }
 
@@ -117,7 +120,6 @@ export class UserAddEditComponent implements OnInit {
         break;
     }
     this.modifyInput = -1;
-    console.log(this.user);
   }
 
   getUserValue(): any {
@@ -180,7 +182,6 @@ export class UserAddEditComponent implements OnInit {
       config.default = true;
     }
     this.modifyFontSizeConfig = -1;
-    console.log(this.user);
   }
 
   getUserQuiz(): MadedQuizzesModel[] {
@@ -252,5 +253,6 @@ interface QuizUserAnswer {
   difficulty: string,
   result: string,
   tries: number,
-  mean: number
+  mean: number,
+  questions_count: number;
 }

@@ -10,16 +10,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false
@@ -37,16 +40,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false
@@ -64,16 +70,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false
@@ -91,16 +100,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false
@@ -118,16 +130,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false
@@ -145,16 +160,19 @@
     "note": "Aucune",
     "size_font_configs": [
       {
+        "id": 0,
         "name": "grande",
         "size": 60,
         "default": false
       },
       {
+        "id": 1,
         "name": "moyenne",
         "size": 50,
         "default": true
       },
       {
+        "id": 2,
         "name": "petite",
         "size": 40,
         "default": false

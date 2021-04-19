@@ -29,8 +29,7 @@ export class AnimMainUserListComponent implements OnInit {
     }
 
     getQuizFinishCount(user: User): number {
-        this.userAndQuizService.setOneUserQuizzes(user);
-        return this.userAndQuizService.getUserAndQuizs().length;
+        return this.userAndQuizService.getUserAndQuizs().filter(value => value.id_user == user.id).length;
     }
 
     onConfigFontSizeChange(user: User): void {
