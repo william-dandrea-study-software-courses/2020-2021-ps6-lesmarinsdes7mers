@@ -17,12 +17,11 @@ export class QuestionPresenterBarComponent implements OnInit {
   @Input() idQuiz: number;
   @Input() playedQuiz: boolean;
 
-  public fontSizeMain: number;
   public fontSizeSecond: number;
 
   constructor(private userPrefsService: UserPrefsService) {
-    this.fontSizeMain =  Math.max(50, this.userPrefsService.getFontSize());
-    this.fontSizeSecond = Math.max(30, this.userPrefsService.getFontSize() - 10);
+    this.fontSizeSecond = this.userPrefsService.getFontSize() - 10;
+    this.userPrefsService.fontSize$.subscribe(value => this.fontSizeSecond = value - 10)
   }
 
   ngOnInit(): void {

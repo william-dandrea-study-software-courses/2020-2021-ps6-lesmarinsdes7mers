@@ -1,45 +1,50 @@
-<div *ngIf="userSelected != null" id="message-de-bienvenue">
+<div [style.font-size.px]="fontSize">
 
-    <div id="pseudo-header">
-        <div id="message-de-bienvenue-bonjour">Bonjour, {{userSelected.surname}}</div>
-        <button class="difficulty-bar-elements-button" (click)="deconnect()">Se Déconnecter</button>
+    <div *ngIf="userSelected != null" id="message-de-bienvenue">
+
+        <div id="pseudo-header">
+            <div id="message-de-bienvenue-bonjour" [style.font-size.px]="fontSize + 20">Bonjour, {{userSelected.surname}}</div>
+            <button class="difficulty-bar-elements-button" (click)="deconnect()">Se Déconnecter</button>
+        </div>
+
+
+        <hr class="divider">
+
     </div>
 
+
+    <button class="difficulty-bar-elements-button" (click)="deconnect()" *ngIf="!userSelected">Se Déconnecter</button>
+
+    <div *ngIf="userSelected && userSelected.size_font_configs.length > 0">
+        <p class="text-intro-quizz" [style.font-size.px]="fontSize + 10">Quelle taille d'écriture souhaitez-vous ?</p>
+        <div class="user-configs">
+            <div *ngFor="let config of userSelected.size_font_configs" (click)="setFontConfig(config)">
+                <app-user-config [userConfig]="config"></app-user-config>
+            </div>
+        </div>
+        <hr class="divider">
+    </div>
+
+
+    <p class="text-intro-quizz"  [style.font-size.px]="fontSize + 10">A quel quiz voulez-vous jouer ?</p>
+
+    <app-difficulty-bar id="homepage-difficulty-bar"
+                        (difficultyChoiceEvent)="onDifficultyFiltrer($event)"></app-difficulty-bar>
 
     <hr class="divider">
 
-</div>
 
+    <div *ngFor="let quiz of quizList">
+        <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
+                                    [titleQuiz]="quiz.name"
+                                    [numberOfQuestions]="quiz.questions.length"
+                                    [difficulty]="quiz.difficulty"
+                                    [isMade]="true"
+                                    [numberOfGoodQuestions]="getNumberOfGoodQuestion(quiz)"
+                                    [idQuiz]="quiz.id" [playedQuiz]="isPlayedQuiz(quiz)"
 
-
-
-<button class="difficulty-bar-elements-button" (click)="deconnect()" *ngIf="!userSelected">Se Déconnecter</button>
-
-<p class="text-intro-quizz">Quelle taille d'écriture souhaitez-vous ?</p>
-<div class="user-configs" *ngIf="userSelected && userSelected.size_font_configs.length > 0">
-    <div *ngFor="let config of userSelected.size_font_configs" (click)="setFontConfig(config)">
-        <app-user-config [userConfig]="config"></app-user-config>
+        ></app-question-presenter-bar>
     </div>
+
+
 </div>
-
-
-<p class="text-intro-quizz" >A quel quiz voulez-vous jouer ?</p>
-
-<app-difficulty-bar id="homepage-difficulty-bar" (difficultyChoiceEvent)="onDifficultyFiltrer($event)"></app-difficulty-bar>
-
-<hr class="divider">
-
-
-<div *ngFor="let quiz of quizList" >
-    <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
-            [titleQuiz]="quiz.name"
-            [numberOfQuestions]="quiz.questions.length"
-            [difficulty]="quiz.difficulty"
-            [isMade]="true"
-            [numberOfGoodQuestions]="getNumberOfGoodQuestion(quiz)"
-            [idQuiz]="quiz.id" [playedQuiz]="isPlayedQuiz(quiz)"
-
-    ></app-question-presenter-bar>
-</div>
-
-

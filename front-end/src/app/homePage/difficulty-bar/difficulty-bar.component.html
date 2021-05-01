@@ -3,7 +3,6 @@
             name="easy"
             (click)="choiseTheDifficulty($event, 0)"
             [className]="numberOfClickOnEasy === 1 ? 'difficulty-bar-elements-button easy' : 'difficulty-bar-elements-button panel'"
-            [ngStyle]="{'font-size.px': fontSize}"
 
     >Facile</button>
 
@@ -11,20 +10,17 @@
             name="medium"
             (click)="choiseTheDifficulty($event, 1)"
             [className]="numberOfClickOnMedium === 1 ? 'difficulty-bar-elements-button medium' : 'difficulty-bar-elements-button panel'"
-            [ngStyle]="{'font-size.px': fontSize}"
     >Moyen</button>
 
     <button
             name="hard"
             (click)="choiseTheDifficulty($event, 2)"
             [className]="numberOfClickOnHard === 1 ? 'difficulty-bar-elements-button hard' : 'difficulty-bar-elements-button panel'"
-            [ngStyle]="{'font-size.px': fontSize}"
     >Difficile</button>
 
     <button
             name="expert"
             (click)="choiseTheDifficulty($event, 3)"
             [className]="numberOfClickOnExpert === 1 ? 'difficulty-bar-elements-button expert' : 'difficulty-bar-elements-button panel'"
-            [ngStyle]="{'font-size.px': fontSize}"
     >Expert</button>
 </div>
