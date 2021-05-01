@@ -3,13 +3,20 @@
   font-family: Montserrat, serif;
 }
 
-#text-intro-quizz {
-
+.text-intro-quizz {
   font-weight: bold;
   padding: 0px 25px;
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 70px;
+}
+
+.user-configs {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin: 0 30px 50px 30px;
+  height: 100%;
 }
 
 hr.divider {

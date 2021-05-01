@@ -46,6 +46,7 @@ import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/a
 import { UserAddEditComponent } from './animateur/anim-user-page/user-add-edit/user-add-edit.component';
 import {DatePipe} from "@angular/common";
 import LoginPageComponent from "./users/login-page/login-page.component";
+import { UserConfigComponent } from './homePage/user-config/user-config.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import LoginPageComponent from "./users/login-page/login-page.component";
     AnimMainpageComponent,
     AnimMainQuizListComponent,
     AnimMainUserListComponent,
-    UserAddEditComponent
+    UserAddEditComponent,
+    UserConfigComponent
   ],
   imports: [
     BrowserModule,

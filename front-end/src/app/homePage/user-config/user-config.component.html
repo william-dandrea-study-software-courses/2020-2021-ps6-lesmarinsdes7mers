@@ -1,0 +1,9 @@
+<div class="user-config-container" [ngClass]="selected ? 'main-color' : 'active-panel'">
+    <div class="name-container" [ngClass]="selected ? 'active-panel' : 'main-color'" >
+        <span [style.font-size.px]="fontSize">{{userConfig.name}}</span>
+    </div>
+    <div class="config-preview">
+        <div [style.font-size.px]="userConfig.size" class="title">TITRE</div>
+        <div [style.font-size.px]="userConfig.size">Ecriture</div>
+    </div>
+</div>

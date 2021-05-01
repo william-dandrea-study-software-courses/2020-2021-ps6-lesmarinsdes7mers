@@ -4,7 +4,7 @@ import UserPrefsService from "../../../services/userprefs.service";
 import {Difficulty, Quiz} from "../../../models/quiz.model";
 import {QuizService} from "../../../services/quiz.service";
 import {UserService} from "../../../services/user.service";
-import {User} from "../../../models/user.model";
+import {ConfigSizeFont, User} from "../../../models/user.model";
 import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 import {UserAndQuizModel} from "../../../models/user-and-quiz.model";
 
@@ -145,5 +145,9 @@ export class HomePageComponent implements OnInit {
     this.userAndQuizService.userAndQuizs$.next(undefined);
     this.userAndQuizService.oneUserQuizzes$.next(undefined);
     this.router.navigate(["/login"]);
+  }
+
+  setFontConfig(config: ConfigSizeFont) {
+    this.userPrefsService.setFontSize(config.size);
   }
 }
