@@ -52,7 +52,10 @@ export class UserService {
       this.userSelected = eachUser.data;
       this.userSelected$.next(eachUser.data);
     });
-    this.userPrefService.setFontSize(user.font_size);
+    if(user.size_font_configs.length > 0)
+      this.userPrefService.setFontSize(user.size_font_configs.find(value => value.default)?.size || user.font_size);
+    else
+      this.userPrefService.setFontSize(user.font_size);
     this.userPrefService.setHandicap(user.handicap);
   }
 
