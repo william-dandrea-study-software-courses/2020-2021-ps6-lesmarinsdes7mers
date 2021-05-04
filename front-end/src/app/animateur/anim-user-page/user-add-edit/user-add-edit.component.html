@@ -11,7 +11,7 @@
         </ng-template>
 
         <a (click)="saveUserModificationAndQuit()" [style.opacity]="this.userInfoCorrect()?1:0.4">
-            Sauvegardez
+            Sauvegarder
         </a>
     </div>
 </div>
@@ -67,7 +67,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Handicape</th>
+                    <th>Handicap</th>
                     <td>
                         <label for="handicap-select"></label>
                         <select id="handicap-select" name="handicaps" [attr.disabled]="modifyInput===3?null:'disabled'"
@@ -155,7 +155,7 @@
         </div>
 
         <div class="container section">
-            <div class="title"><b>Quizzs</b></div>
+            <div class="title"><b>Quizz</b></div>
             <!--<div class="modify">
                 <button class="delete">Effacer la sélection</button>
                 <button class="add">Ajouter un nouveau quiz</button>
