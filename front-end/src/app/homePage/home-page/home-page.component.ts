@@ -144,7 +144,7 @@ export class HomePageComponent implements OnInit {
     this.userService.userSelected$.next(undefined);
     this.userAndQuizService.userAndQuizs$.next(undefined);
     this.userAndQuizService.oneUserQuizzes$.next(undefined);
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login"]).then(() => window.location.reload());
   }
 
   setFontConfig(config: ConfigSizeFont) {

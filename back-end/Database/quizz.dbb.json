@@ -957,7 +957,7 @@
           {
             "id_answer": 2,
             "is_correct": true,
-            "data": "Bonne réponse ..............................."
+            "data": "Bonne réponse ...........................yo"
           },
           {
             "id_answer": 3,
@@ -1116,9 +1116,6 @@
     },
     "id": 6
   },
-
-
-
   {
     "name": "Quiz Alexandre",
     "difficulty": 1,
@@ -1143,7 +1140,9 @@
     ],
     "privacy": {
       "is_public": false,
-      "users_access": [2]
+      "users_access": [
+        2
+      ]
     },
     "id": 8
   }

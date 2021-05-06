@@ -1,36 +1,43 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import UserPrefsService from "src/services/userprefs.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import UserPrefsService from 'src/services/userprefs.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     templateUrl: './guest-config-fontsize.component.html',
     styleUrls: ['./guest-config-fontsize.component.scss'],
     selector: 'app-guest-config-fontsize'
 })
-export default class GuestConfigFontsizeComponent implements OnInit  {
+export default class GuestConfigFontsizeComponent implements OnInit, OnDestroy  {
 
-    public fontsize: number = 60;
+    public fontsize: number;
+    private fontSizeSubscription: Subscription;
 
-    constructor(private userprefsService: UserPrefsService, private router: Router)  {
+    constructor(private userPrefsService: UserPrefsService, private router: Router)  {}
 
-        this.userprefsService.fontSize$.subscribe();
-
+    public ngOnInit(): void {
+        this.fontSizeSubscription = this.userPrefsService.getFontSizeAsObservable().subscribe(internFontSize => {
+            this.fontsize = internFontSize;
+        });
     }
 
-    increaseSize(): void  {
-        this.fontsize += this.fontsize < 70 ? 10 : 0;
+    public increaseSize(): void  {
+        this.userPrefsService.increaseFontSize();
     }
 
-    decreaseSize(): void  {
-        this.fontsize -= this.fontsize > 10 ? 10 : 0;
+    public decreaseSize(): void  {
+        this.userPrefsService.decreaseFontSize();
     }
 
-    ngOnInit(): void  {
-        this.fontsize = this.userprefsService.getFontSize();
-    }
-
-    save(): void {
-        this.userprefsService.setFontSize(this.fontsize);
+    public save(): void {
+        console.log(this.fontsize);
+        this.fontSizeSubscription = this.userPrefsService.getFontSizeAsObservable().subscribe(internFontSize => {
+            console.log(internFontSize);
+        });
         this.router.navigate(['guest', 'config', 'handicap']);
+    }
+
+    public ngOnDestroy(): void {
+        this.fontSizeSubscription.unsubscribe();
     }
 }

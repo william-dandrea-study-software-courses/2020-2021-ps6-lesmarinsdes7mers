@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import { Router } from "@angular/router";
-import {User} from "../../../models/user.model";
-import {UserService} from "../../../services/user.service";
-import {UserAndQuizService} from "../../../services/user-and-quiz.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import {User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
+import {UserAndQuizService} from '../../../services/user-and-quiz.service';
+import {Location} from '@angular/common';
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -10,83 +12,86 @@ import {UserAndQuizService} from "../../../services/user-and-quiz.service";
     styleUrls: [ './login-page.component.scss' ],
     selector: 'app-login-page'
 })
-export default class LoginPageComponent implements OnInit{
+export default class LoginPageComponent implements OnInit, OnDestroy{
+
+    private userList: User[] = [];
+    private userListSubscription: Subscription;
+
+    public dispUserList: User[] = [];
 
 
+    public constructor(private router: Router, private location: Location, private userService: UserService, private userAndQuizService: UserAndQuizService) {}
 
-    public userList: User[] = [];
+    public ngOnInit(): void {
 
-    constructor(private router: Router, private userService: UserService, private userAndQuizService: UserAndQuizService) {
-        this.userService.users$.subscribe((users) => {
-            users.forEach(user => this.userList.push(user))
+        // Nous récupérons la liste de users
+        this.userListSubscription = this.userService.getAllUsersAsObservable().subscribe(internAllUsers => {
+            this.userList = internAllUsers;
+            this.dispUserList = internAllUsers;
         });
 
-        this.userAndQuizService.oneUserQuizzes$.subscribe();
-
+        // Lorsque l'on arrive sur la page, on reload la page pour être sur que tout les services sont remis à 0
+        this.location.subscribe(() => window.location.reload());
     }
 
 
-    ngOnInit(): void {
-        this.filterUserByString('');
-    }
 
-    logInGuestMode(): void {
+    public logInGuestMode(): void {
+        // On affecte le statut de la session au "mode invité"
         this.userService.setPublicSession(true);
-        this.router.navigate(['guest', 'config', 'fontsize']);
+
+        this.router.navigate(['guest', 'config', 'fontsize']).then(r =>
+            console.log('[LOGIN-PAGE] - Navigation to guest page : ' + String(r))
+        );
     }
 
-    animateur(): void {
-        this.router.navigate(['animateur']);
+
+    public animateur(): void {
+        this.router.navigate(['animateur']).then(r => console.log('[LOGIN-PAGE] - Navigation to animateur page : ' + String(r)));
     }
 
-    onUserClick(event: User): void {
+    public onUserClick(event: User): void {
+
+        // On désactive la session en "mode invité"
         this.userService.setPublicSession(false);
-        this.userService.setSelectedUser(event);
-        this.userAndQuizService.setOneUserQuizzes(event);
-        const url: string = '/homepage/' + String(event.id);
-        this.router.navigate([url]);
 
+        // On affecte l'utilisateur courant
+        this.userService.setCurrentUser(event.id);
+
+        console.log('[LOGIN-PAGE] - User selected : \n ID : ' + String(event.id)
+            + '\n NAME : ' + String(event.name) +  + ' ' + String(event.surname)
+            + '\n HANDICAP : ' + String(event.handicap));
+
+        this.router.navigate(['/homepage']).then(r =>
+            console.log('[LOGIN-PAGE] - Navigate to homePage for user ' + String(event.id) + ' : ' + String(r)));
     }
 
 
-    onSearchUser(event: KeyboardEvent): void {
-
+    public filterUser(event: any): void {
+        this.filterUserByString(event.target.value);
     }
 
-    filterUser(event: any) {
-        var value = event.target.value;
 
-        this.filterUserByString(value);
-    }
+    private filterUserByString(value: string): void {
 
-    private filterUserByString (value: string) {
-        console.log("filter value: ", value);
+        if (value.length === 0) {
+            this.dispUserList = this.userList;
+        } else {
+            this.dispUserList = [];
 
-        this.userList.splice(0, this.userList.length);
-        if (value.length < 1) {
-            this.userService.users$.subscribe((users) => {
-                users.forEach(user => {
-                    if (!this.userList.includes(user)) {
-                        this.userList.push(user);
-                    }
-                })
+            this.userList.forEach(user => {
+                const fullName = user.name + ' ' + user.surname;
+                const revertFullName = user.surname + ' ' + user.name;
+                if (fullName.toLowerCase().includes(value.toLowerCase()) ||
+                    revertFullName.toLowerCase().includes(value.toLowerCase())) {
+                    this.dispUserList.push(user);
+                }
             });
 
-            console.log("Bonjour");
         }
-        else {
-            this.userService.users$.subscribe((users) => {
-                users.forEach(user => {
-                    var fullName = user.name + " " + user.surname;
-                    var revertFullName = user.surname + " " + user.name;
-                    if (fullName.toLowerCase().includes(value.toLowerCase()) ||
-                        revertFullName.toLowerCase().includes(value.toLowerCase())) {
-                        this.userList.push(user);
-                    }
-                })
-            });
-        }
+    }
 
-        console.log("users:", this.userList);
+    public ngOnDestroy(): void {
+        this.userListSubscription.unsubscribe();
     }
 }

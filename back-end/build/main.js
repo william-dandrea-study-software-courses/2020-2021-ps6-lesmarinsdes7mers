@@ -379,10 +379,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _quizz_middleware__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./quizz.middleware */ "./src/API/Quizz/quizz.middleware.js");
+/* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+/* harmony import */ var _Models_quizz_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/quizz.model */ "./src/Models/quizz.model.js");
+/* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
+
+
+
+
 
 
 
 const quizzGettersRouter = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+quizzGettersRouter.get('/public', (req, res) => {
+  try {
+    const result = _Models_quizz_model__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(quiz => quiz.privacy.is_public === true);
+    if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_1__["default"](result).send(res);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+quizzGettersRouter.get('/foroneuser/:id', (req, res) => {
+  if (!req.params.id) throw new IdParameterNotFound();
+  req.params.id = parseInt(req.params.id);
+  if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_6__["default"]();
+  const result = _Models_quizz_model__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(quiz => quiz.privacy.is_public === false && quiz.privacy.users_access.find(element => element === req.params.id) || quiz.privacy.is_public === true);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_4__["default"]();
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_1__["default"](result).send(res);
+});
 quizzGettersRouter.get('/:quizz', _quizz_middleware__WEBPACK_IMPORTED_MODULE_2__["default"], (req, res) => {
   new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_1__["default"](req.quizz).send(res);
 });
