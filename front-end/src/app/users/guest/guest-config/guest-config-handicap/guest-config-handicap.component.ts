@@ -1,72 +1,79 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import { Router } from "@angular/router";
-import UserPrefsService from "src/services/userprefs.service";
 import { Handicap } from '../../../../../models/handicap.enum'
 import {QuizService} from "../../../../../services/quiz.service";
+import UserPrefsService from "../../../../../services/userprefs.service";
+import {Subscription} from "rxjs";
+import {log} from "util";
+import {Location} from "@angular/common";
 
 @Component({
     templateUrl: './guest-config-handicap.component.html',
     styleUrls: ['./guest-config-handicap.component.scss'],
     selector: 'app-guest-config-handicap'
 })
-export default class GuestConfigHandicapComponent implements OnInit {
+export default class GuestConfigHandicapComponent implements OnInit, OnDestroy {
 
-    handicap: Handicap = Handicap.NONE;
+    public handicap: Handicap;
+    private handicapSubscription: Subscription;
 
-    constructor(private userprefsService: UserPrefsService, private router: Router, private quizService: QuizService) {
-        
+    constructor(private userPrefsService: UserPrefsService, private location: Location, private router: Router) {}
+
+    public ngOnInit(): void {
+        this.handicapSubscription = this.userPrefsService.getHandicapAsObservable().subscribe(internHandicap => {
+            this.handicap = internHandicap;
+        });
+
+        // Lorsque l'on arrive sur la page, on reload la page pour être sur que tout les services sont remis à 0
+        this.location.subscribe(() => this.router.navigate(["/login"]).then(() => window.location.reload()));
     }
 
-    ngOnInit(): void {
-        this.handicap = this.userprefsService.getHandicap();
-    }
-
-    save(): void {
-        this.userprefsService.setHandicap(this.handicap);
-        console.log(this.userprefsService);
-        this.quizService.getPublicQuizzes();
-        this.router.navigate(['homepage']);
+    public save(): void {
+        this.router.navigate(['homepage']).then((r) => console.log('[GUEST-CONFIG-HANDICAP-PAGE] - Navigation to guest homepage : ' + String(r)));
     }
 
 
-    /// Protanopie methods
-    setProtanopie(): void {
-        this.handicap = Handicap.PROTANOPIE;
+    public setProtanopie(): void {
+        this.userPrefsService.setHandicap(Handicap.PROTANOPIE);
     }
-    isProtanopie() {
+    public isProtanopie(): boolean {
         return this.handicap === Handicap.PROTANOPIE;
     }
 
-    /// Deuteranopie methods
-    setDeuteranopie() {
-        this.handicap = Handicap.DEUTERANOPIE;
+
+    public setDeuteranopie(): void {
+        this.userPrefsService.setHandicap(Handicap.DEUTERANOPIE);
     }
-    isDeuteranopie() {
+    public isDeuteranopie(): boolean {
         return this.handicap === Handicap.DEUTERANOPIE;
     }
 
     /// Tritanopie methods
-    setTritanopie() {
-        this.handicap = Handicap.TRITANOPIE;
+    public setTritanopie(): void {
+        this.userPrefsService.setHandicap(Handicap.TRITANOPIE);
     }
-    isTritanopie() {
+    public isTritanopie(): boolean {
         return this.handicap === Handicap.TRITANOPIE;
     }
 
     /// LCS methods
-    setLowContrastSensi() {
-        this.handicap = Handicap.LOW_CONTRAST_SENSIBILITY;
+    public setLowContrastSensi(): void {
+        this.userPrefsService.setHandicap(Handicap.LOW_CONTRAST_SENSIBILITY);
     }
-    isLowContrastSensi() {
+    public isLowContrastSensi(): boolean {
         return this.handicap === Handicap.LOW_CONTRAST_SENSIBILITY;
     }
 
     /// None methods
-    setNone() {
-        this.handicap = Handicap.NONE;
+    public setNone(): void {
+        this.userPrefsService.setHandicap(Handicap.NONE);
     }
-    isNone() {
+    public isNone(): boolean {
         return this.handicap === Handicap.NONE;
+    }
+
+    public ngOnDestroy(): void {
+        this.handicapSubscription.unsubscribe();
     }
 
 }

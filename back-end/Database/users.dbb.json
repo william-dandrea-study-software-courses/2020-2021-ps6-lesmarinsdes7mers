@@ -1,1 +1,188 @@
-[{"name":"Martoy","surname":"Germaine2","id":1,"handicap":0,"font_size":40,"birthday":"1962-12-19","image_url":"https://unsplash.com/photos/l9I93gZKTG4/download?force=true&w=1920","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false},{"id":3,"name":"favorite","default":false,"size":30}]},{"name":"Chandonnet","surname":"Alexandre","id":2,"handicap":2,"font_size":20,"birthday":"1964-1-11","image_url":"https://unsplash.com/photos/OCyH7DVgF8I/download?force=true&w=1920","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false}]},{"name":"Blaise","surname":"Hugette","id":3,"handicap":3,"font_size":50,"birthday":"1968-11-13","image_url":"https://unsplash.com/photos/Z2MCFqEQiMw/download?force=true&w=640","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false}]},{"name":"Marchant","surname":"Benoît","id":4,"handicap":2,"font_size":70,"birthday":"1953-8-5","image_url":"https://unsplash.com/photos/i9uIhSlOWYc/download?force=true&w=640","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false}]},{"name":"Trottier","surname":"Charles","id":5,"handicap":1,"font_size":45,"birthday":"1932-6-22","image_url":"https://unsplash.com/photos/XHpgMMiOvuM/download?force=true&w=640","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false}]},{"name":"Dubois","surname":"Rodolphe","id":6,"handicap":0,"font_size":55,"birthday":"1912-12-14","image_url":"https://unsplash.com/photos/DR5hnFIIlrQ/download?force=true&w=640","note":"Aucune","size_font_configs":[{"id":0,"name":"grande","size":60,"default":false},{"id":1,"name":"moyenne","size":50,"default":true},{"id":2,"name":"petite","size":40,"default":false}]}]
+[
+  {
+    "name": "Martoy",
+    "surname": "Germaine2",
+    "id": 1,
+    "handicap": 0,
+    "font_size": 40,
+    "birthday": "1962-12-19",
+    "image_url": "https://unsplash.com/photos/l9I93gZKTG4/download?force=true&w=1920",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 20,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      },
+      {
+        "id": 3,
+        "name": "favorite",
+        "default": false,
+        "size": 30
+      }
+    ]
+  },
+  {
+    "name": "Chandonnet",
+    "surname": "Alexandre",
+    "id": 2,
+    "handicap": 2,
+    "font_size": 20,
+    "birthday": "1964-1-11",
+    "image_url": "https://unsplash.com/photos/OCyH7DVgF8I/download?force=true&w=1920",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 50,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Blaise",
+    "surname": "Hugette",
+    "id": 3,
+    "handicap": 3,
+    "font_size": 50,
+    "birthday": "1968-11-13",
+    "image_url": "https://unsplash.com/photos/Z2MCFqEQiMw/download?force=true&w=640",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 70,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Marchant",
+    "surname": "Benoît",
+    "id": 4,
+    "handicap": 2,
+    "font_size": 70,
+    "birthday": "1953-8-5",
+    "image_url": "https://unsplash.com/photos/i9uIhSlOWYc/download?force=true&w=640",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 50,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Trottier",
+    "surname": "Charles",
+    "id": 5,
+    "handicap": 1,
+    "font_size": 45,
+    "birthday": "1932-6-22",
+    "image_url": "https://unsplash.com/photos/XHpgMMiOvuM/download?force=true&w=640",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 50,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Dubois",
+    "surname": "Rodolphe",
+    "id": 6,
+    "handicap": 0,
+    "font_size": 55,
+    "birthday": "1912-12-14",
+    "image_url": "https://unsplash.com/photos/DR5hnFIIlrQ/download?force=true&w=640",
+    "note": "Aucune",
+    "size_font_configs": [
+      {
+        "id": 0,
+        "name": "grande",
+        "size": 60,
+        "default": false
+      },
+      {
+        "id": 1,
+        "name": "moyenne",
+        "size": 50,
+        "default": true
+      },
+      {
+        "id": 2,
+        "name": "petite",
+        "size": 40,
+        "default": false
+      }
+    ]
+  }
+]

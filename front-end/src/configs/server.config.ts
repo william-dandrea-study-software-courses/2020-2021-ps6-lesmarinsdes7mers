@@ -91,12 +91,12 @@ export const userAndQuizzesGETAll = userAndQuizzesSection + '/all';
 /**
  * Retrieve userAndQuiz for one user : userAndQuizzesGETForOneUser + idUser
  */
-export const userAndQuizzesGETForOneUser = usersSection + '/user/';
+export const userAndQuizzesGETForOneUser = userAndQuizzesSection + '/user/';
 
 /**
  * Retrieve userAndQuiz for one quiz : userAndQuizzesGETForOneUser + idQuiz
  */
-export const userAndQuizzesGETForOneQuiz = usersSection + '/quiz/';
+export const userAndQuizzesGETForOneQuiz = userAndQuizzesSection + '/quiz/';
 
 /**
  * Update one userAndQuiz : userAndQuizzesPUTUpdateOneUserAndQuiz + idUserAndQuiz

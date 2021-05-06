@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import { Handicap } from "src/models/handicap.enum";
 import {DEFAULT_FONTSIZE, DEFAULT_HANDICAP} from "../configs/configVariables";
+import {User} from "../models/user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +26,17 @@ export default class UserPrefsService {
         this.handicap$.next(handicap);
     }
 
+    setFontSize(size: number): void {
+        this.fontSize$.next(size);
+    }
+
+    initializePrefsForOneUser(user: User): void {
+        this.setHandicap(user.handicap);
+
+        if (user.size_font_configs.length > 0) {
+            this.setFontSize(user.size_font_configs.filter(internConfig => internConfig.default === true)[0].size);
+        }
+    }
 
     increaseFontSize(): void {
         let finalSize: number;
@@ -64,10 +76,6 @@ export default class UserPrefsService {
         return DEFAULT_HANDICAP;
     }
 
-    /**
-     * @deprecated The method should not be used and replace by increaseFontSize() or decreaseFontSize()
-     */
-    setFontSize(size: number): void {
-        this.fontSize$.next(size);
-    }
+
+
 }

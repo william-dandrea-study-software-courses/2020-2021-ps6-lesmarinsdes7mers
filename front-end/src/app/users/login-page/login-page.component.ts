@@ -16,11 +16,9 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
 
     private userList: User[] = [];
     private userListSubscription: Subscription;
-
     public dispUserList: User[] = [];
 
-
-    public constructor(private router: Router, private location: Location, private userService: UserService, private userAndQuizService: UserAndQuizService) {}
+    public constructor(private router: Router, private location: Location, private userService: UserService) {}
 
     public ngOnInit(): void {
 
@@ -34,8 +32,10 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
         this.location.subscribe(() => window.location.reload());
     }
 
-
-
+    /**
+     * Méthode appelé au moment du clic sur le bouton "Mode invité"
+     * => Navigation sur la page de configuration de la taille du mode invité
+     */
     public logInGuestMode(): void {
         // On affecte le statut de la session au "mode invité"
         this.userService.setPublicSession(true);
@@ -45,33 +45,47 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
         );
     }
 
-
+    /**
+     * Méthode appelé au moment du clic sur le bouton "Animateur"
+     * => Navigation sur la page animateur
+     */
     public animateur(): void {
         this.router.navigate(['animateur']).then(r => console.log('[LOGIN-PAGE] - Navigation to animateur page : ' + String(r)));
     }
 
-    public onUserClick(event: User): void {
+    /**
+     * Méthode appelé au moment ou l'utilisateur clic sur la flashcard liée à son profil
+     * => Navigation vers la homepage liée a l'utilisateur sélectionné
+     * @param user : utilisateur sur lequel l'utilisateur a cliqué
+     */
+    public onUserClick(user: User): void {
 
         // On désactive la session en "mode invité"
         this.userService.setPublicSession(false);
 
         // On affecte l'utilisateur courant
-        this.userService.setCurrentUser(event.id);
+        this.userService.setCurrentUser(user.id);
 
-        console.log('[LOGIN-PAGE] - User selected : \n ID : ' + String(event.id)
-            + '\n NAME : ' + String(event.name) +  + ' ' + String(event.surname)
-            + '\n HANDICAP : ' + String(event.handicap));
+        console.log('[LOGIN-PAGE] - User selected : \n ID : ' + String(user.id)
+            + '\n NAME : ' + String(user.name) +  + ' ' + String(user.surname)
+            + '\n HANDICAP : ' + String(user.handicap));
 
         this.router.navigate(['/homepage']).then(r =>
-            console.log('[LOGIN-PAGE] - Navigate to homePage for user ' + String(event.id) + ' : ' + String(r)));
+            console.log('[LOGIN-PAGE] - Navigate to homePage for user ' + String(user.id) + ' : ' + String(r)));
     }
 
-
+    /**
+     * Méthode appelé au moment ou l'utilisateur ajoute du texte dans le field de filtre
+     * @param event : l'event contenant la chaine de caractère
+     */
     public filterUser(event: any): void {
         this.filterUserByString(event.target.value);
     }
 
-
+    /**
+     * Méthode qui permet de filtrer la liste d'utilisateur lorsque l'utilisateur écrit du texte dans le field du filtre
+     * @param value : string que doit contenir les réponses
+     */
     private filterUserByString(value: string): void {
 
         if (value.length === 0) {

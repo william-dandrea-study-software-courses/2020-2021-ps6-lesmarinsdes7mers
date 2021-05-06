@@ -15,15 +15,7 @@
 
     <button class="difficulty-bar-elements-button" (click)="deconnect()" *ngIf="!userSelected">Se Déconnecter</button>
 
-    <div *ngIf="userSelected && userSelected.size_font_configs.length > 0">
-        <p class="text-intro-quizz" [style.font-size.px]="fontSize + 10">Quelle taille d'écriture souhaitez-vous ?</p>
-        <div class="user-configs">
-            <div *ngFor="let config of userSelected.size_font_configs" (click)="setFontConfig(config)">
-                <app-user-config [userConfig]="config"></app-user-config>
-            </div>
-        </div>
-        <hr class="divider">
-    </div>
+
 
 
     <p class="text-intro-quizz"  [style.font-size.px]="fontSize + 10">A quel quiz voulez-vous jouer ?</p>

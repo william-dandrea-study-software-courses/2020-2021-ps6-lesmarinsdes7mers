@@ -17,9 +17,9 @@ import {UserService} from "./user.service";
 export class QuizService {
 
   private quizzes: Quiz[] = [];
-  private quizSelected: Quiz;
-
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
+
+  private quizSelected: Quiz;
   public quizSelected$: Subject<Quiz> = new Subject();
 
   private currentCorrectionSelected: number;
@@ -30,25 +30,30 @@ export class QuizService {
 
   private httpOptions = httpOptionsBase;
 
-  public publicSession: boolean;
-
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService) {}
 
 
-
-
-
-
-    /*
-    this.retrieveQuizzes();
-
-    this.publicSession = this.userService.getPublicSession();
-    if (this.publicSession) {
-      this.quizzes = this.quizzes.filter(quiz => quiz.privacy.is_public === true);
-      this.quizzes$.next(this.quizzes);
-    }
-     */
+  public initializeQuizzes(): void {
+    this.userService.isPublicSessionAsObservable().subscribe(isInternPublicSession => {
+      if (isInternPublicSession) {
+        // La session est publique, on ne récupère que les quizzes publiques
+        this.getAllPublicQuizzesFromDatabase().subscribe(internAllPublicQuizzes => {
+          this.setQuizzes(internAllPublicQuizzes.data);
+        });
+      } else {
+        // La session est privée, on récupère les quizzes pour un utilisateur
+        this.userService.getCurrentUserAsObservable().subscribe(internCurrentUser => {
+          this.getAllQuizzesForOneUserFromDatabase(internCurrentUser.id).subscribe(internAllUserQuizzes => {
+            this.setQuizzes(internAllUserQuizzes.data);
+          });
+        });
+      }
+    });
   }
+
+
+
+
 
 
 
@@ -63,6 +68,25 @@ export class QuizService {
   private getAllQuizzesForOneUserFromDatabase(idUser: number): Observable<any> {
     return this.http.get<any>(quizzesGETAllQuizzesAvailableForOneUser + String(idUser));
   }
+
+
+
+  public getAllQuizzesAsObservable(): Observable<any> {
+    return this.quizzes$;
+  }
+
+  public getQuizSelectedAsObservable(): Observable<any> {
+    return this.quizSelected$;
+  }
+
+  public getCurrentCorrectionSelectedAsObservable(): Observable<any> {
+    return this.currentCorrectionSelected$;
+  }
+
+  public setQuizzes(internQuizzes: Quiz[]): void {
+    this.quizzes$.next(internQuizzes);
+  }
+
 
 
 
