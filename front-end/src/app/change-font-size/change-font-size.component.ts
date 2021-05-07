@@ -1,65 +1,51 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import UserPrefsService from "../../services/userprefs.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-change-font-size',
   templateUrl: './change-font-size.component.html',
   styleUrls: ['./change-font-size.component.scss']
 })
-export class ChangeFontSizeComponent implements OnInit {
 
-  @Input() dispTheSizeWritings: boolean;
+/**
+ * @verified : D'Andréa William - 7 may 2021
+ */
 
+export class ChangeFontSizeComponent implements OnInit, OnDestroy {
+
+  @Input() showTheSizeWritings: boolean;
+
+  private fontSizeSubscription: Subscription;
   public fontSizeMain: number;
   public fontSizeSecond: number;
 
+  constructor(private userPref: UserPrefsService) {}
 
-
-
-  constructor(private userPref: UserPrefsService) {
-    this.fontSizeMain =  Math.max(50, this.userPref.getFontSize());
-    this.fontSizeSecond = Math.max(30, this.userPref.getFontSize() - 10);
+  public ngOnInit(): void {
+    this.fontSizeSubscription = this.userPref.getFontSizeAsObservable().subscribe(internFontSize => {
+      this.fontSizeMain = internFontSize;
+      this.fontSizeSecond = internFontSize - 10;
+    });
   }
 
-  ngOnInit(): void {
-    this.fontSizeMain = this.userPref.getFontSize();
-
-  }
-
-
-
-
-  increaseSizeFont(): void {
-    if (this.fontSizeMain < 70) {
-      this.userPref.setFontSize(this.fontSizeMain += 5);
-    }
-
-    // this.startTimer(false);
-  }
-
-  decreaseSizeFont(): void {
-    if (this.fontSizeMain > 20) {
-      this.userPref.setFontSize(this.fontSizeMain -= 5);
-      // this.startTimer(true);
-    }
-  }
-
-  /*
-  startTimer(neg: boolean): void {
-    this.interval = setInterval(() => {
-      if (neg)
-        this.fontSizeMain -= 5;
-      else
-        this.fontSizeMain += 5;
-    }, 1000);
-  }
-
-  stopTimer(): void {
-    clearInterval(this.interval);
-  }
-
+  /**
+   * Appel directement de la méthode du service userPref afin de garantir une meilleure modification des tailles
+   * min et max et du pas sur tout le site
    */
+  public increaseSizeFont(): void {
+    this.userPref.increaseFontSize();
+  }
 
+  /**
+   * Appel directement de la méthode du service userPref afin de garantir une meilleure modification des tailles
+   * min et max et du pas sur tout le site
+   */
+  public decreaseSizeFont(): void {
+    this.userPref.decreaseFontSize();
+  }
 
-
+  public ngOnDestroy(): void {
+    this.fontSizeSubscription.unsubscribe();
+  }
 }

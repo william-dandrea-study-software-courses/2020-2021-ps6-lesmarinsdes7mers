@@ -2,16 +2,19 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {User} from '../../../models/user.model';
 import {UserService} from '../../../services/user.service';
-import {UserAndQuizService} from '../../../services/user-and-quiz.service';
 import {Location} from '@angular/common';
-import {Subscription} from "rxjs";
-
+import {Subscription} from 'rxjs';
 
 @Component({
     templateUrl: './login-page.component.html',
     styleUrls: [ './login-page.component.scss' ],
     selector: 'app-login-page'
 })
+
+/**
+ * @verified : D'Andréa William - 7 may 2021
+ */
+
 export default class LoginPageComponent implements OnInit, OnDestroy{
 
     private userList: User[] = [];
@@ -21,7 +24,6 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
     public constructor(private router: Router, private location: Location, private userService: UserService) {}
 
     public ngOnInit(): void {
-
         // Nous récupérons la liste de users
         this.userListSubscription = this.userService.getAllUsersAsObservable().subscribe(internAllUsers => {
             this.userList = internAllUsers;
