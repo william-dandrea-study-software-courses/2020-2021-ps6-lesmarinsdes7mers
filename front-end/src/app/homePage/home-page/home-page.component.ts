@@ -34,8 +34,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public difficultyFiltrer: Difficulty;
 
-
-
   constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {}
 
   ngOnInit(): void {
@@ -99,13 +97,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
   // routerLink="/quiz-intro/{{idQuiz}}
   onSelectedQuiz(event: Quiz): void {
 
-
-
-
-    this.router.navigate(['/quiz-intro', event.id]).then(() => {
+    this.router.navigate(['/quiz-intro']).then(() => {
       if (!this.publicSession) {
         this.userService.setCurrentUser(this.userSelected.id);
+        this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);
+      } else {
+        this.userAndQuizService.initializePublicOneUserAndQuiz();
       }
+
+      this.quizService.setSelectedQuiz(event.id);
     });
   }
 
@@ -114,9 +114,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.router.navigate(["/login"]).then(() => window.location.reload());
   }
 
-  setFontConfig(config: ConfigSizeFont) {
-    this.userPrefsService.setFontSize(config.size);
-  }
+
 
 
 

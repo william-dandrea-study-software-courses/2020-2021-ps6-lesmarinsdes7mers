@@ -17,6 +17,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class PlayQuizComponent implements OnInit {
 
+
+    private publicSession: boolean;
+    private userSelected: User;
+
     public fontSizeMain: number;
     public fontSizeSecond: number;
 
@@ -56,8 +60,8 @@ export class PlayQuizComponent implements OnInit {
         this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
 
         // === USER
-        this.userService.userSelected$.subscribe((elem) => this.currentUser = elem);
-        this.currentUser = this.userService.getUserSelected();
+        // this.userService.userSelected$.subscribe((elem) => this.currentUser = elem);
+        // this.currentUser = this.userService.getUserSelected();
 
         // === USER AND QUIZ
         this.userAndQuizService.userAndQuizs$.subscribe();
@@ -74,6 +78,17 @@ export class PlayQuizComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
+            this.publicSession = internIsPublic;
+
+            if (!internIsPublic) {
+                this.userService.userSelected$.subscribe((user) => {
+                    this.userSelected = user;
+                });
+            }
+        });
+
 
     }
 
@@ -168,7 +183,12 @@ export class PlayQuizComponent implements OnInit {
 
 
     quitQuiz(): void {
-        this.router.navigate(['/homepage']);
+        this.router.navigate(['/homepage']).then(() => {
+            if (!this.publicSession) {
+                this.userService.setCurrentUser(this.userSelected.id);
+                this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);
+            }
+        });
     }
 
 

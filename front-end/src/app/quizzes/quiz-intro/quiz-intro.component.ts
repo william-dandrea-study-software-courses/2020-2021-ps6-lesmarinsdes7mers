@@ -29,9 +29,15 @@ export class QuizIntroComponent implements OnInit {
 
     constructor(private router: Router, private route: ActivatedRoute, public userService: UserService, private quizService: QuizService, public userPref: UserPrefsService, private userAndQuizService: UserAndQuizService) {
 
+    }
+
+    ngOnInit(): void {
+
+
         this.quizService.quizSelected$.subscribe((eachQuiz) => {
             this.quizSelected = eachQuiz;
         });
+
 
         this.userPref.fontSize$.subscribe((fontSiz) => {
             this.fontSizeMain = fontSiz;
@@ -53,14 +59,6 @@ export class QuizIntroComponent implements OnInit {
         this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
             this.currentOneUserAndQuiz = elem;
         });
-        this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
-
-
-    }
-
-    ngOnInit(): void {
-        const id = this.route.snapshot.paramMap.get('id');
-        this.quizService.setSelectedQuiz(+id);
     }
 
     generateNameDifficultyClass(): string {
@@ -74,11 +72,10 @@ export class QuizIntroComponent implements OnInit {
 
     initializeTheOneUseQuizzes(): void {
 
+        console.log(this.currentOneUserAndQuiz);
+
         if (!this.currentOneUserAndQuiz) {
-
-            console.log("yo");
-            this.userAndQuizService.addEmptyPlayedQuizOneUserQuiz();
-
+            this.userAndQuizService.initializePublicOneUserAndQuiz();
         }
 
         const index = this.currentOneUserAndQuiz.played_quizzes.findIndex(pq => pq.id_quiz === this.quizSelected.id);
@@ -97,8 +94,11 @@ export class QuizIntroComponent implements OnInit {
 
     startQuiz(): void {
         this.initializeTheOneUseQuizzes();
-        console.log(this.userAndQuizService.getOneUserQuizzes());
-        this.router.navigate(['/play-quiz', this.quizSelected.id]);
+        this.router.navigate(['/play-quiz']).then(() => {
+            if (!this.publicSession) {
+                this.userService.setCurrentUser(this.userSelected.id);
+            }
+        });
     }
 
     homepage(): void {

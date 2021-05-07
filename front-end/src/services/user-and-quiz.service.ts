@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserAndQuizModel, UserAnswer} from "../models/user-and-quiz.model";
+import {MadedQuizzesModel, UserAndQuizModel, UserAnswer} from "../models/user-and-quiz.model";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {
   serverUrl,
@@ -23,7 +23,6 @@ export class UserAndQuizService {
 
 
 
-
   constructor(private http: HttpClient) {}
 
   public initializeUserAndQuiz(userId: number): void {
@@ -36,6 +35,10 @@ export class UserAndQuizService {
       this.setOneUserAndQuiz(internUserAndQuiz.data);
     });
 
+  }
+
+  public initializePublicOneUserAndQuiz(): void {
+    this.setOneUserAndQuiz({id: 1000, id_user: 1000, played_quizzes: []});
   }
 
   private getAllUserAndQuizFromDatabase(): Observable<any> {
