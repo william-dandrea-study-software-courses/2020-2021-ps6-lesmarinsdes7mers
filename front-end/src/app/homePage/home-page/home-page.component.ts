@@ -1,21 +1,25 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Difficulty, Quiz} from "../../../models/quiz.model";
-import {QuizService} from "../../../services/quiz.service";
-import {UserService} from "../../../services/user.service";
-import {ConfigSizeFont, User} from "../../../models/user.model";
-import {UserAndQuizService} from "../../../services/user-and-quiz.service";
-import {UserAndQuizModel} from "../../../models/user-and-quiz.model";
-import {Subscription} from "rxjs";
-import UserPrefsService from "../../../services/userprefs.service";
+import {Router} from '@angular/router';
+import {Difficulty, Quiz} from '../../../models/quiz.model';
+import {QuizService} from '../../../services/quiz.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user.model';
+import {UserAndQuizService} from '../../../services/user-and-quiz.service';
+import {UserAndQuizModel} from '../../../models/user-and-quiz.model';
+import {Subscription} from 'rxjs';
+import UserPrefsService from '../../../services/userprefs.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit, OnDestroy {
 
+/**
+ * @verified : D'Andréa William - 7 may 2021
+ */
+
+export class HomePageComponent implements OnInit, OnDestroy {
 
   public publicSession: boolean;
   private isPublicSessionSubscription: Subscription;
@@ -32,11 +36,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public currentUserAndQuiz: UserAndQuizModel;
   private currentUserAndQuizSubscription: Subscription;
 
-  public difficultyFiltrer: Difficulty;
-
   constructor(private router: Router, public quizService: QuizService, public userService: UserService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
 
     this.quizService.initializeQuizzes();
 
@@ -50,7 +52,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
         // La session est privée
         this.userSelectedSubscription = this.userService.getCurrentUserAsObservable().subscribe(internCurrentUser => {
           this.userSelected = internCurrentUser;
-          this.userPrefsService.initializePrefsForOneUser(internCurrentUser);
           this.userAndQuizService.initializeUserAndQuiz(internCurrentUser.id);
         });
       }
@@ -70,10 +71,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
 
-
-
-
-  isPlayedQuiz(quiz: Quiz): boolean {
+  /**
+   * Méthodes qui permet de savoir si le quiz actuel est déjà joué au non, afin d'afficher
+   * la petite popup qui indique : nombre de bonne réponse / nombre total de réponses si le quiz
+   * a été jouée
+   * @param quiz dont on souhaite savoir s'il a été joué ou non
+   */
+  public isPlayedQuiz(quiz: Quiz): boolean {
 
     if (this.publicSession) {
       return false;
@@ -82,6 +86,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
     return this.currentUserAndQuiz.played_quizzes.map(plQz => plQz.id_quiz).includes(quiz.id);
   }
 
+  /**
+   * Méthode permettant de savoir le nombre de bonne réponse donné sur un quiz qui a déjà été joué
+   * @param quiz dont on souhaite connaitre le nombre de bonnes réponses de l'uitlisateur
+   */
   getNumberOfGoodQuestion(quiz: Quiz): number {
 
     if (this.userSelected && this.isPlayedQuiz(quiz)) {
@@ -94,45 +102,19 @@ export class HomePageComponent implements OnInit, OnDestroy {
     return 0;
   }
 
-  // routerLink="/quiz-intro/{{idQuiz}}
-  onSelectedQuiz(event: Quiz): void {
-
-    this.router.navigate(['/quiz-intro']).then(() => {
-      if (!this.publicSession) {
-        this.userService.setCurrentUser(this.userSelected.id);
-        this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);
-      } else {
-        this.userAndQuizService.initializePublicOneUserAndQuiz();
-      }
-
-      this.quizService.setSelectedQuiz(event.id);
-    });
-  }
-
-
-  deconnect(): void {
-    this.router.navigate(["/login"]).then(() => window.location.reload());
-  }
-
-
-
-
-
-
-
+  /**
+   * Méthodes interne au HTML permettant de filtrer les quizzes
+   */
   onDifficultyFiltrer(choice: Difficulty): void {
-    this.difficultyFiltrer = choice;
 
-    switch (this.difficultyFiltrer) {
+    switch (choice) {
       case Difficulty.EASY: this.quizList = this.filterDifficultyEasy(); break;
       case Difficulty.MEDIUM: this.quizList = this.filterDifficultyMedium(); break;
       case Difficulty.HARD: this.quizList = this.filterDifficultyHard(); break;
       case Difficulty.EXPERT: this.quizList = this.filterDifficultyExpert(); break;
-      default: {this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => this.quizList = quizzes);}
+      default: {this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => this.quizList = quizzes); }
     }
-
   }
-
 
   filterDifficultyEasy(): Quiz[] {
     return this.quizList.filter((quiz) => quiz.difficulty === Difficulty.EASY);
@@ -151,6 +133,31 @@ export class HomePageComponent implements OnInit, OnDestroy {
   filterDifficultyExpert(): Quiz[] {
     return this.quizList.filter((quiz) => quiz.difficulty === Difficulty.EXPERT);
   }
+
+  /**
+   * Navigation vers la page de description de quiz
+   * Le then() est important ici car il nous permet de correctement liée les pages car à partir de cette page,
+   * nous allons modifier des informations directement dans les services
+   */
+  public onSelectedQuiz(event: Quiz): void {
+    this.router.navigate(['/quiz-intro']).then(() => {
+      if (!this.publicSession) {
+        this.userService.setCurrentUser(this.userSelected.id);
+        this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);
+      } else {
+        this.userAndQuizService.initializePublicOneUserAndQuiz();
+      }
+      this.quizService.setSelectedQuiz(event.id);
+    });
+  }
+
+  /**
+   * Navigation vers la page de login avec reload de la page pour s'assurer de la remise à zéro des services
+   */
+  public disconnect(): void {
+    this.router.navigate(['/login']).then(() => window.location.reload());
+  }
+
 
   ngOnDestroy(): void {
     this.userSelectedSubscription.unsubscribe();

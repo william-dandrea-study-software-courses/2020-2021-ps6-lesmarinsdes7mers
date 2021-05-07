@@ -4,6 +4,7 @@ import {User} from '../../../models/user.model';
 import {UserService} from '../../../services/user.service';
 import {Location} from '@angular/common';
 import {Subscription} from 'rxjs';
+import UserPrefsService from "../../../services/userprefs.service";
 
 @Component({
     templateUrl: './login-page.component.html',
@@ -21,7 +22,7 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
     private userListSubscription: Subscription;
     public dispUserList: User[] = [];
 
-    public constructor(private router: Router, private location: Location, private userService: UserService) {}
+    public constructor(private router: Router, private location: Location, private userService: UserService, private userPrefsService: UserPrefsService) {}
 
     public ngOnInit(): void {
         // Nous récupérons la liste de users
@@ -58,7 +59,7 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
     /**
      * Méthode appelé au moment ou l'utilisateur clic sur la flashcard liée à son profil
      * => Navigation vers la homepage liée a l'utilisateur sélectionné
-     * @param user : utilisateur sur lequel l'utilisateur a cliqué
+     * @param user sur lequel l'utilisateur a cliqué
      */
     public onUserClick(user: User): void {
 
@@ -67,6 +68,9 @@ export default class LoginPageComponent implements OnInit, OnDestroy{
 
         // On affecte l'utilisateur courant
         this.userService.setCurrentUser(user.id);
+
+        // On affecte les bonnes choix prédéfini par l'animateur (taille d'écriture - handicap)
+        this.userPrefsService.initializePrefsForOneUser(user);
 
         console.log('[LOGIN-PAGE] - User selected : \n ID : ' + String(user.id)
             + '\n NAME : ' + String(user.name) +  + ' ' + String(user.surname)

@@ -4,7 +4,7 @@
 
         <div id="pseudo-header">
             <div id="message-de-bienvenue-bonjour" [style.font-size.px]="fontSize + 20">Bonjour, {{userSelected.surname}}</div>
-            <button class="difficulty-bar-elements-button" (click)="deconnect()">Se Déconnecter</button>
+            <button class="difficulty-bar-elements-button" (click)="disconnect()">Se Déconnecter</button>
         </div>
 
 
@@ -13,7 +13,7 @@
     </div>
 
 
-    <button class="difficulty-bar-elements-button" (click)="deconnect()" *ngIf="!userSelected">Se Déconnecter</button>
+    <button class="difficulty-bar-elements-button" (click)="disconnect()" *ngIf="!userSelected">Se Déconnecter</button>
 
 
 

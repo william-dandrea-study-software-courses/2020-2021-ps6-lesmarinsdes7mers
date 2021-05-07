@@ -1,21 +1,26 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {QuizService} from "../../../services/quiz.service";
-import {getDifficultyClass, difficultyToText, Quiz, Difficulty} from "../../../models/quiz.model";
-import UserPrefsService from "../../../services/userprefs.service";
-import {UserAndQuizService} from "../../../services/user-and-quiz.service";
-import {User} from "../../../models/user.model";
-import {UserService} from "../../../services/user.service";
-import {MadedQuizzesModel, UserAndQuizModel} from "../../../models/user-and-quiz.model";
+import {Component,  OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {QuizService} from '../../../services/quiz.service';
+import {difficultyToText, Quiz, Difficulty} from '../../../models/quiz.model';
+import UserPrefsService from '../../../services/userprefs.service';
+import {UserAndQuizService} from '../../../services/user-and-quiz.service';
+import {User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
+import {MadedQuizzesModel, UserAndQuizModel} from '../../../models/user-and-quiz.model';
 
 @Component({
     selector: 'app-quiz-intro',
     templateUrl: './quiz-intro.component.html',
     styleUrls: ['./quiz-intro.component.scss']
 })
+
+/**
+ * @verified : D'Andréa William - 7 May 2021
+ */
+
 export class QuizIntroComponent implements OnInit {
 
-    public publicSession: boolean;
+    private publicSession: boolean;
 
     public quizSelected: Quiz;
     public difficultyToText = difficultyToText;
@@ -27,41 +32,38 @@ export class QuizIntroComponent implements OnInit {
 
     public currentOneUserAndQuiz: UserAndQuizModel;
 
-    constructor(private router: Router, private route: ActivatedRoute, public userService: UserService, private quizService: QuizService, public userPref: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+    constructor(private router: Router, private route: ActivatedRoute, public userService: UserService,
+                private quizService: QuizService, public userPref: UserPrefsService, private userAndQuizService: UserAndQuizService) {}
 
-    }
-
-    ngOnInit(): void {
-
-
-        this.quizService.quizSelected$.subscribe((eachQuiz) => {
-            this.quizSelected = eachQuiz;
+    public ngOnInit(): void {
+        this.quizService.getQuizSelectedAsObservable().subscribe((internQuizSelected) => {
+            this.quizSelected = internQuizSelected;
         });
 
-
-        this.userPref.fontSize$.subscribe((fontSiz) => {
-            this.fontSizeMain = fontSiz;
-            this.fontSizeSecond = fontSiz - 10;
+        this.userPref.getFontSizeAsObservable().subscribe((internFontSize) => {
+            this.fontSizeMain = internFontSize;
+            this.fontSizeSecond = internFontSize - 10;
         });
 
         this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
             this.publicSession = internIsPublic;
 
             if (!internIsPublic) {
-                this.userService.userSelected$.subscribe((user) => {
-                    this.userSelected = user;
+                this.userService.userSelected$.subscribe((internUser) => {
+                    this.userSelected = internUser;
                 });
             }
         });
 
-
-
-        this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
-            this.currentOneUserAndQuiz = elem;
+        this.userAndQuizService.getOneUserQuizzesAsObservable().subscribe((internOneUserQuizzes) => {
+            this.currentOneUserAndQuiz = internOneUserQuizzes;
         });
     }
 
-    generateNameDifficultyClass(): string {
+    /**
+     * Méthode interne HTML permettant de générer le nom de la difficulté
+     */
+    public generateNameDifficultyClass(): string {
         switch (this.quizSelected.difficulty) {
             case Difficulty.EASY: return 'easy';
             case Difficulty.MEDIUM: return 'medium';
@@ -70,30 +72,12 @@ export class QuizIntroComponent implements OnInit {
         }
     }
 
-    initializeTheOneUseQuizzes(): void {
-
-        console.log(this.currentOneUserAndQuiz);
-
-        if (!this.currentOneUserAndQuiz) {
-            this.userAndQuizService.initializePublicOneUserAndQuiz();
-        }
-
-        const index = this.currentOneUserAndQuiz.played_quizzes.findIndex(pq => pq.id_quiz === this.quizSelected.id);
-
-        // Si il n'y a pas l'élement dans le tableau, one le crée, sinon, il faut le remettre a zero
-        if (index >= 0) {
-            this.currentOneUserAndQuiz.played_quizzes[index].user_answers = [];
-            this.currentOneUserAndQuiz.played_quizzes[index].score_user = 0;
-            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
-        } else {
-            const madedQuiz: MadedQuizzesModel = {id_quiz: this.quizSelected.id, score_user: 0, user_answers: []};
-            this.currentOneUserAndQuiz.played_quizzes.push(madedQuiz);
-            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
-        }
-    }
-
-    startQuiz(): void {
-
+    /**
+     * Lancement du quiz
+     * => Initialisation du userAndQuiz par un nouveau userAndQuiz (ce qui implique la surcharge d'un ancien
+     *    userAndQuiz)
+     */
+    public startQuiz(): void {
         this.router.navigate(['/play-quiz']).then(() => {
             if (!this.publicSession) {
                 this.userService.setCurrentUser(this.userSelected.id);
@@ -103,8 +87,29 @@ export class QuizIntroComponent implements OnInit {
         });
     }
 
-    homepage(): void {
-        console.log(this.userSelected);
+    private initializeTheOneUseQuizzes(): void {
+        if (!this.currentOneUserAndQuiz) {
+            this.userAndQuizService.initializePublicOneUserAndQuiz();
+        }
+
+        const index = this.currentOneUserAndQuiz.played_quizzes.findIndex(pq => pq.id_quiz === this.quizSelected.id);
+
+        // Si il n'y a pas l'élément dans le tableau, one le crée, sinon, il faut le remettre a zero
+        if (index >= 0) {
+            this.currentOneUserAndQuiz.played_quizzes[index].user_answers = [];
+            this.currentOneUserAndQuiz.played_quizzes[index].score_user = 0;
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+        } else {
+            const madeQuiz: MadedQuizzesModel = {id_quiz: this.quizSelected.id, score_user: 0, user_answers: []};
+            this.currentOneUserAndQuiz.played_quizzes.push(madeQuiz);
+            this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
+        }
+    }
+
+    /**
+     * Navigation vers la homepage et remise à 0 de l'userAndQuiz
+     */
+    public homepage(): void {
         this.router.navigate(['/homepage']).then(() => {
             if (!this.publicSession) {
                 this.userService.setCurrentUser(this.userSelected.id);

@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import UserPrefsService from "../../../services/userprefs.service";
-import {QuizService} from "../../../services/quiz.service";
-import {Answer, Quiz} from "../../../models/quiz.model";
-import {UserAndQuizService} from "../../../services/user-and-quiz.service";
-import {MadedQuizzesModel, UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
-import {UserService} from "../../../services/user.service";
-import {User} from "../../../models/user.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import UserPrefsService from '../../../services/userprefs.service';
+import {QuizService} from '../../../services/quiz.service';
+import {Answer, Quiz} from '../../../models/quiz.model';
+import {UserAndQuizService} from '../../../services/user-and-quiz.service';
+import {UserAndQuizModel, UserAnswer} from '../../../models/user-and-quiz.model';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 
@@ -15,10 +15,14 @@ import {ActivatedRoute, Router} from "@angular/router";
     templateUrl: './play-quiz.component.html',
     styleUrls: ['./play-quiz.component.scss'],
 })
+
+/**
+ * @verified : D'Andréa William - 7 may 2021
+ */
 export class PlayQuizComponent implements OnInit {
 
-
     private publicSession: boolean;
+
     private userSelected: User;
 
     public fontSizeMain: number;
@@ -27,57 +31,21 @@ export class PlayQuizComponent implements OnInit {
     public currentQuiz: Quiz;
     public currentQuestion: number;
 
-    public currentUser: User;
-
     public currentOneUserAndQuiz: UserAndQuizModel;
-    public currentMadedQuizModel: MadedQuizzesModel;
     public userAnswers: UserAnswer[] = [];
 
     public currentSelectedAnswer: Answer;
     public numberOfGoodResponses: number;
 
+    constructor(private router: Router, private route: ActivatedRoute, private userPrefsService: UserPrefsService,
+                private quizService: QuizService, private userAndQuizService: UserAndQuizService, private userService: UserService) {}
 
-    public backgroundColorForSelectedElements: string;
 
-
-    constructor(private router: Router, private route: ActivatedRoute, private userPrefsService: UserPrefsService, private quizService: QuizService, private userAndQuizService: UserAndQuizService, private userService: UserService) {
-
-        // === FONT SIZE
-        this.userPrefsService.fontSize$.subscribe((size) => {
-            this.fontSizeMain = size;
-            this.fontSizeSecond = size - 10;
+    public ngOnInit(): void {
+        this.userPrefsService.getFontSizeAsObservable().subscribe((internSize) => {
+            this.fontSizeMain = internSize;
+            this.fontSizeSecond = internSize - 10;
         });
-        this.fontSizeMain = userPrefsService.getFontSize();
-        this.fontSizeSecond = userPrefsService.getFontSize() - 10;
-
-
-        // === QUIZ
-        this.quizService.quizSelected$.subscribe((elem) => this.currentQuiz = elem);
-        this.currentQuiz = this.quizService.getQuizSelected();
-        console.log(this.currentQuiz);
-
-        // === QUESTION
-        this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
-
-        // === USER
-        // this.userService.userSelected$.subscribe((elem) => this.currentUser = elem);
-        // this.currentUser = this.userService.getUserSelected();
-
-        // === USER AND QUIZ
-        this.userAndQuizService.userAndQuizs$.subscribe();
-        this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.currentOneUserAndQuiz = elem);
-        this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
-
-
-        // === RESTE
-        this.backgroundColorForSelectedElements = 'white';
-        this.currentSelectedAnswer = null;
-        this.numberOfGoodResponses = 0;
-        this.currentQuestion = 0;
-
-    }
-
-    ngOnInit(): void {
 
         this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
             this.publicSession = internIsPublic;
@@ -89,16 +57,28 @@ export class PlayQuizComponent implements OnInit {
             }
         });
 
+        this.quizService.getQuizSelectedAsObservable().subscribe((internSelectedQuiz) => this.currentQuiz = internSelectedQuiz);
+        this.currentQuiz = this.quizService.getQuizSelected();
 
+        this.currentQuestion = (this.currentQuiz) ? +this.currentQuiz.questions[0].id : 0;
+
+        this.userAndQuizService.getOneUserQuizzesAsObservable().subscribe((internOneUserAndQuiz) => {
+            this.currentOneUserAndQuiz = internOneUserAndQuiz;
+        });
+        this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
+        this.currentSelectedAnswer = null;
+        this.numberOfGoodResponses = 0;
+        this.currentQuestion = 0;
     }
 
-
-
-    goToNextQuestion(): void {
-
+    /**
+     * Méthode qui permet d'aller à la prochaine question ou d'aller sur la page de résultat si le quiz est fini
+     */
+    public goToNextQuestion(): void {
 
         if (this.currentSelectedAnswer && this.currentQuestion < this.inNumberOfQuestionsInQuiz() - 1) {
-
+            // Si ce n'est pas la dernière question
             if (this.currentSelectedAnswer.is_correct) {
                 this.numberOfGoodResponses += 1;
             }
@@ -108,9 +88,10 @@ export class PlayQuizComponent implements OnInit {
             this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].user_answers = this.userAnswers;
             this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
 
-
             this.currentQuestion += 1;
+
         } else if (this.currentSelectedAnswer) {
+            // Si c'est pas la dernière question
             if (this.currentSelectedAnswer.is_correct) {
                 this.numberOfGoodResponses += 1;
             }
@@ -121,10 +102,7 @@ export class PlayQuizComponent implements OnInit {
 
             this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].score_user = this.numberOfGoodResponses;
 
-            // this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
-
-
-            console.log(this.numberOfGoodResponses);
+            // On navigue vers la parge de résultat
             this.router.navigate(['/quiz-result']).then(() => {
 
                 this.quizService.setSelectedQuiz(this.currentQuiz.id);
@@ -134,62 +112,53 @@ export class PlayQuizComponent implements OnInit {
                 } else {
                     this.userAndQuizService.setOneUserAndQuizElementWhenPublic(this.currentOneUserAndQuiz);
                 }
-
-                console.log(this.currentQuiz);
-                console.log(this.currentOneUserAndQuiz);
             });
         }
 
         this.currentSelectedAnswer = null;
     }
 
-    selectedAnswer(answer: Answer): void {
-
+    /**
+     * Méthodes interne au HTML permettant de mettre un background différend pour les question séléctionnes
+     */
+    public selectedAnswer(answer: Answer): void {
         this.currentSelectedAnswer = answer;
     }
 
-
-
-
-    isSelectedElement(answer: Answer): boolean {
-        if (answer === this.currentSelectedAnswer){
-            return true;
-        }
-        return false;
+    public isSelectedElement(answer: Answer): boolean {
+        return answer === this.currentSelectedAnswer;
     }
 
-
-
-
-    adaptPageToBigFont(): boolean {
-        if (this.fontSizeMain >= 50) {
-            return true;
-        }
-        return false;
+    /**
+     * Méthode qui va retirer certains élements de la page si la taille d'écriture est trop grande
+     */
+    public adaptPageToBigFont(): boolean {
+        return this.fontSizeMain >= 50;
     }
 
-
-
-
-    inNumberOfQuestionsInQuiz(): number {
+    /**
+     * Informations sur le quiz / questions
+     */
+    public inNumberOfQuestionsInQuiz(): number {
         return this.currentQuiz.questions.length;
     }
 
-    inQuestionName(): string {
+    public inQuestionName(): string {
         return this.currentQuiz.questions[this.currentQuestion].question_name;
     }
 
-    inQuestionAnswers(): Answer[] {
+    public inQuestionAnswers(): Answer[] {
         return this.currentQuiz.questions[this.currentQuestion].answer;
     }
 
-    isTextAnswer(): boolean {
-        if (this.currentQuiz.questions[this.currentQuestion].type === 0) {return true;}
-        return false;
+    public isTextAnswer(): boolean {
+        return this.currentQuiz.questions[this.currentQuestion].type === 0;
     }
 
-
-    quitQuiz(): void {
+    /**
+     * Retour a la homepage avec reinitialisation des elements intern a ce quiz là
+     */
+    public quitQuiz(): void {
         this.router.navigate(['/homepage']).then(() => {
             if (!this.publicSession) {
                 this.userService.setCurrentUser(this.userSelected.id);
@@ -197,6 +166,4 @@ export class PlayQuizComponent implements OnInit {
             }
         });
     }
-
-
 }
