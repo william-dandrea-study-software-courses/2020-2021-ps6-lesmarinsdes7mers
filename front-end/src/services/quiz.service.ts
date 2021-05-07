@@ -51,10 +51,12 @@ export class QuizService {
     });
   }
 
-
-
-
-
+  public setSelectedQuiz(quizId: number): void {
+    this.getOneQuizFromDatabase(quizId).subscribe(value => {
+      this.quizSelected = value.data;
+      this.quizSelected$.next(value.data);
+    });
+  }
 
 
   private getAllQuizzesFromDatabase(): Observable<any> {
@@ -74,13 +76,20 @@ export class QuizService {
   }
 
 
-
   public getAllQuizzesAsObservable(): Observable<any> {
     return this.quizzes$;
   }
 
+  public getAllQuizzes(): Quiz[] {
+    return this.quizzes;
+  }
+
   public getQuizSelectedAsObservable(): Observable<any> {
     return this.quizSelected$;
+  }
+
+  public getQuizSelected(): Quiz {
+    return this.quizSelected;
   }
 
   public getCurrentCorrectionSelectedAsObservable(): Observable<any> {
@@ -88,25 +97,33 @@ export class QuizService {
   }
 
   public setQuizzes(internQuizzes: Quiz[]): void {
+    this.quizzes = internQuizzes;
     this.quizzes$.next(internQuizzes);
   }
 
+  public setCurrentQuestionSelected(idQuestion: number): void {
+    this.currentCorrectionSelected = idQuestion;
+    this.currentCorrectionSelected$.next(this.currentCorrectionSelected);
+  }
 
-  setSelectedQuiz(quizId: number): void {
 
-    this.getOneQuizFromDatabase(quizId).subscribe(value => {
-      this.quizSelected = value.data;
-      this.quizSelected$.next(value.data);
-    });
+  public getCurrentQuestionSelected(): number {
+    return this.currentCorrectionSelected;
   }
 
 
 
 
 
-  /**
-   * @deprecated
-   */
+
+
+
+
+
+
+
+
+
   retrieveQuizzes() {
     const result = this.http.get<any>(this.quizUrl + '/all');
     result.subscribe((quizList) => {
@@ -116,57 +133,6 @@ export class QuizService {
     return result;
   }
 
-  /**
-   * @deprecated
-   */
-  getPublicQuizzes(): Quiz[] {
-    const elements =  this.quizzes.filter(quiz => quiz.privacy.is_public === true);
-    this.quizzes = elements;
-    this.quizzes$.next(elements);
-    return elements;
-  }
-
-  /**
-   * @deprecated
-   */
-  getQuizForOneUser(idUser: number): Quiz[] {
-    let finalArray = this.quizzes.filter(quiz => quiz.privacy.users_access.includes(idUser));
-    finalArray = [...finalArray, ...this.getPublicQuizzes()];
-    const finalValue = [...new Set(finalArray)];
-    this.quizzes$.next(finalValue);
-    return finalValue;
-  }
-
-
-
-
-
-
-  /**
-   * @deprecated
-   */
-  setCurrentQuestionSelected(idQuestion: number): void {
-    this.currentCorrectionSelected = idQuestion;
-    this.currentCorrectionSelected$.next(this.currentCorrectionSelected);
-  }
-
-  /**
-   * @deprecated
-   */
-  getCurrentQuestionSelected(): number {
-    return this.currentCorrectionSelected;
-  }
-
-
-
-
-
-  /**
-   * @deprecated
-   */
-  getQuizSelected(): Quiz {
-    return this.quizSelected;
-  }
 
   addQuiz(quiz: Quiz) {
     const resultSubject = new Subject<Quiz>()

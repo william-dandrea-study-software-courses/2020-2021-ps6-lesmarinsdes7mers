@@ -20,33 +20,33 @@ export class QuizResultComponent implements OnInit {
   fontSizeMain: number;
   fontSizeSecond: number;
 
+  private publicSession: boolean;
 
   public oneUserAndQuiz: UserAndQuizModel;
   public quizSelected: Quiz;
-
   public userSelected: User;
 
-  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService, private userService: UserService ) {
-    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.oneUserAndQuiz = elem);
-    this.quizService.quizSelected$.subscribe((elem) => this.quizSelected = elem);
-
-    this.userPref.fontSize$.subscribe((size) => {
-      this.fontSizeMain = size;
-      this.fontSizeSecond = size - 10;
-    });
-
-    this.userService.userSelected$.subscribe(elem => this.userSelected = elem);
-    this.userSelected = this.userService.getUserSelected();
-
-
-  }
+  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService, private userService: UserService ) {}
 
   ngOnInit(): void {
-    this.fontSizeMain = this.userPref.getFontSize();
-    this.fontSizeSecond = this.userPref.getFontSize() - 10;
+
+    this.publicSession = this.userService.isPublicSession();
+
+    this.userPref.getFontSizeAsObservable().subscribe(internFontSize => {
+      this.fontSizeMain = internFontSize;
+      this.fontSizeSecond = internFontSize - 10;
+    });
+
+    if (!this.publicSession) {
+      // Session privée
+      this.userSelected = this.userService.getUserSelected();
+    } else {
+      // Session publique
+    }
+
     this.oneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
     this.quizSelected = this.quizService.getQuizSelected();
-    console.log(this.oneUserAndQuiz);
   }
 
 
@@ -76,18 +76,17 @@ export class QuizResultComponent implements OnInit {
 
 
 
-
   navigateToCorrection(): void {
     console.log(this.oneUserAndQuiz);
     this.router.navigate(["/quiz-correction"]);
   }
 
   navigateToHomepage(): void {
-    if (this.userSelected) {
-      this.router.navigate(["/homepage/" + this.userSelected.id]);
-    } else {
-      this.router.navigate(["/homepage"]);
-    }
+    this.router.navigate(['/homepage']).then(() => {
+      if (!this.publicSession) {
+        this.userService.setCurrentUser(this.userSelected.id);
+      }
+    });
   }
 
   adaptPageToBigFont(): boolean {

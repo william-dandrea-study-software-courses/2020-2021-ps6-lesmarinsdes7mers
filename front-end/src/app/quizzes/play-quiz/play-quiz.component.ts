@@ -122,18 +122,25 @@ export class PlayQuizComponent implements OnInit {
             this.currentOneUserAndQuiz.played_quizzes[indexUserAndQuiz].score_user = this.numberOfGoodResponses;
 
             // this.userAndQuizService.oneUserQuizzes$.next(this.currentOneUserAndQuiz);
-            if (!this.userService.getPublicSession()) {
-                this.userAndQuizService.setOneUserAndQuizElement(this.currentOneUserAndQuiz);
-            }
 
 
             console.log(this.numberOfGoodResponses);
-            this.router.navigate(['/quiz-result']);
+            this.router.navigate(['/quiz-result']).then(() => {
+
+                this.quizService.setSelectedQuiz(this.currentQuiz.id);
+                if (!this.publicSession) {
+                    this.userService.setCurrentUser(this.userSelected.id);
+                    this.userAndQuizService.setOneUserAndQuizElementForUser(this.currentOneUserAndQuiz, this.userSelected.id, this.currentQuiz.id);
+                } else {
+                    this.userAndQuizService.setOneUserAndQuizElementWhenPublic(this.currentOneUserAndQuiz);
+                }
+
+                console.log(this.currentQuiz);
+                console.log(this.currentOneUserAndQuiz);
+            });
         }
 
         this.currentSelectedAnswer = null;
-
-        console.log(this.userAnswers);
     }
 
     selectedAnswer(answer: Answer): void {

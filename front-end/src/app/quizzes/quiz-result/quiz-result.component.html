@@ -1,4 +1,4 @@
-<div id="quiz-result-main-div">
+<div id="quiz-result-main-div" *ngIf="quizSelected">
 
     <div id="quiz-result-title" [ngStyle]="{'font-size.px': fontSizeMain}">{{quizSelected.name}}</div>
 
@@ -30,10 +30,3 @@
 
     <app-change-font-size id="quiz-result-footer-change-size" [dispTheSizeWritings]="adaptPageToBigFont()"> </app-change-font-size>
 </div>
-
-
-<!--
-{{getNumberOfGoodQuestions()}}
-{{getNumberOfBadQuestions()}}
-{{getNumberOfQuestions()}}
--->

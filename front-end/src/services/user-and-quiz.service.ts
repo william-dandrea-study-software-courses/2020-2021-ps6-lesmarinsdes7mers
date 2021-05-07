@@ -5,7 +5,7 @@ import {
   serverUrl,
   userAndQuizzesGETAll,
   userAndQuizzesGETForOneQuiz,
-  userAndQuizzesGETForOneUser
+  userAndQuizzesGETForOneUser, userAndQuizzesPOSTAddOneUserAndQuiz
 } from "../configs/server.config";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
@@ -17,8 +17,10 @@ import {UserService} from "./user.service";
 export class UserAndQuizService {
 
 
+  private userAndQuizs: UserAndQuizModel[];
   public userAndQuizs$: BehaviorSubject<UserAndQuizModel[]> = new BehaviorSubject<UserAndQuizModel[]>([]);
 
+  private oneUserQuizzes: UserAndQuizModel;
   public oneUserQuizzes$: Subject<UserAndQuizModel> = new Subject();
 
 
@@ -54,10 +56,12 @@ export class UserAndQuizService {
   }
 
   private setOneUserAndQuiz(internUserAndQuiz: UserAndQuizModel): void {
+    this.oneUserQuizzes = internUserAndQuiz;
     this.oneUserQuizzes$.next(internUserAndQuiz);
   }
 
   private setUserAndQuizzes(internUserAndQuiz: UserAndQuizModel[]): void {
+    this.userAndQuizs = internUserAndQuiz;
     this.userAndQuizs$.next(internUserAndQuiz);
   }
 
@@ -65,63 +69,40 @@ export class UserAndQuizService {
     return this.oneUserQuizzes$;
   }
 
-  public getUserAndQuizzes(): Observable<UserAndQuizModel[]> {
+  getOneUserQuizzes(): UserAndQuizModel {
+    return this.oneUserQuizzes;
+  }
+
+  public getUserAndQuizzesAsObservable(): Observable<UserAndQuizModel[]> {
     return this.userAndQuizs$;
   }
 
+  public getUserAndQuizs(): UserAndQuizModel[] {
+    return this.userAndQuizs;
+  }
 
 
 
-  /**
-   * @deprecated
-   */
-  setOneUserAndQuizElement(userAndQuiz: UserAndQuizModel): void {
-    /*
+  public setOneUserAndQuizElementForUser(userAndQuiz: UserAndQuizModel, idUser: number, idQuiz: number): void {
     this.oneUserQuizzes = userAndQuiz;
     this.oneUserQuizzes$.next(userAndQuiz);
-    console.log(this.oneUserQuizzes.id);
-    console.log(this.oneUserQuizzes);
-    this.http.put<UserAndQuizModel>(this.userUrl + '/' + this.oneUserQuizzes.id, this.oneUserQuizzes).subscribe(data => {});
-
-     */
+    this.http.put<UserAndQuizModel>(userAndQuizzesPOSTAddOneUserAndQuiz + String(idUser), userAndQuiz).subscribe(data => {});
   }
+
+  public setOneUserAndQuizElementWhenPublic(userAndQuiz: UserAndQuizModel): void {
+    this.oneUserQuizzes = userAndQuiz;
+    this.oneUserQuizzes$.next(userAndQuiz);
+  }
+
+
+
+
 
   /**
    * @deprecated
    */
   setOneUserQuizzes(user: User): void {
-    /*
     this.oneUserQuizzes = this.userAndQuizs.find(each => each.id === user.id);
     this.oneUserQuizzes$.next(this.oneUserQuizzes);
-
-     */
-  }
-
-  /**
-   * @deprecated
-   */
-  addEmptyPlayedQuizOneUserQuiz(): void {
-    /*
-    this.oneUserQuizzes = {id: 5000, id_user: 5000, played_quizzes: []};
-    this.oneUserQuizzes$.next(this.oneUserQuizzes);
-
-     */
-  }
-
-
-
-
-  /**
-   * @deprecated
-   */
-  getOneUserQuizzes(): UserAndQuizModel {
-    return null;
-  }
-
-  /**
-   * @deprecated
-   */
-  getUserAndQuizs(): UserAndQuizModel[] {
-    return null;
   }
 }

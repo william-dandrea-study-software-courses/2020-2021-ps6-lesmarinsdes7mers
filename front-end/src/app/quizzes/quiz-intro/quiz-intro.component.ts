@@ -93,17 +93,19 @@ export class QuizIntroComponent implements OnInit {
     }
 
     startQuiz(): void {
-        this.initializeTheOneUseQuizzes();
+
         this.router.navigate(['/play-quiz']).then(() => {
             if (!this.publicSession) {
                 this.userService.setCurrentUser(this.userSelected.id);
             }
+            this.quizService.setSelectedQuiz(this.quizSelected.id);
+            this.initializeTheOneUseQuizzes();
         });
     }
 
     homepage(): void {
         console.log(this.userSelected);
-        this.router.navigate(['/homepage/']).then(() => {
+        this.router.navigate(['/homepage']).then(() => {
             if (!this.publicSession) {
                 this.userService.setCurrentUser(this.userSelected.id);
                 this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);

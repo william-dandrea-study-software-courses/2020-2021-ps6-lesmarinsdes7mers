@@ -19,6 +19,8 @@ export class QuizCorrectionComponent implements OnInit {
   fontSizeSecond: number;
   answers: Answer[];
 
+  private publicSession: boolean;
+
   public oneUserAndQuiz: UserAndQuizModel;
   public quizSelected: Quiz;
 
@@ -49,6 +51,18 @@ export class QuizCorrectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
+      this.publicSession = internIsPublic;
+
+      if (!internIsPublic) {
+        this.userService.userSelected$.subscribe((user) => {
+          this.userSelected = user;
+        });
+      }
+    });
+
+
   }
 
 
@@ -94,11 +108,12 @@ export class QuizCorrectionComponent implements OnInit {
   }
 
   navigateToHomepage(): void {
-    if (this.userSelected) {
-      this.router.navigate(["/homepage/" + this.userSelected.id]);
-    } else {
-      this.router.navigate(["/homepage"]);
-    }
+
+    this.router.navigate(['/homepage']).then(() => {
+      if (!this.publicSession) {
+        this.userService.setCurrentUser(this.userSelected.id);
+      }
+    });
   }
 
 
