@@ -15,9 +15,10 @@ import {MadedQuizzesModel, UserAndQuizModel} from "../../../models/user-and-quiz
 })
 export class QuizIntroComponent implements OnInit {
 
+    public publicSession: boolean;
+
     public quizSelected: Quiz;
     public difficultyToText = difficultyToText;
-    public getDifficultyClass = getDifficultyClass;
 
     public userSelected: User;
 
@@ -33,19 +34,28 @@ export class QuizIntroComponent implements OnInit {
         });
 
         this.userPref.fontSize$.subscribe((fontSiz) => {
-            this.fontSizeMain =  Math.max(50, fontSiz);
-            this.fontSizeSecond = Math.max(30, fontSiz - 10);
+            this.fontSizeMain = fontSiz;
+            this.fontSizeSecond = fontSiz - 10;
         });
 
-        this.userService.userSelected$.subscribe((user) => {
-            this.userSelected = user;
+        this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
+            this.publicSession = internIsPublic;
+
+            if (!internIsPublic) {
+                this.userService.userSelected$.subscribe((user) => {
+                    this.userSelected = user;
+                });
+            }
         });
-        this.userSelected = this.userService.getUserSelected();
+
+
 
         this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => {
             this.currentOneUserAndQuiz = elem;
         });
         this.currentOneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
+
+
     }
 
     ngOnInit(): void {
@@ -93,8 +103,11 @@ export class QuizIntroComponent implements OnInit {
 
     homepage(): void {
         console.log(this.userSelected);
-        this.router.navigate(['/homepage/']);
+        this.router.navigate(['/homepage/']).then(() => {
+            if (!this.publicSession) {
+                this.userService.setCurrentUser(this.userSelected.id);
+                this.userAndQuizService.initializeUserAndQuiz(this.userSelected.id);
+            }
+        });
     }
-
-
 }

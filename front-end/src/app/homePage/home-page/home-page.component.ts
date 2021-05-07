@@ -102,7 +102,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
 
 
-    this.router.navigate(['/quiz-intro', event.id]);
+    this.router.navigate(['/quiz-intro', event.id]).then(() => {
+      if (!this.publicSession) {
+        this.userService.setCurrentUser(this.userSelected.id);
+      }
+    });
   }
 
 
