@@ -47,6 +47,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
       if (internIsPublic === true) {
         // La session est publique
+        this.userSelectedSubscription = new Subscription();
       } else {
         // La session est privée
         this.userSelectedSubscription = this.userService.getCurrentUserAsObservable().subscribe(internCurrentUser => {
@@ -83,7 +84,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     return this.currentUserAndQuiz.played_quizzes.map(plQz => plQz.id_quiz).includes(quiz.id);
   }
 
-
   getNumberOfGoodQuestion(quiz: Quiz): number {
 
     if (this.userSelected && this.isPlayedQuiz(quiz)) {
@@ -92,13 +92,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
         return this.currentUserAndQuiz.played_quizzes[index].score_user;
       }
     }
-    return 0;
 
+    return 0;
   }
 
   // routerLink="/quiz-intro/{{idQuiz}}
   onSelectedQuiz(event: Quiz): void {
-    this.quizService.setSelectedQuiz(+event.id);
+
+
+
 
     this.router.navigate(['/quiz-intro', event.id]);
   }

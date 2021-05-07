@@ -7,7 +7,7 @@ import {
   httpOptionsBase,
   quizzesGETAllQuizzes,
   quizzesGETAllPublicQuizzes,
-  quizzesGETAllQuizzesAvailableForOneUser
+  quizzesGETAllQuizzesAvailableForOneUser, quizzesGETOneQuiz
 } from '../configs/server.config';
 import {UserService} from "./user.service";
 
@@ -69,6 +69,10 @@ export class QuizService {
     return this.http.get<any>(quizzesGETAllQuizzesAvailableForOneUser + String(idUser));
   }
 
+  private getOneQuizFromDatabase(idQuiz: number): Observable<any> {
+    return this.http.get<any>(quizzesGETOneQuiz + String(idQuiz));
+  }
+
 
 
   public getAllQuizzesAsObservable(): Observable<any> {
@@ -87,6 +91,14 @@ export class QuizService {
     this.quizzes$.next(internQuizzes);
   }
 
+
+  setSelectedQuiz(quizId: number): void {
+
+    this.getOneQuizFromDatabase(quizId).subscribe(value => {
+      this.quizSelected = value.data;
+      this.quizSelected$.next(value.data);
+    });
+  }
 
 
 
@@ -166,14 +178,7 @@ export class QuizService {
     return resultSubject;
   }
 
-  /**
-   * @deprecated
-   */
-  setSelectedQuiz(quizId: number): void {
 
-    this.quizSelected = this.quizzes.find(value => value.id === quizId);
-    this.quizSelected$.next(this.quizSelected);
-  }
 
 
   deleteQuiz(quiz: Quiz): void {

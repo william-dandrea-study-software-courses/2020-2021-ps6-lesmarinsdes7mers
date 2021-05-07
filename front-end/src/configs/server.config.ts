@@ -24,6 +24,11 @@ export const quizzesSection = serverUrl + '/quizz';
 export const quizzesGETAllQuizzes = quizzesSection + '/all';
 
 /**
+ * Retrieve one quiz : quizzesGETOneQuiz + id
+ */
+export const quizzesGETOneQuiz = quizzesSection + '/';
+
+/**
  * Retrieve all public quizzes
  */
 export const quizzesGETAllPublicQuizzes = quizzesSection + '/public';
@@ -32,6 +37,8 @@ export const quizzesGETAllPublicQuizzes = quizzesSection + '/public';
  * Retrieve all quizzes available for one user : quizzesGETAllQuizzesAvailableForOneUser + idUser
  */
 export const quizzesGETAllQuizzesAvailableForOneUser = quizzesSection + '/foroneuser/';
+
+
 
 /**
  * Add new quiz

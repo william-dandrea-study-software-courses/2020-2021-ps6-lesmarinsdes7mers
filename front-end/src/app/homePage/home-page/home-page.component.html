@@ -25,18 +25,21 @@
 
     <hr class="divider">
 
+    <div *ngIf="!publicSession && currentUserAndQuiz || publicSession">
+        <div *ngFor="let quiz of quizList">
+            <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
+                                        [titleQuiz]="quiz.name"
+                                        [numberOfQuestions]="quiz.questions.length"
+                                        [difficulty]="quiz.difficulty"
+                                        [isMade]="true"
+                                        [numberOfGoodQuestions]="getNumberOfGoodQuestion(quiz)"
+                                        [idQuiz]="quiz.id" [playedQuiz]="isPlayedQuiz(quiz)"
 
-    <div *ngFor="let quiz of quizList">
-        <app-question-presenter-bar (click)="onSelectedQuiz(quiz)"
-                                    [titleQuiz]="quiz.name"
-                                    [numberOfQuestions]="quiz.questions.length"
-                                    [difficulty]="quiz.difficulty"
-                                    [isMade]="true"
-                                    [numberOfGoodQuestions]="getNumberOfGoodQuestion(quiz)"
-                                    [idQuiz]="quiz.id" [playedQuiz]="isPlayedQuiz(quiz)"
-
-        ></app-question-presenter-bar>
+            ></app-question-presenter-bar>
+        </div>
     </div>
+
+
 
 
 </div>
