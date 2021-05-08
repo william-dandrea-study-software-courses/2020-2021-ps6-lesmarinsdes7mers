@@ -8,8 +8,6 @@ import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 
-
-
 @Component({
     selector: 'app-play-quiz',
     templateUrl: './play-quiz.component.html',

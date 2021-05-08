@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 })
 
 /**
+ * Page de configuration de l'handicap lorsque l'utilisateur se connecte en tant qu'invité
  * @verified : D'Andréa William - 7 may 2021
  */
 

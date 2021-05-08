@@ -34,6 +34,8 @@ hr.divider {
 #message-de-bienvenue-bonjour {
   font-weight: 900;
   //font-size: 100px;
+  margin-top: 1%;
+  margin-left: 2%;
 }
 
 .difficulty-bar-elements-button {
@@ -70,5 +72,31 @@ hr.divider {
 }
 
 
+#quiz-home-page-change-font-size-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: transparent;
+}
 
+#tst {
+  width: 85%;
+}
+
+#homepage-statistics-main-div {
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+#homepage-statistics {
+  height: 200px;
+  width: 85%;
+}
 

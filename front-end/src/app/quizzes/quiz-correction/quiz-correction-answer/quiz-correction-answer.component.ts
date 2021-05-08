@@ -1,17 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FillQuizService} from "../../../../services/fill-quiz.service";
-import {QuizService} from "../../../../services/quiz.service";
-import {Difficulty, Quiz, Answer, Question, QuestionType} from "../../../../models/quiz.model";
-import UserPrefsService from "../../../../services/userprefs.service";
-import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
-import {UserAndQuizModel} from "../../../../models/user-and-quiz.model";
+import {ActivatedRoute, Router} from '@angular/router';
+import {QuizService} from '../../../../services/quiz.service';
+import {Difficulty, Quiz, Answer} from '../../../../models/quiz.model';
+import UserPrefsService from '../../../../services/userprefs.service';
+import {UserAndQuizService} from '../../../../services/user-and-quiz.service';
+import {UserAndQuizModel} from '../../../../models/user-and-quiz.model';
 
 @Component({
   selector: 'app-quiz-correction-answer',
   templateUrl: './quiz-correction-answer.component.html',
   styleUrls: ['./quiz-correction-answer.component.scss']
 })
+
+/**
+ * @verified: D'Andréa William - 8 may 2021
+ */
+
 export class QuizCorrectionAnswerComponent implements OnInit {
 
   public idCurrentQuestion: number;
@@ -19,87 +23,78 @@ export class QuizCorrectionAnswerComponent implements OnInit {
   public fontSizeMain: number;
   public fontSizeSecond: number;
 
-  public currentUserAndQuiz: UserAndQuizModel;
-  public currentQuiz: Quiz;
+  private currentUserAndQuiz: UserAndQuizModel;
+  private currentQuiz: Quiz;
 
+  constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService,
+              private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {}
 
-  constructor(private router: Router, private route: ActivatedRoute, private quizService: QuizService, private userPrefsService: UserPrefsService, private userAndQuizService: UserAndQuizService) {
+  public ngOnInit(): void {
+    this.userPrefsService.fontSize$.subscribe((internSize) => {
+      this.fontSizeMain = internSize;
+      this.fontSizeSecond = internSize - 10;
+    });
 
-
-
-    this.userPrefsService.fontSize$.subscribe((elem) => {this.fontSizeMain = elem; this.fontSizeSecond = elem - 10; });
-    this.fontSizeMain = this.userPrefsService.getFontSize();
-    this.fontSizeSecond = this.userPrefsService.getFontSize() - 10;
-
-    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.currentUserAndQuiz = elem);
+    this.userAndQuizService.getOneUserQuizzesAsObservable().subscribe((elem) => this.currentUserAndQuiz = elem);
     this.currentUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
-    this.quizService.quizSelected$.subscribe((elem) => this.currentQuiz = elem);
+    this.quizService.getQuizSelectedAsObservable().subscribe((elem) => this.currentQuiz = elem);
     this.currentQuiz = this.quizService.getQuizSelected();
 
-    this.quizService.currentCorrectionSelected$.subscribe((elem) => this.idCurrentQuestion = elem);
-    this.idCurrentQuestion = quizService.getCurrentQuestionSelected();
-
-  }
-
-  ngOnInit(): void {
-
-    console.log(this.idCurrentQuestion);
-
+    this.quizService.getCurrentCorrectionSelectedAsObservable().subscribe((elem) => this.idCurrentQuestion = elem);
+    this.idCurrentQuestion = this.quizService.getCurrentQuestionSelected();
   }
 
 
-  getGoodAnswerId(): number {
-
+  /**
+   * Méthode qui permet de connaitre l'id de la bonne réponse à la question
+   */
+  public getGoodAnswerId(): number {
     const indexAns = this.currentQuiz.questions[this.idCurrentQuestion].answer.findIndex((elem) => elem.is_correct === true);
     return this.currentQuiz.questions[this.idCurrentQuestion].answer[indexAns].id_answer;
   }
 
-  getUserAnswerId(): number {
+  /**
+   * Méthode qui permet de connaitre l'id de la bonne réponse de l'utilisateur
+   */
+  public getUserAnswerId(): number {
     const indexGoodPlayerQuiz = this.currentUserAndQuiz.played_quizzes.findIndex((elem) => elem.id_quiz === this.currentQuiz.id);
-    const tst2 = this.currentUserAndQuiz.played_quizzes[indexGoodPlayerQuiz].user_answers.findIndex(elem => elem.id_question === this.idCurrentQuestion );
-    return this.currentUserAndQuiz.played_quizzes[indexGoodPlayerQuiz].user_answers[tst2].response_user;
+    const indexAnswer = this.currentUserAndQuiz.played_quizzes[indexGoodPlayerQuiz]
+        .user_answers.findIndex(elem => elem.id_question === this.idCurrentQuestion );
+    return this.currentUserAndQuiz.played_quizzes[indexGoodPlayerQuiz].user_answers[indexAnswer].response_user;
 
   }
 
-  inQuestionTitle(): string {
-
-    console.log('============');
-    console.log(this.currentQuiz.questions);
-    console.log(this.idCurrentQuestion);
-    console.log('============');
-
-
+  /**
+   * Méthodes qui génére des infos sur le quiz
+   */
+  public inQuestionTitle(): string {
     return this.currentQuiz.questions[this.idCurrentQuestion].question_name;
   }
 
-  inQuestionAnswers(): Answer[] {
+  public inQuestionAnswers(): Answer[] {
     return this.currentQuiz.questions[this.idCurrentQuestion].answer;
   }
 
-  isTextAnswer(): boolean {
-
+  public isTextAnswer(): boolean {
     const indexOfQuestion = this.currentQuiz.questions.findIndex(elem => +elem.id === this.idCurrentQuestion);
-    console.log(indexOfQuestion);
-    console.log( this.currentQuiz.questions[indexOfQuestion]);
     return this.currentQuiz.questions[indexOfQuestion].type === 0;
   }
 
-  inNumberOfQuestionsInQuiz(): number {
+  public inNumberOfQuestionsInQuiz(): number {
     return this.currentQuiz.questions.length;
   }
 
-
-  adaptPageToBigFont(): boolean {
-    if (this.fontSizeMain >= 50) {
-      return true;
-    }
-    return false;
+  public adaptPageToBigFont(): boolean {
+    return this.fontSizeMain >= 50;
   }
 
 
+  /**
+   * Navigation en arrière vers la page de correction
+   */
   navigateToQuizCorrection(): void {
-    this.router.navigate(["/quiz-correction"]);
+    this.router.navigate(['/quiz-correction']);
   }
 
 }

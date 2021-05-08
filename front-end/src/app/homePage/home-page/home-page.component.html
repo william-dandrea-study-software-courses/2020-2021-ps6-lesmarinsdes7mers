@@ -15,6 +15,9 @@
 
     <button class="difficulty-bar-elements-button" (click)="disconnect()" *ngIf="!userSelected">Se Déconnecter</button>
 
+    <div id="homepage-statistics-main-div">
+        <app-user-statistics-bar *ngIf="!publicSession" id="homepage-statistics"></app-user-statistics-bar>
+    </div>
 
 
 
@@ -39,7 +42,11 @@
         </div>
     </div>
 
+    <div style="height: 200px"></div>
 
+    <div id="quiz-home-page-change-font-size-footer">
+        <app-change-font-size [showTheSizeWritings]="true" id="tst"></app-change-font-size>
+    </div>
 
 
 </div>

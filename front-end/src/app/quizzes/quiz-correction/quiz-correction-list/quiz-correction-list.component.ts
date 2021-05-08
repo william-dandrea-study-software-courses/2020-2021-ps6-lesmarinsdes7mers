@@ -9,15 +9,11 @@ import {Answer} from "../../../../models/quiz.model";
 })
 export class QuizCorrectionListComponent implements OnInit {
 
-  answers: Answer[];
+  public answers: Answer[];
 
   constructor(private result: FillQuizService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.answers = this.result.getSelectedAnswers();
-
-    /*this.answers = [
-      {is_correct: true, data: "lol"}, {is_correct: false, data: "mdr"}
-    ];*/
   }
 }

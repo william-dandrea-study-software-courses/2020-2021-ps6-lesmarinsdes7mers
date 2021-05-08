@@ -1,12 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Difficulty} from '../../../models/quiz.model';
-import UserPrefsService from "../../../services/userprefs.service";
+import UserPrefsService from '../../../services/userprefs.service';
 
 @Component({
   selector: 'app-question-presenter-bar',
   templateUrl: './question-presenter-bar.component.html',
   styleUrls: ['./question-presenter-bar.component.scss']
 })
+/**
+ * Classe qui affiche un quiz sur la page d'acceuil
+ * @verifiec : D'Andréa William - 8 may 2021
+ */
+
 export class QuestionPresenterBarComponent implements OnInit {
 
   @Input() numberOfQuestions: number;
@@ -19,13 +24,11 @@ export class QuestionPresenterBarComponent implements OnInit {
 
   public fontSizeSecond: number;
 
-  constructor(private userPrefsService: UserPrefsService) {
-    this.fontSizeSecond = this.userPrefsService.getFontSize() - 10;
-    this.userPrefsService.fontSize$.subscribe(value => this.fontSizeSecond = value - 10)
+  constructor(private userPrefsService: UserPrefsService) {}
+
+  public ngOnInit(): void {
+    this.userPrefsService.getFontSizeAsObservable().subscribe(internFOntSize => {
+      this.fontSizeSecond = internFOntSize - 10;
+    });
   }
-
-  ngOnInit(): void {
-  }
-
-
 }

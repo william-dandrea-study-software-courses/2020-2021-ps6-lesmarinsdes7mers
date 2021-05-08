@@ -13,6 +13,7 @@ import UserPrefsService from "../../../services/userprefs.service";
 })
 
 /**
+ * Page d'acceuil lorsque l'utilisateur arrive sur l'application
  * @verified : D'Andréa William - 7 may 2021
  */
 

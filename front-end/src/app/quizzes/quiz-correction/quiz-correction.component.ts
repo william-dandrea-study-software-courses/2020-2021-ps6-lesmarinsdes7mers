@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import UserPrefsService from "../../../services/userprefs.service";
-import {Router} from "@angular/router";
-import {Answer, Quiz} from "../../../models/quiz.model";
-import {UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
-import {UserAndQuizService} from "../../../services/user-and-quiz.service";
-import {QuizService} from "../../../services/quiz.service";
-import {User} from "../../../models/user.model";
-import {UserService} from "../../../services/user.service";
+import UserPrefsService from '../../../services/userprefs.service';
+import {Router} from '@angular/router';
+import {Answer, Quiz} from '../../../models/quiz.model';
+import {UserAndQuizModel, UserAnswer} from '../../../models/user-and-quiz.model';
+import {UserAndQuizService} from '../../../services/user-and-quiz.service';
+import {QuizService} from '../../../services/quiz.service';
+import {User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-quiz-correction',
   templateUrl: './quiz-correction.component.html',
   styleUrls: ['./quiz-correction.component.scss']
 })
+
+/**
+ * Classe qui affiche les questions répondu juste et les questions répondues fausses
+ * @verified : D'Andréa William - 8 may 2021
+ */
+
 export class QuizCorrectionComponent implements OnInit {
 
-  fontSizeMain: number;
-  fontSizeSecond: number;
+  public fontSizeMain: number;
+  public fontSizeSecond: number;
   answers: Answer[];
 
   private publicSession: boolean;
@@ -29,59 +35,48 @@ export class QuizCorrectionComponent implements OnInit {
   public userSelected: User;
 
 
-  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService, private quizService: QuizService, private userService: UserService ) {
-    this.userAndQuizService.oneUserQuizzes$.subscribe((elem) => this.oneUserAndQuiz = elem);
-    this.oneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
-    this.quizService.quizSelected$.subscribe((elem) => this.quizSelected = elem);
-    this.quizSelected = this.quizService.getQuizSelected();
+  constructor(private userPref: UserPrefsService, private router: Router, private userAndQuizService: UserAndQuizService,
+              private quizService: QuizService, private userService: UserService ) {}
 
-    this.userPref.fontSize$.subscribe((size) => {
-      this.fontSizeMain = size;
-      this.fontSizeSecond = size - 20;
+  public ngOnInit(): void {
+
+    this.userPref.fontSize$.subscribe((internSize) => {
+      this.fontSizeMain = internSize;
+      this.fontSizeSecond = internSize - 10;
     });
-    this.fontSizeMain = this.userPref.getFontSize();
-    this.fontSizeSecond = this.userPref.getFontSize() - 20;
-
-
-    this.quizService.currentCorrectionSelected$.subscribe((elem) => this.currentCorrectionSelected = elem);
-    this.currentCorrectionSelected = this.quizService.getCurrentQuestionSelected();
-
-    this.userService.userSelected$.subscribe(elem => this.userSelected = elem);
-    this.userSelected = this.userService.getUserSelected();
-  }
-
-  ngOnInit(): void {
 
     this.userService.isPublicSessionAsObservable().subscribe(internIsPublic => {
       this.publicSession = internIsPublic;
 
       if (!internIsPublic) {
-        this.userService.userSelected$.subscribe((user) => {
+        this.userService.getCurrentUserAsObservable().subscribe((user) => {
           this.userSelected = user;
         });
       }
     });
+    this.userSelected = this.userService.getUserSelected();
 
+    this.userAndQuizService.getOneUserQuizzesAsObservable().subscribe((elem) => this.oneUserAndQuiz = elem);
+    this.oneUserAndQuiz = this.userAndQuizService.getOneUserQuizzes();
 
+    this.quizService.getQuizSelectedAsObservable().subscribe((elem) => this.quizSelected = elem);
+    this.quizSelected = this.quizService.getQuizSelected();
+
+    this.quizService.getCurrentCorrectionSelectedAsObservable().subscribe((elem) => this.currentCorrectionSelected = elem);
+    this.currentCorrectionSelected = this.quizService.getCurrentQuestionSelected();
   }
 
 
 
-  getAllTheUserAnswers(): UserAnswer[] {
+  public getAllTheUserAnswers(): UserAnswer[] {
 
-    console.log('getAllTheUsers ===========');
-    console.log(this.quizSelected.id);
     const idQuiz = this.quizSelected.id;
     const answersUsers = this.oneUserAndQuiz.played_quizzes.findIndex(eQuiz => eQuiz.id_quiz === idQuiz);
-    console.log(answersUsers);
-    console.log(this.oneUserAndQuiz.played_quizzes[answersUsers]);
 
-    console.log('getAllTheUsers ===========');
     return this.oneUserAndQuiz.played_quizzes[answersUsers].user_answers;
   }
 
-  verifyIfAnswerIsCorrect(userAnswer: UserAnswer): boolean {
-
+  public verifyIfAnswerIsCorrect(userAnswer: UserAnswer): boolean {
 
     const indexQuestionInQuizSelected = this.quizSelected.questions.findIndex(elem => +elem.id === userAnswer.id_question);
     if (indexQuestionInQuizSelected === -1) {
@@ -95,7 +90,7 @@ export class QuizCorrectionComponent implements OnInit {
 
   }
 
-  navigateToQuestionAnswerPage(answer: UserAnswer): void {
+  public navigateToQuestionAnswerPage(answer: UserAnswer): void {
 
     this.quizService.setCurrentQuestionSelected(answer.id_question);
     this.router.navigate(['/quiz-correction-answer']);
@@ -103,11 +98,11 @@ export class QuizCorrectionComponent implements OnInit {
 
 
 
-  navigateToResult(): void {
+  public navigateToResult(): void {
     this.router.navigate(['/quiz-result']);
   }
 
-  navigateToHomepage(): void {
+  public navigateToHomepage(): void {
 
     this.router.navigate(['/homepage']).then(() => {
       if (!this.publicSession) {
@@ -116,13 +111,9 @@ export class QuizCorrectionComponent implements OnInit {
     });
   }
 
+  public adaptPageToBigFont(): boolean {
+    return this.fontSizeMain >= 50;
 
-
-  adaptPageToBigFont(): boolean {
-    if (this.fontSizeMain >= 50) {
-      return true;
-    }
-    return false;
   }
 
 }

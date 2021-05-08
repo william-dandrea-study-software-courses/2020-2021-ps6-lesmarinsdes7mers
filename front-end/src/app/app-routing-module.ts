@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import {HomePageComponent} from './homePage/home-page/home-page.component';
 import {QuizIntroComponent} from "./quizzes/quiz-intro/quiz-intro.component";
 import {QuizResultComponent} from "./quizzes/quiz-result/quiz-result.component";
@@ -16,14 +15,11 @@ import {AnimSettingsHomepageComponent} from "./animateur/anim-settings/anim-sett
 import {AnimCreateQuizzHomepageComponent} from "./animateur/anim-quizz-page/anim-create-quizz/anim-create-quizz-homepage/anim-create-quizz-homepage.component";
 import { AnimMainpageComponent } from './animateur/anim-mainpage/anim-mainpage.component';
 import {UserAddEditComponent} from "./animateur/anim-user-page/user-add-edit/user-add-edit.component";
-import {UserListComponent} from "./users/user-list/user-list.component";
 
 const routes: Routes = [
     {path: 'login', component: LoginPageComponent},
     {path: 'guest/config/fontsize', component: GuestConfigFontsizeComponent},
     {path: 'guest/config/handicap', component: GuestConfigHandicapComponent},
-    {path: 'user-list', component: UserListComponent},
-    {path: 'quiz-list', component: QuizListComponent},
     {path: 'homepage', component: HomePageComponent},
     {path: 'homepage/:idUser', component: HomePageComponent},
     {path: 'quiz-intro', component: QuizIntroComponent},

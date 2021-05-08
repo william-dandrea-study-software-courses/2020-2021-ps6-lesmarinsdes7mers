@@ -4,18 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
-import { QuizComponent } from './quizzes/quiz/quiz.component';
 import { HeaderComponent } from './header/header.component';
-import { QuizFormComponent } from './quizzes/quiz-form/quiz-form.component';
-import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { QuestionComponent } from './questions/question/question.component';
-import { UserComponent } from './users/user/user.component';
-import { UserFormComponent } from './users/user-form/user-form.component';
-import { UserListComponent } from './users/user-list/user-list.component';
 import { HomePageComponent } from './homePage/home-page/home-page.component';
 import {AppRoutingModule} from './app-routing-module';
 import { DifficultyBarComponent } from './homePage/difficulty-bar/difficulty-bar.component';
@@ -45,22 +38,15 @@ import { AnimMainUserListComponent } from './animateur/anim-mainpage/user-list/a
 import { UserAddEditComponent } from './animateur/anim-user-page/user-add-edit/user-add-edit.component';
 import {DatePipe} from "@angular/common";
 import LoginPageComponent from "./users/login-page/login-page.component";
-import { UserConfigComponent } from './homePage/user-config/user-config.component';
+import { UserStatisticsBarComponent } from './homePage/user-statistics-bar/user-statistics-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuizListComponent,
-    QuizComponent,
     HeaderComponent,
-    QuizFormComponent,
-    EditQuizComponent,
     QuestionListComponent,
     QuestionFormComponent,
     QuestionComponent,
-    UserComponent,
-    UserFormComponent,
-    UserListComponent,
     HomePageComponent,
     DifficultyBarComponent,
     QuestionPresenterBarComponent,
@@ -103,7 +89,7 @@ import { UserConfigComponent } from './homePage/user-config/user-config.componen
     AnimMainQuizListComponent,
     AnimMainUserListComponent,
     UserAddEditComponent,
-    UserConfigComponent
+    UserStatisticsBarComponent,
   ],
   imports: [
     BrowserModule,
