@@ -25,6 +25,7 @@ export class AnimMainUserListComponent implements OnInit {
     ngOnInit() {
         this.userSelected = [];
         this.userService.users$.subscribe(value => this.userList = value);
+        this.userList = this.userService.getUsers();
 
         /*this.userService.users$.subscribe(users => {
             users.forEach(user => this.userList.push(user));
