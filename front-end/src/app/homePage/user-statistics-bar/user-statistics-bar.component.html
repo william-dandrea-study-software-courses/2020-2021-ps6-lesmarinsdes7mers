@@ -1,4 +1,43 @@
-<div id="user-statistics-main-component">
-    salut
+<div id="user-statistics-main-component" *ngIf="oneUserQuizzes && averageScore && numberOfRealizedQuiz && successRate">
+
+
+    <div id="user-statistics-success-rate-main-div"  class="user-statistics-vertical-parts">
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeMain}">
+            Taux de succès
+        </div>
+
+        <hr class="divider">
+
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeSecond}">
+            {{getSuccessRate()}}
+        </div>
+
+    </div>
+
+    <div id="user-statistics-realized-quiz-main-div" class="user-statistics-vertical-parts">
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeMain}">
+            Quizs réalisés
+        </div>
+
+        <hr class="divider">
+
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeSecond}">
+            {{getNumberOfRealizedQuizzes()}}
+        </div>
+    </div>
+
+    <div id="user-statistics-average-score-main-div" class="user-statistics-vertical-parts">
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeMain}">
+            Score moyen
+        </div>
+
+        <hr class="divider">
+
+        <div class="user-statistics-horizontal-into-vertical-parts" [ngStyle]="{'font-size.px': fontSizeSecond}">
+            {{getAverageScore()}}
+        </div>
+    </div>
+
+
 
 </div>

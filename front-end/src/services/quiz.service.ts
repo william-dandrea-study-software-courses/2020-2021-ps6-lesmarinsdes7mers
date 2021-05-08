@@ -92,6 +92,17 @@ export class QuizService {
     return this.quizSelected;
   }
 
+  public getOneQuiz(idQuiz: number): Quiz {
+
+    const indexQuiz = this.quizzes.findIndex(internQuiz => internQuiz.id === idQuiz);
+
+    if (indexQuiz >= 0) {
+      return this.quizzes[indexQuiz];
+    } else {
+      return null;
+    }
+  }
+
   public getCurrentCorrectionSelectedAsObservable(): Observable<any> {
     return this.currentCorrectionSelected$;
   }
