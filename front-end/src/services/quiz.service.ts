@@ -54,10 +54,6 @@ export class QuizService {
     });
   }
 
-  public void getQuizzesForUser(userId) {
-    
-  }
-
   public setSelectedQuiz(quizId: number): void {
     this.getOneQuizFromDatabase(quizId).subscribe(value => {
       this.quizSelected = value.data;
