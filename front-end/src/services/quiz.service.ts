@@ -30,7 +30,10 @@ export class QuizService {
 
   private httpOptions = httpOptionsBase;
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: UserService) {
+
+    this.getAllQuizzesFromDatabase().subscribe({ next: qs => this.setQuizzes(qs.data) })
+  }
 
 
   public initializeQuizzes(): void {
@@ -49,6 +52,10 @@ export class QuizService {
         });
       }
     });
+  }
+
+  public void getQuizzesForUser(userId) {
+    
   }
 
   public setSelectedQuiz(quizId: number): void {
