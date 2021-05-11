@@ -20,7 +20,6 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
     
     aRoute.params.subscribe(v => {
       const idStr = aRoute.snapshot.params['quiz']
-      console.log(idStr)
       if(!idStr) {
         // Creating empty quiz
         this.quiz = {

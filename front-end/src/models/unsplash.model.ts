@@ -6,7 +6,7 @@ export interface IUnsplashRequest {
 
 export interface IUnsplashResults {
     id: string;
-    urls: IUnsplashUrls[];
+    urls: IUnsplashUrls;
 }
 
 export interface IUnsplashUrls {

@@ -1,9 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter, DoCheck, OnChanges} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {IUnsplashRequest, IUnsplashUrls} from "../../../../../../../models/unsplash.model";
-import {element} from "protractor";
-import {NgForm} from "@angular/forms";
 import {Answer} from "../../../../../../../models/quiz.model";
+import {UnplashService} from "../../../../../../../services/unplash.service";
 
 @Component({
   selector: 'app-anim-create-quizz-element-add-question-bloc-image',
@@ -14,10 +11,7 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
 
   @Input() answers: Answer[] = []
   
-  public urlUnsplash = 'https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=';
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private unplash: UnplashService) { }
 
   ngOnInit(): void {
   }
@@ -28,36 +22,8 @@ export class AnimCreateQuizzElementAddQuestionBlocImageComponent implements OnIn
   }
 
   onClickAddPhotoSearch(answer: Answer, themeSearch: any): void {
-    this.onSearchPhoto(themeSearch.target.value, answer);
+    this.unplash.searchPhoto(themeSearch.target.value).then(value => answer.data = value);
   }
-
-
-  onSearchPhoto(searchValue: string, answer: Answer): void {
-
-    //this.listOfUrls.length = 0;
-    const url = 'https://api.unsplash.com/search/photos?client_id=-ozCm-naWd_KecnLbpIiqBpdGocbKH_IXgFblJ4CjSQ&query=' + searchValue;
-
-    this.http
-        .get<IUnsplashRequest>(url)
-        .subscribe(response => {
-          const urls: IUnsplashUrls[][] = response.results.map(res2 => res2.urls);
-          let goodUrls: IUnsplashUrls[] = [];
-          for (let i = 0; i < urls.length; i++)
-          {
-            goodUrls = goodUrls.concat(urls[i]);
-          }
-
-
-          goodUrls.forEach(val => {
-            //this.listOfUrls.push(val.regular);
-            // console.log(val.regular.toString());
-            answer.data = val.regular.toString();
-          });
-          // urls.forEach(value => value.forEach(value1 => finalData.add(value1.regular)));
-        });
-
-  }
-
 
   onCorrectAnswer(event: Answer): void {
     event.is_correct = (event.is_correct !== true);

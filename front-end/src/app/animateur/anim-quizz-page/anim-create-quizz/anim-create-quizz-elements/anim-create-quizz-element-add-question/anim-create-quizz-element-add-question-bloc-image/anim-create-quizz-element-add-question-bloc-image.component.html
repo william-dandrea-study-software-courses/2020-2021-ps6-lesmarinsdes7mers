@@ -6,8 +6,9 @@
 
         <div *ngIf="answer.data === ''" class="question-bloc-image-answer-one-image-element" id="question-bloc-image-answer-one-image-element-when-nothing">
 
-            <div class="question-bloc-image-answer-one-image-element-text"> Rechercher une image automatiquement</div>
+            <div class="question-bloc-image-answer-one-image-element-text">Rechercher une image automatiquement</div>
             <input (keyup.enter)="onClickAddPhotoSearch(answer, $event)" type="text" placeholder="Rechercher une photo">
+            <div class="question-bloc-image-answer-one-image-element-text">Appuyez sur Entrée pour valider</div>
 
             <span class="material-icons" id="question-bloc-image-answer-one-image-element-when-nothing-circle">add_a_photo</span>
 
