@@ -1,11 +1,11 @@
 import {Component,  OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {QuizService} from '../../../services/quiz.service';
+import {QuizService} from '../../../services/quiz/quiz.service';
 import {difficultyToText, Quiz, Difficulty} from '../../../models/quiz.model';
-import UserPrefsService from '../../../services/userprefs.service';
+import UserPrefsService from '../../../services/user/userprefs.service';
 import {UserAndQuizService} from '../../../services/user-and-quiz.service';
 import {User} from '../../../models/user.model';
-import {UserService} from '../../../services/user.service';
+import {UserService} from '../../../services/user/user.service';
 import {MadedQuizzesModel, UserAndQuizModel} from '../../../models/user-and-quiz.model';
 
 @Component({

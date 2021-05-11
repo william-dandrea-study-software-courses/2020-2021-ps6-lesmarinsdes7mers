@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Handicap } from '../../../../../models/handicap.enum';
-import UserPrefsService from '../../../../../services/userprefs.service';
+import UserPrefsService from '../../../../../services/user/userprefs.service';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 

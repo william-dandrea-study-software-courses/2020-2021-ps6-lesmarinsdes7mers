@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import UserPrefsService from "../../../services/userprefs.service";
-import {FillQuizService} from "../../../services/fill-quiz.service";
+import UserPrefsService from "../../../services/user/userprefs.service";
 
 import {Router} from "@angular/router";
-import {Answer, Quiz} from "../../../models/quiz.model";
+import {Quiz} from "../../../models/quiz.model";
 import {UserAndQuizService} from "../../../services/user-and-quiz.service";
 import {UserAndQuizModel, UserAnswer} from "../../../models/user-and-quiz.model";
-import {QuizService} from "../../../services/quiz.service";
+import {QuizService} from "../../../services/quiz/quiz.service";
 import {User} from "../../../models/user.model";
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../../services/user/user.service";
 
 @Component({
   selector: 'app-quiz-result',

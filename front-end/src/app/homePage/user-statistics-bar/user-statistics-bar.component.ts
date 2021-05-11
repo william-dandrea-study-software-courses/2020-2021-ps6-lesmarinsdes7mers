@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import UserPrefsService from '../../../services/userprefs.service';
-import {UserService} from '../../../services/user.service';
+import UserPrefsService from '../../../services/user/userprefs.service';
+import {UserService} from '../../../services/user/user.service';
 import {UserAndQuizService} from '../../../services/user-and-quiz.service';
 import {UserAndQuizModel} from '../../../models/user-and-quiz.model';
 import {User} from '../../../models/user.model';
-import {QuizService} from '../../../services/quiz.service';
+import {QuizService} from '../../../services/quiz/quiz.service';
 
 @Component({
   selector: 'app-user-statistics-bar',

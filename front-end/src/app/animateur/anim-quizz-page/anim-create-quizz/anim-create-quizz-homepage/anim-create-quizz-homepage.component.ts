@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {CreateQuizzService} from "../../../../../services/admin/create-quizz.service";
-import {QuizCreationModel, Visibility} from "../../../../../models/quiz-creation.model";
-import {Answer, Difficulty, Question, QuestionType, Quiz} from "../../../../../models/quiz.model";
-import { QuizService } from 'src/services/quiz.service';
+import {Visibility} from '../../../../../models/quiz-creation.model';
+import {Answer, Difficulty, Question, QuestionType, Quiz} from '../../../../../models/quiz.model';
+import { QuizService } from 'src/services/quiz/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UserService} from "../../../../../services/user.service";
 

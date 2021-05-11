@@ -1,13 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Difficulty, Quiz} from '../../../models/quiz.model';
-import {QuizService} from '../../../services/quiz.service';
-import {UserService} from '../../../services/user.service';
+import {QuizService} from '../../../services/quiz/quiz.service';
+import {UserService} from '../../../services/user/user.service';
 import {User} from '../../../models/user.model';
 import {UserAndQuizService} from '../../../services/user-and-quiz.service';
 import {UserAndQuizModel} from '../../../models/user-and-quiz.model';
 import {Subscription} from 'rxjs';
-import UserPrefsService from '../../../services/userprefs.service';
+import UserPrefsService from '../../../services/user/userprefs.service';
 
 @Component({
   selector: 'app-home-page',

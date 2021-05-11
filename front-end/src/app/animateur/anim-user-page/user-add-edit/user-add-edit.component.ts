@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../../../services/user.service";
+import {UserService} from "../../../../services/user/user.service";
 import {User} from "../../../../models/user.model";
 import {DatePipe} from "@angular/common";
 import {Handicap, HandicapToString} from "../../../../models/handicap.enum";
 import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
 import {MadedQuizzesModel, UserAndQuizModel} from "../../../../models/user-and-quiz.model";
-import { difficultyToText, Quiz} from "../../../../models/quiz.model";
-import {QuizService} from "../../../../services/quiz.service";
+import {difficultyToText, Quiz} from "../../../../models/quiz.model";
+import {QuizService} from "../../../../services/quiz/quiz.service";
 import {HttpClient} from "@angular/common/http";
 import {serverUrl} from "../../../../configs/server.config";
 

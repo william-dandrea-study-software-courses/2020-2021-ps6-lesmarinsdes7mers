@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import UserPrefsService from 'src/services/userprefs.service';
+import UserPrefsService from 'src/services/user/userprefs.service';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 

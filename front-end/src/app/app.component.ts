@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Handicap, HandicapToString } from 'src/models/handicap.enum';
-import UserPrefsService from 'src/services/userprefs.service';
+import { HandicapToString } from 'src/models/handicap.enum';
+import UserPrefsService from 'src/services/user/userprefs.service';
 
 
 @Component({

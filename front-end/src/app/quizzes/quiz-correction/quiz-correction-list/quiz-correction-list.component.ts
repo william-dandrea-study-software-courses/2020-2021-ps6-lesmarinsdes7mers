@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FillQuizService} from "../../../../services/fill-quiz.service";
+import {FillQuizService} from "../../../../services/quiz/fill-quiz.service";
 import {Answer} from "../../../../models/quiz.model";
 
 @Component({

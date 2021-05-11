@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {IUnsplashRequest, IUnsplashUrls} from "../models/unsplash.model";
-import {HttpClient} from "@angular/common/http";
+import {IUnsplashRequest, IUnsplashUrls} from '../models/unsplash.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,12 @@ export class UnplashService {
 
   constructor(private http: HttpClient) { }
 
+    /**
+     * Cherche des images dans le site Unsplash et donne l'une d'entre elles
+     * @param searchValue Le mot-clé à rechercher
+     * @return Un promise qui donne l'url d'une image correspond au mot-clé
+     */
   searchPhoto(searchValue: string): Promise<string> {
-    console.log("efefe: "+searchValue)
     return new Promise<string>((resolve, reject) => {
       const url = this.urlUnsplash + searchValue;
       this.http.get<IUnsplashRequest>(url).subscribe({ next: (response) => {

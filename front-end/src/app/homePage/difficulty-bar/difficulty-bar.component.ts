@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Difficulty} from "../../../models/quiz.model";
-import UserPrefsService from "../../../services/userprefs.service";
+import UserPrefsService from "../../../services/user/userprefs.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -39,7 +39,7 @@ export class DifficultyBarComponent implements OnInit {
     this.numberOfClickOnHard = 0;
     this.numberOfClickOnExpert = 0;
 
-    this.fontSize = Math.max(50, this.userPrefsService.getFontSize());
+    this.userPrefsService.getFontSizeAsObservable().subscribe(value => this.fontSize = Math.max(50, value));
   }
 
 

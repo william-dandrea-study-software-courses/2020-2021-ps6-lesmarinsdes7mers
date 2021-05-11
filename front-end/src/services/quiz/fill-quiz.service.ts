@@ -1,6 +1,5 @@
-import { Injectable } from "@angular/core";
-import {Answer} from "../models/quiz.model";
-
+import { Injectable } from '@angular/core';
+import {Answer} from '../../models/quiz.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +22,9 @@ export class FillQuizService {
         this.selectedAnswers.push(answer);
     }
 
+    /**
+     * Retourne les réponses données par l'utilisateur
+     */
     getSelectedAnswers(): Answer[] {
         return this.selectedAnswers;
     }

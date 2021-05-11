@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import { Handicap } from "src/models/handicap.enum";
-import {DEFAULT_FONTSIZE, DEFAULT_HANDICAP} from "../configs/configVariables";
-import {User} from "../models/user.model";
+import {DEFAULT_FONTSIZE, DEFAULT_HANDICAP} from "../../configs/configVariables";
+import {User} from "../../models/user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -14,22 +14,41 @@ export default class UserPrefsService {
 
     constructor() {}
 
+    /**
+     * Retourne un observable de la taille de la police
+     */
     getFontSizeAsObservable(): Observable<number> {
         return this.fontSize$.asObservable();
     }
 
+    /**
+     * Retourne un observable de l'handicape
+     */
     getHandicapAsObservable(): Observable<Handicap> {
         return this.handicap$.asObservable();
     }
 
+    /**
+     * Prévient les observateurs du changement de la valeur de l'handicape
+     * @param handicap La nouvelle valeur de l'handicape
+     */
     setHandicap(handicap: Handicap): void {
         this.handicap$.next(handicap);
     }
 
+    /**
+     * Prévient les observateurs du changement de la valeur de la taille de la police
+     * @param size La nouvelle valeur de la taille de la police
+     */
     setFontSize(size: number): void {
         this.fontSize$.next(size);
     }
 
+    /**
+     * Prévient les observateurs des handicapes et de la taille de la police de leurs nouvelles valeurs, venant d'un
+     * utilisateur. La taille de la police sera celle choisi par défaut par l'utilisateur.
+     * @param user Un utilisateur
+     */
     initializePrefsForOneUser(user: User): void {
         this.setHandicap(user.handicap);
 
@@ -38,6 +57,9 @@ export default class UserPrefsService {
         }
     }
 
+    /**
+     * Prévient les observateurs de l'augmentation de la taille de la police de {@linkcode DEFAULT_FONTSIZE.PAS_FONTSIZE}
+     */
     increaseFontSize(): void {
         let finalSize: number;
         this.getFontSizeAsObservable().subscribe((internFontSize) => {
@@ -50,6 +72,9 @@ export default class UserPrefsService {
         this.fontSize$.next(finalSize);
     }
 
+    /**
+     * Prévient les observateurs de la diminution de la taille de la police de {@linkcode DEFAULT_FONTSIZE.PAS_FONTSIZE}
+     */
     decreaseFontSize(): void {
         let finalSize: number;
         this.getFontSizeAsObservable().subscribe((internFontSize) => {
@@ -61,21 +86,5 @@ export default class UserPrefsService {
         }).unsubscribe();
         this.fontSize$.next(finalSize);
     }
-
-    /**
-     * @deprecated The method should not be used and replace by getFontSizeAsObservable()
-     */
-    getFontSize(): number {
-        return DEFAULT_FONTSIZE.START_FONTSIZE;
-    }
-
-    /**
-     * @deprecated The method should not be used and replace by getHandicapAsObservable()
-     */
-    getHandicap(): Handicap {
-        return DEFAULT_HANDICAP;
-    }
-
-
 
 }
