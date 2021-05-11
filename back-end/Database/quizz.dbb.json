@@ -233,7 +233,13 @@
     "privacy": {
       "is_public": false,
       "users_access": [
-        2
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     "questions": [
@@ -435,7 +441,13 @@
     "privacy": {
       "is_public": false,
       "users_access": [
-        1
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     "questions": [
@@ -609,9 +621,7 @@
     "difficulty": 1,
     "privacy": {
       "is_public": true,
-      "users_access": [
-        0
-      ]
+      "users_access": []
     },
     "questions": [
       {
@@ -838,15 +848,7 @@
     "difficulty": 2,
     "privacy": {
       "is_public": true,
-      "users_access": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ]
+      "users_access": []
     },
     "questions": [
       {
@@ -927,74 +929,6 @@
             "id_answer": 4,
             "is_correct": false,
             "data": "Taon"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "TEST TEST TEST TEST TEST TEST ",
-    "difficulty": 3,
-    "privacy": {
-      "is_public": true,
-      "users_access": [
-        0,
-        1
-      ]
-    },
-    "questions": [
-      {
-        "id": 0,
-        "question_name": "Comment appelle-t-on une personne qui élève des abeilles ?............",
-        "type": 0,
-        "answer": [
-          {
-            "id_answer": 1,
-            "is_correct": false,
-            "data": "Raniculteur est un très beau raniculteur du ."
-          },
-          {
-            "id_answer": 2,
-            "is_correct": true,
-            "data": "Bonne réponse ...........................yo"
-          },
-          {
-            "id_answer": 3,
-            "is_correct": false,
-            "data": "Raniculteur est un très beau raniculteur du ."
-          },
-          {
-            "id_answer": 4,
-            "is_correct": false,
-            "data": "Raniculteur est un très beau raniculteur du ."
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "question_name": "Laquelle de ces abeilles est une abeille reine ?.....",
-        "type": 1,
-        "answer": [
-          {
-            "id_answer": 1,
-            "is_correct": true,
-            "data": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/c/e3cdd5bcad_50163989_reine-abeille.jpg"
-          },
-          {
-            "id_answer": 2,
-            "is_correct": false,
-            "data": "https://unsplash.com/photos/2xhOYKK-jAM/download?force=true&w=1920"
-          },
-          {
-            "id_answer": 3,
-            "is_correct": false,
-            "data": "https://unsplash.com/photos/nVIp2XsISsE/download?force=true&w=1920"
-          },
-          {
-            "id_answer": 4,
-            "is_correct": false,
-            "data": "https://unsplash.com/photos/6csuZQ9oZcI/download?force=true&w=1920"
           }
         ]
       }
@@ -1112,38 +1046,14 @@
     ],
     "privacy": {
       "is_public": false,
-      "users_access": []
+      "users_access": [0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6]
     },
     "id": 6
-  },
-  {
-    "name": "Quiz Alexandre",
-    "difficulty": 1,
-    "questions": [
-      {
-        "question_name": "Etes vous Alexandre ?",
-        "type": 0,
-        "id": 0,
-        "answer": [
-          {
-            "data": "oui",
-            "id_answer": 1,
-            "is_correct": true
-          },
-          {
-            "data": "non",
-            "id_answer": 2,
-            "is_correct": false
-          }
-        ]
-      }
-    ],
-    "privacy": {
-      "is_public": false,
-      "users_access": [
-        2
-      ]
-    },
-    "id": 8
   }
 ]

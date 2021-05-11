@@ -738,6 +738,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Models/userAndQuizModel */ "./src/Models/userAndQuizModel.js");
 /* harmony import */ var _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Errors/HttpMessage */ "./src/Errors/HttpMessage.js");
 /* harmony import */ var _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../BasicErrors/IdParameterNotFound */ "./src/API/BasicErrors/IdParameterNotFound.js");
+/* harmony import */ var _Models_user_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/user.model */ "./src/Models/user.model.js");
+/* harmony import */ var _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BasicErrors/IdMustBeANumber */ "./src/API/BasicErrors/IdMustBeANumber.js");
+/* harmony import */ var _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Errors/FileNotFound */ "./src/Errors/FileNotFound.js");
+
+
+
 
 
 
@@ -758,6 +764,34 @@ manageUserAndQuizRouter.delete('/:id', (req, res) => {
   if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
   _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].delete(req.params.id);
   new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("UserAndQuiz deleted successfully").send(res);
+});
+manageUserAndQuizRouter.delete('/user/:id', (req, res) => {
+  if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  req.params.id = parseInt(req.params.id);
+  if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  const result = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getOne(u => u.id_user === req.params.id);
+  if (!result) throw new _Errors_FileNotFound__WEBPACK_IMPORTED_MODULE_6__["default"]();
+  _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].delete(result.id);
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("userAndQuiz deleted successfully").send(res);
+});
+manageUserAndQuizRouter.delete('/quiz/:id', (req, res) => {
+  if (!req.params.id) throw new _BasicErrors_IdParameterNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  req.params.id = parseInt(req.params.id);
+  if (isNaN(req.params.id)) throw new _BasicErrors_IdMustBeANumber__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  const alls = _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].getAll(uaq => uaq != null);
+  alls.forEach(oneUaQ => {
+    const playedQuizForThis = oneUaQ.played_quizzes;
+    playedQuizForThis.forEach(function (item, index, object) {
+      if (item.id_quiz === req.params.id) {
+        object.splice(index, 1);
+      }
+    });
+  });
+  alls.forEach(oneUaQ => {
+    _Models_userAndQuizModel__WEBPACK_IMPORTED_MODULE_1__["default"].update(oneUaQ);
+  }); // if(!result) throw new FileNotFound()
+
+  new _Errors_HttpMessage__WEBPACK_IMPORTED_MODULE_2__["default"]("User And Quizz deleted successfully").send(res);
 });
 /* harmony default export */ __webpack_exports__["default"] = (manageUserAndQuizRouter);
 

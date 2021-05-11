@@ -115,3 +115,14 @@ export const userAndQuizzesPUTUpdateOneUserAndQuiz = userAndQuizzesSection + '/'
  */
 export const userAndQuizzesPOSTAddOneUserAndQuiz = userAndQuizzesSection + '/';
 
+
+/**
+ * Delete one UserAndQuiz for one user : userAndQuizzesDELETEUserAndQuizForOneUser + idUser
+ */
+export const userAndQuizzesDELETEUserAndQuizForOneUser = userAndQuizzesSection + '/user/';
+
+/**
+ * Delete one quiz in UserAndQuiz : userAndQuizzesDELETEUserAndQuizForOneUser + idQuiz
+ */
+export const userAndQuizzesDELETEUserAndQuizForOneQuiz = userAndQuizzesSection + '/quiz/';
+

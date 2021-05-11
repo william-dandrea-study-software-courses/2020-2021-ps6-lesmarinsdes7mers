@@ -4,6 +4,7 @@ import {QuizCreationModel, Visibility} from "../../../../../models/quiz-creation
 import {Answer, Difficulty, Question, QuestionType, Quiz} from "../../../../../models/quiz.model";
 import { QuizService } from 'src/services/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {UserService} from "../../../../../services/user.service";
 
 @Component({
   selector: 'app-anim-create-quizz-homepage',
@@ -16,8 +17,10 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
   private saving = false
 
 
-  constructor(private createQuizService: QuizService, private aRoute: ActivatedRoute, private router: Router) {
-    
+  constructor(private createQuizService: QuizService, private aRoute: ActivatedRoute, private router: Router, private userService: UserService) {
+
+    this.userService.setAllUsers();
+
     aRoute.params.subscribe(v => {
       const idStr = aRoute.snapshot.params['quiz']
       if(!idStr) {
@@ -58,6 +61,16 @@ export class AnimCreateQuizzHomepageComponent implements OnInit {
    * Cette méthode va push le quiz sur le service
    */
   save(): void {
+
+    console.log(this.userService.getUsers());
+
+    if (!this.quiz.privacy.is_public) {
+
+      this.quiz.privacy.users_access = this.userService.getUsers().map(u => u.id);
+
+    }
+
+
     if(!this.quiz.name) return;
     //if(this.saving) return;
     this.saving = true;
