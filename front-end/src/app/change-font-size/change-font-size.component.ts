@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import UserPrefsService from "../../services/userprefs.service";
+import UserPrefsService from "../../services/user/userprefs.service";
 import {Subscription} from "rxjs";
 
 @Component({

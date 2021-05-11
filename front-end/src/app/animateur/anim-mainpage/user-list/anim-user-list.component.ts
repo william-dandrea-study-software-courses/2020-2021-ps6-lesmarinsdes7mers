@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { User} from "src/models/user.model";
-import { UserService } from "src/services/user.service";
+import { UserService } from "src/services/user/user.service";
 import {HandicapToString} from "../../../../models/handicap.enum";
 import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
 import {Router} from "@angular/router";

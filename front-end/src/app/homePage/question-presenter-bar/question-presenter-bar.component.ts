@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Difficulty} from '../../../models/quiz.model';
-import UserPrefsService from '../../../services/userprefs.service';
+import UserPrefsService from '../../../services/user/userprefs.service';
 
 @Component({
   selector: 'app-question-presenter-bar',

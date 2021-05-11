@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {QuizService} from '../../../../services/quiz.service';
+import {QuizService} from '../../../../services/quiz/quiz.service';
 import {Difficulty, Quiz, Answer} from '../../../../models/quiz.model';
-import UserPrefsService from '../../../../services/userprefs.service';
+import UserPrefsService from '../../../../services/user/userprefs.service';
 import {UserAndQuizService} from '../../../../services/user-and-quiz.service';
 import {UserAndQuizModel} from '../../../../models/user-and-quiz.model';
 

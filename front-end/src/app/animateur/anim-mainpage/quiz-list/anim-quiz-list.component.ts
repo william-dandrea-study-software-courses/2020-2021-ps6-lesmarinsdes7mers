@@ -1,10 +1,9 @@
-import { TmplAstTemplate } from "@angular/compiler";
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Quiz, Difficulty, difficultyToText, Privacy } from "src/models/quiz.model";
-import { UserAndQuizModel } from "src/models/user-and-quiz.model";
-import { QuizService } from "src/services/quiz.service";
-import { UserAndQuizService } from "src/services/user-and-quiz.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Quiz, Difficulty, difficultyToText } from 'src/models/quiz.model';
+import { UserAndQuizModel } from 'src/models/user-and-quiz.model';
+import { QuizService } from 'src/services/quiz/quiz.service';
+import { UserAndQuizService } from 'src/services/user-and-quiz.service';
 
 @Component({
     selector: 'app-anim-main-quizz-list',
@@ -13,16 +12,16 @@ import { UserAndQuizService } from "src/services/user-and-quiz.service";
 })
 export class AnimMainQuizListComponent implements OnInit {
 
-    quizList: Quiz[] = new Array();
+    quizList: Quiz[] = [];
 
-    selectedQuiz: Quiz[] = new Array();
-    
+    selectedQuiz: Quiz[] = [];
+
     /*  For statistic   */
-    userAndQuizList : UserAndQuizModel[] = [];
+    userAndQuizList: UserAndQuizModel[] = [];
 
-    constructor (private quizService: QuizService,
-        private userAndQuizService: UserAndQuizService,
-        private router: Router) {
+    constructor(private quizService: QuizService,
+                private userAndQuizService: UserAndQuizService,
+                private router: Router) {
 
     }
 
@@ -40,11 +39,11 @@ export class AnimMainQuizListComponent implements OnInit {
 
     }
 
-    translateDifficulty(difficulty: Difficulty):string {
+    translateDifficulty(difficulty: Difficulty): string {
         return difficultyToText(difficulty);
     }
 
-    isSelectedKey(quiz: Quiz):boolean {
+    isSelectedKey(quiz: Quiz): boolean {
         return this.selectedQuiz.filter(q => quiz.id == q.id).length > 0;
     }
 
@@ -57,12 +56,12 @@ export class AnimMainQuizListComponent implements OnInit {
         }
     }
 
-    isAllSelected():boolean {
+    isAllSelected(): boolean {
         return this.selectedQuiz.length == this.quizList.length && this.selectedQuiz.length != 0;
     }
 
     selectQuiz(quiz: Quiz, event?: Event) {
-        event?.stopImmediatePropagation()
+        event?.stopImmediatePropagation();
         if (this.isSelectedKey(quiz)) {
             this.selectedQuiz.splice(this.selectedQuiz.indexOf(quiz), 1);
         }
@@ -71,7 +70,7 @@ export class AnimMainQuizListComponent implements OnInit {
         }
     }
 
-    deleteSelection():void {
+    deleteSelection(): void {
         this.selectedQuiz.forEach(quiz => {
             this.quizList.splice(this.quizList.indexOf(quiz), 1);
             this.quizService.deleteQuiz(quiz);
@@ -79,19 +78,19 @@ export class AnimMainQuizListComponent implements OnInit {
         this.quizList.splice(0, this.quizList.length);
     }
 
-    getVisibilityAccess(quiz: Quiz):string {
+    getVisibilityAccess(quiz: Quiz): string {
         if (quiz.privacy.is_public) {
-            return "Publique";
+            return 'Publique';
         }
         else {
-            return "Privé";
+            return 'Privé';
         }
     }
 
-    getNbPlayedQuiz():number {
-        var count = 0;
+    getNbPlayedQuiz(): number {
+        let count = 0;
 
-        for (let stat of this.userAndQuizList) {
+        for (const stat of this.userAndQuizList) {
             if (stat.played_quizzes != undefined) {
                 count += stat.played_quizzes.length;
             }
@@ -100,10 +99,10 @@ export class AnimMainQuizListComponent implements OnInit {
         return count;
     }
 
-    getNbPlayer(quizId: number):number {
-        var count = 0;
+    getNbPlayer(quizId: number): number {
+        let count = 0;
 
-        for (let stat of this.userAndQuizList) {
+        for (const stat of this.userAndQuizList) {
             if (stat.played_quizzes != undefined) {
                 count += stat.played_quizzes.filter(quiz => quiz.id_quiz === quizId).length;
             }
@@ -112,44 +111,44 @@ export class AnimMainQuizListComponent implements OnInit {
         return count;
     }
 
-    private getAverageScoreForQuizAsNumber(quizId: number):number {
-        var count = 0;
+    private getAverageScoreForQuizAsNumber(quizId: number): number {
+        let count = 0;
 
-        for (let stat of this.userAndQuizList) {
+        for (const stat of this.userAndQuizList) {
             if (stat.played_quizzes != undefined) {
-                for (let s of stat.played_quizzes.filter(quiz => quiz.id_quiz === quizId)) {
+                for (const s of stat.played_quizzes.filter(quiz => quiz.id_quiz === quizId)) {
                     count += s.score_user;
                 }
             }
         }
 
-        var quiz = this.quizList.find(q => q.id === quizId);
+        const quiz = this.quizList.find(q => q.id === quizId);
 
-        var score = count / this.getNbPlayer(quizId);
+        let score = count / this.getNbPlayer(quizId);
 
         score = Math.min(20, Math.max(0, score * 20 / quiz.questions.length));
 
         return score;
     }
 
-    getAverageScoreForQuiz(quizId: number):string {
-        var res = "" + this.getAverageScoreForQuizAsNumber(quizId);
+    getAverageScoreForQuiz(quizId: number): string {
+        let res = '' + this.getAverageScoreForQuizAsNumber(quizId);
 
         if (res.length >= res.indexOf('.') + 3) {
             res = res.substring(0, res.indexOf('.') + 3);
         }
 
-        if (res === "Na") {
-            return "-"
+        if (res === 'Na') {
+            return '-';
         }
 
         return res;
     }
 
     getAverageScore(): string {
-        var count = 0;
+        let count = 0;
 
-        for (let quiz of this.quizList) {
+        for (const quiz of this.quizList) {
 
             const averageCount = this.getAverageScoreForQuizAsNumber(quiz.id);
 
@@ -158,33 +157,33 @@ export class AnimMainQuizListComponent implements OnInit {
             }
         }
 
-        var score = count / this.quizList.length;
+        const score = count / this.quizList.length;
 
-        var res = "" + score;
+        let res = '' + score;
 
         if (res.length >= res.indexOf('.') + 3) {
             res = res.substring(0, res.indexOf('.') + 3);
         }
 
-        if (res === "Na") {
-            return "-"
+        if (res === 'Na') {
+            return '-';
         }
 
         return res;
     }
 
-    getAverageNbPlayedQuizPerPerson():string {
-        var count = 0;
-        var val = 0;
+    getAverageNbPlayedQuizPerPerson(): string {
+        let count = 0;
+        let val = 0;
 
-        for (let stat of this.userAndQuizList) {
+        for (const stat of this.userAndQuizList) {
             count++;
             val += stat.played_quizzes.length;
         }
 
-        var score = val / count;
+        const score = val / count;
 
-        var res = "" + score;
+        let res = '' + score;
 
         if (res.length >= res.indexOf('.') + 3) {
             res = res.substring(0, res.indexOf('.') + 3);

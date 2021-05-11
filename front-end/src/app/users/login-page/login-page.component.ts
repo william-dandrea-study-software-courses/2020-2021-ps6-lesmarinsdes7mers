@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {User} from '../../../models/user.model';
-import {UserService} from '../../../services/user.service';
+import {UserService} from '../../../services/user/user.service';
 import {Location} from '@angular/common';
 import {Subscription} from 'rxjs';
-import UserPrefsService from "../../../services/userprefs.service";
+import UserPrefsService from "../../../services/user/userprefs.service";
 
 @Component({
     templateUrl: './login-page.component.html',
