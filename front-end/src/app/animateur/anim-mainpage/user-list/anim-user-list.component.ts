@@ -6,6 +6,7 @@ import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {serverUrl} from "../../../../configs/server.config";
+import {UserAndQuizModel} from "../../../../models/user-and-quiz.model";
 
 @Component({
     selector: 'app-anim-main-user-list',
@@ -15,6 +16,7 @@ import {serverUrl} from "../../../../configs/server.config";
 export class AnimMainUserListComponent implements OnInit {
 
     userList: User[] = [];
+    userQuiz: UserAndQuizModel[] = [];
     handicapToString = HandicapToString;
     userSelected: User[];
 
@@ -24,16 +26,17 @@ export class AnimMainUserListComponent implements OnInit {
 
     ngOnInit() {
         this.userSelected = [];
-        this.userService.users$.subscribe(value => this.userList = value);
-        this.userList = this.userService.getUsers();
-
-        /*this.userService.users$.subscribe(users => {
-            users.forEach(user => this.userList.push(user));
-        })*/
+        this.userAndQuizService.initializeUserAndQuiz(-1);
+        this.userAndQuizService.getUserAndQuizzesAsObservable().subscribe(value => {
+            this.userQuiz = value;
+            this.userService.users$.subscribe(users => {
+                this.userList = users;
+            })
+        });
     }
 
     getQuizFinishCount(user: User): number {
-        return this.userAndQuizService.getUserAndQuizs().filter(value => value.id_user == user.id).length;
+        return this.userQuiz.filter(value => value.id_user == user.id)?.length || 0;
     }
 
     onConfigFontSizeChange(user: User): void {

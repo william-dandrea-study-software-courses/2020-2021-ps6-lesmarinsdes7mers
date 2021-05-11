@@ -5,7 +5,7 @@ import {User} from "../../../../models/user.model";
 import {DatePipe} from "@angular/common";
 import {Handicap, HandicapToString} from "../../../../models/handicap.enum";
 import {UserAndQuizService} from "../../../../services/user-and-quiz.service";
-import {MadedQuizzesModel} from "../../../../models/user-and-quiz.model";
+import {MadedQuizzesModel, UserAndQuizModel} from "../../../../models/user-and-quiz.model";
 import { difficultyToText, Quiz} from "../../../../models/quiz.model";
 import {QuizService} from "../../../../services/quiz.service";
 import {HttpClient} from "@angular/common/http";
@@ -30,6 +30,7 @@ export class UserAddEditComponent implements OnInit {
   configFontSizeSelected: number[];
   modifyFontSizeConfig: number;
   quizAnswers: QuizUserAnswer[];
+  userQuiz: UserAndQuizModel;
 
   constructor(private path: ActivatedRoute, private users: UserService, private dateFormatter: DatePipe,
               private userAndQuiz: UserAndQuizService, private quizService: QuizService, private router: Router,
@@ -45,13 +46,14 @@ export class UserAddEditComponent implements OnInit {
     this.configFontSizeSelected = [];
     this.modifyFontSizeConfig = -1;
     this.quizAnswers = [];
-    this.userAndQuiz.setOneUserQuizzes(this.user);
+    this.userAndQuiz.initializeUserAndQuiz(userId);
+    this.userAndQuiz.getOneUserQuizzesAsObservable().subscribe(value => {
+      this.userQuiz = value;
+      this.initQuizDone();
+    });
     this.quizService.quizzes$.subscribe(quizs => {
-      this.getUserQuiz().forEach(answer => {
-        const quiz = quizs.find(value => value.id == answer.id_quiz);
-        this.quizAnswers.push({name: quiz.name, difficulty: difficultyToText(quiz.difficulty), result: this.getGoodAnswerCount(quiz, this.getUserQuiz())+"/"+quiz.questions.length,
-          tries: this.getTriesCount(quiz, this.getUserQuiz()), mean: this.getAnswerCorrectMean(quiz, this.getUserQuiz()), questions_count:quiz.questions.length} as QuizUserAnswer);
-      })
+      this.quiz = quizs;
+      this.initQuizDone();
     });
 
     document.addEventListener("mousedown", ev => {
@@ -60,6 +62,16 @@ export class UserAddEditComponent implements OnInit {
       }
     });
 
+  }
+
+  private initQuizDone() {
+    if(this.userQuiz != undefined && this.quiz != undefined) {
+      this.userQuiz.played_quizzes.forEach(answer => {
+        const quiz = this.quiz.find(value => value.id == answer.id_quiz);
+        this.quizAnswers.push({name: quiz.name, difficulty: difficultyToText(quiz.difficulty), result: this.getGoodAnswerCount(quiz, this.getUserQuiz())+"/"+quiz.questions.length,
+          tries: this.getTriesCount(quiz, this.getUserQuiz()), mean: this.getAnswerCorrectMean(quiz, this.getUserQuiz()), questions_count:quiz.questions.length} as QuizUserAnswer);
+      })
+    }
   }
 
   setModifyInput(elmt: HTMLInputElement | HTMLTextAreaElement, id: number): void {
@@ -183,7 +195,7 @@ export class UserAddEditComponent implements OnInit {
   }
 
   getUserQuiz(): MadedQuizzesModel[] {
-    return this.userAndQuiz.getUserAndQuizs().find(value => value.id_user == this.user.id)?.played_quizzes || [];
+    return this.userQuiz?.played_quizzes || [];
   }
 
   saveUserModificationAndQuit() {

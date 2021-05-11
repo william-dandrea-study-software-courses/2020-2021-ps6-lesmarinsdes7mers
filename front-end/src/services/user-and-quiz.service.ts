@@ -29,7 +29,7 @@ export class UserAndQuizService {
 
   public initializeUserAndQuiz(userId: number): void {
     this.getAllUserAndQuizFromDatabase().subscribe(internUserAndQuizzes => {
-      this.setUserAndQuizzes(internUserAndQuizzes);
+      this.setUserAndQuizzes(internUserAndQuizzes.data);
     });
 
 
