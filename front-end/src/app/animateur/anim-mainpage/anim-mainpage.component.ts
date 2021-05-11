@@ -26,7 +26,7 @@ export class AnimMainpageComponent implements OnInit {
     headerMenuToString (item: HeaderMenuItem): string {
         switch (item) {
             case HeaderMenuItem.QUIZ:
-                return "Quiz";
+                return "Quizs";
             case HeaderMenuItem.USERS:
                 return "Utilisateurs";
             case HeaderMenuItem.SETTINGS:
