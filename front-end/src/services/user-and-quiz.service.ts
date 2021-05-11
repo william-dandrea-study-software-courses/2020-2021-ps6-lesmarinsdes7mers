@@ -28,15 +28,16 @@ export class UserAndQuizService {
   constructor(private http: HttpClient) {}
 
   public initializeUserAndQuiz(userId: number): void {
+
     this.getAllUserAndQuizFromDatabase().subscribe(internUserAndQuizzes => {
       this.setUserAndQuizzes(internUserAndQuizzes.data);
     });
 
-
-    this.getUserAndQuizForOneUserFromDatabase(userId).subscribe(internUserAndQuiz => {
-      this.setOneUserAndQuiz(internUserAndQuiz.data);
-    });
-
+    if (userId !== -1) {
+      this.getUserAndQuizForOneUserFromDatabase(userId).subscribe(internUserAndQuiz => {
+        this.setOneUserAndQuiz(internUserAndQuiz.data);
+      });
+    }
   }
 
   public initializePublicOneUserAndQuiz(): void {
