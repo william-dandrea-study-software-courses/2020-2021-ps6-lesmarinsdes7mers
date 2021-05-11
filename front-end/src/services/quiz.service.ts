@@ -55,10 +55,13 @@ export class QuizService {
   }
 
   public setSelectedQuiz(quizId: number): void {
+    this.quizSelected = this.quizzes?.find(d => d.id === quizId) || undefined
+
     this.getOneQuizFromDatabase(quizId).subscribe(value => {
       this.quizSelected = value.data;
       this.quizSelected$.next(value.data);
     });
+    this.quizSelected$.next(this.quizSelected);
   }
 
 
