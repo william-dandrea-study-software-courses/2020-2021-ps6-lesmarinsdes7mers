@@ -7,9 +7,10 @@ import {
   httpOptionsBase,
   quizzesGETAllQuizzes,
   quizzesGETAllPublicQuizzes,
-  quizzesGETAllQuizzesAvailableForOneUser, quizzesGETOneQuiz
+  quizzesGETAllQuizzesAvailableForOneUser, quizzesGETOneQuiz, userAndQuizzesDELETEUserAndQuizForOneQuiz
 } from '../../configs/server.config';
 import {UserService} from '../user/user.service';
+import {UserAndQuizModel} from "../../models/user-and-quiz.model";
 
 @Injectable({
   providedIn: 'root'
@@ -257,4 +258,5 @@ export class QuizService {
     const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath + '/' + question.id;
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
+
 }

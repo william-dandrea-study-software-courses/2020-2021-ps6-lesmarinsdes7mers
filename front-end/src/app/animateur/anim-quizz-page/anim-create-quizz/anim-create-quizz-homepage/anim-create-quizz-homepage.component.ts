@@ -3,7 +3,7 @@ import {Visibility} from '../../../../../models/quiz-creation.model';
 import {Answer, Difficulty, Question, QuestionType, Quiz} from '../../../../../models/quiz.model';
 import { QuizService } from 'src/services/quiz/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {UserService} from "../../../../../services/user.service";
+import {UserService} from "../../../../../services/user/user.service";
 
 @Component({
   selector: 'app-anim-create-quizz-homepage',
