@@ -27,12 +27,17 @@ export class AnimMainQuizListComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userAndQuizService.initializeUserAndQuiz(-1);
         this.quizService.quizzes$.subscribe(quiz => {
             this.quizList = quiz;
         });
+        this.quizList = this.quizService.getAllQuizzes();
         this.userAndQuizService.userAndQuizs$.subscribe(stat => {
+            this.userAndQuizList = [];
             stat.forEach(s => this.userAndQuizList.push(s));
         });
+
+
     }
 
     translateDifficulty(difficulty: Difficulty):string {
@@ -141,11 +146,16 @@ export class AnimMainQuizListComponent implements OnInit {
         return res;
     }
 
-    getAverageScore():string {
+    getAverageScore(): string {
         var count = 0;
 
         for (let quiz of this.quizList) {
-            count += this.getAverageScoreForQuizAsNumber(quiz.id);
+
+            const averageCount = this.getAverageScoreForQuizAsNumber(quiz.id);
+
+            if (averageCount) {
+                count += averageCount;
+            }
         }
 
         var score = count / this.quizList.length;

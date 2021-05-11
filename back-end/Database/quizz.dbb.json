@@ -1,8 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Abeilles du ruche 1",
-    "difficulty": 2,
+    "name": "Abeilles du ruchet 1",
+    "difficulty": 0,
     "privacy": {
       "is_public": true,
       "users_access": []
@@ -935,7 +935,7 @@
   {
     "id": 5,
     "name": "TEST TEST TEST TEST TEST TEST ",
-    "difficulty": 2,
+    "difficulty": 3,
     "privacy": {
       "is_public": true,
       "users_access": [
